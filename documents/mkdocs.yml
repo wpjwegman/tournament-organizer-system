@@ -1,0 +1,357 @@
+# Tournament Organizer Documentation - Clean Material Theme
+site_name: Tournament Organizer Documentation
+site_description: Comprehensive documentation for the Tournament Organizer project
+site_author: wpjwegman
+site_url: https://wpjwegman.github.io/TO-Documentation/
+repo_url: https://github.com/wpjwegman/tournament-organizer-docs
+repo_name: wpjwegman/tournament-organizer-docs
+
+# Documentation directories
+docs_dir: docs
+site_dir: site
+
+# Clean Material theme - no customizations
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  logo: "assets/images/tournament organizer logo 5.png"
+  icon:
+    repo: fontawesome/brands/github
+
+# Plugins
+plugins:
+  - search
+  - mermaid2:
+      arguments:
+        theme: base
+  - tags
+  - macros:
+      module_name: main
+  - meta-descriptions
+  - htmlproofer:
+      raise_error: false
+      raise_error_after_finish: true
+  - print-site
+
+# Markdown extensions
+markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - tables
+  - fenced_code
+  - admonition
+  - codehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.keys
+  - pymdownx.progressbar
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.mark
+  - pymdownx.caret
+  - pymdownx.tilde
+
+# CSS for logo styling
+extra_css:
+  - assets/stylesheets/logo-styling.css
+
+# JavaScript for enhanced functionality
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# MathJax configuration
+extra:
+  generator: false
+  mathJax:
+    tex:
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+
+# Navigation structure
+nav:
+  - Home: index.md
+  - Architecture:
+    - Overview: architecture/overview.md
+    - Domain Overview: architecture/domain-overview.md
+  # No development section: all internal lessons and workflow documents are excluded from publishable documentation
+  - Domains:
+    - Overview: domains/README.md
+    - Team:
+      - Overview: domains/team.md
+      - Team Domain: domains/team/README.md
+      - Roster: domains/team/roster.md
+      - Seed: domains/team/seed.md
+      - Team Model: domains/team/team.md
+      - Roster Management:
+        - Overview: domains/team/roster/README.md
+        - Roster Model: domains/team/roster/roster.md
+        - Player Management:
+          - Overview: domains/team/roster/player/README.md
+          - Player Model: domains/team/roster/player/player.md
+          - Position Model: domains/team/roster/player/position.md
+    - Classification:
+      - Overview: domains/classification/README.md
+      - Category: domains/classification/category.md
+      - Criterium: domains/classification/criterium.md
+      - Dimension: domains/classification/dimension.md
+      - Type: domains/classification/type.md
+      - Measurement:
+        - Measurement Model: domains/classification/measurement/measurement.md
+        - System Model: domains/classification/measurement/system.md
+        - Unit Model: domains/classification/measurement/unit.md
+    - Code of Conduct:
+      - Overview: domains/code_of_conduct/README.md
+      - Code of Conduct Model: domains/code_of_conduct/code_of_conduct.md
+      - Expected Behavior: domains/code_of_conduct/expected_behavior.md
+      - Rule Model: domains/code_of_conduct/rule.md
+    - Communication:
+      - Overview: domains/communication/README.md
+      - Notification Model: domains/communication/notification.md
+    - Discipline:
+      - Overview: domains/discipline/README.md
+      - Award Model: domains/discipline/award.md
+      - Discipline Model: domains/discipline/discipline.md
+      - Activity:
+        - Activity Model: domains/discipline/activity/activity.md
+        - Domain Model: domains/discipline/activity/domain.md
+      - Stage:
+        - Points System: domains/discipline/stage/points_system.md
+        - Promotion Rule: domains/discipline/stage/promotion_rule.md
+        - Seeding System: domains/discipline/stage/seeding_system.md
+        - Stage Model: domains/discipline/stage/stage.md
+        - Stage Format: domains/discipline/stage/stage_format.md
+        - Stage Phase: domains/discipline/stage/stage_phase.md
+        - Stage Tiebreaker: domains/discipline/stage/stage_tiebreaker.md
+        - Team Creation: domains/discipline/stage/team_creation.md
+        - Team Format: domains/discipline/stage/team_format.md
+        - Match System:
+          - Match System Model: domains/discipline/stage/match_system/match_system.md
+          - Match Tiebreaker: domains/discipline/stage/match_system/match_tiebreaker.md
+          - Match Unit:
+            - Match Unit Model: domains/discipline/stage/match_system/match_unit/match_unit.md
+            - Scoring Range: domains/discipline/stage/match_system/match_unit/scoring_range.md
+            - Win Criterion: domains/discipline/stage/match_system/match_unit/win_criterion.md
+      - Variation:
+        - Rule Model: domains/discipline/activity/variation/rule.md
+        - Variation Model: domains/discipline/activity/variation/variation.md
+    - Finance:
+      - Overview: domains/finance/README.md
+      - Amount Model: domains/finance/amount.md
+      - Cart Model: domains/finance/cart.md
+      - Discount Model: domains/finance/discount.md
+      - Expense Model: domains/finance/expense.md
+      - Fee Model: domains/finance/fee.md
+      - Finance Model: domains/finance/finance.md
+      - Income Model: domains/finance/income.md
+      - Item Model: domains/finance/item.md
+      - Payment Model: domains/finance/payment.md
+      - Receipt Model: domains/finance/receipt.md
+    - First Aid:
+      - Overview: domains/first_aid/README.md
+      - Escalation Model: domains/first_aid/escalation.md
+      - Instruction Model: domains/first_aid/instruction.md
+      - Protocol Model: domains/first_aid/protocol.md
+      - Symptom Model: domains/first_aid/symptom.md
+    - Foundation:
+      - Overview: domains/foundation/README.md
+      - Base Entity: domains/foundation/base_entity.md
+      - DDD Concepts: domains/foundation/ddd_concepts.md
+    - Identity:
+      - Overview: domains/identity/README.md
+      - Contact Information: domains/identity/contact_information.md
+      - Identity Model: domains/identity/identity.md
+      - Official Identifier: domains/identity/official_identifier.md
+      - Account:
+        - Account Model: domains/identity/account/account.md
+        - Settings:
+          - Scope Model: domains/identity/account/setting/scope.md
+          - Setting Model: domains/identity/account/setting/setting.md
+      - Attributes:
+        - Address: domains/identity/attributes/address.md
+        - Birth Details: domains/identity/attributes/birth_details.md
+        - Breed Standard: domains/identity/attributes/breed_standard.md
+        - Country: domains/identity/attributes/country.md
+        - Date of Birth: domains/identity/attributes/date_of_birth.md
+        - Emergency Contact: domains/identity/attributes/emergency_contact.md
+        - Exercise: domains/identity/attributes/exercise.md
+        - Exercise Regimen: domains/identity/attributes/exercise_regimen.md
+        - Gender Identity: domains/identity/attributes/gender_identity.md
+        - Habitat: domains/identity/attributes/habitat.md
+        - Instruction: domains/identity/attributes/instruction.md
+        - Instruction Step: domains/identity/attributes/instruction_step.md
+        - Interest: domains/identity/attributes/interest.md
+        - Membership: domains/identity/attributes/membership.md
+        - Name: domains/identity/attributes/name.md
+        - Physical: domains/identity/attributes/physical.md
+        - Preference: domains/identity/attributes/preference.md
+        - Relationship: domains/identity/attributes/relationship.md
+        - Sex: domains/identity/attributes/sex.md
+        - Temperament: domains/identity/attributes/temperament.md
+        - Training: domains/identity/attributes/training.md
+        - Vaccination Record: domains/identity/attributes/vaccination_record.md
+        - Medical History:
+          - Dietary Information: domains/identity/attributes/medical_history/dietary_information.md
+          - Medical History Model: domains/identity/attributes/medical_history/medical_history.md
+          - Health Condition:
+            - Overview: domains/identity/attributes/medical_history/health_condition/README.md
+            - Health Condition Model: domains/identity/attributes/medical_history/health_condition/health_condition.md
+            - Symptom Model: domains/identity/attributes/medical_history/health_condition/symptom.md
+            - Treatment:
+              - Overview: domains/identity/attributes/medical_history/health_condition/treatment/README.md
+              - Medicine Model: domains/identity/attributes/medical_history/health_condition/treatment/medicine.md
+              - Treatment Model: domains/identity/attributes/medical_history/health_condition/treatment/treatment.md
+      - Profile:
+        - Animal Profile: domains/identity/profile/animal.md
+        - Art Profile: domains/identity/profile/art.md
+        - Base Profile: domains/identity/profile/base_profile.md
+        - Computer Profile: domains/identity/profile/computer.md
+        - Digital Profile: domains/identity/profile/digital.md
+        - Human Profile: domains/identity/profile/human.md
+        - Machine Profile: domains/identity/profile/machine.md
+        - Plant Profile: domains/identity/profile/plant.md
+        - Robot Profile: domains/identity/profile/robot.md
+        - Software Profile: domains/identity/profile/software.md
+        - Vehicle Profile: domains/identity/profile/vehicle.md
+      - Role:
+        - Overview: domains/identity/role/README.md
+        - Role Model: domains/identity/role/role.md
+        - Specialization: domains/identity/role/specialization.md
+        - Permission:
+          - Overview: domains/identity/role/permission/README.md
+          - Operation Model: domains/identity/role/permission/operation.md
+          - Permission Model: domains/identity/role/permission/permission.md
+          - Resource Type: domains/identity/role/permission/resource_type.md
+        - Responsibility:
+          - Overview: domains/identity/role/responsibility/README.md
+          - Expectation Model: domains/identity/role/responsibility/expectation.md
+          - Responsibility Model: domains/identity/role/responsibility/responsibility.md
+          - Skill Model: domains/identity/role/responsibility/skill.md
+          - Task Model: domains/identity/role/responsibility/task.md
+          - Tracking Model: domains/identity/role/responsibility/tracking.md
+    - Inventory:
+      - Overview: domains/inventory/README.md
+      - Inventory Model: domains/inventory/inventory.md
+      - Item Model: domains/inventory/item.md
+      - Stock Record: domains/inventory/stock_record.md
+    - Media:
+      - Overview: domains/media/README.md
+      - Digital Channel: domains/media/digital_channel.md
+      - Media Asset: domains/media/media_asset.md
+      - QR Code: domains/media/qr_code.md
+    - Organization:
+      - Overview: domains/organization/README.md
+      - Organization Model: domains/organization/organization.md
+      - Target Audience: domains/organization/target_audience.md
+      - Unit:
+        - Overview: domains/organization/unit/README.md
+        - Member Model: domains/organization/unit/member.md
+        - Unit Model: domains/organization/unit/unit.md
+    - Process:
+      - Overview: domains/process/README.md
+      - Role Assignment: domains/process/role_assignment.md
+    - Ranking:
+      - Overview: domains/ranking/README.md
+      - Ranking Model: domains/ranking/ranking.md
+    - Registration:
+      - Overview: domains/registration/README.md
+      - Registrant Model: domains/registration/registrant.md
+      - Registration Model: domains/registration/registration.md
+    - Reservation:
+      - Overview: domains/reservation/README.md
+      - Amenity Model: domains/reservation/amenity.md
+      - Reservation Model: domains/reservation/reservation.md
+      - Service Model: domains/reservation/service.md
+    - Safety:
+      - Overview: domains/safety/README.md
+      - Incident Model: domains/safety/incident.md
+      - Safety Model: domains/safety/safety.md
+      - Protocol:
+        - Overview: domains/safety/protocol/README.md
+        - Guideline Model: domains/safety/protocol/guideline.md
+        - Protocol Model: domains/safety/protocol/protocol.md
+    - Schedule:
+      - Overview: domains/schedule/README.md
+      - Event Model: domains/schedule/event.md
+      - Fixture Model: domains/schedule/fixture.md
+      - Match Model: domains/schedule/match.md
+      - Schedule Model: domains/schedule/schedule.md
+      - Score Model: domains/schedule/score.md
+      - Timeslot Model: domains/schedule/timeslot.md
+      - Official:
+        - Overview: domains/schedule/official/README.md
+        - Official Model: domains/schedule/official/official.md
+        - Qualification Model: domains/schedule/official/qualification.md
+    - Standing:
+      - Overview: domains/standing/README.md
+      - Standing Model: domains/standing/standing.md
+    - Tournament:
+      - Overview: domains/tournament/README.md
+      - Domain Completion Status: domains/tournament/TOURNAMENT_DOMAIN_COMPLETION.md
+      - Participant Model: domains/tournament/participant.md
+      - Rule Model: domains/tournament/rule.md
+      - Tournament Model: domains/tournament/tournament.md
+    - Venue:
+      - Overview: domains/venue/README.md
+      - Area Model: domains/venue/area.md
+      - Map Model: domains/venue/map.md
+      - Venue Model: domains/venue/venue.md
+      - Zone Model: domains/venue/zone.md
+  - Getting Started:
+    - Overview: getting-started/README.md
+    - Local Documentation Setup: getting-started/local-documentation-setup.md
+    - Search Guide: search-guide.md
+    - Content Formatting Guide: content-formatting-guide.md
+    - Accessibility Assessment: accessibility-assessment.md
+    - Mobile Optimization Guide: mobile-optimization-guide.md
+  - Tags: tags.md

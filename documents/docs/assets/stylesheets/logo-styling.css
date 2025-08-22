@@ -1,0 +1,143 @@
+/* Tournament Organizer Logo Enlargement & Custom Color Scheme */
+
+/* Custom color definitions using Tournament Organizer brand colors */
+:root {
+  /* Tournament Organizer Brand Colors */
+  --to-purple: #6344B3;
+  --to-yellow: #FAC32A;
+  --to-blue: #1876CB;
+  --to-red: #EA4B26;
+  
+  /* Override Material theme colors with custom colors */
+  --md-primary-fg-color: var(--to-purple);
+  --md-primary-fg-color--light: #7E5CC7;
+  --md-primary-fg-color--dark: #4F349F;
+  --md-accent-fg-color: var(--to-yellow);
+  --md-accent-fg-color--transparent: rgba(250, 195, 42, 0.1);
+  
+  /* Optional: Use blue for links and other elements */
+  --md-typeset-a-color: var(--to-blue);
+}
+
+/* Dark theme color overrides */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: var(--to-purple);
+  --md-primary-fg-color--light: #7E5CC7;
+  --md-primary-fg-color--dark: #4F349F;
+  --md-accent-fg-color: var(--to-yellow);
+  --md-accent-fg-color--transparent: rgba(250, 195, 42, 0.1);
+  --md-typeset-a-color: var(--to-blue);
+}
+
+/* Style the footer navigation to match the header */
+.md-footer {
+  background-color: var(--to-purple) !important;
+  color: white !important;
+}
+
+.md-footer__inner {
+  background-color: var(--to-purple) !important;
+}
+
+.md-footer__link {
+  color: white !important;
+}
+
+.md-footer__link:hover {
+  color: var(--to-yellow) !important;
+}
+
+.md-footer__title {
+  color: white !important;
+}
+
+.md-footer__direction {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Make the logo bigger for better visibility while keeping it in the header */
+.md-header__button.md-logo {
+  /* Increase logo size from default ~24px to ~48px */
+  width: 48px !important;
+  height: 48px !important;
+  margin: 4px 8px !important;
+}
+
+.md-header__button.md-logo img {
+  /* Ensure the image fills the container properly */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Adjust header height to accommodate larger logo */
+.md-header {
+  min-height: 56px !important;
+  padding: 4px 0 !important;
+}
+
+/* Ensure site title and other header elements align nicely with larger logo */
+.md-header__title {
+  line-height: 48px !important;
+  margin-left: 0.5rem !important;
+}
+
+/* Align search, theme toggle, and other header buttons with the larger logo */
+.md-header__option {
+  line-height: 48px !important;
+}
+
+/* Ensure search bar aligns properly */
+.md-search {
+  line-height: 48px !important;
+}
+
+/* For tablet and smaller screens - slightly smaller but still enlarged */
+@media screen and (max-width: 76.1875em) {
+  .md-header__button.md-logo {
+    width: 40px !important;
+    height: 40px !important;
+    margin: 6px !important;
+  }
+  
+  .md-header {
+    min-height: 52px !important;
+  }
+  
+  .md-header__title {
+    line-height: 40px !important;
+  }
+  
+  .md-header__option {
+    line-height: 40px !important;
+  }
+  
+  .md-search {
+    line-height: 40px !important;
+  }
+}
+
+/* For mobile screens - moderately enlarged */
+@media screen and (max-width: 44.9375em) {
+  .md-header__button.md-logo {
+    width: 36px !important;
+    height: 36px !important;
+    margin: 6px !important;
+  }
+  
+  .md-header {
+    min-height: 48px !important;
+  }
+  
+  .md-header__title {
+    line-height: 36px !important;
+  }
+  
+  .md-header__option {
+    line-height: 36px !important;
+  }
+  
+  .md-search {
+    line-height: 36px !important;
+  }
+}

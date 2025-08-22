@@ -1,0 +1,30 @@
+repos:
+  - repo: local
+    hooks:
+      - id: markdown-autofix
+        name: Markdown auto-fix (trim, final newline, fence languages)
+        entry: python scripts/markdown_autofix.py
+        language: system
+        files: ^docs/.*\.md$
+        pass_filenames: true
+        stages: [pre-commit]
+      - id: pymarkdown-docs
+        name: PyMarkdown linter (docs/)
+        entry: pymarkdown --config .pymarkdown.json scan docs
+        language: python
+        additional_dependencies: [ "pymarkdownlnt==0.9.18" ]
+        types: [markdown]
+        files: ^docs/.*\.md$
+        pass_filenames: false
+      - id: forbid-frontmatter-title
+        name: "Forbid front-matter title: (docs/)"
+        entry: python scripts/check_no_frontmatter_title.py
+        language: system
+        files: ^docs/.*\.md$
+        pass_filenames: true
+      - id: guard-nav-orphans
+        name: "Guard: no pages outside nav (mkdocs)"
+        entry: python scripts/check_nav_orphans.py
+        language: system
+        files: ^docs/.*\.(md|yml)$
+        pass_filenames: false
