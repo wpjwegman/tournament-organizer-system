@@ -1,59 +1,75 @@
-# **Rule** (Data Model - Template Entity)
-
-## **Introduction**
-
-A **Rule** Entity defines a mandatory, enforceable requirement or prohibition within the context of a tournament, event,
-or organization. Rules are referenced by the [Code of Conduct](../code_of_conduct/code_of_conduct.md) and
-are the basis for disciplinary action if violated. Each rule is specific, actionable, and includes clear consequences
-for non-compliance.
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
-
+---
+tags:
+  - rule
+  - conduct
+  - template
+  - enforcement
+  - mandatory
 ---
 
-## **Attributes**
+# Rule (Template Entity)
 
-**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../foundation/base_entity.md).
+## Overview
 
-| Attribute         | Description                           | Type   | Required | Notes / Example                               |
-| ----------------- | ------------------------------------- | ------ | -------- | --------------------------------------------- |
-| **Title**         | Short, descriptive name for the rule. | String | Yes      | `No Physical Contact with Officials`          |
-| **Description**   | Detailed explanation of the rule.     | Text   | Yes      | `Participants must not physically contact...` |
-| **Category**      | Classification of the rule.           | String | No       | `Safety`, `Fair Play`, `Anti-Discrimination`  |
-| **Applicability** | Context where the rule applies.       | String | No       | `Tournament`, `Match`, `All Participants`     |
-| **Consequence**   | Action taken if the rule is violated. | Text   | Yes      | `Immediate disqualification`                  |
-| **Severity**      | Severity of violation.                | String | No       | `Minor`, `Major`, `Critical`                  |
+A Rule is a template entity that defines mandatory, enforceable requirements for tournament participants. It specifies clear prohibitions or obligations with defined consequences for non-compliance, providing the enforcement backbone for codes of conduct and ensuring consistent behavioral standards across tournament environments.
 
----
+## Purpose
 
-## **Considerations**
+- Enable standardized mandatory requirements with clear enforcement mechanisms.
+- Support template-based rule management that ensures consistent consequences and applicability.
+- Facilitate enforceable standards that complement positive expected behaviors with clear boundaries.
 
-- **Enforceability:** Rule templates must be clear, actionable, and have defined consequences.
-- **Clarity:** Avoid ambiguity in rule template language.
-- **Contextualization:** Specify where and to whom the rule template applies.
+## Structure
 
----
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
-## References
+### Attributes
 
-- [ISO 26000:2010 - Guidance on social responsibility](https://www.iso.org/standard/42546.html) - Standard for
+| Attribute | Description | Type | Required | Example |
+|-----------|-------------|------|----------|---------|
+| Title | Short, descriptive name for the rule | String | Yes | No Physical Contact with Officials, Equipment Regulations |
+| Description | Detailed explanation of the rule requirement | Text | Yes | Participants must not physically contact tournament officials... |
+| Category | Classification of the rule type | String | No | Safety, Fair Play, Anti-Discrimination, Equipment |
+| Applicability | Context where the rule applies | String | No | Tournament, Match, All Participants, Team Members |
+| Consequence | Action taken if the rule is violated | Text | Yes | Immediate disqualification, Warning, Point penalty |
+| Severity | Severity level of rule violations | String | No | Minor, Major, Critical, Automatic Disqualification |
 
-  organizational conduct and social responsibility
+## Example
 
-- [ISO 37301 — Compliance management systems (ISO official page)](https://www.iso.org/standard/75080.html) - Standard for compliance
+### Example 1: Safety Rule Template
 
-  and rule enforcement
+```mermaid
+graph TD
+    R[Rule: No Physical Contact]
+    R --> T[Title: No Physical Contact with Officials]
+    R --> D[Description: Participants must never physically contact tournament officials]
+    R --> C[Category: Safety]
+    R --> A[Applicability: All Tournament Participants]
+    R --> CN[Consequence: Immediate disqualification from tournament]
+    R --> S[Severity: Critical]
+```
 
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event management standards
+This example illustrates a critical safety rule template with all attributes clearly defined. The Title provides immediate recognition of the rule's focus (No Physical Contact with Officials), while the Description gives unambiguous guidance about the prohibited behavior. The Category classification (Safety) helps organizers group safety-related rules for training and enforcement protocols. Applicability ensures comprehensive coverage (All Tournament Participants), and the Consequence specifies immediate and severe action (disqualification) that matches the Critical severity level. This comprehensive approach enables tournament organizers to maintain safe environments with clear, enforceable boundaries that protect officials and maintain order.
 
-  including rule enforcement
+### Example 2: Equipment Rule Template
+
+```mermaid
+graph TD
+    R[Rule: Equipment Standards]
+    R --> T[Title: Approved Equipment Only]
+    R --> D[Description: Teams must use only tournament-approved equipment]
+    R --> C[Category: Equipment]
+    R --> A[Applicability: Team Members]
+    R --> CN[Consequence: Equipment confiscation and warning]
+    R --> S[Severity: Minor]
+```
+
+This example demonstrates an equipment-focused rule template covering all required attributes. The Title clearly identifies the equipment requirement (Approved Equipment Only), and the Description provides specific guidance about tournament-approved equipment usage. The Category (Equipment) enables organizers to group equipment-related rules for consistent enforcement and equipment management protocols. Applicability targets Team Members specifically, while the Consequence outlines proportionate action (confiscation and warning) that aligns with the Minor severity classification. This balanced approach helps organizers maintain equipment standards while providing educational opportunities for teams to understand and comply with equipment requirements.
 
 ## See Also
 
-- [Code Of Conduct](../code_of_conduct/code_of_conduct.md)
-- [Expected Behavior](../code_of_conduct/expected_behavior.md)
-- [Tournament Rule](../tournament/rule.md)
-
----
+- [Code of Conduct](code_of_conduct.md)
+- [Expected Behavior](expected_behavior.md)
+- [Code of Conduct Domain](README.md)
+- [Safety Domain](../safety/README.md)
+- [Discipline Domain](../discipline/README.md)

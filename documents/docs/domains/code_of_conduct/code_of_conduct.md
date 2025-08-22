@@ -1,65 +1,92 @@
-# **Code of Conduct** (Data Model - Template Entity)
-
-## **Introduction**
-
-A **Code of Conduct** Entity Template defines the enforceable standards and positive expectations for conduct within a
-given context (e.g., Tournament, Organization). It is composed of references to 🚨 **BROKEN:** 🚨 **BROKEN:**
-[Rule](../discipline/activity/variation/rule.md) entities (mandatory, enforceable requirements) and
-[Expected Behavior](../code_of_conduct/expected_behavior.md) entities (positive standards), ensuring a
-safe, respectful, and fair environment.
-
-Guidelines, which are non-binding recommendations, are not referenced directly in the Code of Conduct but may be
-provided separately.
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
+---
+tags:
+  - code-of-conduct
+  - behavior
+  - template
+  - rule
+  - conduct
 ---
 
-## **Attributes**
+# Code of Conduct (Template Entity)
 
-| Attribute              | Description                                                                                                                                               | Type       | Required | Notes / Example                                                                |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------ |
-| **Title**              | The official name or title of the Code of Conduct template.                                                                                               | String     | Yes      | Example: `Fair Play and Respect Policy`, `Standard Tournament Code of Conduct` |
-| **Version**            | A version identifier (e.g., date or number) for this specific template revision.                                                                          | String     | Optional | Example: `v2.1`, `2024-07-28`                                                  |
-| **Introduction**       | Optional introductory text (Markdown) to set the context, purpose, or spirit of the Code of Conduct.                                                      | Text       | Optional | Example: "This document outlines the behavior expected of all participants..." |
-| **Applicability**      | Describes the intended scope or context (e.g., Tournament, Organization, Event).                                                                          | String     | Optional | Example: `"Tournament - General"`, `"Youth Events"`                            |
-| **Expected Behaviors** | List of references (by ID) to the **[Expected Behavior](../code_of_conduct/expected_behavior.md)** Entities included in this template.      | List[UUID] | Optional | Example: `["eb-a1b2c3d4-e5f6-4890-1234-567890abc111"]`                         |
-| **Rules**              | List of references (by ID) to the **[Rule](../code_of_conduct/rule.md)** Entities included in this template.  | List[UUID] | Optional | Example: `["rule-a1b2c3d4-e5f6-4890-1234-567890abc222"]`                       |
+## Overview
 
----
+A Code of Conduct is a template entity that defines comprehensive behavioral frameworks for tournament environments. It combines mandatory rules and positive expected behaviors to create complete conduct standards that can be instantiated and customized for specific contexts while maintaining core behavioral principles.
 
-## **Considerations**
+## Purpose
 
-- **Enforceability:** Only Rules and Expected Behaviors are referenced to ensure all standards are actionable and
+- Enable standardized behavioral frameworks across different tournament contexts and organizations.
+- Support template-based conduct management that balances consistency with customization needs.
+- Facilitate comprehensive conduct standards through integrated rules and expected behaviors.
 
-  enforceable.
+## Structure
 
-- **Clarity:** Guidelines are kept separate to avoid confusion between mandatory requirements and recommendations.
-- **Template vs. Instance:** This model defines the _template_. The actual Code of Conduct applied to a specific context
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
-  is created by copying this template's definition into the target context.
+### Attributes
 
-- **Versioning:** The `Version` attribute tracks changes to the template composition itself.
+| Attribute | Description | Type | Required | Example |
+|-----------|-------------|------|----------|---------|
+| Title | Official name for the code of conduct template | String | Yes | Fair Play and Respect Policy, Standard Tournament Code of Conduct |
+| Version | Version identifier for template tracking | String | Optional | v2.1, 2024-07-28 |
+| Introduction | Introductory text explaining purpose and context | Text | Optional | This document outlines the behavior expected of all participants... |
+| Applicability | Intended scope or context for the template | String | Optional | Tournament - General, Youth Events, Professional Competition |
+| Expected Behaviors | List of positive behavioral standards | List[Expected Behavior] | Optional | Embedded expected behavior entities |
+| Rules | List of mandatory requirements with consequences | List[Rule] | Optional | Embedded rule entities |
 
----
+## Example
 
-## References
+### Example 1: Youth Tournament Code of Conduct
 
-- [ISO 26000:2010 - Guidance on social responsibility](https://www.iso.org/standard/42546.html) - Standard for
+```mermaid
+graph TD
+    COC[Code of Conduct: Youth Soccer Standards]
+    COC --> T[Title: Youth Soccer Code of Conduct]
+    COC --> V[Version: v1.2]
+    COC --> I[Introduction: Guidelines for fair play in youth soccer]
+    COC --> A[Applicability: Youth Soccer Tournaments]
+    COC --> EB[Expected Behaviors]
+    COC --> R[Rules]
+    
+    EB --> EB1[Respect for Officials]
+    EB --> EB2[Good Sportsmanship]
+    EB --> EB3[Supportive Team Spirit]
+    
+    R --> R1[No Physical Contact with Officials]
+    R --> R2[No Abusive Language]
+    R --> R3[Attend All Team Meetings]
+```
 
-  organizational conduct and social responsibility
+This example illustrates a complete youth soccer code of conduct template showing all attributes. The Title identifies the specific context (Youth Soccer), Version tracks template evolution (v1.2), Introduction provides context for the document's purpose, and Applicability clearly defines the scope (Youth Soccer Tournaments). The template includes three Expected Behaviors that promote positive conduct (respect, sportsmanship, team spirit) and three Rules with enforceable requirements (no physical contact, no abuse, attendance). This comprehensive approach ensures youth tournaments have both aspirational standards and clear boundaries, helping organizers maintain safe, positive environments while teaching good conduct principles.
 
-- [ISO 37301 — Compliance management systems (ISO official page)](https://www.iso.org/standard/75080.html) - Standard for compliance
+### Example 2: Professional Competition Code of Conduct
 
-  and conduct management
+```mermaid
+graph TD
+    COC[Code of Conduct: Professional Standards]
+    COC --> T[Title: Professional Competition Code]
+    COC --> V[Version: v2.0]
+    COC --> I[Introduction: Professional conduct expectations]
+    COC --> A[Applicability: Professional Tournaments]
+    COC --> EB[Expected Behaviors]
+    COC --> R[Rules]
+    
+    EB --> EB1[Professional Communication]
+    EB --> EB2[Media Responsibility]
+    
+    R --> R1[Anti-Doping Compliance]
+    R --> R2[Equipment Regulations]
+    R --> R3[Time Management Requirements]
+    R --> R4[Conflict of Interest Disclosure]
+```
 
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event management standards
-
-  including conduct guidelines
+This example demonstrates a professional-level code of conduct template with more complex requirements. The Title reflects the professional context, Version indicates a major update (v2.0), Introduction sets professional expectations, and Applicability targets professional competition settings. The Expected Behaviors focus on professional communication and media responsibilities appropriate for high-level competition, while Rules address critical professional requirements including anti-doping compliance, equipment standards, time management, and conflict disclosure. This template enables tournament organizers to maintain professional standards while providing clear frameworks for enforcement and education.
 
 ## See Also
 
-- [Expected Behavior](../code_of_conduct/expected_behavior.md)
-- [Rule](../code_of_conduct/rule.md)
-
----
+- [Expected Behavior](expected_behavior.md)
+- [Rule](rule.md)
+- [Code of Conduct Domain](README.md)
+- [Tournament Domain](../tournament/README.md)
+- [Organization Domain](../organization/README.md)
+- [Safety Domain](../safety/README.md)

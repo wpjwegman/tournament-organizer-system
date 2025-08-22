@@ -1,86 +1,72 @@
-# **Expected Behavior** (Data Model - Template Entity)
-
-## **Introduction**
-
-An **Expected Behavior** Entity defines a positive, aspirational standard of conduct for participants, officials,
-spectators, or other stakeholders. Expected Behaviors are referenced by the
-[Code of Conduct](../code_of_conduct/code_of_conduct.md) to promote a safe, respectful, and inclusive
-environment. They complement Rules by describing the positive actions and attitudes that are encouraged.
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
-
+---
+tags:
+  - expected-behavior
+  - conduct
+  - template
+  - positive
+  - behavior
 ---
 
-## **Attributes**
+# Expected Behavior (Template Entity)
 
-**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../foundation/base_entity.md).
+## Overview
 
-| Attribute         | Description                                        | Type   | Required | Notes / Example                                |
-| ----------------- | -------------------------------------------------- | ------ | -------- | ---------------------------------------------- |
-| **Title**         | Short, descriptive name for the expected behavior. | String | Yes      | `Sportsmanship`                                |
-| **Description**   | Detailed explanation of the expected behavior.     | Text   | Yes      | `Treat all participants with respect...`       |
-| **Category**      | Classification of the behavior.                    | String | No       | `Respect`, `Sportsmanship`, `Professionalism`  |
-| **Applicability** | Context where the behavior applies.                | String | No       | `All Participants`, `Officials`, `Spectators`  |
-| **Rationale**     | Why this behavior is important.                    | Text   | No       | `Promotes fair play and positive environment.` |
+An Expected Behavior is a template entity that defines positive, aspirational conduct standards for tournament participants. It focuses on encouraging good behavior and creating positive environments rather than prohibiting actions, providing clear examples and rationale for why specific behaviors are valued.
 
----
+## Purpose
 
-## **Relationships**
+- Enable standardized positive behavioral expectations across tournament environments.
+- Support template-based behavior management that promotes good conduct through clear examples.
+- Facilitate aspirational standards that complement mandatory rules with positive guidance.
 
-- Referenced by [Code of Conduct](../code_of_conduct/code_of_conduct.md) as a positive standard.
-- May be associated with [Rule](../discipline/activity/variation/rule.md) for context.
-- May be linked to specific events, matches, or participant types.
+## Structure
 
----
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
-## **Considerations**
+### Attributes
 
-- **Template Nature:** This template defines a standard expected behavior type. Instance-specific variations or customizations
+| Attribute | Description | Type | Required | Example |
+|-----------|-------------|------|----------|---------|
+| Title | Short, descriptive name for the expected behavior | String | Yes | Sportsmanship, Respect for Officials, Team Support |
+| Description | Detailed explanation of the expected behavior | Text | Yes | Treat all participants with respect and dignity... |
+| Category | Classification of the behavior type | String | No | Respect, Sportsmanship, Professionalism, Communication |
+| Applicability | Context where the behavior applies | String | No | All Participants, Officials, Spectators, Team Members |
+| Rationale | Explanation of why this behavior is important | Text | No | Promotes fair play and positive tournament environment |
 
-  belong on the copied instance within its specific context (e.g., a specific tournament's implementation).
+## Example
 
-- **Copy Mechanism:** The process of copying this template definition into a target context (like a specific tournament)
+### Example 1: Sportsmanship Behavior Template
 
-  needs to be handled by application logic.
+```mermaid
+graph TD
+    EB[Expected Behavior: Sportsmanship]
+    EB --> T[Title: Good Sportsmanship]
+    EB --> D[Description: Demonstrate respect for opponents and fair play]
+    EB --> C[Category: Sportsmanship]
+    EB --> A[Applicability: All Team Members]
+    EB --> R[Rationale: Creates positive competitive environment]
+```
 
-- **Template Management:**
-  - Templates should be curated and maintained by compliance administrators
-  - New templates can be added based on organizational values and cultural requirements
-  - Templates should be reviewed periodically for clarity and relevance
-- **Aspirational:** Expected Behavior templates describe what is encouraged, not just what is required.
-- **Clarity:** Use clear, positive language in behavior templates.
-- **Contextualization:** Specify where and to whom the behavior template applies.
-- **Versioning:** Track changes for audit and communication.
-- **Customization Balance:**
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental behavior structure
-  - System should support both template-based and fully custom expected behaviors
+This example shows a complete sportsmanship expected behavior template covering all attributes. The Title provides a clear, recognizable name (Good Sportsmanship), while the Description gives specific guidance about respecting opponents and maintaining fair play standards. The Category classification (Sportsmanship) helps organizers group related behaviors, and Applicability clearly defines who should follow this standard (All Team Members). The Rationale explains why this behavior matters - creating positive competitive environments that enhance the tournament experience for everyone involved and promote the values of fair competition.
 
----
+### Example 2: Communication Behavior Template
 
-## References
+```mermaid
+graph TD
+    EB[Expected Behavior: Professional Communication]
+    EB --> T[Title: Respectful Communication]
+    EB --> D[Description: Use appropriate language and tone in all interactions]
+    EB --> C[Category: Communication]
+    EB --> A[Applicability: All Participants]
+    EB --> R[Rationale: Maintains professional tournament atmosphere]
+```
 
-- [ISO 26000:2010 - Guidance on social responsibility](https://www.iso.org/standard/42546.html) - Standard for
-
-  organizational conduct and social responsibility
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event management standards
-
-  including conduct guidelines
-
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity pattern reference
+This example demonstrates a communication-focused expected behavior template with all required attributes. The Title identifies the specific behavior area (Respectful Communication), and the Description provides actionable guidance about language and tone expectations. The Category (Communication) enables organizers to group communication-related behaviors together for training and enforcement purposes. Applicability extends to All Participants, ensuring comprehensive coverage, while the Rationale explains the importance of maintaining professional tournament atmospheres that respect all participants and create inclusive environments conducive to fair competition.
 
 ## See Also
 
-- [Code Of Conduct](../code_of_conduct/code_of_conduct.md)
-- [Rule](../code_of_conduct/rule.md)
-- [Code_Of_Conduct README](../code_of_conduct/README.md)
-- [Rule](../discipline/activity/variation/rule.md)
-- [Safety](../safety/safety.md)
-- [Role](../identity/role/role.md)
-
----
+- [Code of Conduct](code_of_conduct.md)
+- [Rule](rule.md)
+- [Code of Conduct Domain](README.md)
+- [Identity Domain](../identity/README.md)
+- [Safety Domain](../safety/README.md)
