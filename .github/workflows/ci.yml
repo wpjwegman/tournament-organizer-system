@@ -1,0 +1,99 @@
+name: Project CI/CD
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  # Lint and validate all markdown files
+  markdown-quality:
+    name: Markdown Quality Checks
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.modified, 'documents/') || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install markdownlint-cli
+      run: npm install -g markdownlint-cli
+      
+    - name: Run markdownlint
+      run: markdownlint documents/docs/**/*.md --config documents/.markdownlint.json
+      
+    - name: Check for broken internal links
+      run: |
+        find documents/docs -name "*.md" -exec grep -l "](\.\./" {} \; | while read file; do
+          echo "Checking internal links in: $file"
+          grep -n "](\.\./" "$file" || true
+        done
+
+  # Run comprehensive documentation checks
+  documentation-validation:
+    name: Documentation Validation
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.modified, 'documents/') || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    
+    defaults:
+      run:
+        working-directory: documents
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+        
+    - name: Set up Python
+      run: uv python install
+      
+    - name: Install dependencies
+      run: uv sync
+      
+    - name: Run pre-commit hooks
+      run: uv run pre-commit run --all-files
+      
+    - name: Validate MkDocs configuration
+      run: uv run mkdocs build --strict --clean
+      
+    - name: Check navigation completeness
+      run: uv run python scripts/check_nav_orphans.py
+      
+    - name: Verify no frontmatter titles
+      run: uv run python scripts/check_no_frontmatter_title.py
+
+  # Future: Backend tests (when implemented)
+  backend-tests:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.modified, 'backend/') || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Backend placeholder
+      run: |
+        echo "Backend tests will be implemented when backend development begins"
+        echo "Current status: Documentation-first development phase"
+        
+  # Future: Frontend tests (when implemented)  
+  frontend-tests:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.modified, 'frontend/') || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Frontend placeholder
+      run: |
+        echo "Frontend tests will be implemented when frontend development begins"
+        echo "Current status: Documentation-first development phase"
