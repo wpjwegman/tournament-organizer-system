@@ -1,7 +1,15 @@
 
-# Discipline (Template Entity)
+---
+tags:
+  - discipline
+  - sport
+  - activity
+  - template
+  - rule
+  - stage
+---
 
-tag: discipline, sport, activity, template, rule, stage
+# Discipline (Template Entity)
 
 ## Overview
 
