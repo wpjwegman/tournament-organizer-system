@@ -1,3 +1,12 @@
+---
+tags:
+  - variation
+  - template-entity
+  - rules
+  - activity
+  - scoring
+---
+
 # Variation (Template Entity)
 
 ## Overview

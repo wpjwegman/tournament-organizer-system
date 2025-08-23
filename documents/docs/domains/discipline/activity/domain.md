@@ -1,6 +1,15 @@
-# **Domain** (Template Entity)
+---
+tags:
+  - domain
+  - template-entity
+  - classification
+  - activity
+  - grouping
+---
 
-## **Overview**
+# Domain (Template Entity)
+
+## Overview
 
 A Domain is a lightweight classification tag used to group similar Activities (for example: Sports, Games, Arts). It helps discovery, search, and organization. Operational details (rules, equipment, participants, duration) belong to Activity or Stage—not to the Domain.
 

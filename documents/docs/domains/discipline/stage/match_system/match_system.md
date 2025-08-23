@@ -1,3 +1,12 @@
+---
+tags:
+  - match-system
+  - template-entity
+  - match-structure
+  - tiebreakers
+  - composition
+---
+
 # Match System (Template Entity)
 
 ## Overview

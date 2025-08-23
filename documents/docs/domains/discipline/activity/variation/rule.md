@@ -1,3 +1,12 @@
+---
+tags:
+  - rule
+  - template-entity
+  - governance
+  - eligibility
+  - conduct
+---
+
 # Rule (Template Entity)
 
 ## Overview
