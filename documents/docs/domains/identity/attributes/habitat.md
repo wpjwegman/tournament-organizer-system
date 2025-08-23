@@ -86,7 +86,7 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
   by Eric Evans - Value Object patterns
 
-- [AVMA Animal Welfare Principles](https://www.avma.org/resources-tools/avma-policies/animal-welfare-principles) - AVMA animal welfare
+<!-- Removed broken external link: AVMA Animal Welfare Principles (404) -->
 
   standards
 
