@@ -318,8 +318,7 @@ nav:
       - Overview: domains/standing/README.md
       - Standing Model: domains/standing/standing.md
     - Team:
-      - Overview: domains/team.md
-      - Team Domain: domains/team/README.md
+      - Overview: domains/team/README.md
       - Roster: domains/team/roster.md
       - Seed: domains/team/seed.md
       - Team Model: domains/team/team.md
