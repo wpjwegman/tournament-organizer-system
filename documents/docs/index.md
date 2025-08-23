@@ -20,18 +20,13 @@ Tournament Organizer is a comprehensive system for managing sports tournaments, 
 
 ## Getting Started
 
-- To learn about setting up your development environment, see [Local Documentation Setup](getting-started/local-documentation-setup.md)
-- For an overview of the system architecture, check out [Architecture Overview](architecture/overview.md)
 - To understand our domain models, visit [Domain Documentation](domains/README.md)
 
 ## Documentation Structure
 
 This documentation is organized into several key sections:
 
-- **Architecture**: System design, components, and data flow
-- **Development**: Setup guides, coding standards, and processes
 - **Domains**: Domain models and business logic
-- **Getting Started**: Quick start guides for new team members
 
 ## Confidentiality Notice
 

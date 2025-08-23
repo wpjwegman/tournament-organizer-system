@@ -119,9 +119,6 @@ extra:
 # Navigation structure
 nav:
   - Home: index.md
-  - Architecture:
-    - Overview: architecture/overview.md
-    - Domain Overview: architecture/domain-overview.md
   # No development section: all internal lessons and workflow documents are excluded from publishable documentation
   - Domains:
     - Overview: domains/README.md
@@ -345,8 +342,4 @@ nav:
       - Map Model: domains/venue/map.md
       - Venue Model: domains/venue/venue.md
       - Zone Model: domains/venue/zone.md
-  - Getting Started:
-    - Overview: getting-started/README.md
-    - Local Documentation Setup: getting-started/local-documentation-setup.md
-    - Accessibility Assessment: accessibility-assessment.md
-    - Mobile Optimization Guide: mobile-optimization-guide.md
+
