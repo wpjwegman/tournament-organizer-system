@@ -162,9 +162,6 @@ nav:
             - Match Unit: domains/discipline/stage/match_system/match_unit/match_unit.md
             - Scoring Range: domains/discipline/stage/match_system/match_unit/scoring_range.md
             - Win Criterion: domains/discipline/stage/match_system/match_unit/win_criterion.md
-      - Variation:
-        - Rule: domains/discipline/activity/variation/rule.md
-        - Variation: domains/discipline/activity/variation/variation.md
     - Finance:
       - Overview: domains/finance/README.md
       - Amount: domains/finance/amount.md
