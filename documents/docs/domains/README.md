@@ -5,17 +5,27 @@ business entities, relationships, and rules that define how the tournament manag
 
 ## Directory Structure
 
-- `tournament/` - Models related to tournament management (e.g., tournament types, formats, rules)
-- `competition/` - Models for competition management (e.g., matches, brackets, scoring)
-- `team/` - Team-related models (e.g., team composition, roles, statistics)
-- `venue/` - Venue management models (e.g., facilities, equipment, capacity)
-- `schedule/` - Scheduling and timeline models (e.g., events, sessions, availability)
-- `registration/` - Registration and participant management models
-- `finance/` - Financial models (e.g., fees, payments, budgets)
+- `classification/` - Models for organizing and categorizing tournament elements
+- `code_of_conduct/` - Behavioral frameworks and enforcement mechanisms
 - `communication/` - Communication and notification models
-- `safety/` - Safety and compliance models
-- `organization/` - Organizational structure models
+- `discipline/` - Competition formats, stages, and structure management
+- `finance/` - Financial models (e.g., fees, payments, budgets)
+- `first_aid/` - Emergency response and medical support models
+- `foundation/` - Core base entities and common attributes
 - `identity/` - Identity and access management models
+- `inventory/` - Equipment and resource management models
+- `media/` - Content, documentation, and media management models
+- `organization/` - Organizational structure models
+- `process/` - Workflow and process management models
+- `ranking/` - Performance measurement and comparison models
+- `registration/` - Registration and participant management models
+- `reservation/` - Booking and allocation management models
+- `safety/` - Safety and compliance models
+- `schedule/` - Scheduling and timeline models (e.g., events, sessions, availability)
+- `standing/` - Position tracking and results management models
+- `team/` - Team-related models (e.g., team composition, roles, statistics)
+- `tournament/` - Models related to tournament management (e.g., tournament types, formats, rules)
+- `venue/` - Venue management models (e.g., facilities, equipment, capacity)
 
 ## Model Guidelines
 
@@ -50,11 +60,26 @@ business entities, relationships, and rules that define how the tournament manag
 
 ## See Also
 
-- [Tournament README](tournament/README.md)
-- [Team README](team/README.md)
+- [Classification README](classification/README.md)
+- [Code of Conduct README](code_of_conduct/README.md)
+- [Communication README](communication/README.md)
+- [Discipline README](discipline/README.md)
 - [Finance README](finance/README.md)
+- [First Aid README](first_aid/README.md)
+- [Foundation README](foundation/README.md)
 - [Identity README](identity/README.md)
+- [Inventory README](inventory/README.md)
+- [Media README](media/README.md)
+- [Organization README](organization/README.md)
+- [Process README](process/README.md)
+- [Ranking README](ranking/README.md)
+- [Registration README](registration/README.md)
+- [Reservation README](reservation/README.md)
+- [Safety README](safety/README.md)
 - [Schedule README](schedule/README.md)
+- [Standing README](standing/README.md)
+- [Team README](team/README.md)
+- [Tournament README](tournament/README.md)
 - [Venue README](venue/README.md)
 
 ---

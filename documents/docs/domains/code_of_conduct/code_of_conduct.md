@@ -31,8 +31,8 @@ This template entity includes standard attributes from the [Base Entity](../foun
 | Version | Version identifier for template tracking | String | Optional | v2.1, 2024-07-28 |
 | Introduction | Introductory text explaining purpose and context | Text | Optional | This document outlines the behavior expected of all participants... |
 | Applicability | Intended scope or context for the template | String | Optional | Tournament - General, Youth Events, Professional Competition |
-| Expected Behaviors | List of positive behavioral standards | List[Expected Behavior] | Optional | Embedded expected behavior entities |
-| Rules | List of mandatory requirements with consequences | List[Rule] | Optional | Embedded rule entities |
+| Expected Behaviors | List of positive behavioral standards | List[[Expected Behavior](expected_behavior.md)] | Optional | Embedded expected behavior entities |
+| Rules | List of mandatory requirements with consequences | List[[Rule](rule.md)] | Optional | Embedded rule entities |
 
 ## Example
 
@@ -84,9 +84,9 @@ This example demonstrates a professional-level code of conduct template with mor
 
 ## See Also
 
-- [Expected Behavior](expected_behavior.md)
-- [Rule](rule.md)
 - [Code of Conduct Domain](README.md)
-- [Tournament Domain](../tournament/README.md)
+- [Expected Behavior](expected_behavior.md)
 - [Organization Domain](../organization/README.md)
+- [Rule](rule.md)
 - [Safety Domain](../safety/README.md)
+- [Tournament Domain](../tournament/README.md)
