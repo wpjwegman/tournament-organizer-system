@@ -58,23 +58,16 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 ## References
 
-- [RFC 5322 - Internet Message Format](https://tools.ietf.org/html/rfc5322) - Standard for email message format
-- [RFC 7231 - HTTP/1.1 Semantics and Content](https://tools.ietf.org/html/rfc7231) - Standard for web-based
-
-  notifications
-
-- [ISO 8601:2019 - Date and time format](https://www.iso.org/standard/70907.html) - Standard for timestamp
-
-  representations
-
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity pattern reference
+- [RFC 5322 - Internet Message Format](https://datatracker.ietf.org/doc/html/rfc5322) - Standard for email message format
+- [RFC 7231 - HTTP/1.1 Semantics and Content](https://datatracker.ietf.org/doc/html/rfc7231) - Standard for web-based notifications
+- [ISO 8601:2019 - Date and time format](https://www.iso.org/standard/70907.html) - Standard for timestamp representations
+- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215) by Eric Evans - Entity pattern reference
 
 ## See Also
 
-- [Communication README](../communication/README.md)
-- [Account](../identity/account/account.md)
+- [Communication Domain](../communication/README.md)
+- [Digital Channel](../media/digital_channel.md)
+- [Human Profile](../identity/profile/human.md)
 - [Contact Information](../identity/contact_information.md)
 - [Event](../schedule/event.md)
 - [Tournament](../tournament/tournament.md)

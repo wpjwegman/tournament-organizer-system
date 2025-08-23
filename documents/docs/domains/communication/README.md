@@ -10,17 +10,36 @@ This domain focuses on data structures and models for storing communication-rela
 processes are managed in the Process domain. It uses a template-based approach for standardized notification formats and
 supports multiple communication channels.
 
+```mermaid
+graph LR
+    N[Notification] -- uses --> NT[Notification Template]
+    N -- delivered to --> HP[Human Profile]
+    N -- delivered via --> DC[Digital Channel]
+    DC -- embedded in --> CI[Contact Information]
+    CI -- belongs to --> HP
+    N -- triggered by --> SRC[Source Entity]
+    SRC --> T[Tournament]
+    SRC --> E[Event]
+    SRC --> M[Match]
+    
+    classDef core fill:#c4e3f3,stroke:#0275d8;
+    classDef related fill:#d9edf7,stroke:#5bc0de;
+    
+    class N,NT core;
+    class HP,DC,CI,SRC,T,E,M related;
+```
+
 ## **Domain Structure**
 
 ### **Core Models**
 
-- \*\*\*\*: Entity template for messages and alerts with template-based functionality
-- \*\*\*\*: Value object for digital communication channels (embedded in Contact Information)
+- **[Notification](notification.md)**: Entity template for messages and alerts with template-based functionality
+- **[Digital Channel](../media/digital_channel.md)**: Value object for digital communication channels (embedded in Contact Information)
 
 ### **Related Models**
 
 - **[Notification Template](notification.md)**: Template for reusable notification formats
-- \*\*\*\*: Recipients of notifications
+- **[Human Profile](../identity/profile/human.md)**: Recipients of notifications
 - **[Contact Information](../identity/contact_information.md)**: Contact details and digital channels
 
 ## **Template Entity Analysis**
@@ -74,12 +93,83 @@ supports multiple communication channels.
 - Enable consistent messaging across the system
 - Reduce duplication and ensure quality
 
+#### Example Notification Template
+
+```json
+{
+  "template_id": "match_result",
+  "type": "Email",
+  "title": "Match Results: {{team1_name}} vs {{team2_name}}",
+  "subject_line": "Match Results for {{tournament_name}}",
+  "message_body": "Hello {{recipient_name}},\n\nThe results for the match between {{team1_name}} and {{team2_name}} are as follows:\n\nFinal Score: {{team1_name}} {{team1_score}} - {{team2_score}} {{team2_name}}\n\n{{#if next_match}}Your next match is scheduled for {{next_match.date}} at {{next_match.time}}.\n\nOpponent: {{next_match.opponent}}{{/if}}{{#unless next_match}}This concludes your participation in this stage of the tournament.{{/unless}}\n\nBest regards,\nTournament Organizer",
+  "priority": "Normal",
+  "version": "1.2",
+  "created_at": "2025-05-10T14:30:00Z",
+  "status": "Active"
+}
+```
+
+#### Related Notification Instance
+
+```json
+{
+  "notification_id": "n48e9c2-5733-48d6-9851-88142f78ab5e",
+  "template_id": "match_result",
+  "recipient_id": "p98e7d6-2394-4857-9183-7642abcdef12",
+  "type": "Email",
+  "title": "Match Results: Dragons vs Tigers",
+  "message": "Hello Sarah Johnson,\n\nThe results for the match between Dragons and Tigers are as follows:\n\nFinal Score: Dragons 3 - 2 Tigers\n\nYour next match is scheduled for 2025-09-03 at 2:30 PM.\n\nOpponent: Lions\n\nBest regards,\nTournament Organizer",
+  "priority": "Normal",
+  "created_at": "2025-09-01T16:45:22Z",
+  "scheduled_at": "2025-09-01T16:45:22Z",
+  "sent_at": "2025-09-01T16:45:24Z",
+  "read_at": null,
+  "status": "Active"
+}
+```
+
 ### **Variable System**
 
 - Dynamic content insertion into templates
 - Personalized notification content
 - Context-aware messaging
 - Flexible template customization
+
+#### Example Template with Variables
+
+```json
+{
+  "template_id": "tournament_start_notice",
+  "title": "{{tournament_name}} is starting soon!",
+  "message": "Hello {{recipient_name}},\n\nYour tournament {{tournament_name}} is scheduled to begin on {{start_date}} at {{venue_name}}.\n\nPlease arrive {{arrival_time_minutes}} minutes before your first match at {{first_match_time}}.\n\nBest regards,\nTournament Organizer"
+}
+```
+
+When this template is processed with variables:
+```json
+{
+  "recipient_name": "Jane Smith",
+  "tournament_name": "City Chess Championship",
+  "start_date": "2025-09-01",
+  "venue_name": "Central Community Center",
+  "arrival_time_minutes": 30,
+  "first_match_time": "10:15 AM"
+}
+```
+
+The resulting notification would be:
+```
+Title: City Chess Championship is starting soon!
+
+Message: Hello Jane Smith,
+
+Your tournament City Chess Championship is scheduled to begin on 2025-09-01 at Central Community Center.
+
+Please arrive 30 minutes before your first match at 10:15 AM.
+
+Best regards,
+Tournament Organizer
+```
 
 ### **Priority Management**
 
@@ -133,10 +223,10 @@ supports multiple communication channels.
 
 ## **Related Domains**
 
-- \*\*\*\*: Recipient profiles and contact information
-- \*\*\*\*: Digital channels and media assets
-- \*\*\*\*: Notification delivery and workflows
-- \*\*\*\*: Source entities for notifications
+- **[Identity](../identity/README.md)**: Recipient profiles and contact information
+- **[Media](../media/README.md)**: Digital channels and media assets
+- **[Process](../process/README.md)**: Notification delivery and workflows
+- **[Tournament](../tournament/README.md)**, **[Schedule](../schedule/README.md)**: Source entities for notifications
 
 ---
 
