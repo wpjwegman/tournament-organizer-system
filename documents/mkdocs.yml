@@ -19,8 +19,6 @@ theme:
     - navigation.tracking
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.sections
-    - navigation.expand
     - navigation.indexes
     - navigation.top
     - navigation.footer
@@ -129,62 +127,62 @@ nav:
       - Dimension: domains/classification/dimension.md
       - Type: domains/classification/type.md
       - Measurement:
-        - Measurement Model: domains/classification/measurement/measurement.md
-        - System Model: domains/classification/measurement/system.md
-        - Unit Model: domains/classification/measurement/unit.md
+        - Measurement: domains/classification/measurement/measurement.md
+        - System: domains/classification/measurement/system.md
+        - Unit: domains/classification/measurement/unit.md
     - Code of Conduct:
       - Overview: domains/code_of_conduct/README.md
-      - Code of Conduct Model: domains/code_of_conduct/code_of_conduct.md
+      - Code of Conduct: domains/code_of_conduct/code_of_conduct.md
       - Expected Behavior: domains/code_of_conduct/expected_behavior.md
-      - Rule Model: domains/code_of_conduct/rule.md
+      - Rule: domains/code_of_conduct/rule.md
     - Communication:
       - Overview: domains/communication/README.md
-      - Notification Model: domains/communication/notification.md
+      - Notification: domains/communication/notification.md
     - Discipline:
       - Overview: domains/discipline/README.md
-      - Award Model: domains/discipline/award.md
-      - Discipline Model: domains/discipline/discipline.md
+      - Award: domains/discipline/award.md
+      - Discipline: domains/discipline/discipline.md
       - Activity:
-        - Activity Model: domains/discipline/activity/activity.md
-        - Domain Model: domains/discipline/activity/domain.md
+        - Activity: domains/discipline/activity/activity.md
+        - Domain: domains/discipline/activity/domain.md
       - Stage:
         - Points System: domains/discipline/stage/points_system.md
         - Promotion Rule: domains/discipline/stage/promotion_rule.md
         - Seeding System: domains/discipline/stage/seeding_system.md
-        - Stage Model: domains/discipline/stage/stage.md
+        - Stage: domains/discipline/stage/stage.md
         - Stage Format: domains/discipline/stage/stage_format.md
         - Stage Phase: domains/discipline/stage/stage_phase.md
         - Stage Tiebreaker: domains/discipline/stage/stage_tiebreaker.md
         - Team Creation: domains/discipline/stage/team_creation.md
         - Team Format: domains/discipline/stage/team_format.md
         - Match System:
-          - Match System Model: domains/discipline/stage/match_system/match_system.md
+          - Match System: domains/discipline/stage/match_system/match_system.md
           - Match Tiebreaker: domains/discipline/stage/match_system/match_tiebreaker.md
           - Match Unit:
-            - Match Unit Model: domains/discipline/stage/match_system/match_unit/match_unit.md
+            - Match Unit: domains/discipline/stage/match_system/match_unit/match_unit.md
             - Scoring Range: domains/discipline/stage/match_system/match_unit/scoring_range.md
             - Win Criterion: domains/discipline/stage/match_system/match_unit/win_criterion.md
       - Variation:
-        - Rule Model: domains/discipline/activity/variation/rule.md
-        - Variation Model: domains/discipline/activity/variation/variation.md
+        - Rule: domains/discipline/activity/variation/rule.md
+        - Variation: domains/discipline/activity/variation/variation.md
     - Finance:
       - Overview: domains/finance/README.md
-      - Amount Model: domains/finance/amount.md
-      - Cart Model: domains/finance/cart.md
-      - Discount Model: domains/finance/discount.md
-      - Expense Model: domains/finance/expense.md
-      - Fee Model: domains/finance/fee.md
-      - Finance Model: domains/finance/finance.md
-      - Income Model: domains/finance/income.md
-      - Item Model: domains/finance/item.md
-      - Payment Model: domains/finance/payment.md
-      - Receipt Model: domains/finance/receipt.md
+      - Amount: domains/finance/amount.md
+      - Cart: domains/finance/cart.md
+      - Discount: domains/finance/discount.md
+      - Expense: domains/finance/expense.md
+      - Fee: domains/finance/fee.md
+      - Finance: domains/finance/finance.md
+      - Income: domains/finance/income.md
+      - Item: domains/finance/item.md
+      - Payment: domains/finance/payment.md
+      - Receipt: domains/finance/receipt.md
     - First Aid:
       - Overview: domains/first_aid/README.md
-      - Escalation Model: domains/first_aid/escalation.md
-      - Instruction Model: domains/first_aid/instruction.md
-      - Protocol Model: domains/first_aid/protocol.md
-      - Symptom Model: domains/first_aid/symptom.md
+      - Escalation: domains/first_aid/escalation.md
+      - Instruction: domains/first_aid/instruction.md
+      - Protocol: domains/first_aid/protocol.md
+      - Symptom: domains/first_aid/symptom.md
     - Foundation:
       - Overview: domains/foundation/README.md
       - Base Entity: domains/foundation/base_entity.md
@@ -192,13 +190,13 @@ nav:
     - Identity:
       - Overview: domains/identity/README.md
       - Contact Information: domains/identity/contact_information.md
-      - Identity Model: domains/identity/identity.md
+      - Identity: domains/identity/identity.md
       - Official Identifier: domains/identity/official_identifier.md
       - Account:
-        - Account Model: domains/identity/account/account.md
+        - Account: domains/identity/account/account.md
         - Settings:
-          - Scope Model: domains/identity/account/setting/scope.md
-          - Setting Model: domains/identity/account/setting/setting.md
+          - Scope: domains/identity/account/setting/scope.md
+          - Setting: domains/identity/account/setting/setting.md
       - Attributes:
         - Address: domains/identity/attributes/address.md
         - Birth Details: domains/identity/attributes/birth_details.md
