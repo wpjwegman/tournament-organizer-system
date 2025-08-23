@@ -95,6 +95,7 @@ graph LR
 
 #### Example Notification Template
 
+{% raw %}
 ```json
 {
   "template_id": "match_result",
@@ -108,9 +109,11 @@ graph LR
   "status": "Active"
 }
 ```
+{% endraw %}
 
 #### Related Notification Instance
 
+{% raw %}
 ```json
 {
   "notification_id": "n48e9c2-5733-48d6-9851-88142f78ab5e",
@@ -127,6 +130,7 @@ graph LR
   "status": "Active"
 }
 ```
+{% endraw %}
 
 ### **Variable System**
 
@@ -137,6 +141,7 @@ graph LR
 
 #### Example Template with Variables
 
+{% raw %}
 ```json
 {
   "template_id": "tournament_start_notice",
@@ -144,8 +149,10 @@ graph LR
   "message": "Hello {{recipient_name}},\n\nYour tournament {{tournament_name}} is scheduled to begin on {{start_date}} at {{venue_name}}.\n\nPlease arrive {{arrival_time_minutes}} minutes before your first match at {{first_match_time}}.\n\nBest regards,\nTournament Organizer"
 }
 ```
+{% endraw %}
 
 When this template is processed with variables:
+{% raw %}
 ```json
 {
   "recipient_name": "Jane Smith",
@@ -156,6 +163,7 @@ When this template is processed with variables:
   "first_match_time": "10:15 AM"
 }
 ```
+{% endraw %}
 
 The resulting notification would be:
 ```
