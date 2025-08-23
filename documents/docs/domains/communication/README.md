@@ -1,6 +1,12 @@
-# Communication Domain
+---
+tags:
+  - communication
+  - domain
+  - notification
+  - messaging
+---
 
-tag: communication, domain, notification, messaging
+# Communication Domain
 
 ## Overview
 

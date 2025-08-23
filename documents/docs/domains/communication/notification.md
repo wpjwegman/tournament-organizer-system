@@ -9,8 +9,6 @@ tags:
 
 # Notification (Template Entity)
 
-tag: communication, notification, template-entity, messaging, alert
-
 ## Overview
 
 A Notification is a template entity that represents a message or alert sent to tournament participants and organizers. It provides a standardized structure for capturing notification content, delivery information, and tracking status within the tournament system.
