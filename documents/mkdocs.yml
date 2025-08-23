@@ -145,6 +145,9 @@ nav:
       - Activity:
         - Activity: domains/discipline/activity/activity.md
         - Domain: domains/discipline/activity/domain.md
+        - Variation:
+          - Rule: domains/discipline/activity/variation/rule.md
+          - Variation: domains/discipline/activity/variation/variation.md
       - Stage:
         - Points System: domains/discipline/stage/points_system.md
         - Promotion Rule: domains/discipline/stage/promotion_rule.md

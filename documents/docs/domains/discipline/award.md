@@ -45,5 +45,5 @@ graph TD
 
 - [Discipline](../discipline/discipline.md)
 - [Discipline README](../discipline/README.md)
-- [Team](../team.md)
+- [Team](../team/README.md)
 - [User](../identity/account/account.md)
