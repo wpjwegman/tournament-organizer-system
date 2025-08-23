@@ -44,5 +44,5 @@ This example demonstrates a Dimension value object for equipment weight. The dim
 
 - [Measurement](measurement/measurement.md)
 - [Unit](measurement/unit.md)
-- [Physical](../../identity/attributes/physical.md)
+- [Physical](../identity/attributes/physical.md)
 - [Category](category.md)

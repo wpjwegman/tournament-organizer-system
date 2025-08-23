@@ -55,9 +55,7 @@ theme:
 # Plugins
 plugins:
   - search
-  - mermaid2:
-      arguments:
-        theme: base
+  - mermaid2
   - tags
   - macros:
       module_name: main
@@ -127,19 +125,6 @@ nav:
   # No development section: all internal lessons and workflow documents are excluded from publishable documentation
   - Domains:
     - Overview: domains/README.md
-    - Team:
-      - Overview: domains/team.md
-      - Team Domain: domains/team/README.md
-      - Roster: domains/team/roster.md
-      - Seed: domains/team/seed.md
-      - Team Model: domains/team/team.md
-      - Roster Management:
-        - Overview: domains/team/roster/README.md
-        - Roster Model: domains/team/roster/roster.md
-        - Player Management:
-          - Overview: domains/team/roster/player/README.md
-          - Player Model: domains/team/roster/player/player.md
-          - Position Model: domains/team/roster/player/position.md
     - Classification:
       - Overview: domains/classification/README.md
       - Category: domains/classification/category.md
@@ -335,6 +320,19 @@ nav:
     - Standing:
       - Overview: domains/standing/README.md
       - Standing Model: domains/standing/standing.md
+    - Team:
+      - Overview: domains/team.md
+      - Team Domain: domains/team/README.md
+      - Roster: domains/team/roster.md
+      - Seed: domains/team/seed.md
+      - Team Model: domains/team/team.md
+      - Roster Management:
+        - Overview: domains/team/roster/README.md
+        - Roster Model: domains/team/roster/roster.md
+        - Player Management:
+          - Overview: domains/team/roster/player/README.md
+          - Player Model: domains/team/roster/player/player.md
+          - Position Model: domains/team/roster/player/position.md
     - Tournament:
       - Overview: domains/tournament/README.md
       - Domain Completion Status: domains/tournament/TOURNAMENT_DOMAIN_COMPLETION.md
@@ -350,8 +348,5 @@ nav:
   - Getting Started:
     - Overview: getting-started/README.md
     - Local Documentation Setup: getting-started/local-documentation-setup.md
-    - Search Guide: search-guide.md
-    - Content Formatting Guide: content-formatting-guide.md
     - Accessibility Assessment: accessibility-assessment.md
     - Mobile Optimization Guide: mobile-optimization-guide.md
-  - Tags: tags.md
