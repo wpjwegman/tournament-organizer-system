@@ -16,4 +16,6 @@ dependencies = [
     "mkdocs-print-site-plugin>=2.7.3",
     "pillow>=11.3.0",
     "pypdf>=5.8.0",
+    # Needed in CI to run documentation lint hooks (used by workflows)
+    "pre-commit>=3.7.0",
 ]
