@@ -1,6 +1,14 @@
 # Documentation, Style & Link Management Lessons
 
-tag: documentation, writing, style, formatting, markdown, links
+---
+tags:
+  - documentation
+  - writing
+  - style
+  - formatting
+  - markdown
+  - links
+---
 
 ## Purpose
 This document provides clear, concise, and complete instructions for writing, formatting, and linking documentation. It is designed for both human and AI authors to ensure consistency and quality across all project documentation.
@@ -14,11 +22,26 @@ Comprehensive guidelines for writing clear, professional, consistently formatted
   - Do NOT use `title:` in front matter. If present, remove it to avoid duplicate titles.
   - Only one H1 per page (MD025). Subsequent sections start at H2 (`##`).
 - Required tags: Every page MUST include a `tags:` list in YAML front matter with relevant, specific tags (2–6 recommended).
+  - **MANDATORY**: Use YAML front matter block format with `tags:` as an array, NOT inline comma-separated format
   - Prefer domain- and concept-specific tags (e.g., `team`, `roster`, `tournament`, `ranking`, `finance`, `payment`, `identity`, `profile`, `venue`, `schedule`).
   - Use lowercase, hyphenated tokens when multi-word (e.g., `first-aid`, `match-system`).
 
-Template (copy/paste):
+**REQUIRED Template (copy/paste exactly):**
 
+```yaml
+---
+tags:
+  - domain
+  - subdomain
+  - concept
+---
+```
+
+**IMPORTANT**: Never use the old inline format like `tag: documentation, writing, style`. Always use the YAML array format shown above.
+
+Template complete example:
+
+```markdown
 ---
 tags:
   - domain
@@ -29,11 +52,13 @@ tags:
 # Page Title
 
 Intro paragraph…
+```
 
 Notes
-- The Tags plugin is enabled; tags power search and taxonomy pages.
+- **CRITICAL**: The Tags plugin requires YAML front matter format. Always use `tags:` as an array in YAML front matter block, never inline comma-separated format.
+- Tags power search and taxonomy pages through the MkDocs Material theme.
 - Lint rules enforce a single H1 (MD025) and first-line H1 (MD041) when configured for visible titles.
-- When converting existing pages: remove `title:` from front matter, add `# Page Title` as the first body line, keep/curate `tags:`.
+- When converting existing pages: remove `title:` from front matter, add `# Page Title` as the first body line, convert any inline `tag:` to YAML `tags:` array format.
 
 ## Key Lessons
 
@@ -152,7 +177,7 @@ Example diagram style (Graph TD) — intent and usage:
 
 **Structure & Content:**
 - [ ] Starts with visible H1 title (no `title:` in front matter)
-- [ ] Includes 2-6 relevant tags in YAML front matter
+- [ ] Includes 2-6 relevant tags in YAML front matter array format (`tags:` not inline `tag:`)
 - [ ] References Base Entity for standard attributes (no explicit listing)
 - [ ] Includes comprehensive examples covering ALL attributes
 - [ ] Uses active voice and concise sentences
@@ -170,7 +195,7 @@ Example diagram style (Graph TD) — intent and usage:
 - [ ] Passes markdown linting (MD025, MD041 compliance)
 - [ ] Uses relative links for internal references
 - [ ] Validates all external links
-- [ ] Includes proper YAML front matter
+- [ ] Includes proper YAML front matter with `tags:` array (never inline `tag:` format)
 - [ ] Follows embedding rules (same domain = embed, different domain = UUID reference)
 
 **Final Review:**
