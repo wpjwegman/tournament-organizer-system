@@ -64,7 +64,7 @@ jobs:
         for DOMAIN in $MODIFIED_DOMAINS; do
           echo "::group::🔍 Checking domain: $DOMAIN"
           
-          if ! python scripts/linting/domain_linter.py "$DOMAIN" --check-only --max-errors 0 --verbose; then
+          if ! python scripts/linting/domain_linter.py "$DOMAIN" --check-only --threshold 0 --verbose; then
             FAILED_DOMAINS="$FAILED_DOMAINS $DOMAIN"
             echo "::error::Domain $DOMAIN has linting errors"
           else
