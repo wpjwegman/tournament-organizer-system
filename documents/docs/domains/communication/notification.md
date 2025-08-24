@@ -1,83 +1,71 @@
-# **Notification** (Data Model - Template Entity)
-
-## **Introduction**
-
-A **Notification** Entity represents a message or alert that can be sent to participants, organizers, or other
-stakeholders within the tournament system. It provides a consistent way to handle notification information for
-communication, updates, and event management within the tournament system.
-
-It describes communication characteristics and is typically managed by communication systems to provide comprehensive
-notification oversight.
-
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
-
+---
+tags:
+  - communication
+  - notification
+  - template-entity
+  - messaging
+  - alert
 ---
 
-## **Attributes**
+# Notification (Template Entity)
 
-**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../foundation/base_entity.md).
+## Overview
 
-| Attribute        | Description                                               | Type      | Required | Notes / Example                                      |
-| ---------------- | --------------------------------------------------------- | --------- | -------- | ---------------------------------------------------- |
-| **Type**         | The type of notification.                                 | String    | Yes      | `"Email"`, `"SMS"`, `"Push"`, `"In-App"`             |
-| **Title**        | The title or subject of the notification.                 | String    | Yes      | `"Tournament Update"`, `"Registration Confirmation"` |
-| **Message**      | The content of the notification message.                  | String    | Yes      | `"Your team has been registered successfully"`       |
-| **Recipient**    | The intended recipient of the notification.               | Reference | Yes      | Reference to participant, organizer, or stakeholder  |
-| **Priority**     | The priority level of the notification.                   | String    | Optional | `"Low"`, `"Normal"`, `"High"`, `"Urgent"`            |
-| **Scheduled At** | The scheduled time for sending the notification.          | DateTime  | Optional | `"2024-01-15T10:30:00Z"`                             |
-| **Sent At**      | The time when the notification was sent.                  | DateTime  | Optional | `"2024-01-15T10:30:00Z"`                             |
-| **Read At**      | The time when the notification was read by the recipient. | DateTime  | Optional | `"2024-01-15T11:00:00Z"`                             |
+A Notification is a template entity that represents a message or alert sent to tournament participants and organizers. It provides a standardized structure for capturing notification content, delivery information, and tracking status within the tournament system.
 
----
+As a Template Entity, it includes standard lifecycle management from the [Base Entity](../foundation/base_entity.md), with additional attributes specific to notification handling and delivery tracking.
 
-## **Considerations**
+## Purpose
 
-- **Template Nature:** This template defines a standard notification type. Instance-specific variations or customizations
+- Store notification content and delivery information
+- Track notification lifecycle from creation to delivery
+- Support different notification types and priority levels
+- Provide standardized message structure across the tournament system
+- Enable scheduled and immediate notification delivery
 
-  belong on the copied instance within its specific context (e.g., a specific tournament's implementation).
+## Structure
 
-- **Copy Mechanism:** The process of copying this template definition into a target context (like a specific tournament)
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
-  needs to be handled by application logic.
+### Attributes
 
-- **Template Management:**
-  - Templates should be curated and maintained by communication administrators
-  - New templates can be added based on notification standards and organizational requirements
-  - Templates should be reviewed periodically for clarity and effectiveness
-- **Timing:** Notifications should be sent at appropriate times for recipients.
-- **Relevance:** Notifications should be relevant to the recipient's role and interests.
-- **Frequency:** Notification frequency should not overwhelm recipients.
-- **Privacy:** Notification content should respect privacy considerations.
-- **Delivery:** Notification delivery should be reliable and trackable.
-- **Customization Balance:**
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental notification structure
-  - System should support both template-based and fully custom notifications
+| Attribute        | Description                                               | Type      | Required | Example                                      |
+| ---------------- | --------------------------------------------------------- | --------- | -------- | -------------------------------------------- |
+| Type             | The delivery method for the notification                  | String    | Yes      | `"Email"`, `"SMS"`, `"Push"`, `"In-App"`     |
+| Title            | The title or subject of the notification                  | String    | Yes      | `"Tournament Update"`, `"Match Cancelled"`   |
+| Message          | The main content of the notification                      | String    | Yes      | `"Your match has been rescheduled"`         |
+| Recipient        | Reference to the notification recipient                   | Reference | Yes      | Reference to participant or organizer       |
+| Priority         | The urgency level of the notification                     | String    | Optional | `"Low"`, `"Normal"`, `"High"`, `"Critical"`  |
+| Scheduled At     | When the notification should be sent                      | DateTime  | Optional | `"2025-08-25T14:30:00Z"`                     |
+| Sent At          | When the notification was actually sent                   | DateTime  | Optional | `"2025-08-25T14:30:02Z"`                     |
+| Read At          | When the recipient read the notification                  | DateTime  | Optional | `"2025-08-25T15:15:30Z"`                     |
 
----
+## Example
 
-## References
+### Basic Notification
 
-- [RFC 5322 - Internet Message Format](https://tools.ietf.org/html/rfc5322) - Standard for email message format
-- [RFC 7231 - HTTP/1.1 Semantics and Content](https://tools.ietf.org/html/rfc7231) - Standard for web-based
+{% raw %}
+```json
+{
+  "notification_id": "not_001",
+  "type": "Email",
+  "title": "Match Schedule Update",
+  "message": "Your semifinal match has been moved to Court 3 at 2:30 PM today.",
+  "recipient_id": "participant_456",
+  "priority": "High",
+  "created_at": "2025-08-23T13:15:00Z",
+  "scheduled_at": "2025-08-23T13:15:00Z",
+  "sent_at": "2025-08-23T13:15:05Z",
+  "read_at": null,
+  "status": "Active"
+}
+```
+{% endraw %}
 
-  notifications
-
-- [ISO 8601:2019 - Date and time format](https://www.iso.org/standard/70907.html) - Standard for timestamp
-
-  representations
-
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity pattern reference
+This example shows a high-priority notification informing a participant about a match schedule change. The notification was sent immediately upon creation and is awaiting the recipient's acknowledgment.
 
 ## See Also
 
-- [Communication README](../communication/README.md)
-- [Account](../identity/account/account.md)
-- [Contact Information](../identity/contact_information.md)
-- [Event](../schedule/event.md)
-- [Tournament](../tournament/tournament.md)
-- [Registration](../registration/registration.md)
-
----
+- [Communication Domain](README.md)
+- [Base Entity](../foundation/base_entity.md)
+- [Tournament Domain](../tournament/README.md)

@@ -1,6 +1,13 @@
-# Category (Template Entity)
+---
+tags:
+  - category
+  - classification
+  - template
+  - hierarchy
+  - criterium
+---
 
-tag: category, classification, template, hierarchy, criterium
+# Category (Template Entity)
 
 ## Overview
 

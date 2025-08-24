@@ -1,6 +1,15 @@
-# **Award** (Data Model - Template Entity)
+---
+tags:
+  - award
+  - discipline
+  - template-entity
+  - recognition
+  - achievement
+---
 
-## **Introduction**
+# Award (Template Entity)
+
+## Overview
 
 An **Award** Template Entity represents a recognition or prize that can be given to participants, teams, or individuals within the tournament system. Awards are managed by disciplines and provide motivation, achievement tracking, and recognition.
 

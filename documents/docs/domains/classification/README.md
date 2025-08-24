@@ -1,6 +1,13 @@
-# Classification Domain
+---
+tags:
+  - classification
+  - domain
+  - template
+  - hierarchy
+  - criterium
+---
 
-tag: classification, domain, template, hierarchy, criterium
+# Classification Domain
 
 ## Overview
 

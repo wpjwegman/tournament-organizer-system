@@ -1,3 +1,10 @@
+---
+tags:
+  - measurement
+  - value-object
+  - classification
+  - quantitative
+---
 
 # Measurement (Value Object)
 

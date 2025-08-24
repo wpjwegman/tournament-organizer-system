@@ -1,6 +1,14 @@
-# Discipline Domain
+---
+tags:
+  - discipline
+  - sport
+  - activity
+  - template
+  - rule
+  - stage
+---
 
-tag: discipline, sport, activity, template, rule, stage
+# Discipline Domain
 
 ## Overview
 

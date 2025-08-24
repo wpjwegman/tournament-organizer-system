@@ -1,7 +1,14 @@
+---
+tags:
+  - discipline
+  - sport
+  - activity
+  - template
+  - rule
+  - stage
+---
 
 # Discipline (Template Entity)
-
-tag: discipline, sport, activity, template, rule, stage
 
 ## Overview
 
@@ -11,7 +18,7 @@ A Discipline organizes a competition around exactly one Activity. It does not re
 - Discipline points to that Activity, lists Categories (if any), and lays out the Stages used in competition.
 - Each Stage explicitly selects which [Activity Variation](activity/variation/variation.md) applies.
 
-This separation keeps the “what is played” (Activity) apart from “how we run the competition” (Discipline and Stages).
+This separation keeps the "what is played" (Activity) apart from "how we run the competition" (Discipline and Stages).
 
 ## Purpose
 

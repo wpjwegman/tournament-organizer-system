@@ -1,3 +1,12 @@
+---
+tags:
+  - match-tiebreaker
+  - entity
+  - tie-resolution
+  - procedures
+  - winner-determination
+---
+
 # Match Tiebreaker (Entity)
 
 ## Overview

@@ -1,3 +1,10 @@
+---
+tags:
+  - system
+  - entity
+  - measurement
+  - classification
+---
 
 # System (Entity)
 
