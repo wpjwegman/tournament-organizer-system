@@ -8,56 +8,75 @@ tags:
   - budget
 ---
 
-# **Expense** (Data Model - Template Entity)
+# Expense (Template Entity)
 
-## **Introduction**
+## Overview
 
-An **Expense** Entity represents a cost or expenditure incurred by the tournament organization. It provides a consistent
-way to handle expense information for cost tracking, budget management, and financial reporting within the tournament
-system.
+An Expense template entity represents a standardized cost or expenditure structure for tournament organizations. It provides a consistent framework for tracking, categorizing, and managing expenses across different tournaments and events while ensuring proper budget oversight and financial reporting.
 
-It describes financial characteristics and is typically managed by [Finance](../finance/finance.md)
-entities to provide complete cost oversight.
+Expense templates enable organizations to establish reusable cost structures that facilitate budget planning, expense approval workflows, and comprehensive financial tracking throughout the tournament lifecycle.
 
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
+## Purpose
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
+- Enable standardized expense tracking across tournaments and events
+- Support comprehensive budget planning and cost management
+- Facilitate expense approval workflows and financial controls
+- Provide framework for expense categorization and reporting
+- Ensure consistent cost tracking and audit trail maintenance
 
----
+## Structure
 
-## **Attributes**
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
-| Attribute          | Description                                         | Type     | Required | Notes / Example                                 |
-| ------------------ | --------------------------------------------------- | -------- | -------- | ----------------------------------------------- |
-| **ID**             | Unique identifier for the expense entity.           | UUID     | Yes      | `"e123e456-7890-1234-5678-901234567890"`        |
-| **Category**       | The category of the expense.                        | String   | Yes      | `"Venue Rental"`, `"Equipment"`, `"Staffing"`   |
-| **Description**    | Description of the expense.                         | String   | Yes      | `"Indoor facility rental for tournament"`       |
-| **Amount**         | The amount of the expense.                          | Decimal  | Yes      | `500.00`, `1250.50`, `750.25`                   |
-| **Currency**       | The currency of the expense.                        | String   | Optional | `"USD"`, `"EUR"`, `"CAD"`                       |
-| **Date**           | The date when the expense was incurred.             | Date     | Yes      | `"2024-01-15"`, `"2024-02-20"`                  |
-| **Vendor**         | The vendor or supplier for the expense.             | String   | Optional | `"ABC Venue Services"`, `"Equipment Supply Co"` |
-| **Payment Method** | The method used to pay the expense.                 | String   | Optional | `"Credit Card"`, `"Bank Transfer"`, `"Cash"`    |
-| **Status**         | The status of the expense payment.                  | String   | Optional | `"Paid"`, `"Pending"`, `"Approved"`             |
-| **Receipt**        | Reference to receipt or invoice document.           | String   | Optional | `"receipt_2024_001.pdf"`, `"invoice_12345.pdf"` |
-| **Created At**     | Timestamp when the expense entity was created.      | DateTime | Yes      | `"2024-01-15T10:30:00Z"`                        |
-| **Updated At**     | Timestamp when the expense entity was last updated. | DateTime | Yes      | `"2024-01-20T14:45:00Z"`                        |
+### Domain-Specific Attributes
 
----
+| Attribute | Description | Type | Required | Notes / Example |
+|-----------|-------------|------|----------|-----------------|
+| **Name** | The name of the expense template | String | Yes | `"Venue Rental"`, `"Equipment Purchase"` |
+| **Category** | The expense category | String | Yes | `"Venue"`, `"Equipment"`, `"Personnel"`, `"Marketing"` |
+| **Amount** | The expected expense amount | [Amount](../finance/amount.md) | Yes | Embedded amount with currency |
+| **Description** | Description of the expense | String | Optional | `"Main tournament venue for 3 days"` |
+| **Approval Required** | Whether approval is required | Boolean | Optional | `true`, `false` |
+| **Recurring** | Whether this is a recurring expense | Boolean | Optional | `true`, `false` |
+| **Budget Line** | Associated budget line item | String | Optional | `"Operations"`, `"Capital"`, `"Marketing"` |
+| **Vendor** | Default vendor for this expense | Reference | Optional | Reference to [Organization](../organization/organization.md) |
+| **Status** | The status of the expense template | String | Optional | `"Active"`, `"Deprecated"`, `"Draft"` |
 
-## **Relationships**
+## Example
 
-- An `Expense` Entity is managed by a [Finance](../finance/finance.md) entity.
-- An `Expense` Template Entity may be associated with entities for tournament costs.
-- An `Expense` Template Entity may be associated with entities for venue-related expenses.
+```mermaid
+graph TD
+    E[Expense: Venue Rental Template] --> N[Name: Venue Rental]
+    E --> C[Category: Venue]
+    E --> A[Amount: $1,500.00 USD]
+    E --> D[Description: Main tournament venue for 3 days]
+    E --> AR[Approval Required: true]
+    E --> R[Recurring: false]
+    E --> BL[Budget Line: Operations]
+    E --> V[Vendor: Downtown Sports Center]
+    E --> S[Status: Active]
 
----
+    E --> FIN[Finance Template: Summer Tournament 2024]
+    E --> ORG[Vendor Organization: Downtown Sports Center]
+    E --> APP[Approval Workflow: Manager → Finance Director]
 
-## **Considerations**
+    style E fill:#e1f5fe
+    style FIN fill:#f3e5f5
+    style ORG fill:#e8f5e8
+    style APP fill:#fff3e0
+```
 
-- **Accuracy:** Expense amounts must be accurate and verifiable.
-- **Categorization:** Expenses should be properly categorized for reporting purposes.
-- **Documentation:** All expenses should be supported by receipts or invoices.
-- **Approval:** Expenses should follow appropriate approval processes.
+This example shows a Venue Rental expense template for summer tournaments. The template anticipates $1,500 USD for a 3-day venue rental, requires managerial approval, and is linked to a specific vendor. This template can be reused across multiple tournaments while maintaining consistent cost expectations and approval processes, enabling better budget planning and expense management.
+
+## See Also
+
+- [Amount](../finance/amount.md)
+- [Income](../finance/income.md)
+- [Payment](../finance/payment.md)
+- [Finance](../finance/finance.md)
+- [Organization](../organization/organization.md)
+- [Base Entity](../foundation/base_entity.md)
+
 - **Budget Tracking:** Expenses should be tracked against budget allocations.
 
 ---

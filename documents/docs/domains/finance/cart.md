@@ -8,80 +8,73 @@ tags:
   - payment
 ---
 
-# **Cart** (Data Model - Template Entity)
+# Cart (Template Entity)
 
-## **Introduction**
+## Overview
 
-A **Cart** Entity represents a shopping cart within the tournament system. It provides a consistent way to handle cart
-information for fee collection, payment processing, and transaction management within the tournament system.
+A Cart template entity represents a standardized shopping cart structure for collecting fees and managing payment processes within the tournament system. It provides a consistent framework for handling fee collection, payment processing, and transaction management across different registration and purchase scenarios.
 
-It describes financial characteristics and is typically managed by [Finance](../finance/finance.md)
-entities to provide complete cart oversight.
+Cart templates enable organizations to establish reusable checkout flows that ensure consistent user experience and payment processing while accommodating different fee combinations and payment methods.
 
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
+## Purpose
 
----
+- Enable standardized cart and checkout processes across tournaments
+- Support flexible fee collection and payment workflows
+- Facilitate consistent payment processing and transaction management
+- Provide framework for complex fee combinations and discounts
+- Ensure reliable checkout experience for teams and participants
 
-## **Attributes**
+## Structure
 
-| Attribute           | Description                                      | Type      | Required | Notes / Example                                             |
-| ------------------- | ------------------------------------------------ | --------- | -------- | ----------------------------------------------------------- |
-| **ID**              | Unique identifier for the cart entity.           | UUID      | Yes      | `"c123e456-7890-1234-5678-901234567890"`                    |
-| **User**            | Reference to the user who owns the cart.         | Reference | Yes      | Reference to entity                                         |
-| **Items**           | List of items in the cart.                       | List      | Optional | List of [Item](../inventory/item.md) entities |
-| **Subtotal**        | The subtotal amount before taxes and fees.       | Decimal   | Optional | `150.00`, `250.50`, `75.25`                                 |
-| **Tax Amount**      | The tax amount applied to the cart.              | Decimal   | Optional | `15.00`, `25.05`, `7.53`                                    |
-| **Discount Amount** | The discount amount applied to the cart.         | Decimal   | Optional | `10.00`, `20.00`, `5.00`                                    |
-| **Total Amount**    | The total amount including taxes and discounts.  | Decimal   | Optional | `155.00`, `255.55`, `77.78`                                 |
-| **Currency**        | The currency of the cart.                        | String    | Optional | `"USD"`, `"EUR"`, `"CAD"`                                   |
-| **Status**          | The status of the cart.                          | String    | Optional | `"Active"`, `"Abandoned"`, `"Converted"`, `"Expired"`       |
-| **Expires At**      | The timestamp when the cart expires.             | DateTime  | Optional | `"2024-01-15T23:59:59Z"`                                    |
-| **Created At**      | Timestamp when the cart entity was created.      | DateTime  | Yes      | `"2024-01-15T10:30:00Z"`                                    |
-| **Updated At**      | Timestamp when the cart entity was last updated. | DateTime  | Yes      | `"2024-01-20T14:45:00Z"`                                    |
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
----
+### Domain-Specific Attributes
 
-## **Relationships**
+| Attribute | Description | Type | Required | Notes / Example |
+|-----------|-------------|------|----------|-----------------|
+| **Name** | The name of the cart template | String | Yes | `"Team Registration Cart"`, `"Equipment Purchase Cart"` |
+| **Type** | The type of cart | String | Yes | `"Registration"`, `"Merchandise"`, `"Mixed"` |
+| **Currency** | The cart's primary currency | String | Yes | `"USD"`, `"EUR"`, `"CAD"` |
+| **Max Items** | Maximum number of items allowed | Integer | Optional | `10`, `50`, `100` |
+| **Session Timeout** | Cart session timeout in minutes | Integer | Optional | `30`, `60`, `120` |
+| **Auto Calculate Tax** | Whether to automatically calculate tax | Boolean | Optional | `true`, `false` |
+| **Discount Enabled** | Whether discounts can be applied | Boolean | Optional | `true`, `false` |
+| **Payment Methods** | Accepted payment methods | List[String] | Optional | `["Credit Card", "Bank Transfer", "PayPal"]` |
+| **Status** | The status of the cart template | String | Optional | `"Active"`, `"Deprecated"`, `"Draft"` |
 
-- A `Cart` Entity belongs to a entity.
-- A `Cart` Entity contains multiple [Item](../inventory/item.md) entities.
-- A `Cart` Entity is managed by a [Finance](../finance/finance.md) entity.
+## Example
 
----
+```mermaid
+graph TD
+    C[Cart: Team Registration Cart] --> N[Name: Team Registration Cart]
+    C --> T[Type: Registration]
+    C --> CUR[Currency: USD]
+    C --> MI[Max Items: 10]
+    C --> ST[Session Timeout: 60 minutes]
+    C --> ACT[Auto Calculate Tax: true]
+    C --> DE[Discount Enabled: true]
+    C --> PM[Payment Methods: Credit Card, PayPal]
+    C --> S[Status: Active]
 
-## **Considerations**
+    C --> FIN[Finance Template: Championship 2024]
+    C --> FEES[Contains: Registration Fee, Late Fee, Equipment Fee]
+    C --> DISC[Available Discounts: Early Bird, Multi-Team]
+    C --> PAY[Generates: Payment Transactions]
 
-- **Expiration:** Carts should have appropriate expiration times to prevent abandoned carts.
-- **Pricing:** Cart pricing should be accurate and up-to-date.
-- **Taxes:** Tax calculations should be handled correctly based on location.
-- **Discounts:** Discounts should be applied correctly and transparently.
-- **Security:** Cart data should be secure and protected.
+    style C fill:#e1f5fe
+    style FIN fill:#f3e5f5
+    style FEES fill:#e8f5e8
+    style DISC fill:#fff3e0
+    style PAY fill:#fce4ec
+```
 
----
-
-## References
-
-- [ISO 4217 — Currency codes (Wikipedia overview)](https://en.wikipedia.org/wiki/ISO_4217) - Standard for currency representation
-- [ISO 8601:2019 - Date and time format](https://www.iso.org/standard/70907.html) - Standard for timestamp
-
-  representations
-
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity pattern reference
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event e-commerce and
-
-  financial standards
+This example shows a Team Registration Cart template for championship tournaments. The cart supports up to 10 items, has a 60-minute session timeout, automatically calculates tax, and accepts credit cards and PayPal. It can contain various registration fees and apply early bird or multi-team discounts. This template ensures consistent checkout experience while supporting flexible fee combinations and payment options.
 
 ## See Also
 
-- [Amount](../finance/amount.md)
 - [Fee](../finance/fee.md)
-- [Payment](../finance/payment.md)
 - [Discount](../finance/discount.md)
-- [Item](../inventory/item.md)
-- [Account](../identity/account/account.md)
-- [Finance README](../finance/README.md)
-
----
+- [Payment](../finance/payment.md)
+- [Amount](../finance/amount.md)
+- [Finance](../finance/finance.md)
+- [Base Entity](../foundation/base_entity.md)

@@ -8,60 +8,58 @@ tags:
   - monetary
 ---
 
-# **Amount** (Data Model - Value Object)
+# Amount (Value Object)
 
-## **Introduction**
+## Overview
 
-An **Amount** Value Object represents a monetary value with its associated currency. It is an immutable value object
-that encapsulates the concept of money in the system. This model follows the Value Object pattern, meaning it has no
-identity and is defined by its attributes.
+An Amount value object represents a monetary value with its associated currency in the tournament system. It is an immutable value object that encapsulates the concept of money, ensuring precision, currency consistency, and proper monetary arithmetic throughout the financial domain.
 
-It is used throughout the system wherever monetary values need to be represented, such as in pricing, fees, payments,
-and financial calculations.
+As a value object, Amount has no independent identity and is defined entirely by its attributes. It is always embedded within other entities that need to represent monetary values.
 
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
+## Purpose
 
----
+- Provide consistent monetary value representation across the system
+- Ensure currency precision and validation in financial calculations
+- Maintain immutability for financial data integrity  
+- Support standardized currency handling following ISO 4217
+- Enable embedded monetary values in financial entities
 
-## **Attributes**
+## Structure
 
-| Attribute    | Description                              | Type    | Required | Notes / Example            |
-| ------------ | ---------------------------------------- | ------- | -------- | -------------------------- |
-| **Value**    | The numerical value of the amount.       | Decimal | Yes      | `10.50`, `1000.00`, `0.99` |
-| **Currency** | The three-letter ISO 4217 currency code. | String  | Yes      | `USD`, `EUR`, `GBP`, `JPY` |
+This value object is embedded within other entities and has no independent lifecycle or identity.
 
----
+### Value Object Attributes
 
-## **Relationships**
+| Attribute | Description | Type | Required | Notes / Example |
+|-----------|-------------|------|----------|-----------------|
+| **Value** | The numerical value of the amount | Decimal | Yes | `10.50`, `1000.00`, `0.99` |
+| **Currency** | The three-letter ISO 4217 currency code | String | Yes | `"USD"`, `"EUR"`, `"GBP"`, `"JPY"` |
 
-- An `Amount` Value Object has no independent identity and holds no references to other entities.
-- It is always embedded within an owning Entity (e.g., `Fee`, `Payment`, `Expense`).
+## Example
 
----
+```mermaid
+graph TD
+    FEE[Fee: Registration Fee] --> AMT[Amount Value Object]
+    AMT --> V[Value: 75.00]
+    AMT --> C[Currency: USD]
 
-## **Considerations**
+    PAY[Payment: Team Alpha Registration] --> AMT2[Amount Value Object]
+    AMT2 --> V2[Value: 75.00]
+    AMT2 --> C2[Currency: USD]
 
-- **Embedding:** This defines a monetary value and is embedded within the owning entity.
-- **Immutability:** If the amount needs to change, the owning Entity should replace the entire embedded Amount object.
-- **Precision:** All monetary calculations should maintain 2 decimal places of precision.
-- **Currency Consistency:** All amounts in a single context (e.g., a single payment) must use the same currency.
-- **Validation:** Amounts must be validated according to the rules above before being used.
+    EXP[Expense: Venue Rental] --> AMT3[Amount Value Object]
+    AMT3 --> V3[Value: 500.00]
+    AMT3 --> C3[Currency: USD]
 
----
+    style AMT fill:#e1f5fe
+    style AMT2 fill:#e1f5fe
+    style AMT3 fill:#e1f5fe
+    style FEE fill:#f3e5f5
+    style PAY fill:#e8f5e8
+    style EXP fill:#fff3e0
+```
 
-## References
-
-- [ISO 4217 — Currency codes (Wikipedia overview)](https://en.wikipedia.org/wiki/ISO_4217) - International
-
-  standard for currency codes
-
-- [IEEE 754-2008 - Standard for Floating-Point Arithmetic](https://standards.ieee.org/standard/754-2008.html) - Standard
-
-  for decimal precision in financial calculations
-
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Value Object pattern reference
+This example shows Amount value objects embedded in different financial entities. Each Amount consists of a decimal value and ISO 4217 currency code. The same Amount structure ($75.00 USD) appears in both the Fee template and the actual Payment, demonstrating consistency. The immutable nature ensures financial integrity - any changes require creating new Amount instances rather than modifying existing ones.
 
 ## See Also
 
@@ -71,5 +69,4 @@ It inherits properties from the [Base Entity](../foundation/base_entity.md).
 - [Income](../finance/income.md)
 - [Discount](../finance/discount.md)
 - [Cart](../finance/cart.md)
-
----
+- [Finance](../finance/finance.md)
