@@ -1,21 +1,25 @@
-# **Escalation** (Data Model - Template Entity)
-
-## **Introduction**
-
-An **Escalation** Entity Template defines conditions or situations that require professional medical intervention beyond
-basic first aid. These criteria help first aid providers determine when to seek additional medical assistance and what
-type of help is needed.
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
-_(For a guide on using escalation criteria in first aid protocols, see the )._
-
+---
+tags:
+  - first-aid
+  - escalation
+  - emergency
+  - medical
+  - template
 ---
 
-## **Attributes**
+# Escalation (Template Entity)
 
-**Note:** This Entity Template includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
-in the .
+## Overview
+
+An Escalation entity template defines conditions or situations that require professional medical intervention beyond basic first aid. These criteria help first aid providers determine when to seek additional medical assistance and what type of help is needed.
+
+## Purpose
+
+Escalation criteria ensure tournament staff recognize when medical situations exceed basic first aid capabilities and require professional intervention. They provide clear guidelines for when and how to contact emergency services, preventing delays in critical care and ensuring appropriate response levels for different medical emergencies.
+
+## Structure
+
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
 | Attribute        | Description                                             | Type   | Required | Notes / Example                                                      |
 | ---------------- | ------------------------------------------------------- | ------ | -------- | -------------------------------------------------------------------- |
@@ -26,35 +30,25 @@ in the .
 | **Instructions** | Specific actions to take when escalating.               | Text   | Yes      | `"Call 911, stay with the person, prepare to provide CPR if needed"` |
 | **Notes**        | Additional context or important considerations.         | Text   | No       | `"Have emergency contact information readily available"`             |
 
----
+## Example
 
-## **Relationships**
+```mermaid
+graph TD
+    A[Escalation: Unconsciousness] --> B[Title: Unconsciousness]
+    A --> C[Priority: Immediate]
+    A --> D[Condition: Person becomes unresponsive]
+    A --> E[Contact Type: Emergency Services]
+    A --> F[Instructions: Call 911, monitor breathing]
+    A --> G[Notes: Be ready to perform CPR]
+```
 
-- An `Escalation` Template can be referenced by:
+This escalation example demonstrates a critical decision-making structure for medical emergencies. The "Unconsciousness" escalation includes all essential attributes: a clear title for rapid identification, immediate priority level indicating urgency, specific condition description for accurate assessment, emergency services contact type for appropriate response, detailed instructions for proper escalation actions, and safety notes for ongoing care.
 
-  - 🚨 **BROKEN:** 🚨 **BROKEN:** [Protocol](../safety/protocol/protocol.md) 🚨 🚨 entities
-  - Emergency response protocols
-  - Venue safety plans
+This structure ensures tournament staff can quickly recognize when situations exceed basic first aid capabilities and take appropriate action to secure professional medical intervention. Ultimately, this reduces response times and improves outcomes during serious medical emergencies.
 
-- An `Escalation` may be related to:
+## See Also
 
-  - Specific symptoms that trigger escalation
-  - Required emergency contacts
-  - Venue-specific protocols
-
----
-
-## **Considerations**
-
-- **Template Usage:** Serves as a reusable component for emergency protocols
-- **Copy Mechanism:** When instantiated, creates a new escalation record with its own identity
-- **Instance Management:** Each instance maintains its own lifecycle
-- **Priority Levels:** Must be consistent across the system
-- **Usage Cases:**
-
-  - Emergency response protocols
-  - Safety planning
-  - Staff training
-  - Venue requirements
-
----
+- [Protocol](protocol.md) - Complete procedures that reference escalation criteria
+- [Instruction](instruction.md) - Sequential steps that may trigger escalation
+- [Symptom](symptom.md) - Observable indicators that may require escalation
+- [Base Entity](../foundation/base_entity.md) - Standard entity attributes

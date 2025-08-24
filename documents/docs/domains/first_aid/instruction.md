@@ -1,21 +1,25 @@
-# **Instruction** (Data Model - Template Entity)
-
-## **Introduction**
-
-An **Instruction** Entity Template defines a standardized, actionable instruction that forms part of a first aid
-procedure. Each instruction represents a specific action to be taken in sequence to address a medical situation or
-injury.
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
-_(For a guide on using instructions in first aid protocols, see the )._
-
+---
+tags:
+  - first-aid
+  - instruction
+  - procedure
+  - medical
+  - template
 ---
 
-## **Attributes**
+# Instruction (Template Entity)
 
-**Note:** This Entity Template includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
-in the .
+## Overview
+
+An Instruction entity template defines a standardized, actionable step that forms part of a first aid procedure. Each instruction represents a specific action to be taken in sequence to address a medical situation or injury.
+
+## Purpose
+
+Instructions break down complex first aid procedures into clear, manageable steps that can be followed under pressure. They ensure consistent treatment approaches and help tournament staff perform medical procedures correctly and safely during emergencies.
+
+## Structure
+
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
 | Attribute     | Description                                                 | Type    | Required | Notes / Example                                                                  |
 | ------------- | ----------------------------------------------------------- | ------- | -------- | -------------------------------------------------------------------------------- |
@@ -26,36 +30,23 @@ in the .
 | **Equipment** | Required items to perform this instruction (if any).        | List    | No       | `["Gloves", "Bandage", "First Aid Kit"]`                                         |
 | **Notes**     | Additional context, warnings, or important considerations.  | Text    | No       | `"Do not move the person if spinal injury is suspected"`                         |
 
----
+## Example
 
-## **Relationships**
+```mermaid
+graph TD
+    A[Instruction: Check Responsiveness] --> B[Title: Check Responsiveness]
+    A --> C[Order: 1]
+    A --> D[Action: Tap shoulders and shout Are you okay?]
+    A --> E[Duration: 10 seconds]
+    A --> F[Equipment: None required]
+    A --> G[Notes: Look for any response or movement]
+```
 
-- An `Instruction` Template can be referenced by:
+This instruction example demonstrates structured emergency response steps. The "Check Responsiveness" instruction includes all essential attributes: a clear title for quick reference, order number for proper sequencing, detailed action description for correct execution, time duration for pacing, equipment requirements (none in this case), and safety notes for proper implementation. This structure ensures tournament staff can follow precise, time-appropriate steps during medical emergencies, reducing confusion and improving treatment consistency across different situations and responders.
 
-  - 🚨 **BROKEN:** 🚨 **BROKEN:** [Protocol](../safety/protocol/protocol.md) 🚨 🚨 entities
-  - Training materials
-  - Emergency response protocols
+## See Also
 
-- An `Instruction` may be related to:
-
-  - Required equipment or supplies
-  - Prerequisite instructions
-  - Following instructions
-  - Relevant escalation criteria
-
----
-
-## **Considerations**
-
-- **Template Usage:** Serves as a reusable component for first aid procedures
-- **Copy Mechanism:** When instantiated, creates a new instruction record with its own identity
-- **Instance Management:** Each instance maintains its own lifecycle
-- **Instruction Ordering:** Must maintain consistent sequencing within a procedure
-- **Usage Cases:**
-
-  - Sequential first aid procedures
-  - Training and education
-  - Emergency response protocols
-  - Safety planning
-
----
+- [Protocol](protocol.md) - Complete procedures containing multiple instructions
+- [Escalation](escalation.md) - Criteria for advancing to professional care
+- [Symptom](symptom.md) - Observable indicators that trigger instruction sequences
+- [Base Entity](../foundation/base_entity.md) - Standard entity attributes

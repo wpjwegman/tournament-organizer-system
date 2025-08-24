@@ -107,6 +107,59 @@ After successful PR merge:
 - **Re-request review** after making changes
 - **Don't force-push** after review has started (use new commits)
 
+## Pull Request Review Process
+
+### Handling PR Comments and Reviews
+
+After creating a PR, follow this process to address review feedback:
+
+#### 1. Check for Review Comments
+
+```bash
+# View PR with comments
+gh pr view [PR_NUMBER] --comments
+
+# Check review status
+gh pr status
+```
+
+#### 2. Address Review Comments
+
+For each review comment:
+
+- **Read carefully** and understand the requested change
+- **Make specific fixes** addressing the exact concern
+- **Test changes** locally before committing
+- **Commit with descriptive messages** referencing the review
+
+#### 3. Update Pull Request
+
+```bash
+# Make changes to address comments
+git add [modified files]
+git commit -m "fix: address review comment - [specific issue fixed]"
+
+# Push updates (don't force push during review)
+git push origin [branch-name]
+```
+
+#### 4. Respond to Comments
+
+- **Reply to each comment** explaining how it was addressed
+- **Mark conversations as resolved** when changes are complete
+- **Request re-review** when all comments are addressed:
+
+```bash
+# Request re-review from specific reviewers
+gh pr edit [PR_NUMBER] --add-reviewer [username]
+```
+
+#### 5. Follow-up Actions
+
+- **Monitor CI/CD checks** after each update
+- **Ensure all tests pass** before requesting final review
+- **Update PR description** if scope or approach changed significantly
+
 ## Emergency Procedures
 
 ### Accidental Commit to Master
