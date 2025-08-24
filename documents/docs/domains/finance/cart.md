@@ -1,3 +1,13 @@
+---
+tags:
+  - finance
+  - cart
+  - checkout
+  - collection
+  - shopping
+  - payment
+---
+
 # **Cart** (Data Model - Template Entity)
 
 ## **Introduction**

@@ -1,3 +1,13 @@
+---
+tags:
+  - finance
+  - discount
+  - template
+  - pricing
+  - promotion
+  - reduction
+---
+
 # **Discount** (Data Model - Template Entity)
 
 ## **Introduction**

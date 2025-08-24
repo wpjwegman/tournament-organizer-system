@@ -1,3 +1,13 @@
+---
+tags:
+  - finance
+  - amount
+  - value-object
+  - currency
+  - money
+  - monetary
+---
+
 # **Amount** (Data Model - Value Object)
 
 ## **Introduction**

@@ -1,3 +1,13 @@
+---
+tags:
+  - finance
+  - fee
+  - template
+  - pricing
+  - billing
+  - charge
+---
+
 # **Fee** (Data Model - Template Entity)
 
 ## **Introduction**
@@ -37,7 +47,7 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - A `Fee` Entity is managed by a [Finance](../finance/finance.md) entity.
 - A `Fee` Template Entity may be applied to [Registration](../registration/registration.md) entities.
-- A `Fee` Template Entity may be associated with entities.
+- A `Fee` Template Entity may be associated with [Cart](../finance/cart.md) entities.
 
 ---
 

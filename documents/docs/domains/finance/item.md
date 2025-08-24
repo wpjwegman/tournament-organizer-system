@@ -1,3 +1,13 @@
+---
+tags:
+  - finance
+  - item
+  - inventory
+  - line-item
+  - product
+  - service
+---
+
 # **Item** (Data Model - Entity)
 
 ## **Introduction**

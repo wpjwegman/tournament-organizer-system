@@ -1,3 +1,12 @@
+---
+tags:
+  - finance
+  - receipt
+  - transaction
+  - inflow
+  - income
+---
+
 # Receipt (Entity Template)
 
 ## Introduction

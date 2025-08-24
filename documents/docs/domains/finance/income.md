@@ -1,3 +1,13 @@
+---
+tags:
+  - finance
+  - income
+  - revenue
+  - tracking
+  - earnings
+  - budget
+---
+
 # **Income** (Data Model - Template Entity)
 
 ## **Introduction**

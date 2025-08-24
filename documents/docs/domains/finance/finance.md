@@ -1,3 +1,12 @@
+---
+tags:
+  - finance
+  - template
+  - budget
+  - accounting
+  - management
+---
+
 # **Finance** (Data Model - Entity)
 
 ## **Introduction**
@@ -7,7 +16,7 @@ provides a comprehensive way to handle financial information for revenue trackin
 reporting within the tournament system.
 
 It manages financial characteristics and coordinates with other entities (like
-[Income](../finance/income.md), [Expense](../finance/expense.md), and ) to provide complete
+[Income](../finance/income.md), [Expense](../finance/expense.md), and [Payment](../finance/payment.md)) to provide complete
 financial oversight.
 
 It inherits properties from the [Base Entity](../foundation/base_entity.md).

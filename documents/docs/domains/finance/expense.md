@@ -1,3 +1,13 @@
+---
+tags:
+  - finance
+  - expense
+  - cost
+  - tracking
+  - expenditure
+  - budget
+---
+
 # **Expense** (Data Model - Template Entity)
 
 ## **Introduction**

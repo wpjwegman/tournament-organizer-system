@@ -1,3 +1,12 @@
+---
+tags:
+  - finance
+  - payment
+  - transaction
+  - outflow
+  - disbursement
+---
+
 # Payment (Entity Template)
 
 ## Introduction
