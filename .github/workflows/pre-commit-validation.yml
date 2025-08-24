@@ -62,9 +62,18 @@ jobs:
         for DOMAIN in $DOMAINS; do
           echo "::group::📋 Checking domain: $DOMAIN"
           
-          # Use same threshold as pre-commit hook (5 errors)
-          if ! python scripts/linting/domain_linter.py "$DOMAIN" --check-only --threshold 5 --verbose; then
+          # Use same threshold as pre-commit hook (5 errors) and capture output
+          OUTPUT=$(python scripts/linting/domain_linter.py "$DOMAIN" --check-only --threshold 5 --verbose 2>&1)
+          EXIT_CODE=$?
+          
+          echo "$OUTPUT"
+          
+          # Check if output contains success message OR exit code is 0
+          if echo "$OUTPUT" | grep -q "No linting errors found!" || [ $EXIT_CODE -eq 0 ]; then
+            echo "✅ Domain $DOMAIN passed validation"
+          else
             FAILED_DOMAINS="$FAILED_DOMAINS $DOMAIN"
+            echo "❌ Domain $DOMAIN failed validation"
           fi
           
           echo "::endgroup::"
