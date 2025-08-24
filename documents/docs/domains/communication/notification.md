@@ -45,6 +45,7 @@ This template entity includes standard attributes from the [Base Entity](../foun
 ### Basic Notification
 
 {% raw %}
+
 ```json
 {
   "notification_id": "not_001",
@@ -60,6 +61,7 @@ This template entity includes standard attributes from the [Base Entity](../foun
   "status": "Active"
 }
 ```
+
 {% endraw %}
 
 This example shows a high-priority notification informing a participant about a match schedule change. The notification was sent immediately upon creation and is awaiting the recipient's acknowledgment.
