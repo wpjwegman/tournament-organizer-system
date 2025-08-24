@@ -21,6 +21,11 @@ Comprehensive guidelines for writing clear, professional, consistently formatted
 - Visible H1 titles: Every Markdown page MUST begin its content with a visible H1 heading (first body line after front matter): `# Page Title`.
   - Do NOT use `title:` in front matter. If present, remove it to avoid duplicate titles.
   - Only one H1 per page (MD025). Subsequent sections start at H2 (`##`).
+- **Entity type indicators**: For data model entities, MUST include the entity type in the title:
+  - **Template Entity**: `# Entity Name (Template Entity)` - for reusable templates that define structure for creating instances
+  - **Entity**: `# Entity Name (Entity)` - for concrete entities with independent identity and lifecycle  
+  - **Value Object**: `# Entity Name (Value Object)` - for objects embedded in other entities without independent identity
+  - **Domain Overview**: `# Domain Name` - for domain README files (no entity type indicator)
 - Required tags: Every page MUST include a `tags:` list in YAML front matter with relevant, specific tags (2–6 recommended).
   - **MANDATORY**: Use YAML front matter block format with `tags:` as an array, NOT inline comma-separated format
   - Prefer domain- and concept-specific tags (e.g., `team`, `roster`, `tournament`, `ranking`, `finance`, `payment`, `identity`, `profile`, `venue`, `schedule`).
@@ -49,10 +54,16 @@ tags:
   - concept
 ---
 
-# Page Title
+# Entity Name (Template Entity)
 
 Intro paragraph…
 ```
+
+**Entity Type Examples:**
+- Template Entity: `# Protocol (Template Entity)` - defines reusable first aid protocol templates
+- Entity: `# Unit (Entity)` - concrete measurement unit with independent identity  
+- Value Object: `# Measurement (Value Object)` - embedded quantitative value without independent identity
+- Domain: `# First Aid Domain` - domain overview page (no entity type indicator)
 
 Notes
 - **CRITICAL**: The Tags plugin requires YAML front matter format. Always use `tags:` as an array in YAML front matter block, never inline comma-separated format.
@@ -177,6 +188,7 @@ Example diagram style (Graph TD) — intent and usage:
 
 **Structure & Content:**
 - [ ] Starts with visible H1 title (no `title:` in front matter)
+- [ ] Uses correct entity type indicator in title: (Template Entity), (Entity), (Value Object), or none for domain pages
 - [ ] Includes 2-6 relevant tags in YAML front matter array format (`tags:` not inline `tag:`)
 - [ ] References Base Entity for standard attributes (no explicit listing)
 - [ ] Includes comprehensive examples covering ALL attributes
