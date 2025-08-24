@@ -1,58 +1,50 @@
-# First Aid Domain (Business Model Documentation)
+---
+tags:
+  - first-aid
+  - medical
+  - emergency
+  - protocol
+  - safety
+---
 
-## Introduction
+# First Aid Domain
 
-The First Aid domain provides a structured way to define, manage, and implement standardized first aid protocols across
-tournaments. This includes medical emergency procedures, injury response protocols, and safety guidelines that can be
-consistently applied while allowing for tournament-specific customization.
+## Overview
 
-## Key Concepts
+The First Aid domain provides a structured way to define, manage, and implement standardized first aid protocols across tournaments. This includes medical emergency procedures, injury response protocols, and safety guidelines that can be consistently applied while allowing for tournament-specific customization.
 
-- **Protocol:** A template defining a complete set of procedures for a specific medical situation or injury.
-- **Symptom:** Observable indicators that help identify a medical situation.
-- **Instruction:** An actionable instruction in the first aid procedure.
-- **Escalation:** Conditions that require professional medical intervention.
-- **Media:** Visual or audio aids that support the instruction.
+## Purpose
 
-## Relationships
+This domain ensures tournament organizers have access to comprehensive, standardized first aid procedures that can be quickly referenced during medical emergencies. It supports consistent emergency response across different venues and tournament types while maintaining flexibility for specific medical situations and local requirements.
 
-- A **Protocol** contains multiple **Symptoms**, **Instructions**, and **Escalation** criteria.
-- **Protocols** can be referenced by:
+## Structure
 
-  - Tournaments (for event-specific protocols)
-  - Venues (for location-specific requirements)
-  - Training programs (for staff certification)
+The First Aid domain consists of interconnected entities that work together to provide comprehensive emergency medical response:
 
-- **Media** resources can be shared across multiple protocols.
+- **[Protocol](protocol.md)** - Complete standardized procedures for specific medical situations
+- **[Symptom](symptom.md)** - Observable indicators that help identify medical conditions  
+- **[Instruction](instruction.md)** - Actionable steps within first aid procedures
+- **[Escalation](escalation.md)** - Conditions requiring professional medical intervention
 
-## Extensibility
+## Example
 
-The model is designed to be flexible, supporting:
+```mermaid
+graph TD
+    A[Protocol: Choking Adult] --> B[Symptoms: Cannot speak, Clutching throat]
+    A --> C[Instructions: Back blows, Abdominal thrusts]
+    A --> D[Escalation: Unconsciousness, No improvement]
+    
+    E[Protocol: Minor Cut] --> F[Symptoms: Small laceration, Light bleeding]
+    E --> G[Instructions: Clean wound, Apply bandage]
+    E --> H[Escalation: Heavy bleeding, Signs of infection]
+```
 
-- Different types of medical situations
-- Various tournament environments
-- Multiple languages and formats
-- Integration with training and certification systems
-- Venue-specific requirements
-- Emergency response coordination
-
-## References
-
-- [American Red Cross: Performing First Aid](https://www.redcross.org/take-a-class/first-aid/performing-first-aid)
-- [ISO 22320 — Emergency management (overview)](https://en.wikipedia.org/wiki/ISO_22320)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Domain modeling patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event safety and emergency
-
-  standards
+This example demonstrates how first aid protocols organize medical response procedures. The "Choking Adult" protocol contains specific symptoms to identify the emergency, step-by-step instructions for treatment, and clear escalation criteria for when professional help is needed. This structure ensures tournament staff can quickly identify situations, follow proven procedures, and know when to seek advanced medical assistance, ultimately improving emergency response effectiveness and participant safety.
 
 ## See Also
 
-- [Protocol](../first_aid/protocol.md)
-- [Instruction](../first_aid/instruction.md)
-- [Escalation](../first_aid/escalation.md)
-- [Training](../first_aid/protocol.md)
-- [Venue](../venue/venue.md)
-- [Business README](../README.md)
+- [Protocol](protocol.md) - Detailed first aid procedure templates
+- [Instruction](instruction.md) - Individual actionable steps
+- [Escalation](escalation.md) - Professional intervention criteria
+- [Venue](../venue/README.md) - Location-specific safety requirements
+- [Safety](../safety/README.md) - Overall tournament safety framework

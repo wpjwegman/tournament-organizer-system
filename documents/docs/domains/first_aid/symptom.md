@@ -1,21 +1,25 @@
-# **Symptom** (Data Model - Template Entity)
-
-## **Introduction**
-
-A **Symptom** Entity Template defines a standardized way to describe observable indicators that help identify specific
-medical situations or injuries. These symptoms serve as key recognition points for first aid providers and help in
-determining the appropriate response protocol.
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
-_(For a guide on using symptoms in first aid protocols, see the )._
-
+---
+tags:
+  - first-aid
+  - symptom
+  - medical
+  - diagnosis
+  - template
 ---
 
-## **Attributes**
+# Symptom (Template Entity)
 
-**Note:** This Entity Template includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
-in the .
+## Overview
+
+A Symptom entity template defines a standardized way to describe observable indicators that help identify specific medical situations or injuries. These symptoms serve as key recognition points for first aid providers and help in determining the appropriate response protocol.
+
+## Purpose
+
+Symptoms provide tournament staff with clear, observable criteria for identifying medical emergencies and selecting appropriate first aid protocols. They enable rapid situation assessment and ensure consistent recognition of medical conditions across different responders and venues.
+
+## Structure
+
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
 | Attribute       | Description                                            | Type   | Required | Notes / Example                                                           |
 | --------------- | ------------------------------------------------------ | ------ | -------- | ------------------------------------------------------------------------- |
@@ -25,35 +29,22 @@ in the .
 | **Description** | Detailed explanation of how to recognize this symptom. | Text   | Yes      | `"Person is gasping for air, unable to speak in complete sentences"`      |
 | **Notes**       | Additional context or important considerations.        | Text   | No       | `"May be accompanied by chest pain"`, `"Common in high-intensity sports"` |
 
----
+## Example
 
-## **Relationships**
+```mermaid
+graph TD
+    A[Symptom: Difficulty Breathing] --> B[Title: Difficulty Breathing]
+    A --> C[Category: Respiratory]
+    A --> D[Severity: Critical]
+    A --> E[Description: Gasping for air, cannot speak]
+    A --> F[Notes: May indicate serious condition]
+```
 
-- A `Symptom` Template can be referenced by:
+This symptom example demonstrates structured medical assessment criteria. The "Difficulty Breathing" symptom includes all essential attributes: a clear title for quick identification, respiratory category for systematic classification, critical severity level indicating urgency, detailed description for accurate recognition, and contextual notes for additional considerations. This structure enables tournament staff to rapidly identify respiratory emergencies using observable indicators, ensuring consistent assessment across different responders and facilitating appropriate protocol selection for immediate and effective medical response during critical situations.
 
-  - 🚨 **BROKEN:** 🚨 **BROKEN:** [Protocol](../safety/protocol/protocol.md) 🚨 🚨 entities
-  - Training materials
-  - Emergency response protocols
+## See Also
 
-- A `Symptom` may be related to:
-
-  - Other symptoms that commonly occur together
-  - Specific instructions that address this symptom
-  - Relevant escalation criteria
-
----
-
-## **Considerations**
-
-- **Template Usage:** Serves as a reusable component for symptom identification
-- **Copy Mechanism:** When instantiated, creates a new symptom record with its own identity
-- **Instance Management:** Each instance maintains its own lifecycle
-- **Severity Levels:** Must be consistent across the system
-- **Usage Cases:**
-
-  - Medical situation identification
-  - Training and education
-  - Emergency response protocols
-  - Safety planning
-
----
+- [Protocol](protocol.md) - Complete procedures that use symptoms for identification
+- [Instruction](instruction.md) - Treatment steps triggered by specific symptoms  
+- [Escalation](escalation.md) - Conditions that may result from severe symptoms
+- [Base Entity](../foundation/base_entity.md) - Standard entity attributes
