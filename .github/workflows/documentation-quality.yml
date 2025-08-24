@@ -2,13 +2,13 @@ name: 📚 Documentation Quality Control
 
 on:
   pull_request:
-    branches: [main, develop]
+    branches: [master, develop]
     paths:
       - 'documents/**/*.md'
       - 'documents/.pymarkdown.json'
       - 'documents/scripts/**'
   push:
-    branches: [main, develop]
+    branches: [master, develop]
     paths:
       - 'documents/**/*.md'
       - 'documents/.pymarkdown.json'
@@ -81,7 +81,7 @@ jobs:
         fi
 
     - name: 📊 Repository-Wide Analysis
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: |
         cd documents
         echo "::group::📊 Repository-wide linting analysis"
@@ -92,7 +92,7 @@ jobs:
 
     - name: 📄 Upload Lint Reports
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: lint-reports
         path: |

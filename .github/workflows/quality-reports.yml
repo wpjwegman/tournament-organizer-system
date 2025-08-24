@@ -172,7 +172,7 @@ jobs:
         fi
 
     - name: 📄 Upload Quality Reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: quality-reports-${{ github.run_number }}
         path: |
