@@ -27,7 +27,7 @@ in the [Base Entity Model](../../foundation/base_entity.md).
 | **Name**          | The official name of the breed standard template                               | String       | Yes      | `"Labrador Retriever"`, `"Shetland Pony"`                          |
 | **Registry**      | The registry or authority that maintains the standard                          | String       | Yes      | `"FCI"`, `"AKC"`, `"The Kennel Club"`                              |
 | **Description**   | Description of the breed standard template                                     | Text         | Yes      | `"Medium-sized, athletic, friendly temperament"`                   |
-| **Reference URL** | Link to the official standard or documentation                                 | String       | No       | `"https://www.fci.be/en/nomenclature/LABRADOR-RETRIEVER-122.html"` |
+| **Reference URL** | Link to the official standard or documentation                                 | String       | No       | `"https://www.akc.org/dog-breeds/labrador-retriever/"` |
 | **Category**      | Animal category for this breed standard                                        | String       | Yes      | `"Dog"`, `"Horse"`, `"Cat"`, `"Bird"`                              |
 | **Icon**          | (Optional) Icon or visual representation                                       | String       | No       | `"labrador"`, `"pony"`, `"retriever"`                              |
 | **Tags**          | (Optional) Additional tags for categorization                                  | List[String] | No       | `["sporting", "retriever", "family"]`                              |
@@ -129,7 +129,7 @@ in the [Base Entity Model](../../foundation/base_entity.md).
 
 ## References
 
-- [FCI Breed Standards](https://www.fci.be/en/nomenclature/) - International breed standards
+- FCI Breed Standards (www.fci.be/en/nomenclature/) - International breed standards
 - [AKC Breed Standards](https://www.akc.org/dog-breeds/) - American Kennel Club standards
 - [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
 
