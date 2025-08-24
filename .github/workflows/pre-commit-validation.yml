@@ -36,7 +36,7 @@ jobs:
         echo "🔍 Simulating pre-commit hook validation..."
         
         # Get list of modified markdown files in this PR
-        MODIFIED_FILES=$(git diff --name-only origin/${{ github.base_ref }} HEAD | grep '\.md$' || true)
+        MODIFIED_FILES=$(git diff --name-only origin/master HEAD | grep '\.md$' || true)
         
         if [ -z "$MODIFIED_FILES" ]; then
           echo "::notice::No markdown files modified in this PR"
@@ -63,7 +63,7 @@ jobs:
           echo "::group::📋 Checking domain: $DOMAIN"
           
           # Use same threshold as pre-commit hook (5 errors) and capture output
-          OUTPUT=$(python scripts/linting/domain_linter.py "$DOMAIN" --check-only --threshold 5 --verbose 2>&1)
+          OUTPUT=$(uv run python scripts/linting/domain_linter.py "$DOMAIN" --check-only --threshold 5 --verbose 2>&1)
           EXIT_CODE=$?
           
           echo "$OUTPUT"
@@ -85,7 +85,7 @@ jobs:
           echo ""
           echo "💡 To fix issues automatically:"
           for DOMAIN in $FAILED_DOMAINS; do
-            echo "   python scripts/linting/domain_linter.py $DOMAIN --fix --auto-stage"
+            echo "   uv run python scripts/linting/domain_linter.py $DOMAIN --fix --auto-stage"
           done
           echo ""
           echo "🚫 To bypass this check locally (not recommended):"
@@ -101,7 +101,7 @@ jobs:
         cd documents
         
         # Generate comprehensive report for PR context
-        python scripts/linting/repository_linter.py --all-domains --save-report
+        uv run python scripts/linting/repository_linter.py --all-domains --save-report
         
         # Create PR-specific report
         cat > pr_validation_report.md << 'EOF'

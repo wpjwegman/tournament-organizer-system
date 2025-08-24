@@ -80,19 +80,21 @@ def test_domain_script():
     """Test the domain linting script."""
     print("\n🧪 Testing domain linting script...")
     
-    # Get current working directory and find scripts
-    current_dir = Path.cwd()
-    
-    # Check if we're in documents directory
-    if current_dir.name == "documents":
-        domain_script = current_dir / "scripts" / "linting" / "domain_linter.py"
-    else:
-        # Assume we're in project root
-        domain_script = current_dir / "documents" / "scripts" / "linting" / "domain_linter.py"
+    # Find Git root first
+    try:
+        git_root = subprocess.check_output(
+            ["git", "rev-parse", "--show-toplevel"], 
+            text=True
+        ).strip()
+        git_root = Path(git_root)
+        domain_script = git_root / "documents" / "scripts" / "linting" / "domain_linter.py"
+    except subprocess.CalledProcessError:
+        print("❌ Not in a Git repository")
+        return False
     
     if not domain_script.exists():
         print(f"❌ Domain script not found: {domain_script}")
-        print(f"   Current directory: {current_dir}")
+        print(f"   Git root: {git_root}")
         return False
     
     try:
