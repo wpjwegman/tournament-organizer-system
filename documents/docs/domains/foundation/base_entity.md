@@ -28,18 +28,21 @@ Individual Entity and Entity Template model definitions will reference this base
 ### ID and Template Management
 
 - **Unique ID:**
+
   - Must be unique across all Entities and Templates
   - Immutable once assigned
   - Used for direct entity references
   - Format: UUIDv4 with optional domain prefix
 
 - **Template ID:**
+
   - For templates: Matches Unique ID
   - For instances: References parent template
   - Enables template lineage tracking
   - Supports template evolution
 
 - **Version Management:**
+
   - Follows semantic versioning (MAJOR.MINOR.PATCH)
   - MAJOR: Breaking changes
   - MINOR: Backward-compatible features
@@ -50,18 +53,21 @@ Individual Entity and Entity Template model definitions will reference this base
 ### Template-Instance Relationship
 
 - **Template Creation:**
+
   - Unique ID and Template ID are identical
   - Initial version is 1.0.0
   - Can be modified to create new versions
   - Changes may affect future instances
 
 - **Instance Creation:**
+
   - Gets new Unique ID
   - Template ID references parent template
   - Version matches template version at creation
   - Can evolve independently of template
 
 - **Template Updates:**
+
   - Create new version of template
   - Existing instances remain at their creation version
   - New instances use latest template version
@@ -74,6 +80,7 @@ Individual Entity and Entity Template model definitions will reference this base
   typically be set manually.
 
 - **Status Management:**
+
   - Entities must have at least one status
   - Multiple statuses of different types can be active simultaneously
   - Status changes should be logged for audit purposes

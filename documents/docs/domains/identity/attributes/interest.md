@@ -37,11 +37,13 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 ## **Relationships**
 
 - **Template Relationships:**
+
   - Interest Templates can be grouped by Category for easier discovery
   - Interest Templates can be referenced by team formation algorithms for matching
   - Interest Templates can be linked to [Category](../../classification/category.md) entities for organization
 
 - **Instantiation Relationships:**
+
   - When instantiated, Interest Templates create Interest instances embedded within
 
     [Human Profile](../profile/human.md) entities
@@ -62,14 +64,17 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by system administrators
   - New templates can be added based on popular interests and trends
   - Templates should be reviewed periodically for relevance and accuracy
+
 - **Categorization:** Interest templates should be properly categorized for effective discovery and matching.
 - **Level Assessment:** Interest levels should be self-assessed or validated appropriately.
 - **Privacy:** Interest information should be handled according to privacy preferences.
 - **Matching:** Interest templates can be used for team formation and participant matching algorithms.
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental interest classification
   - System should support both template-based and fully custom interests

@@ -54,11 +54,14 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 
 - **Naming:** `Name` should uniquely identify this unit within its organization.
 - **Unit Relationships:**
+
   - The `Units` attribute defines all relationships with other units
   - Each relationship includes the unit ID and relationship type (parent, child, related)
   - Circular references should be prevented
   - A unit can have multiple relationships of different types
+
 - **Member Management:**
+
   - Members are assigned to the unit with specific roles
   - Members can have multiple roles within the unit
   - Member assignments can be updated as needed

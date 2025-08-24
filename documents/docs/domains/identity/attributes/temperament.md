@@ -107,14 +107,17 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by behavioral specialists
   - New templates can be added based on behavioral standards and organizational requirements
   - Templates should be reviewed periodically for accuracy and safety
+
 - **Standardization:** Use consistent categories and assessment criteria across all evaluations
 - **Context:** Consider environmental factors, health status, and recent experiences when applying assessments
 - **Updates:** Regular reassessment may be needed as temperament can change over time
 - **Purpose:** Adjust assessment criteria based on intended use (e.g., adoption vs. working animal)
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental temperament structure
   - System should support both template-based and fully custom temperaments

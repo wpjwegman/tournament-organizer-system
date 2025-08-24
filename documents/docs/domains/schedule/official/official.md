@@ -54,22 +54,31 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 ## **Considerations**
 
 - **Qualification Management:**
+
   - Track certification expiry dates
   - Handle qualification renewals
   - Validate qualification requirements
+
 - **Assignment Management:**
+
   - Handle match assignments
   - Manage availability
   - Track assignment history
+
 - **Role Management:**
+
   - Assign appropriate roles
   - Handle role changes
   - Track role history
+
 - **Performance Tracking:**
+
   - Monitor assignment completion
   - Track feedback and ratings
   - Handle performance issues
+
 - **Security:**
+
   - Control access to official records
   - Protect sensitive information
   - Audit official activities

@@ -38,7 +38,7 @@ graph TD
     B --> D[Recipient Reference]
     B --> E[Priority Level]
     B --> F[Delivery Type]
-    
+
     classDef core fill:#c4e3f3,stroke:#0275d8;
     class B,C,D,E,F core;
 ```

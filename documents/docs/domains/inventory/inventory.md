@@ -27,6 +27,7 @@ It inherits properties from the [Base Entity](../foundation/base_entity.md).
 ## **Relationships**
 
 - May be owned by:
+
   - [Tournament](../tournament/tournament.md)
   - [Fixture](../schedule/fixture.md)
 

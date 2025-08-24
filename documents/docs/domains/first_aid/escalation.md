@@ -31,10 +31,13 @@ in the .
 ## **Relationships**
 
 - An `Escalation` Template can be referenced by:
+
   - 🚨 **BROKEN:** 🚨 **BROKEN:** [Protocol](../safety/protocol/protocol.md) 🚨 🚨 entities
   - Emergency response protocols
   - Venue safety plans
+
 - An `Escalation` may be related to:
+
   - Specific symptoms that trigger escalation
   - Required emergency contacts
   - Venue-specific protocols
@@ -48,6 +51,7 @@ in the .
 - **Instance Management:** Each instance maintains its own lifecycle
 - **Priority Levels:** Must be consistent across the system
 - **Usage Cases:**
+
   - Emergency response protocols
   - Safety planning
   - Staff training

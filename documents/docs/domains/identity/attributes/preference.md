@@ -37,11 +37,13 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 ## **Relationships**
 
 - **Template Relationships:**
+
   - Preference Templates can be grouped by Category for easier discovery
   - Preference Templates can be referenced by team formation algorithms for matching
   - Preference Templates can be linked to [Category](../../classification/category.md) entities for organization
 
 - **Instantiation Relationships:**
+
   - When instantiated, Preference Templates create Preference instances embedded within
 
     [Human Profile](../profile/human.md) entities
@@ -62,14 +64,17 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by system administrators
   - New templates can be added based on user needs and system capabilities
   - Templates should be reviewed periodically for relevance and accuracy
+
 - **Categorization:** Preference templates should be properly categorized for effective discovery and handling.
 - **Privacy:** Preference information should be handled according to privacy preferences.
 - **Matching:** Preference templates can be used for team formation and scheduling optimization algorithms.
 - **Flexibility:** Preference templates should be flexible and not overly restrictive.
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental preference classification
   - System should support both template-based and fully custom preferences

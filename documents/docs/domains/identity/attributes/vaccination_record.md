@@ -85,13 +85,16 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by healthcare administrators
   - New templates can be added based on vaccination standards and regulatory requirements
   - Templates should be reviewed periodically for compliance and effectiveness
+
 - **Verification:** Ensure vaccination record templates are accurate and, if possible, verified by healthcare providers
 - **Privacy:** Handle personal and health data in compliance with relevant privacy regulations
 - **Updates:** Vaccination status may change (e.g., booster required, overdue); keep templates up to date
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental vaccination record structure
   - System should support both template-based and fully custom vaccination records

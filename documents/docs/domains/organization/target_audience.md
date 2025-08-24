@@ -37,12 +37,14 @@ It inherits properties from the [Base Entity](../foundation/base_entity.md).
 ## **Relationships**
 
 - A `Target Audience` template can be referenced by:
+
   - to define its participant requirements
   - [Rule](../discipline/activity/variation/rule.md) templates to
 
     specify which groups the rules apply to
 
   - Safety Guideline templates to specify which groups the guidelines apply to (*future enhancement*)
+
 - The specific implementation of a target audience within a tournament will be linked to records.
 - A target audience may be referenced by multiple entities across the system.
 
@@ -59,9 +61,11 @@ It inherits properties from the [Base Entity](../foundation/base_entity.md).
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by organizational administrators
   - New templates can be added based on demographic standards and tournament requirements
   - Templates should be reviewed periodically for inclusivity and relevance
+
 - **Template Usage:** The template should be referenced rather than copied, as target audiences are standardized across
 
   the system.
@@ -75,6 +79,7 @@ It inherits properties from the [Base Entity](../foundation/base_entity.md).
 - **Role Alignment:** The Roles attribute should align with the tournament's [Role](../foundation/base_entity.md) definitions.
 - **Requirement Verification:** All Requirements must be verifiable and documented when applicable.
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental audience structure
   - System should support both template-based and fully custom target audiences

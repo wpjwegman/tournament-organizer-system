@@ -29,11 +29,14 @@ in the .
 ## **Relationships**
 
 - A `Map` Entity can be associated with:
+
   - One \*\*\*\* entity for overall layouts
   - One **[Zone](../venue/zone.md)** entity for zone-specific layouts
   - One \*\*\*\* entity for area-specific layouts
+
 - It may reference \*\*\*\* entities for the actual map images or files.
 - When instantiated, a Map may be associated with:
+
   - Multiple \*\*\*\* entities for points of interest
   - Multiple \*\*\*\* entities for placed items
 
@@ -45,11 +48,14 @@ in the .
 - **Copy Mechanism:** When instantiated, creates a new map with its own identity
 - **Instance Management:** Each map instance maintains its own lifecycle
 - **Validation Rules:**
+
   - Name must be unique within its venue context
   - Image must be in a supported format
   - Version must follow a consistent format
   - Floor level must be valid for the venue
+
 - **Usage Cases:**
+
   - Event layout planning
   - Participant navigation
   - Safety planning
