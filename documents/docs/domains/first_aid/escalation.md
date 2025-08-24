@@ -42,7 +42,9 @@ graph TD
     A --> G[Notes: Be ready to perform CPR]
 ```
 
-This escalation example demonstrates critical decision-making structure for medical emergencies. The "Unconsciousness" escalation includes all essential attributes: a clear title for rapid identification, immediate priority level indicating urgency, specific condition description for accurate assessment, emergency services contact type for appropriate response, detailed instructions for proper escalation actions, and safety notes for ongoing care. This structure ensures tournament staff can quickly recognize when situations exceed basic first aid capabilities and take appropriate action to secure professional medical intervention, ultimately reducing response times and improving outcomes during serious medical emergencies.
+This escalation example demonstrates a critical decision-making structure for medical emergencies. The "Unconsciousness" escalation includes all essential attributes: a clear title for rapid identification, immediate priority level indicating urgency, specific condition description for accurate assessment, emergency services contact type for appropriate response, detailed instructions for proper escalation actions, and safety notes for ongoing care.
+
+This structure ensures tournament staff can quickly recognize when situations exceed basic first aid capabilities and take appropriate action to secure professional medical intervention. Ultimately, this reduces response times and improves outcomes during serious medical emergencies.
 
 ## See Also
 
