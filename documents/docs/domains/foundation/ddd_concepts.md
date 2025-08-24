@@ -36,6 +36,7 @@ The foundation defines three core DDD patterns used throughout the Tournament Or
 ### Core Pattern Definitions
 
 #### Entity
+
 An entity is a domain object with unique identity and mutable state, encapsulating business logic and lifecycle management.
 
 **Characteristics**: Unique identity, mutable state, business logic, persistence, lifecycle management
@@ -43,6 +44,7 @@ An entity is a domain object with unique identity and mutable state, encapsulati
 **Examples**: Tournament, Team, Participant, Venue, Account
 
 #### Template Entity  
+
 A template entity serves as a blueprint for creating other entities, defining structure, defaults, and constraints.
 
 **Characteristics**: Blueprint pattern, versioned, reusable, configurable, validation rules
@@ -50,6 +52,7 @@ A template entity serves as a blueprint for creating other entities, defining st
 **Examples**: Tournament Template, Team Template, Venue Template, Discipline Template
 
 #### Value Object
+
 A value object represents domain concepts through their attributes rather than identity, providing immutable value-based semantics.
 
 **Characteristics**: Immutable, value-based equality, no identity, self-validating, composable
@@ -112,18 +115,21 @@ The DDD patterns enable clear separation of concerns where entities handle ident
 ### Implementation Guidelines
 
 #### Entity Design
+
 - Ensure unique, immutable identities using [Base Entity](base_entity.md) foundation
 - Handle entity state changes with proper validation and business rules
 - Encapsulate domain logic within entities for consistency
 - Implement proper lifecycle management for creation, modification, and deletion
 
 #### Template Entity Design  
+
 - Design templates for flexibility, reuse, and customization across use cases
 - Implement comprehensive version management for template evolution
 - Define clear validation rules and constraints for instances
 - Document template purpose, usage patterns, and customization options
 
 #### Value Object Design
+
 - Ensure complete immutability after creation
 - Implement value-based equality for proper comparison
 - Validate value object state comprehensively on creation
