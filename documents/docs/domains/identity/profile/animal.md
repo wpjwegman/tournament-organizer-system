@@ -31,6 +31,7 @@ It inherits properties from the [Base Entity](../../foundation/README.md).
 
 - Inherits all relationships from [Base Profile](base_profile.md).
 - Additional relationships specific to Animal Profile:
+
   - [Human Profile](human.md) (Owner)
 
 ---

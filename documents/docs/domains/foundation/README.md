@@ -10,6 +10,7 @@ These models define the essential patterns and structures that other domain mode
 - **File:** `../../foundation/base_entity.md`
 - **Purpose:** Defines the standard attributes and behaviors that every entity in the system must implement
 - **Key Features:**
+
   - Unique ID and Template ID management
   - Version control with semantic versioning
   - Status management

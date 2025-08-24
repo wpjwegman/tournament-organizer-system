@@ -33,10 +33,13 @@ in the .
 ## **Relationships**
 
 - A `Protocol` Template can be referenced by:
+
   - [Tournament](../tournament/tournament.md) entities
   - [Venue](../venue/venue.md) entities
   - Training programs
+
 - A `Protocol` Template contains:
+
   - Multiple [Symptom](../first_aid/symptom.md) entities
   - Multiple [Instruction](../first_aid/instruction.md) entities
   - Multiple [Escalation](../first_aid/escalation.md) entities
@@ -52,6 +55,7 @@ in the .
 - **Version Control:** Tracks changes to protocols
 - **Media Management:** References to media must be valid and accessible
 - **Usage Cases:**
+
   - Emergency response protocols
   - Staff training
   - Venue safety requirements

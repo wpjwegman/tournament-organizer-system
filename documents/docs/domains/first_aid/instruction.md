@@ -31,10 +31,13 @@ in the .
 ## **Relationships**
 
 - An `Instruction` Template can be referenced by:
+
   - 🚨 **BROKEN:** 🚨 **BROKEN:** [Protocol](../safety/protocol/protocol.md) 🚨 🚨 entities
   - Training materials
   - Emergency response protocols
+
 - An `Instruction` may be related to:
+
   - Required equipment or supplies
   - Prerequisite instructions
   - Following instructions
@@ -49,6 +52,7 @@ in the .
 - **Instance Management:** Each instance maintains its own lifecycle
 - **Instruction Ordering:** Must maintain consistent sequencing within a procedure
 - **Usage Cases:**
+
   - Sequential first aid procedures
   - Training and education
   - Emergency response protocols

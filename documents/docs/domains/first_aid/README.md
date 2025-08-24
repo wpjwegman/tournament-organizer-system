@@ -18,9 +18,11 @@ consistently applied while allowing for tournament-specific customization.
 
 - A **Protocol** contains multiple **Symptoms**, **Instructions**, and **Escalation** criteria.
 - **Protocols** can be referenced by:
+
   - Tournaments (for event-specific protocols)
   - Venues (for location-specific requirements)
   - Training programs (for staff certification)
+
 - **Media** resources can be shared across multiple protocols.
 
 ## Extensibility

@@ -38,11 +38,13 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 ## **Relationships**
 
 - **Template Relationships:**
+
   - Instruction Templates can be grouped by Category for easier discovery
   - Instruction Templates can be referenced by training program algorithms for planning
   - Instruction Templates can be linked to [Rule](../../discipline/activity/variation/rule.md) entities for rule definition
 
 - **Instantiation Relationships:**
+
   - When instantiated, Instruction Templates create Instruction instances embedded within
 
     [Training](../../process/README.md) entities
@@ -67,14 +69,17 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by system administrators
   - New templates can be added based on training standards and competition requirements
   - Templates should be reviewed periodically for clarity and effectiveness
+
 - **Clarity:** Instruction templates should be clear and unambiguous.
 - **Consistency:** Instruction templates should be consistent across training and competition contexts.
 - **Progression:** Instruction templates should support progressive difficulty levels.
 - **Safety:** Instruction templates should include safety considerations where applicable.
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental instruction meaning
   - System should support both template-based and fully custom instructions

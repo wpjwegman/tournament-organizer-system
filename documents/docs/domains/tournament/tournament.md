@@ -132,15 +132,18 @@ The Tournament entity follows the status-based data lifecycle with the following
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by tournament administrators
   - New templates can be added based on tournament standards and organizational requirements
   - Templates should be reviewed periodically for effectiveness and fairness
+
 - **Planning:** Tournament templates should be planned with sufficient lead time.
 - **Capacity:** Tournament template capacity should be appropriate for available resources.
 - **Scheduling:** Tournament template scheduling should accommodate all participants.
 - **Rules:** Tournament template rules should be clear and fair.
 - **Communication:** Tournament template information should be communicated effectively to participants.
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental tournament structure
   - System should support both template-based and fully custom tournaments

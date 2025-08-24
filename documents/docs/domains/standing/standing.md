@@ -29,25 +29,30 @@ have multiple standings instances as they progress through different stages and 
 
 - A `Standing` is linked to a specific [Team](../team/team.md)
 - Based on Scope, a `Standing` is linked to:
+
   - A (for stage standings)
   - A [Discipline](../discipline/discipline.md) (for discipline standings)
   - Multiple disciplines (for multi-discipline standings)
+
 - Can be used as a basis for in subsequent stages or tournaments
 
 ## **Considerations**
 
 - **Scope-Specific Rules:**
+
   - Stage standings: Used for stage progression and seeding
   - Discipline standings: Track performance within a specific discipline
   - Multi-discipline standings: Aggregate performance across all referenced disciplines
 
 - **Multiple Standings:**
+
   - A team can have multiple standings instances
   - Each instance represents performance in a specific scope
   - Standings are updated independently based on their scope
   - Changes in one scope may affect related standings
 
 - **Validation Rules:**
+
   - Scope and Scope IDs must be consistent
   - Team must be eligible for all referenced scopes
   - For discipline standings, team must be registered in that discipline
@@ -55,11 +60,13 @@ have multiple standings instances as they progress through different stages and 
   - For multi-discipline standings, team must be participating in all referenced disciplines
 
 - **Position Updates:**
+
   - Recalculated whenever Points, Wins, Draws, or Losses change
   - Updates occur in real-time as match results are recorded
   - Different calculation rules may apply based on scope
 
 - **Ranking Usage:**
+
   - Can be used to update team rankings
   - Can serve as a basis for seeding
   - May influence qualification for other tournaments

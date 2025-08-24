@@ -1,48 +1,74 @@
-# **Finance** (Data Model - Entity)
-
-## **Introduction**
-
-A **Finance** Entity represents the financial management and accounting system within the tournament organization. It
-provides a comprehensive way to handle financial information for revenue tracking, expense management, and financial
-reporting within the tournament system.
-
-It manages financial characteristics and coordinates with other entities (like
-[Income](../finance/income.md), [Expense](../finance/expense.md), and ) to provide complete
-financial oversight.
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
+---
+tags:
+  - finance
+  - template
+  - budget
+  - accounting
+  - management
 ---
 
-## **Attributes**
+# Finance (Template Entity)
 
-| Attribute        | Description                                         | Type      | Required | Notes / Example                          |
-| ---------------- | --------------------------------------------------- | --------- | -------- | ---------------------------------------- |
-| **ID**           | Unique identifier for the finance entity.           | UUID      | Yes      | `"f123e456-7890-1234-5678-901234567890"` |
-| **Organization** | The organization this finance entity belongs to.    | Reference | Yes      | Reference to                             |
-| **Fiscal Year**  | The fiscal year for financial reporting.            | String    | Optional | `"2024"`, `"FY2024"`                     |
-| **Currency**     | The primary currency for financial transactions.    | String    | Optional | `"USD"`, `"EUR"`, `"CAD"`                |
-| **Status**       | The current status of the finance entity.           | String    | Optional | `"Active"`, `"Closed"`, `"Audit"`        |
-| **Created At**   | Timestamp when the finance entity was created.      | DateTime  | Yes      | `"2024-01-15T10:30:00Z"`                 |
-| **Updated At**   | Timestamp when the finance entity was last updated. | DateTime  | Yes      | `"2024-01-20T14:45:00Z"`                 |
+## Overview
 
----
+A Finance template entity represents the financial management and accounting framework for tournaments and disciplines. It provides a comprehensive structure for handling financial information including revenue tracking, expense management, and financial reporting within the tournament system.
 
-## **Relationships**
+The Finance template enables organizations to establish standardized financial frameworks that can be applied across different tournaments, ensuring consistency in budgeting, accounting practices, and financial oversight.
 
-- A `Finance` Entity manages multiple [Income](../finance/income.md) entities.
-- A `Finance` Entity manages multiple [Expense](../finance/expense.md) entities.
-- A `Finance` Entity manages multiple entities.
-- A `Finance` Entity belongs to an entity.
+## Purpose
 
----
+- Enable standardized financial management across tournaments and disciplines
+- Support comprehensive budget planning and expense tracking
+- Facilitate financial reporting and audit trail maintenance
+- Provide framework for revenue management and cost control
+- Ensure compliance with financial regulations and organizational policies
 
-## **Considerations**
+## Structure
 
-- **Accuracy:** Financial data must be accurate and verifiable.
-- **Compliance:** Financial management must comply with relevant regulations and standards.
-- **Audit Trail:** All financial transactions should maintain a complete audit trail.
-- **Reporting:** Financial reports should be generated regularly for stakeholders.
-- **Security:** Financial data should be protected with appropriate security measures.
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
----
+### Domain-Specific Attributes
+
+| Attribute | Description | Type | Required | Notes / Example |
+|-----------|-------------|------|----------|-----------------|
+| **Organization** | The organization this finance template belongs to | Reference | Yes | Reference to [Organization](../organization/organization.md) |
+| **Fiscal Year** | The fiscal year for financial reporting | String | Optional | `"2024"`, `"FY2024"` |
+| **Currency** | The primary currency for financial transactions | String | Yes | `"USD"`, `"EUR"`, `"CAD"` |
+| **Budget Framework** | The budgeting approach and methodology | String | Optional | `"Zero-based"`, `"Incremental"`, `"Activity-based"` |
+| **Approval Threshold** | Monetary threshold requiring additional approval | [Amount](../finance/amount.md) | Optional | Embedded amount with currency |
+| **Status** | The current status of the finance template | String | Optional | `"Active"`, `"Deprecated"`, `"Draft"` |
+
+## Example
+
+```mermaid
+graph TD
+    F[Finance: Tournament 2024 Financial Framework] --> O[Organization: Local Chess Association]
+    F --> FY[Fiscal Year: 2024]
+    F --> C[Currency: USD]
+    F --> BF[Budget Framework: Activity-based]
+    F --> AT[Approval Threshold: $500.00 USD]
+    F --> S[Status: Active]
+
+    F --> IT[Income Template: Registration Fees]
+    F --> ET[Expense Template: Venue Costs]
+    F --> FT[Fee Template: Late Registration]
+
+    style F fill:#e1f5fe
+    style O fill:#f3e5f5
+    style IT fill:#e8f5e8
+    style ET fill:#fff3e0
+    style FT fill:#fce4ec
+```
+
+This example shows a Finance template for the Local Chess Association's 2024 tournament framework. The template uses activity-based budgeting with USD currency and requires additional approval for expenses over $500. It includes templates for registration income, venue expenses, and late registration fees, providing a comprehensive financial management structure that can be applied to multiple tournaments throughout the fiscal year.
+
+## See Also
+
+- [Amount](../finance/amount.md)
+- [Income](../finance/income.md)
+- [Expense](../finance/expense.md)
+- [Fee](../finance/fee.md)
+- [Payment](../finance/payment.md)
+- [Organization](../organization/organization.md)
+- [Tournament](../tournament/tournament.md)
+- [Base Entity](../foundation/base_entity.md)

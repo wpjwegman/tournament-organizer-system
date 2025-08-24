@@ -72,11 +72,13 @@ in the [Base Entity Model](../../foundation/base_entity.md).
 ## **Relationships**
 
 - **Template Relationships:**
+
   - Breed Standard Templates can be grouped by Category for easier discovery
   - Breed Standard Templates can be referenced by tournament categories or competition rules
   - Breed Standard Templates can be linked to Registry <!-- TODO: Create registry model --> entities for authority validation
 
 - **Instantiation Relationships:**
+
   - When instantiated, Breed Standard Templates create Breed Standard instances embedded within
 
     [Animal Profile](../profile/animal.md) entities
@@ -97,30 +99,43 @@ in the [Base Entity Model](../../foundation/base_entity.md).
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by system administrators
   - New templates can be added based on official registry updates
   - Templates should be reviewed periodically for accuracy and compliance
+
 - **Registry Compliance:**
+
   - Templates should strictly follow official registry standards
   - Changes to registry standards should trigger template updates
   - Versioning may be needed to track standard evolution
+
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental breed classification
   - System should support both template-based and fully custom breed standards
+
 - **Internationalization:**
+
   - Some breeds have different standards in different countries
   - Templates should support multiple registry authorities
   - Localization may be needed for breed names and descriptions
+
 - **Performance:**
+
   - Template lookups should be optimized for quick selection
   - Popular templates should be cached for better performance
   - Search and filtering should work efficiently across templates
+
 - **Data Consistency:**
+
   - Template changes should not affect existing instantiations
   - Customizations should be preserved when templates are updated
   - Versioning may be needed for template evolution
+
 - **Validation Requirements:**
+
   - `Name` must be unique within its context
   - `Registry` should be from a recognized authority
   - `Description` should be accurate and up-to-date

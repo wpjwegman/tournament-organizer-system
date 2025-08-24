@@ -30,10 +30,13 @@ in the .
 ## **Relationships**
 
 - A `Symptom` Template can be referenced by:
+
   - 🚨 **BROKEN:** 🚨 **BROKEN:** [Protocol](../safety/protocol/protocol.md) 🚨 🚨 entities
   - Training materials
   - Emergency response protocols
+
 - A `Symptom` may be related to:
+
   - Other symptoms that commonly occur together
   - Specific instructions that address this symptom
   - Relevant escalation criteria
@@ -47,6 +50,7 @@ in the .
 - **Instance Management:** Each instance maintains its own lifecycle
 - **Severity Levels:** Must be consistent across the system
 - **Usage Cases:**
+
   - Medical situation identification
   - Training and education
   - Emergency response protocols

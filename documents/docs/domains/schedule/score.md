@@ -33,6 +33,7 @@ It inherits properties from the [Base Entity](../foundation/base_entity.md).
 
 - **Score Progression:** The order of Score objects within a Fixture helps maintain the chronological order of scores.
 - **Score Representation:** The `Value` field uses Text type to support various scoring formats:
+
   - Simple numeric scores (e.g., "15" for points)
   - Complex structured scores (e.g., tennis match with sets, games, points)
   - Special states (e.g., "AD" for advantage in tennis)

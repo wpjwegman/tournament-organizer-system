@@ -1,0 +1,175 @@
+name: 📚 Documentation Quality Control
+
+on:
+  pull_request:
+    branches: [master, develop]
+    paths:
+      - 'documents/**/*.md'
+      - 'documents/.pymarkdown.json'
+      - 'documents/scripts/**'
+  push:
+    branches: [master, develop]
+    paths:
+      - 'documents/**/*.md'
+      - 'documents/.pymarkdown.json'
+      - 'documents/scripts/**'
+
+jobs:
+  lint-documentation:
+    name: 🔍 Lint Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history for better analysis
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install uv
+        cd documents
+        uv sync --frozen
+
+    - name: 🔧 Configure Scripts
+      run: |
+        cd documents
+        chmod +x scripts/cli/domain-lint.sh
+        chmod +x scripts/git-hooks/*.sh
+
+    - name: 🎯 Domain-Specific Linting
+      id: domain-lint
+      run: |
+        cd documents
+        
+        # Get modified domains from changed files
+        CHANGED_FILES=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} HEAD)
+        MODIFIED_DOMAINS=$(echo "$CHANGED_FILES" | grep '^documents/docs/domains/' | cut -d'/' -f4 | sort -u || true)
+        
+        echo "Modified domains: $MODIFIED_DOMAINS"
+        
+        if [ -z "$MODIFIED_DOMAINS" ]; then
+          echo "::notice::No domain files modified in this change"
+          exit 0
+        fi
+        
+        # Check each modified domain with strict threshold for CI
+        FAILED_DOMAINS=""
+        for DOMAIN in $MODIFIED_DOMAINS; do
+          echo "::group::🔍 Checking domain: $DOMAIN"
+          
+          if ! python scripts/linting/domain_linter.py "$DOMAIN" --check-only --threshold 0 --verbose; then
+            FAILED_DOMAINS="$FAILED_DOMAINS $DOMAIN"
+            echo "::error::Domain $DOMAIN has linting errors"
+          else
+            echo "::notice::Domain $DOMAIN passed linting"
+          fi
+          
+          echo "::endgroup::"
+        done
+        
+        if [ -n "$FAILED_DOMAINS" ]; then
+          echo "::error::Linting failed for domains:$FAILED_DOMAINS"
+          echo "failed_domains=$FAILED_DOMAINS" >> $GITHUB_OUTPUT
+          exit 1
+        fi
+
+    - name: 📊 Repository-Wide Analysis
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      run: |
+        cd documents
+        echo "::group::📊 Repository-wide linting analysis"
+        
+        python scripts/linting/repository_linter.py --all-domains --report --save-report
+        
+        echo "::endgroup::"
+
+    - name: 📄 Upload Lint Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: lint-reports
+        path: |
+          documents/repository_lint_report_*.md
+          documents/scripts/reports/*.md
+        retention-days: 30
+
+    - name: 💡 Suggest Fixes
+      if: failure() && steps.domain-lint.outputs.failed_domains
+      run: |
+        cd documents
+        echo "::notice title=Fix Suggestions::To fix linting issues automatically:"
+        for DOMAIN in ${{ steps.domain-lint.outputs.failed_domains }}; do
+          echo "::notice::  python scripts/linting/domain_linter.py $DOMAIN --fix --auto-stage"
+        done
+        echo "::notice::Then commit and push the fixes"
+
+  auto-fix-pull-request:
+    name: 🔧 Auto-Fix Documentation (Optional)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'auto-fix-docs')
+    
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install uv
+        cd documents
+        uv sync --frozen
+
+    - name: 🔧 Apply Automatic Fixes
+      run: |
+        cd documents
+        
+        # Get modified domains
+        CHANGED_FILES=$(git diff --name-only origin/main HEAD)
+        MODIFIED_DOMAINS=$(echo "$CHANGED_FILES" | grep '^documents/docs/domains/' | cut -d'/' -f4 | sort -u || true)
+        
+        if [ -z "$MODIFIED_DOMAINS" ]; then
+          echo "No domain files to fix"
+          exit 0
+        fi
+        
+        # Apply fixes to each modified domain
+        for DOMAIN in $MODIFIED_DOMAINS; do
+          echo "🔧 Fixing domain: $DOMAIN"
+          python scripts/linting/domain_linter.py "$DOMAIN" --fix --verbose
+        done
+
+    - name: 📝 Commit Fixes
+      run: |
+        cd documents
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        if git diff --quiet; then
+          echo "No changes to commit"
+        else
+          git add .
+          git commit -m "🔧 Auto-fix documentation linting issues
+
+          Applied automatic fixes using professional linting scripts:
+          - Fixed markdown formatting issues
+          - Corrected list spacing
+          - Fixed YAML frontmatter
+          - Standardized heading spacing
+          
+          Generated by: scripts/linting/domain_linter.py"
+          git push
+        fi

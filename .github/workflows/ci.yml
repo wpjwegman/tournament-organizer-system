@@ -63,10 +63,10 @@ jobs:
       run: uv run mkdocs build --strict --clean
       
     - name: Check navigation completeness
-      run: uv run python scripts/check_nav_orphans.py
+      run: uv run python scripts/validation/check_nav_orphans.py
       
     - name: Verify no frontmatter titles
-      run: uv run python scripts/check_no_frontmatter_title.py
+      run: uv run python scripts/validation/check_no_frontmatter_title.py
 
   # Future: Backend tests (when implemented)
   backend-tests:

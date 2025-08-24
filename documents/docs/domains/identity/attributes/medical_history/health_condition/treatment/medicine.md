@@ -31,6 +31,7 @@ It inherits properties from the [Base Entity](../../../../../foundation/base_ent
 ## **Relationships**
 
 - A `Medicine` **Entity Template** is referenced by:
+
   - **[Treatment](treatment.md)** entities for specific treatment protocols
   - **[Medical History](../../medical_history.md)** records for current medications
   - **Medical Log** entries for administered medications (_future enhancement_)

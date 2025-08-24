@@ -88,14 +88,17 @@ _(For a guide on managing memberships, see the
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by organizational administrators
   - New templates can be added based on membership standards and organizational requirements
   - Templates should be reviewed periodically for benefits and requirements
+
 - **Lifecycle Management:** Track membership template status changes (Active, Inactive, Deprecated)
 - **Historical Records:** Maintain history of template changes
 - **Validation Rules:** Ensure valid requirements and benefits
 - **Security:** Control access to membership template records and audit template changes
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental membership structure
   - System should support both template-based and fully custom memberships

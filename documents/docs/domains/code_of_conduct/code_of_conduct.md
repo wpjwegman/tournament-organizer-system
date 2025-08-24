@@ -47,11 +47,11 @@ graph TD
     COC --> A[Applicability: Youth Soccer Tournaments]
     COC --> EB[Expected Behaviors]
     COC --> R[Rules]
-    
+
     EB --> EB1[Respect for Officials]
     EB --> EB2[Good Sportsmanship]
     EB --> EB3[Supportive Team Spirit]
-    
+
     R --> R1[No Physical Contact with Officials]
     R --> R2[No Abusive Language]
     R --> R3[Attend All Team Meetings]
@@ -70,10 +70,10 @@ graph TD
     COC --> A[Applicability: Professional Tournaments]
     COC --> EB[Expected Behaviors]
     COC --> R[Rules]
-    
+
     EB --> EB1[Professional Communication]
     EB --> EB2[Media Responsibility]
-    
+
     R --> R1[Anti-Doping Compliance]
     R --> R2[Equipment Regulations]
     R --> R3[Time Management Requirements]

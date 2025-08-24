@@ -110,14 +110,17 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by training administrators
   - New templates can be added based on training standards and organizational requirements
   - Templates should be reviewed periodically for effectiveness and safety
+
 - **Subject Specificity:** Training templates should be designed with the subject type in mind (human vs. animal)
 - **Flexibility:** Should allow for adaptation to different skill levels and learning styles
 - **Assessment:** Include clear criteria for evaluating training template success
 - **Safety:** Consider safety requirements and risk management in the design
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental training structure
   - System should support both template-based and fully custom training

@@ -62,29 +62,37 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
   needs to be handled by application logic.
 
 - **Template Management:**
+
   - Templates should be curated and maintained by team administrators
   - New templates can be added based on roster standards and organizational requirements
   - Templates should be reviewed periodically for effectiveness and fairness
+
 - **Role Management:**
+
   - **STARTER:** Primary players who begin the match
   - **SUBSTITUTE:** Players who can replace starters during a match
   - **RESERVE:** Players who can replace starters/substitutes before a match begins
 
 - **Role Transitions:**
+
   - Substitutes can be activated during a match
   - Reserves can only be activated before a match begins
   - Role changes must follow tournament rules
 
 - **Status Tracking:**
+
   - Each player's status affects their availability
   - Status changes must be tracked and validated
   - Roster status affects its modifiability
 
 - **Validation Rules:**
+
   - Must respect maximum numbers for each role type
   - Must follow tournament substitution rules
   - Must maintain proper team composition
+
 - **Customization Balance:**
+
   - Templates provide structure while allowing personalization
   - Customizations should not break the fundamental roster structure
   - System should support both template-based and fully custom rosters

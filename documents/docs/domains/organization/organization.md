@@ -32,10 +32,13 @@ It inherits properties from the [Base Entity](../foundation/base_entity.md).
 ## **Relationships**
 
 - An `Organization` **Entity** references other **Entities** via ID:
+
   - Optionally references one `Contact Information` Entity (which contains address, phone, email, media links, etc.).
   - Optionally references multiple `Organizational Unit` Entities representing its internal structure.
   - Optionally references one `Inventory` Entity for managing organization equipment and supplies.
+
 - Other **Entities** reference `Organization`:
+
   - A `Tournament` may reference an `Organization` as its organizer or sponsor.
   - A `Venue` may reference an `Organization` as its owner or manager.
   - An `Organizational Unit` references its parent `Organization`.

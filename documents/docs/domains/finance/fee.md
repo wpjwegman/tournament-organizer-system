@@ -1,70 +1,74 @@
-# **Fee** (Data Model - Template Entity)
-
-## **Introduction**
-
-A **Fee** Entity represents a charge or fee that can be applied to participants, teams, or organizations within the
-tournament system. It provides a consistent way to handle fee information for pricing, billing, and financial management
-within the tournament system.
-
-It describes financial characteristics and is typically managed by [Finance](../finance/finance.md)
-entities to provide complete fee oversight.
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
-
+---
+tags:
+  - finance
+  - fee
+  - template
+  - pricing
+  - billing
+  - charge
 ---
 
-## **Attributes**
+# Fee (Template Entity)
 
-| Attribute       | Description                                     | Type     | Required | Notes / Example                                         |
-| --------------- | ----------------------------------------------- | -------- | -------- | ------------------------------------------------------- |
-| **ID**          | Unique identifier for the fee entity.           | UUID     | Yes      | `"f123e456-7890-1234-5678-901234567890"`                |
-| **Name**        | The name of the fee.                            | String   | Yes      | `"Team Registration Fee"`, `"Late Registration Fee"`    |
-| **Type**        | The type of fee.                                | String   | Yes      | `"Registration"`, `"Late"`, `"Equipment"`, `"Facility"` |
-| **Amount**      | The amount of the fee.                          | Decimal  | Yes      | `50.00`, `25.00`, `100.00`                              |
-| **Currency**    | The currency of the fee.                        | String   | Optional | `"USD"`, `"EUR"`, `"CAD"`                               |
-| **Description** | Description of what the fee covers.             | String   | Optional | `"Covers tournament entry and basic equipment"`         |
-| **Category**    | The category of the fee.                        | String   | Optional | `"Required"`, `"Optional"`, `"Penalty"`                 |
-| **Due Date**    | The date when the fee is due.                   | Date     | Optional | `"2024-02-15"`, `"2024-03-01"`                          |
-| **Status**      | The status of the fee.                          | String   | Optional | `"Active"`, `"Inactive"`, `"Suspended"`                 |
-| **Created At**  | Timestamp when the fee entity was created.      | DateTime | Yes      | `"2024-01-15T10:30:00Z"`                                |
-| **Updated At**  | Timestamp when the fee entity was last updated. | DateTime | Yes      | `"2024-01-20T14:45:00Z"`                                |
+## Overview
 
----
+A Fee template entity represents a standardized charge or fee structure that can be applied to teams, participants, or organizations within the tournament system. It provides a consistent framework for handling fee information including pricing, billing, and financial management across different tournaments and events.
 
-## **Relationships**
+Fee templates enable organizations to establish reusable pricing structures that ensure consistency and transparency in financial transactions while accommodating different fee types, categories, and payment schedules.
 
-- A `Fee` Entity is managed by a [Finance](../finance/finance.md) entity.
-- A `Fee` Template Entity may be applied to [Registration](../registration/registration.md) entities.
-- A `Fee` Template Entity may be associated with entities.
+## Purpose
 
----
+- Enable standardized fee structures across tournaments and events
+- Support flexible pricing models and payment schedules
+- Facilitate transparent and fair fee collection processes
+- Provide framework for different fee categories and types
+- Ensure consistent billing and financial tracking
 
-## **Considerations**
+## Structure
 
-- **Transparency:** Fee structures should be clear and transparent to participants.
-- **Fairness:** Fees should be reasonable and justified by the services provided.
-- **Flexibility:** Fee structures should accommodate different participant categories.
-- **Collection:** Fee collection processes should be efficient and secure.
-- **Refunds:** Fee refund policies should be clearly defined.
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
----
+### Domain-Specific Attributes
 
-## References
+| Attribute | Description | Type | Required | Notes / Example |
+|-----------|-------------|------|----------|-----------------|
+| **Name** | The name of the fee template | String | Yes | `"Team Registration Fee"`, `"Late Registration Fee"` |
+| **Type** | The type of fee | String | Yes | `"Registration"`, `"Late"`, `"Equipment"`, `"Facility"` |
+| **Amount** | The fee amount | [Amount](../finance/amount.md) | Yes | Embedded amount with currency |
+| **Description** | Description of what the fee covers | String | Optional | `"Covers tournament entry and basic equipment"` |
+| **Category** | The category of the fee | String | Optional | `"Required"`, `"Optional"`, `"Penalty"` |
+| **Due Date Type** | How the due date is determined | String | Optional | `"Fixed"`, `"Relative"`, `"Registration"` |
+| **Due Date Offset** | Days offset for relative due dates | Integer | Optional | `7`, `14`, `30` (days before/after reference) |
+| **Refund Policy** | The refund policy for this fee | String | Optional | `"Full"`, `"Partial"`, `"None"`, `"Policy-based"` |
+| **Status** | The status of the fee template | String | Optional | `"Active"`, `"Inactive"`, `"Deprecated"` |
 
-- [ISO 4217 — Currency codes (Wikipedia overview)](https://en.wikipedia.org/wiki/ISO_4217) - Standard for currency representation
-- [ISO 8601:2019 - Date and time format](https://www.iso.org/standard/70907.html) - Standard for date and timestamp
+## Example
 
-  representations
+```mermaid
+graph TD
+    F[Fee: Team Registration Fee] --> N[Name: Team Registration Fee]
+    F --> T[Type: Registration]
+    F --> A[Amount: $75.00 USD]
+    F --> D[Description: Tournament entry and team materials]
+    F --> C[Category: Required]
+    F --> DDT[Due Date Type: Relative]
+    F --> DDO[Due Date Offset: 14 days before tournament]
+    F --> RP[Refund Policy: Partial]
+    F --> S[Status: Active]
 
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
+    F --> FIN[Finance Template: Spring Tournament 2024]
+    F --> REG[Applied to: Team Registrations]
+    F --> CART[Used in: Registration Cart]
+    F --> DISC[Available Discounts: Early Bird 10%]
 
-  by Eric Evans - Entity pattern reference
+    style F fill:#e1f5fe
+    style FIN fill:#f3e5f5
+    style REG fill:#e8f5e8
+    style CART fill:#fff3e0
+    style DISC fill:#fce4ec
+```
 
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event pricing and fee
-
-  management standards
+This example shows a Team Registration Fee template for a spring tournament. The fee is $75.00 USD and is required for all team registrations. It has a relative due date of 14 days before the tournament, follows a partial refund policy, and can be combined with early bird discounts. This template can be reused across multiple tournaments while maintaining consistent pricing and payment terms.
 
 ## See Also
 
@@ -73,6 +77,5 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 - [Discount](../finance/discount.md)
 - [Payment](../finance/payment.md)
 - [Registration](../registration/registration.md)
-- [Finance README](../finance/README.md)
-
----
+- [Finance](../finance/finance.md)
+- [Base Entity](../foundation/base_entity.md)

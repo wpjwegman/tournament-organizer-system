@@ -1,56 +1,77 @@
-# Payment (Entity Template)
+---
+tags:
+  - finance
+  - payment
+  - transaction
+  - outflow
+  - disbursement
+---
 
-## Introduction
+# Payment (Entity)
 
-A **Payment** represents a financial outflow from the organization. Payments are created when the organization pays
-money to a profile (such as a participant for a refund or prize), a vendor, or another external party. Payments are
-linked to the relevant expense or payout source, such as a refund, prize, or vendor invoice.
+## Overview
 
-## Attributes
+A Payment entity represents a financial outflow from the tournament organization to external parties. Payments are created when the organization disburses money to profiles (participants for refunds or prizes), vendors, or other external entities as part of tournament operations and financial management.
 
-| Attribute    | Description                                                                     | Type   | Example                       |
-| ------------ | ------------------------------------------------------------------------------- | ------ | ----------------------------- |
-| ID           | Unique identifier for the payment                                               | String | PAY-2024-001                  |
-| Payee        | The ID of the party receiving the payment (profile, vendor, organization, etc.) | ID     | "PROFILE-123", "VENDOR-456"   |
-| Related Item | Reference to the related item (e.g., expense, registration, invoice)            | Link   | "EXP-2024-001"                |
-| Amount       | Amount paid                                                                     | Amount | $100                          |
-| Method       | Payment method (cash, bank transfer, etc.)                                      | Enum   | "Bank Transfer"               |
-| Date         | Date the payment was made                                                       | Date   | "2024-06-05"                  |
-| Notes        | Additional information                                                          | Text   | "Prize for tournament winner" |
+Payments provide complete traceability from the organization's financial records to the specific recipient and purpose, ensuring proper audit trails and financial accountability.
 
-## Relationships
+## Purpose
 
-- Linked to the payee (profile, vendor, organization, etc.)
-- Linked to the relevant expense or payout source (refund, prize, vendor, etc.) via Related Item
+- Enable tracking of all financial outflows from the organization
+- Support payment processing for refunds, prizes, and vendor payments
+- Facilitate complete audit trail for financial disbursements
+- Provide framework for payment method management and recording
+- Ensure accountability and traceability for all outgoing payments
 
-**Note:** The tournament is always the source for payments. Only the payee (profile, vendor, organization, etc.) is
-stored explicitly. This ensures clear traceability and aligns with best practices.
+## Structure
 
-## Considerations
+This entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
-- Payments are for data storage only; reporting and analysis are handled elsewhere.
-- Each payment should be traceable to its origin (recipient and expense/payout source).
+### Domain-Specific Attributes
 
-## References
+| Attribute | Description | Type | Required | Notes / Example |
+|-----------|-------------|------|----------|-----------------|
+| **Payee** | The recipient of the payment | Reference | Yes | Reference to [Account](../identity/account/account.md), vendor, or organization |
+| **Related Item** | Reference to the source or reason for payment | Reference | Yes | Reference to expense, registration, invoice, or prize |
+| **Amount** | The payment amount | [Amount](../finance/amount.md) | Yes | Embedded amount with currency |
+| **Method** | The payment method used | String | Yes | `"Bank Transfer"`, `"Check"`, `"Cash"`, `"Digital Wallet"` |
+| **Date** | The date the payment was made | Date | Yes | `"2024-06-05"` |
+| **Reference Number** | External payment reference | String | Optional | Bank transaction ID or check number |
+| **Notes** | Additional payment information | String | Optional | `"Prize for tournament winner"`, `"Venue deposit refund"` |
+| **Approval** | Payment approval information | Reference | Optional | Reference to approving authority |
+| **Status** | The payment status | String | Yes | `"Pending"`, `"Completed"`, `"Failed"`, `"Cancelled"` |
 
-- [ISO 4217 — Currency codes (Wikipedia overview)](https://en.wikipedia.org/wiki/ISO_4217) - Standard for currency representation
-- [ISO 8601:2019 - Date and time format](https://www.iso.org/standard/70907.html) - Standard for date and timestamp
+## Example
 
-  representations
+```mermaid
+graph TD
+    P[Payment: Tournament Winner Prize] --> PAY[Payee: Team Alpha Captain]
+    P --> RI[Related Item: Prize Expense Record]
+    P --> A[Amount: $500.00 USD]
+    P --> M[Method: Bank Transfer]
+    P --> D[Date: 2024-06-05]
+    P --> RN[Reference Number: TXN-2024-001234]
+    P --> N[Notes: First place prize payment]
+    P --> APP[Approval: Tournament Director]
+    P --> S[Status: Completed]
 
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
+    P --> PROF[Account: John Smith - Team Alpha]
+    P --> EXP[Expense: Tournament Prizes]
+    P --> FIN[Finance: Championship 2024]
 
-  by Eric Evans - Entity Template pattern reference
+    style P fill:#e1f5fe
+    style PROF fill:#f3e5f5
+    style EXP fill:#e8f5e8
+    style FIN fill:#fff3e0
+```
 
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event payment processing
-
-  and financial standards
+This example shows a payment to the Team Alpha captain for the tournament winner's prize. The $500 USD payment was made via bank transfer, has been completed with a reference number, and is linked to both the recipient's profile and the underlying prize expense record. This ensures complete traceability from the financial budget through to the actual disbursement.
 
 ## See Also
 
 - [Amount](../finance/amount.md)
 - [Expense](../finance/expense.md)
-- [Income](../finance/income.md)
-- [Cart](../finance/cart.md)
+- [Receipt](../finance/receipt.md)
+- [Finance](../finance/finance.md)
 - [Account](../identity/account/account.md)
-- [Finance README](../finance/README.md)
+- [Base Entity](../foundation/base_entity.md)
