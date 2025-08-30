@@ -90,8 +90,7 @@ The Base Entity foundation ensures that every entity in the system - whether a T
 
 ## See Also
 
-- [Domain-Driven Design Concepts](ddd_concepts.md)
+ - [Account Entity Implementation](../identity/account/account.md)
 - [Foundation Domain Overview](README.md)
-- [Tournament Entity Implementation](../tournament/tournament.md)
-- [Team Entity Implementation](../team/team.md)
-- [Account Entity Implementation](../identity/account/account.md)
+ - [Account Entity Implementation](../identity/account/account.md)
+ - [Foundation Domain Overview](README.md)
