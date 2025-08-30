@@ -20,6 +20,7 @@ The Identity Domain defines the core concepts, entities, and relationships for r
 ## Structure
 
 The Identity Domain includes the following core entities and value objects:
+
 - [Contact Information](contact_information.md): Template entity for managing contact details
 - [Official Identifier](official_identifier.md): Value object for official identification numbers
 - [Account](account/account.md): Entity for user authentication and management

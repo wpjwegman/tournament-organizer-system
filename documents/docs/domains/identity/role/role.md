@@ -55,9 +55,13 @@ in the [Base Entity](../../foundation/base_entity.md).
 ## **Considerations**
 
 - **Template Nature:** This template defines a standard role. Instance-specific variations or customizations belong on
+
   the copied instance within its specific context.
+
 - **Copy Mechanism:** The process of copying this template definition into a target context needs to be handled by
+
   application logic.
+
 - **Permission Management:** Role templates should clearly define associated permissions.
 - **Responsibility Assignment:** Role templates should specify associated responsibilities.
 
