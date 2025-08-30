@@ -83,6 +83,8 @@ Notes
 - Begin each domain file with a brief summary or introduction.
 - Use the following section order in domain files: Overview, Purpose, Structure, Example, See Also.
 - In the Structure section, always reference the Base Entity for standard attributes (do not list them explicitly). This ensures maintainability if the Base Entity changes. Always include an attributes table for template entities to provide clarity and quick reference for users.
+- **Learned Lesson:** Whenever a model is referenced in the attributes table, always include a proper Markdown link to the model documentation. This applies to all referenced entities, value objects, or templates. Links must use relative paths and descriptive link text (e.g., `[Permission](permission/README.md)`).
+- **Learned Lesson:** Always start with content adjustments and restructuring for documentation compliance before running linting, broken link checks, or other automated validation. Content compliance is the foundation for sustainable documentation quality.
 - Remove sections for Relationships, Key Concepts, and References unless absolutely necessary. Prioritize clarity and relevance. Ensure documentation supports both human and automated validation, emphasizing transparency, consistency, and adaptability for future use cases.
 Add an Example section after Structure to illustrate domain concepts with real-world scenarios or visuals (e.g., mermaid diagrams). Follow these best practices:
   - Always provide contextual explanations for each example, immediately following the example.

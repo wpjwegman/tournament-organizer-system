@@ -1,10 +1,16 @@
+---
+tags:
+  - identity
+  - account
+  - profile
+  - contact-information
+  - authentication
+  - domain
+---
+
 # Identity Domain
 
-## Introduction
-
-The Identity domain in the Tournament Organizer system is designed to flexibly represent people and system actors, while
-separating business data from authentication. This approach allows for participants, players, coaches, and other
-profiles to exist in the system without requiring every individual to have login credentials.
+The Identity domain provides the core models and relationships for representing people, system actors, and authentication in the Tournament Organizer system. It separates business data (profiles, contact information) from authentication (accounts), enabling flexible, scalable, and privacy-conscious management of participants, staff, and other roles.
 
 ## Core Entities
 

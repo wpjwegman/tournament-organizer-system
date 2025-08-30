@@ -17,7 +17,7 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 ## **Attributes**
 
 **Note:** This Entity Template includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
-in the .
+in the [Base Entity](../../foundation/base_entity.md).
 
 | Attribute        | Description                                                          | Type       | Required | Notes / Example                                               |
 | ---------------- | -------------------------------------------------------------------- | ---------- | -------- | ------------------------------------------------------------- |
@@ -25,7 +25,7 @@ in the .
 | **Description**  | Detailed description of the specialization template and its purpose. | Text       | Yes      | `"Advanced level with additional responsibilities"`           |
 | **Type**         | The type of specialization template.                                 | String     | Yes      | `"Experience"`, `"Leadership"`, `"Technical"`, `"Functional"` |
 | **Requirements** | Specific requirements for this specialization template.              | Text       | Optional | `"Minimum 5 years experience"`                                |
-| **Permissions**  | Additional entities specific to this specialization.                 | List[UUID] | Optional | References to permission entities                             |
+| **Permissions**  | Additional [Permission](permission/README.md) entities specific to this specialization. | List[UUID] | Optional | References to permission entities                             |
 | **Notes**        | Additional notes about the specialization template.                  | Text       | Optional | `"Requires additional certification"`                         |
 
 ---
