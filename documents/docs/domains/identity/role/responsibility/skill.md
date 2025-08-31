@@ -6,7 +6,7 @@ A **Skill** is a Value Object that represents a specific ability, competency, or
 Responsibility or Role. Skills are referenced in Responsibilities to clarify requirements and support evaluation or
 training.
 
-It inherits properties from the [Base Entity](../../../foundation/base_entity.md).
+As a Value Object, it does not have identity or lifecycle - it is immutable and defined by its attributes.
 
 ---
 

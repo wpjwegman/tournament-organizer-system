@@ -5,10 +5,10 @@
 An **Address** is a **Value Object** representing the structured components of a physical location. It is defined
 entirely by its attributes and does not have its own identity or lifecycle.
 
-Addresses are **embedded** within owning **Entities** (like or ) to describe a specific location associated with that
+Addresses are **embedded** within owning **Entities** (like profiles or organizations) to describe a specific location associated with that
 Entity (e.g., mailing address, billing address, venue location).
 
-It inherits properties from the [Base Entity](../../foundation/base_entity.md).
+As a Value Object, it does not have identity or lifecycle - it is immutable and defined by its attributes.
 
 ---
 

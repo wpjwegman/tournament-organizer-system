@@ -5,7 +5,7 @@
 An **Expectation** is a Value Object that represents a standard of conduct, behavior, or outcome expected from a Role or
 Responsibility. Expectations are referenced to clarify what is required or valued in a given context.
 
-It inherits properties from the [Base Entity](../../../foundation/base_entity.md).
+As a Value Object, it does not have identity or lifecycle - it is immutable and defined by its attributes.
 
 ---
 

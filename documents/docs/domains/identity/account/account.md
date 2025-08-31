@@ -24,20 +24,18 @@ The Account entity represents a user account within the Tournament Organizer sys
 
 ## Structure
 
+This entity includes all standard attributes from the [Base Entity](../../foundation/base_entity.md) (ID, Status, CreatedAt, LastUpdatedAt).
+
 | Attribute          | Description                                         | Type     | Required | Notes / Example                                      |
 |--------------------|-----------------------------------------------------|----------|----------|------------------------------------------------------|
-| **ID**             | Unique identifier for the account entity            | UUID     | Yes      | "a123e456-7890-1234-5678-901234567890"              |
 | **Username**       | The username for the account                        | String   | Yes      | "john.doe", "jane_smith", "admin"                  |
 | **Email**          | The email address associated with the account       | String   | Yes      | "<john.doe@example.com>", "<jane.smith@company.com>"    |
 | **Password Hash**  | The hashed password for the account                 | String   | Yes      | Securely hashed password                             |
-| **Status**         | The status of the account                          | String   | Optional | "Active", "Inactive", "Suspended", "Locked"         |
-| **Type**           | The type of account                                | String   | Optional | "User", "Admin", "Organizer", "Participant"         |
+| **Account Type**   | The type of account                                | String   | Optional | "User", "Admin", "Organizer", "Participant"         |
 | **Last Login**     | The timestamp of the last login                     | DateTime | Optional | "2024-01-15T10:30:00Z"                              |
 | **Login Attempts** | Number of failed login attempts                     | Integer  | Optional | 0, 3, 5                                              |
 | **Lockout Until**  | Timestamp until account is locked                   | DateTime | Optional | "2024-01-15T11:30:00Z"                              |
 | **Settings**       | Account settings and preferences ([Setting](setting/setting.md) Value Objects) | Object   | Optional | Embedded Setting Value Objects                       |
-| **Created At**     | Timestamp when the account entity was created       | DateTime | Yes      | "2024-01-15T10:30:00Z"                              |
-| **Updated At**     | Timestamp when the account entity was last updated  | DateTime | Yes      | "2024-01-20T14:45:00Z"                              |
 
 ## Example
 

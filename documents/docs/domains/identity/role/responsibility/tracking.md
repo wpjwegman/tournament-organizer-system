@@ -10,7 +10,7 @@ monitoring is required.
 For example, in a tournament context, tracking might monitor "Equipment Safety Check" progress or "Court Preparation"
 completion, while in a business context, it might track "Project Review" status or "Quality Assurance" milestones.
 
-It inherits properties from the [Base Entity](../../../foundation/base_entity.md).
+As a Value Object, it does not have identity or lifecycle - it is immutable and defined by its attributes.
 
 ---
 

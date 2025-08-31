@@ -5,10 +5,10 @@
 A **Name** Value Object represents a person's or entity's name in a structured format. It provides a standardized way to
 handle different types of names (personal names, business names, etc.) with appropriate components and formatting.
 
-It describes characteristics of a name and is typically embedded within other entities (like or ) to specify
+It describes characteristics of a name and is typically embedded within other entities (like profiles or accounts) to specify
 identification details.
 
-It inherits properties from the [Base Entity](../../foundation/base_entity.md).
+As a Value Object, it does not have identity or lifecycle - it is immutable and defined by its attributes.
 
 ---
 
