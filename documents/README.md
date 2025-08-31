@@ -25,14 +25,14 @@ This folder contains the **complete MkDocs documentation pipeline** for the Tour
 
 ## 🚀 Local Development
 
-### Start the documentation server:
+### Start the documentation server
 
 ```bash
 cd documents
 mkdocs serve
 ```
 
-### Build the static site:
+### Build the static site
 
 ```bash
 cd documents
