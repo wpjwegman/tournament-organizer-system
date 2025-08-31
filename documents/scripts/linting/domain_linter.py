@@ -48,14 +48,39 @@ class DomainLinter:
             print(f"🔍 Linting {self.domain} domain...")
         
         try:
-            result = subprocess.run([
-                "markdownlint-cli2", 
-                str(self.domain_path / "**" / "*.md")
-            ], 
-            capture_output=True, 
-            text=True, 
-            cwd=self.base_path
-            )
+            # Get all markdown files in the domain
+            files = self.get_domain_files()
+            if not files:
+                return True, {}
+            
+            # Temporarily move .markdownlint-cli2.jsonc to avoid global patterns
+            cli2_config = self.base_path / ".markdownlint-cli2.jsonc"
+            cli2_backup = self.base_path / ".markdownlint-cli2.jsonc.bak"
+            moved_config = False
+            
+            try:
+                if cli2_config.exists():
+                    cli2_config.rename(cli2_backup)
+                    moved_config = True
+                
+                # Run markdownlint-cli2 with explicit file list
+                file_paths = [str(f) for f in files]
+                
+                # Use markdownlint-cli2.cmd on Windows for proper execution
+                import platform
+                cmd = ["markdownlint-cli2.cmd" if platform.system() == "Windows" else "markdownlint-cli2"]
+                
+                result = subprocess.run(
+                    cmd + file_paths, 
+                    capture_output=True, 
+                    text=True, 
+                    cwd=self.base_path
+                )
+                
+            finally:
+                # Restore .markdownlint-cli2.jsonc
+                if moved_config and cli2_backup.exists():
+                    cli2_backup.rename(cli2_config)
             
             if result.returncode == 0:
                 return True, {}
@@ -94,15 +119,34 @@ class DomainLinter:
         
         # Run markdownlint-cli2 with --fix flag for auto-fixable issues
         try:
-            result = subprocess.run([
-                "markdownlint-cli2", 
-                "--fix",
-                str(self.domain_path / "**" / "*.md")
-            ], 
-            capture_output=True, 
-            text=True,
-            cwd=self.base_path
-            )
+            # Temporarily move .markdownlint-cli2.jsonc to avoid global patterns
+            cli2_config = self.base_path / ".markdownlint-cli2.jsonc"
+            cli2_backup = self.base_path / ".markdownlint-cli2.jsonc.bak"
+            moved_config = False
+            
+            try:
+                if cli2_config.exists():
+                    cli2_config.rename(cli2_backup)
+                    moved_config = True
+                
+                # Get all markdown files in the domain
+                file_paths = [str(f) for f in files]
+                
+                # Use markdownlint-cli2.cmd on Windows for proper execution
+                import platform
+                cmd = ["markdownlint-cli2.cmd" if platform.system() == "Windows" else "markdownlint-cli2"]
+                
+                result = subprocess.run(
+                    cmd + ["--fix"] + file_paths,
+                    capture_output=True, 
+                    text=True,
+                    cwd=self.base_path
+                )
+                
+            finally:
+                # Restore .markdownlint-cli2.jsonc
+                if moved_config and cli2_backup.exists():
+                    cli2_backup.rename(cli2_config)
             
             if self.verbose and result.stdout:
                 print("  ✅ markdownlint-cli2 auto-fixes applied")
