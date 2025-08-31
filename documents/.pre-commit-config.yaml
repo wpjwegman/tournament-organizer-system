@@ -8,6 +8,7 @@ repos:
         entry: markdownlint-cli2
         language: node
         files: \.md$
+        exclude: '^\.github/instructions/documentation-style-link\.instructions\.md$'
         types: [markdown]
         minimum_pre_commit_version: "1.15.0"
         additional_dependencies: ["markdownlint-cli2@0.18.1"]

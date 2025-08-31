@@ -6,9 +6,6 @@ labels: ['documentation', 'quality-improvement', 'domain-update']
 assignees: ''
 ---
 
-# Title
-
-
 ## 📋 Domain Information
 
 **Domain Name:** [DOMAIN_NAME]  
