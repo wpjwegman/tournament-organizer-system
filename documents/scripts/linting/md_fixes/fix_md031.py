@@ -1,0 +1,42 @@
+import sys
+## Removed unused imports
+
+def fix_md031(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+    fixed_lines = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if line.strip().startswith('```'):
+            # Ensure blank line before
+            if fixed_lines and fixed_lines[-1].strip() != '':
+                fixed_lines.append('\n')
+            fixed_lines.append(line)
+            # Find end of code block
+            i += 1
+            while i < len(lines) and not lines[i].strip().startswith('```'):
+                fixed_lines.append(lines[i])
+                i += 1
+            if i < len(lines):
+                fixed_lines.append(lines[i])
+                # Ensure blank line after
+                if i + 1 < len(lines) and lines[i+1].strip() != '':
+                    fixed_lines.append('\n')
+        else:
+            fixed_lines.append(line)
+        i += 1
+    fixed = ''.join(fixed_lines)
+    with open(file_path, 'r', encoding='utf-8') as f:
+        orig = f.read()
+    if fixed != orig:
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(fixed)
+        print(f"[MD031] Fixed code block blank lines in {file_path}")
+        return True
+    return False
+
+if __name__ == "__main__":
+    files = sys.argv[1:]
+    for file_path in files:
+        fix_md031(file_path)

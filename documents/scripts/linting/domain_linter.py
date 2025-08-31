@@ -28,10 +28,10 @@ import time
 
 
 class DomainLinter:
-    def __init__(self, domain: str, base_path: Path, config_path: Path, verbose: bool = False):
+    def __init__(self, domain: str, base_path: Path, config_path: Path = None, verbose: bool = False):
         self.domain = domain
         self.base_path = base_path
-        self.config_path = config_path
+        self.config_path = config_path or base_path / ".markdownlint.json"
         self.verbose = verbose
         self.domain_path = base_path / "docs" / "domains" / domain
         
@@ -43,15 +43,14 @@ class DomainLinter:
         return list(self.domain_path.glob("**/*.md"))
     
     def run_lint_check(self) -> Tuple[bool, Dict[str, List[str]]]:
-        """Run pymarkdownlnt with proper configuration on domain files."""
+        """Run markdownlint-cli2 with proper configuration on domain files."""
         if self.verbose:
             print(f"🔍 Linting {self.domain} domain...")
         
         try:
             result = subprocess.run([
-                "uv", "run", "pymarkdownlnt", 
-                "--config", str(self.config_path),
-                "scan", str(self.domain_path), "--recurse"
+                "markdownlint-cli2", 
+                str(self.domain_path / "**" / "*.md")
             ], 
             capture_output=True, 
             text=True, 
@@ -61,54 +60,89 @@ class DomainLinter:
             if result.returncode == 0:
                 return True, {}
             
-            # Parse errors
+            # Parse errors from markdownlint-cli2 output
             errors = {}
             if result.stdout.strip():
                 for line in result.stdout.strip().split('\n'):
-                    if line.strip():
-                        if '.md:' in line:
-                            # Extract file path and error
-                            parts = line.split('.md:', 1)
-                            if len(parts) == 2:
-                                file_path = parts[0] + '.md'
-                                error_detail = parts[1]
-                                
-                                if file_path not in errors:
-                                    errors[file_path] = []
-                                errors[file_path].append(error_detail.strip())
+                    if line.strip() and ':' in line:
+                        # markdownlint-cli2 format: file:line:column rule description
+                        parts = line.split(':', 3)
+                        if len(parts) >= 3:
+                            file_path = parts[0]
+                            line_num = parts[1]
+                            rule_info = parts[2] if len(parts) > 2 else ''
+                            description = parts[3] if len(parts) > 3 else ''
+                            
+                            if file_path not in errors:
+                                errors[file_path] = []
+                            errors[file_path].append(f"Line {line_num}: {rule_info} {description}".strip())
             
             return False, errors
             
+        except FileNotFoundError:
+            return False, {"error": ["markdownlint-cli2 not found. Install with: npm install -g markdownlint-cli2"]}
         except Exception as e:
             return False, {"error": [f"Failed to run linter: {e}"]}
     
     def apply_fixes(self) -> Tuple[int, int]:
-        """Apply automatic fixes to domain files."""
+        """Apply automatic fixes to domain files using markdownlint-cli2 and custom fixers."""
         if self.verbose:
             print(f"🔧 Applying fixes to {self.domain} domain...")
         
         files = self.get_domain_files()
         fixed_count = 0
-        fix_script = self.base_path / "scripts" / "fix_markdown_lint.py"
         
-        for file_path in files:
-            try:
-                result = subprocess.run([
-                    "python", str(fix_script), str(file_path)
-                ], 
-                capture_output=True, 
-                text=True,
-                cwd=self.base_path
-                )
+        # Run markdownlint-cli2 with --fix flag for auto-fixable issues
+        try:
+            result = subprocess.run([
+                "markdownlint-cli2", 
+                "--fix",
+                str(self.domain_path / "**" / "*.md")
+            ], 
+            capture_output=True, 
+            text=True,
+            cwd=self.base_path
+            )
+            
+            if self.verbose and result.stdout:
+                print("  ✅ markdownlint-cli2 auto-fixes applied")
                 
-                if "Fixed:" in result.stdout:
-                    fixed_count += 1
+        except FileNotFoundError:
+            if self.verbose:
+                print("  ⚠️  markdownlint-cli2 not found, skipping auto-fixes")
+        
+        # Run custom fixers for issues that need special handling
+        fix_scripts = [
+            self.base_path / "scripts" / "linting" / "md_fixes" / "fix_md012.py",
+            self.base_path / "scripts" / "linting" / "md_fixes" / "fix_md022.py",
+            self.base_path / "scripts" / "linting" / "md_fixes" / "fix_md031.py",
+            self.base_path / "scripts" / "linting" / "md_fixes" / "fix_md032.py",
+            self.base_path / "scripts" / "linting" / "md_fixes" / "fix_md007.py",
+            self.base_path / "scripts" / "linting" / "md_fixes" / "fix_md025.py",
+            self.base_path / "scripts" / "linting" / "md_fixes" / "fix_md041.py",
+            self.base_path / "scripts" / "linting" / "md_fixes" / "fix_md047.py",
+        ]
+        
+        for script in fix_scripts:
+            if script.exists():
+                try:
+                    file_paths = [str(f) for f in files]
+                    result = subprocess.run([
+                        "uv", "run", "python", str(script)
+                    ] + file_paths, 
+                    capture_output=True, 
+                    text=True,
+                    cwd=self.base_path
+                    )
+                    
+                    if "Fixed" in result.stdout:
+                        fixed_count += 1
+                        if self.verbose:
+                            print(f"  ✅ Applied {script.name}")
+                            
+                except Exception as e:
                     if self.verbose:
-                        print(f"  ✅ Fixed: {file_path.name}")
-                        
-            except Exception as e:
-                if self.verbose:
-                    print(f"  ❌ Error fixing {file_path.name}: {e}")
+                        print(f"  ❌ Error running {script.name}: {e}")
         
         return fixed_count, len(files)
     
@@ -209,11 +243,11 @@ Examples:
     # Setup paths
     script_path = Path(__file__).parent
     base_path = script_path.parent.parent  # Go up two levels from scripts/linting/
-    config_path = base_path / ".pymarkdown.json"
+    config_path = base_path / ".markdownlint.json"
     
     if not config_path.exists():
-        print(f"❌ Configuration file not found: {config_path}")
-        return 1
+        print(f"⚠️  markdownlint configuration not found: {config_path}")
+        print("   Using default markdownlint-cli2 configuration")
     
     try:
         # Initialize domain linter
