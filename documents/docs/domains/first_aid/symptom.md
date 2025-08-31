@@ -47,6 +47,6 @@ This symptom example demonstrates structured medical assessment criteria. The "D
 ## See Also
 
 - [Protocol](protocol.md) - Complete procedures that use symptoms for identification
-- [Instruction](instruction.md) - Treatment steps triggered by specific symptoms  
+- [Instruction](instruction.md) - Treatment steps triggered by specific symptoms
 - [Escalation](escalation.md) - Conditions that may result from severe symptoms
 - [Base Entity](../foundation/base_entity.md) - Standard entity attributes

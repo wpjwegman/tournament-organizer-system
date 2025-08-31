@@ -19,7 +19,7 @@ The Foundation domain provides the fundamental architectural patterns and core m
 The Foundation domain serves as the architectural cornerstone by establishing:
 
 - **Base Entity patterns** that ensure consistent data modeling across all domains
-- **Domain-Driven Design concepts** that guide proper domain modeling practices  
+- **Domain-Driven Design concepts** that guide proper domain modeling practices
 - **Template-Instance relationships** that enable reusable, configurable entity patterns
 - **Standard attributes and behaviors** that every entity in the system must implement
 - **Version control and lifecycle management** patterns for robust entity evolution

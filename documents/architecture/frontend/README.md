@@ -26,7 +26,7 @@ management.
 
 ## Project Structure
 
-```
+```text
 src/
 ├── components/          # Reusable UI components
 │   ├── common/         # Shared components
@@ -41,7 +41,7 @@ src/
 ├── store/              # Redux store configuration
 ├── types/              # TypeScript type definitions
 └── utils/              # Utility functions
-```
+```text
 
 ## Key Features
 

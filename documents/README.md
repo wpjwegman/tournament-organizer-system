@@ -8,7 +8,7 @@ This folder contains the **complete MkDocs documentation pipeline** for the Tour
 
 ## 📁 Folder Structure
 
-```
+```text
 /documents/         # Complete MkDocs documentation pipeline (WORK HERE ONLY)
 ├── docs/           # ALL source documentation content
 ├── site/           # Generated static site output

@@ -5,7 +5,7 @@ This directory contains documentation for health condition entities in the Tourn
 ## Files
 
 - [Health Condition](health_condition.md) - Core health condition entity
-- [Symptom](symptom.md) - Symptom tracking entity  
+- [Symptom](symptom.md) - Symptom tracking entity
 - [Treatment](treatment/README.md) - Treatment-related entities
 
 ## See Also

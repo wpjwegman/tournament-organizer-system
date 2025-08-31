@@ -19,7 +19,7 @@ It inherits properties from the [Base Entity](../foundation/base_entity.md).
 | --------------------- | ------------------------------------------------------------- | ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | **Protocols**         | List of safety protocols applicable to this context.          | List[UUID]    | Yes      | References to [Safety Protocol](protocol/protocol.md) entities |
 | **Incidents**         | List of safety incidents that have occurred in this context.  | List[UUID]    | Optional | References to [Incident](../safety/incident.md) entities                                                              |
-| **Staff**             | List of staff members responsible for safety in this context. | List entities |
+| **Staff**             | List of staff members responsible for safety in this context. | List entities | | |
 | **Emergency Contact** | Primary emergency contact for this context.                   | UUID          | Yes      | Reference to entity                                                                                                                 |
 | **Notes**             | Additional safety-related notes and information.              | Text          | Optional | `"All participants must wear helmets"`                                                                                              |
 

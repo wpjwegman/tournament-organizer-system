@@ -22,7 +22,7 @@ As a value object, Amount has no independent identity and is defined entirely by
 
 - Provide consistent monetary value representation across the system
 - Ensure currency precision and validation in financial calculations
-- Maintain immutability for financial data integrity  
+- Maintain immutability for financial data integrity
 - Support standardized currency handling following ISO 4217
 - Enable embedded monetary values in financial entities
 

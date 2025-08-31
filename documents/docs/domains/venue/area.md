@@ -2,11 +2,11 @@
 
 ## **Introduction**
 
-An **Area** Entity Template defines a blueprint for a _single, specific, playable space_ within a larger venue context
+An **Area** Entity Template defines a blueprint for a *single, specific, playable space* within a larger venue context
 (e.g., a template or a [Zone](../venue/zone.md) template). It represents the fundamental unit where a
 single competition event (like a ) takes place at any given time.
 
-Examples include templates for a _single_ standard competition court (e.g., "Court 1"), a specific field ("Field A"), a
+Examples include templates for a *single* standard competition court (e.g., "Court 1"), a specific field ("Field A"), a
 particular table ("Table 3"), or a designated rink ("Rink 2"). It does **not** represent a collection of courts or a
 general spectator zone.
 
@@ -53,13 +53,13 @@ Maintenance], `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../foun
 
 ## **Considerations**
 
-- **Template Nature:** Defines a standard configuration for a _single_ playable area. Instance-specific details (e.g.,
+- **Template Nature:** Defines a standard configuration for a *single* playable area. Instance-specific details (e.g.,
 
   current availability status during an event, temporary setup notes for a specific fixture) are handled on the copied
   instance within the `Tournament` data or potentially on the `Fixture` itself.
 
 - **Copy Mechanism:** Part of the larger `Venue`/`Zone` template copy process.
-- **Specificity:** Represents the most granular level of _schedulable, playable space_ within the `Venue` hierarchy
+- **Specificity:** Represents the most granular level of *schedulable, playable space* within the `Venue` hierarchy
 
   (Venue -> [Zone] -> Area). It is the target location for a `Fixture`.
 

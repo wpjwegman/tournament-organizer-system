@@ -22,7 +22,7 @@ It inherits properties from the [Base Entity](../foundation/base_entity.md).
 | **Description** | Detailed description of what happened.               | Text             | Yes      | `"Player fell during warm-up, minor ankle sprain"`           |
 | **Location**    | Where the incident occurred.                         | String           | Yes      | `"Court 1"`, `"Main Arena"`, `"Parking Lot"`                 |
 | **Timestamp**   | When the incident occurred.                          | DateTime         | Yes      | `2024-11-02T14:30:15Z`                                       |
-| **Involved**    | List of people or entities involved in the incident. | List or entities |
+| **Involved**    | List of people or entities involved in the incident. | List or entities | | |
 | **Actions**     | Actions taken in response to the incident.           | Text             | Optional | `"First aid administered, player removed from play"`         |
 | **Follow-up**   | Follow-up actions required.                          | Text             | Optional | `"Review safety protocols for warm-up area"`                 |
 

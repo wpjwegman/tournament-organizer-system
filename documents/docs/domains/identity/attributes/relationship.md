@@ -122,7 +122,7 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 <!-- TODO: Add links when profile types are implemented
 
 - Plant Profile (not yet implemented)
-- Resource Profile (not yet implemented)  
+- Resource Profile (not yet implemented)
 - Software Profile (not yet implemented)
 
 -->

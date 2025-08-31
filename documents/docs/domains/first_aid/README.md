@@ -24,7 +24,7 @@ This domain ensures tournament organizers have access to comprehensive, standard
 The First Aid domain consists of interconnected entities that work together to provide comprehensive emergency medical response:
 
 - **[Protocol](protocol.md)** - Complete standardized procedures for specific medical situations
-- **[Symptom](symptom.md)** - Observable indicators that help identify medical conditions  
+- **[Symptom](symptom.md)** - Observable indicators that help identify medical conditions
 - **[Instruction](instruction.md)** - Actionable steps within first aid procedures
 - **[Escalation](escalation.md)** - Conditions requiring professional medical intervention
 
@@ -35,7 +35,7 @@ graph TD
     A[Protocol: Choking Adult] --> B[Symptoms: Cannot speak, Clutching throat]
     A --> C[Instructions: Back blows, Abdominal thrusts]
     A --> D[Escalation: Unconsciousness, No improvement]
-    
+
     E[Protocol: Minor Cut] --> F[Symptoms: Small laceration, Light bleeding]
     E --> G[Instructions: Clean wound, Apply bandage]
     E --> H[Escalation: Heavy bleeding, Signs of infection]

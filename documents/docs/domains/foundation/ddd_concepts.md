@@ -45,7 +45,7 @@ An entity is a domain object with unique identity and mutable state, encapsulati
 
 **Examples**: Tournament, Team, Participant, Venue, Account
 
-#### Template Entity  
+#### Template Entity
 
 A template entity serves as a blueprint for creating other entities, defining structure, defaults, and constraints.
 
@@ -123,7 +123,7 @@ The DDD patterns enable clear separation of concerns where entities handle ident
 - Encapsulate domain logic within entities for consistency
 - Implement proper lifecycle management for creation, modification, and deletion
 
-#### Template Entity Design  
+#### Template Entity Design
 
 - Design templates for flexibility, reuse, and customization across use cases
 - Implement comprehensive version management for template evolution

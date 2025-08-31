@@ -20,7 +20,7 @@ Income templates enable organizations to establish reusable revenue structures t
 
 ## Purpose
 
-- Enable standardized income tracking across tournaments and events  
+- Enable standardized income tracking across tournaments and events
 - Support comprehensive revenue planning and forecasting
 - Facilitate income categorization and financial reporting
 - Provide framework for revenue source management

@@ -7,7 +7,7 @@ promotes maintainability.
 
 ### High-Level Architecture
 
-```
+```text
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Frontend  │◄────┤    API      │◄────┤  Backend    │
 │  (Flutter)  │     │  Gateway    │     │Microservices│
@@ -19,7 +19,7 @@ promotes maintainability.
 │    State    │     │  Security   │     │  Database   │
 │ Management  │     │   Layer     │     │ (MongoDB)   │
 └─────────────┘     └─────────────┘     └─────────────┘
-```
+```text
 
 ## Key Components
 

@@ -21,7 +21,7 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 ## Purpose
 
 - Provide a unified foundation for all profile types in the system
-- Ensure consistency and extensibility across profile subtypes  
+- Ensure consistency and extensibility across profile subtypes
 - Enable polymorphic handling of different profile types
 - Support shared attributes and relationships for all profiles
 
@@ -49,14 +49,14 @@ graph TD
     BP --> IMG[Image: Optional]
     BP --> REL[Relationships: List[UUID]]
     BP --> MED[Media: List[UUID]]
-    
+
     subgraph "Inherited Entities"
         HP[Human Profile]
         AP[Animal Profile]
         VP[Vehicle Profile]
         RP[Robot Profile]
     end
-    
+
     BP -.-> HP
     BP -.-> AP
     BP -.-> VP

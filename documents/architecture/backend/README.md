@@ -36,7 +36,7 @@ benefits over traditional relational databases.
     "training_records": [...]
   }
 }
-```
+```text
 
 **2. Natural Data Relationships**
 
@@ -95,7 +95,7 @@ All attribute models are implemented as Value Objects because:
 ```markdown
 Sex (Value Object) - Biological classification Gender Identity (Value Object) - Personal identity Country (Value
 Object) - Geographic classification
-```
+```text
 
 Even though they have identical structures, they serve different business purposes and can evolve independently.
 
@@ -156,11 +156,11 @@ Each domain exposes a REST API with:
 
 **1. Resource-Based URLs**
 
-```
+```text
 GET /api/identity/profiles/{id}
 GET /api/identity/profiles/{id}/medical-history
 GET /api/tournament/events/{id}/participants
-```
+```text
 
 **2. Hierarchical Data Retrieval**
 

@@ -40,11 +40,11 @@ repos:
     hooks:
       - id: domain-markdown-fixes
         name: Domain Markdown Auto-fixes
-        entry: python scripts/linting/md_fixes/run_all_md_fixes.py
+        entry: python
         language: system
         files: docs/domains/.*\.md$
         pass_filenames: false
-        args: ['.', 'identity']  # Modify domain as needed
+        args: [scripts/linting/md_fixes/run_all_md_fixes.py, '.', 'identity']
       - id: forbid-frontmatter-title
         name: "Forbid front-matter title: (docs/)"
         entry: python scripts/validation/check_no_frontmatter_title.py
