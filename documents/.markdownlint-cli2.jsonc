@@ -18,6 +18,9 @@
     "markdown_fixes_backup/**",
     "**/licenses/**",
     "**/*.dist-info/**",
-    ".github/instructions/documentation-style-link.instructions.md"
+    ".github/instructions/documentation-style-link.instructions.md",
+    ".temp-*.md",
+    "*_DOMAIN_QUALITY_ISSUE.md",
+    "*_domain_update_issue.md"
   ]
 }
