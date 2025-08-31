@@ -1,10 +1,12 @@
 ---
 tags:
+
   - code-of-conduct
   - behavior
   - rule
   - template
   - conduct
+
 ---
 
 # Code of Conduct Domain

@@ -1,10 +1,12 @@
 ---
 tags:
+
   - classification
   - domain
   - template
   - hierarchy
   - criterium
+
 ---
 
 # Classification Domain

@@ -1,10 +1,12 @@
 ---
 tags:
+
   - points-system
   - template-entity
   - scoring
   - standings
   - match-outcomes
+
 ---
 
 # Points System (Template Entity)

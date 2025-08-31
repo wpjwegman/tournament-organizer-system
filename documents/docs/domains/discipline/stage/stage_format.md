@@ -1,10 +1,12 @@
 ---
 tags:
+
   - stage-format
   - template-entity
   - competition-structure
   - grouping
   - advancement
+
 ---
 
 # Stage Format (Template Entity)

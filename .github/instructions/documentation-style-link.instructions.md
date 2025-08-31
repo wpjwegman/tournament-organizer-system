@@ -2,18 +2,22 @@
 
 ---
 tags:
+
   - documentation
   - writing
   - style
   - formatting
   - markdown
   - links
+
 ---
 
 ## Purpose
+
 This document provides clear, concise, and complete instructions for writing, formatting, and linking documentation. It is designed for both human and AI authors to ensure consistency and quality across all project documentation.
 
 ## Scope
+
 Comprehensive guidelines for writing clear, professional, consistently formatted, and well-linked documentation for the project.
 
 ## MANDATORY: Titles and Tags
@@ -36,9 +40,11 @@ Comprehensive guidelines for writing clear, professional, consistently formatted
 ```yaml
 ---
 tags:
+
   - domain
   - subdomain
   - concept
+
 ---
 ```
 
@@ -49,9 +55,11 @@ Template complete example:
 ```markdown
 ---
 tags:
+
   - domain
   - subdomain
   - concept
+
 ---
 
 # Entity Name (Template Entity)
@@ -60,12 +68,14 @@ Intro paragraph…
 ```
 
 **Entity Type Examples:**
+
 - Template Entity: `# Protocol (Template Entity)` - defines reusable first aid protocol templates
 - Entity: `# Unit (Entity)` - concrete measurement unit with independent identity  
 - Value Object: `# Measurement (Value Object)` - embedded quantitative value without independent identity
 - Domain: `# First Aid Domain` - domain overview page (no entity type indicator)
 
 Notes
+
 - **CRITICAL**: The Tags plugin requires YAML front matter format. Always use `tags:` as an array in YAML front matter block, never inline comma-separated format.
 - Tags power search and taxonomy pages through the MkDocs Material theme.
 - Lint rules enforce a single H1 (MD025) and first-line H1 (MD041) when configured for visible titles.
@@ -74,6 +84,16 @@ Notes
 ## Key Lessons
 
 ### Writing & Structure
+
+**MANDATORY PRE-COMMIT STEP:**
+Before committing any documentation changes, always run:
+
+```
+python scripts/linting/domain_linter.py <domain> --check-only --threshold 0 --verbose
+```
+
+Fix all reported errors before staging and committing. Only commit when the linter reports zero errors. This prevents failed CI checks and wasted PR cycles.
+
 - For all template entities, always reference standard attributes from the Base Entity (e.g., "This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md)") instead of listing them explicitly. This ensures documentation remains maintainable and up to date if the Base Entity changes.
 - Use direct, active voice and concise sentences.
 - Organize content with clear headings, lists, and sections.
@@ -85,8 +105,11 @@ Notes
 - In the Structure section, always reference the Base Entity for standard attributes (do not list them explicitly). This ensures maintainability if the Base Entity changes. Always include an attributes table for template entities to provide clarity and quick reference for users.
 - **Learned Lesson:** Whenever a model is referenced in the attributes table, always include a proper Markdown link to the model documentation. This applies to all referenced entities, value objects, or templates. Links must use relative paths and descriptive link text (e.g., `[Permission](permission/README.md)`).
 - **Learned Lesson:** Always start with content adjustments and restructuring for documentation compliance before running linting, broken link checks, or other automated validation. Content compliance is the foundation for sustainable documentation quality.
+- **Learned Lesson:** When preparing a pull request, always verify the correct base branch (e.g., master vs. main) and ensure the branch is pushed to the remote before creating the PR. If errors occur, check branch existence, sync status, and update instructions to prevent future workflow issues.
 - Remove sections for Relationships, Key Concepts, and References unless absolutely necessary. Prioritize clarity and relevance. Ensure documentation supports both human and automated validation, emphasizing transparency, consistency, and adaptability for future use cases.
+
 Add an Example section after Structure to illustrate domain concepts with real-world scenarios or visuals (e.g., mermaid diagrams). Follow these best practices:
+
   - Always provide contextual explanations for each example, immediately following the example.
   - MANDATORY: Ensure every example represents ALL attributes from the Structure section, both visually (in the diagram) and explicitly in the explanatory paragraph.
   - If a single diagram would become unreadable, use two small diagrams (Example A/B) to cover all attributes.
@@ -100,6 +123,7 @@ Add an Example section after Structure to illustrate domain concepts with real-w
   - Immediately follow each diagram with a concise paragraph that explains the structure and its practical impact (why it matters for organizers, navigation, eligibility, reporting, etc.).
 
   ### Modeling Rules (Data, Embedding, Terminology)
+
   - Embedding within the same domain (document database model):
     - When one model references another model in the SAME domain (e.g., `discipline/*` → `discipline/stage/*`), embed the referenced model instead of using a UUID. Reflect this in docs:
       - Use types like `Stage Format`, `Match System`, `List[Stage Phase]`, `List[Stage Tiebreaker]`, `List[Match Unit]`, etc., not `UUID`/`List[UUID]`.
@@ -111,6 +135,7 @@ Add an Example section after Structure to illustrate domain concepts with real-w
     - Reserve "participant" for the broad set of people/entities involved in a tournament (teams, officials, staff, etc.), not just competitors.
 
 Example diagram style (Graph TD) — intent and usage:
+
 - Use `graph TD` flowcharts to show hierarchies and classifications in a way that mirrors how users think about grouping.
 - Label nodes with meaningful, domain-focused names (e.g., "Activity: Basketball", "Domain: Sports").
 - Show classification edges with descriptive text when helpful (e.g., `-. classified in .->`).
@@ -119,6 +144,7 @@ Example diagram style (Graph TD) — intent and usage:
 - Maintain a clear, professional, and neutral tone throughout. Focus on actionable guidance and practical examples. Avoid unnecessary jargon or informality.
 
 ### Formatting & Accessibility
+
 - Use consistent Markdown syntax for headings and lists.
 - Avoid code blocks for code samples in documentation. Use diagrams instead. Exception: Mermaid fenced blocks are encouraged for diagrams (prefer `graph TD`).
 - Apply project-specific style rules. Most important MkDocs recommendations:
@@ -140,6 +166,7 @@ Example diagram style (Graph TD) — intent and usage:
 - Use tags and metadata for organization and searchability.
 
 ### Link Management
+
 - Always check links for accuracy and relevance before publishing.
 - Use relative links for internal documentation to avoid broken links when moving files.
 - Prefer descriptive link text over raw URLs (e.g., "See the [Style Guide]" instead of "http://.../style-guide").
@@ -147,6 +174,7 @@ Example diagram style (Graph TD) — intent and usage:
 - Document link management practices in style guides and templates.
 
 ### Content Relevance & Maintenance
+
 - Only add content that is relevant and necessary for users; avoid clutter and unnecessary documentation.
 - Regularly review and update content to ensure accuracy and relevance.
 - Use versioning to track changes and maintain historical records.
@@ -161,24 +189,28 @@ Example diagram style (Graph TD) — intent and usage:
 ## Link Management
 
 ### Internal Links
+
 - Use relative paths for all internal documentation links (e.g., `[Base Entity](../foundation/base_entity.md)`)
 - Test links locally before committing to ensure they resolve correctly
 - Use descriptive link text that explains the destination or purpose
 - Avoid generic phrases like "click here" or "read more"
 
 ### External Links
+
 - Use full URLs for external resources
 - Include link text that identifies the external source (e.g., `[MkDocs Material Documentation](https://squidfunk.github.io/mkdocs-material/)`)
 - Verify external links are stable and likely to remain available
 - Consider using archive links for important but potentially unstable resources
 
 ### Cross-References
+
 - Link to related domain documents using clear, contextual anchor text
 - Create bidirectional links where relationships exist between domains
 - Use the `See Also` section for related links that don't fit naturally in the content
 - Maintain a consistent linking strategy across all domain documentation
 
 ### Link Validation
+
 - Run link checking tools during pre-commit hooks
 - Regularly audit documentation for broken internal and external links
 - Update or remove outdated links promptly
@@ -188,7 +220,12 @@ Example diagram style (Graph TD) — intent and usage:
 
 ### Before Publishing Any Documentation
 
+**MANDATORY PRE-COMMIT LINTING:**
+
+- [ ] Run `python scripts/linting/domain_linter.py <domain> --check-only --threshold 0 --verbose` and confirm zero errors before staging/committing changes.
+
 **Structure & Content:**
+
 - [ ] Starts with visible H1 title (no `title:` in front matter)
 - [ ] Uses correct entity type indicator in title: (Template Entity), (Entity), (Value Object), or none for domain pages
 - [ ] Includes 2-6 relevant tags in YAML front matter array format (`tags:` not inline `tag:`)
@@ -198,6 +235,7 @@ Example diagram style (Graph TD) — intent and usage:
 - [ ] Follows domain file structure: Overview → Purpose → Structure → Example → See Also
 
 **Formatting & Style:**
+
 - [ ] Uses consistent Markdown syntax
 - [ ] Applies proper heading hierarchy (single H1, then H2+)
 - [ ] Includes alt text for images
@@ -206,6 +244,7 @@ Example diagram style (Graph TD) — intent and usage:
 - [ ] Uses Mermaid `graph TD` for diagrams when appropriate
 
 **Technical Requirements:**
+
 - [ ] Passes markdown linting (MD025, MD041 compliance)
 - [ ] Uses relative links for internal references
 - [ ] Validates all external links
@@ -213,6 +252,7 @@ Example diagram style (Graph TD) — intent and usage:
 - [ ] Follows embedding rules (same domain = embed, different domain = UUID reference)
 
 **Final Review:**
+
 - [ ] Content is relevant and necessary
 - [ ] Examples use domain-relevant, descriptive values
 - [ ] Links are accurate and functional
@@ -220,9 +260,17 @@ Example diagram style (Graph TD) — intent and usage:
 - [ ] Maintains professional, neutral tone
 
 ## How to Use
+
 Use this file as a checklist when writing or reviewing documentation. For best results, follow this order:
 1. Draft content using the writing and structure guidelines.
 2. Apply formatting and accessibility rules.
 3. Check and manage links.
-4. Review for relevance and maintain content as needed.
+4. **MANDATORY:** Run the domain linter in strict check-only mode before staging/committing:
+
+  ```
+  python scripts/linting/domain_linter.py <domain> --check-only --threshold 0 --verbose
+  ```
+
+  Only commit if zero errors are reported.
+5. Review for relevance and maintain content as needed.
 These instructions are designed for both human and AI authors. Link to related lessons for deeper guidance.

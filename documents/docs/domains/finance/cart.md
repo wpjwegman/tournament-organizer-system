@@ -1,11 +1,13 @@
 ---
 tags:
+
   - finance
   - cart
   - checkout
   - collection
   - shopping
   - payment
+
 ---
 
 # Cart (Template Entity)

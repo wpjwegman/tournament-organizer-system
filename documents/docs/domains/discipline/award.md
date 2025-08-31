@@ -1,10 +1,12 @@
 ---
 tags:
+
   - award
   - discipline
   - template-entity
   - recognition
   - achievement
+
 ---
 
 # Award (Template Entity)

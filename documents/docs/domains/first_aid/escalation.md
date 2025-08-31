@@ -1,10 +1,12 @@
 ---
 tags:
+
   - first-aid
   - escalation
   - emergency
   - medical
   - template
+
 ---
 
 # Escalation (Template Entity)

@@ -1,11 +1,13 @@
 ---
 tags:
+
   - finance
   - fee
   - template
   - pricing
   - billing
   - charge
+
 ---
 
 # Fee (Template Entity)

@@ -1,10 +1,12 @@
 ---
 tags:
+
   - activity
   - template-entity
   - sport
   - game
   - variation
+
 ---
 
 # Activity (Template Entity)

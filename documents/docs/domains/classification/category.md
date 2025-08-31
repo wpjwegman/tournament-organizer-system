@@ -1,10 +1,12 @@
 ---
 tags:
+
   - category
   - classification
   - template
   - hierarchy
   - criterium
+
 ---
 
 # Category (Template Entity)

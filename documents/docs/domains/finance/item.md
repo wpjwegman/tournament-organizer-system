@@ -1,11 +1,13 @@
 ---
 tags:
+
   - finance
   - item
   - inventory
   - line-item
   - product
   - service
+
 ---
 
 # Item (Entity)

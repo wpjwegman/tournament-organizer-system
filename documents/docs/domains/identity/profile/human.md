@@ -1,9 +1,11 @@
 ---
 tags:
+
   - profile
   - human
   - identity
   - entity
+
 ---
 
 # Human Profile (Entity)

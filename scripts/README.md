@@ -1,35 +1,52 @@
-# Utility Scripts
+# Top-Level Scripts
 
-This directory contains utility scripts for development, deployment, and maintenance.
+This directory contains high-level utility scripts for the Tournament Organizer project.
 
-## Planned Scripts
+## 📁 Current Scripts
 
-### Development
+- **`docs-build.ps1`** - Build the MkDocs documentation site
+- **`docs-serve.ps1`** - Serve the documentation locally for development
+- **`setup.ps1`** - Project setup and initialization
+- **`validate-docs.ps1`** - Validate documentation structure and content
 
-- `setup.ps1` - Project setup and dependency installation
-- `dev-server.ps1` - Start development servers
-- `test.ps1` - Run test suites
-- `lint.ps1` - Code quality checks
+## 📚 Documentation Scripts
 
-### Database
+For comprehensive markdown linting and documentation quality control, see:
+**[`documents/scripts/`](../documents/scripts/)** - Enterprise-grade documentation automation
 
-- `db-migrate.ps1` - Database migration scripts
-- `db-seed.ps1` - Database seeding with test data
-- `db-backup.ps1` - Database backup utilities
+## 🚀 Usage
 
-### Deployment
+### Documentation Development
 
-- `build.ps1` - Build production artifacts
-- `deploy.ps1` - Deployment automation
-- `docker-build.ps1` - Container build scripts
+```powershell
 
-### Documentation
+# Build documentation
 
-- `docs-build.ps1` - Build and deploy documentation
-- `docs-serve.ps1` - Local documentation server
+.\docs-build.ps1
 
-## Development Status
+# Serve locally for development
 
-🚧 **Coming Soon** - Scripts will be added as development progresses.
+.\docs-serve.ps1
 
-All scripts will use **PowerShell** syntax following project standards.
+# Validate documentation structure
+
+.\validate-docs.ps1
+```
+
+### Project Setup
+
+```powershell
+
+# Initialize project environment
+
+.\setup.ps1
+```
+
+## 🔗 Related
+
+- **Main Documentation Scripts**: `documents/scripts/` (enterprise automation)
+- **Project Documentation**: `documents/` (MkDocs source)
+- **Application Backend**: `backend/` (main application code)
+- **Application Frontend**: `frontend/` (user interface code)
+
+This directory focuses on high-level project operations, while detailed documentation automation is handled by the enterprise-grade scripts in `documents/scripts/`.

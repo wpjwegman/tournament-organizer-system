@@ -1,10 +1,12 @@
 ---
 tags:
+
   - code-of-conduct
   - behavior
   - template
   - rule
   - conduct
+
 ---
 
 # Code of Conduct (Template Entity)

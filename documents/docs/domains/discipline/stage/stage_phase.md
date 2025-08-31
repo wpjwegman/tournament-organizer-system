@@ -1,10 +1,12 @@
 ---
 tags:
+
   - stage-phase
   - template-entity
   - tournament-progression
   - sub-stage
   - sequencing
+
 ---
 
 # Stage Phase (Template Entity)

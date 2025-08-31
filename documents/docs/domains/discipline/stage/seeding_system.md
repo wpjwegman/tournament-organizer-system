@@ -1,10 +1,12 @@
 ---
 tags:
+
   - seeding-system
   - template-entity
   - seeding
   - brackets
   - fairness
+
 ---
 
 # Seeding System (Template Entity)

@@ -22,9 +22,13 @@ This guide explains how the professional documentation linting scripts are integ
 - ✅ Optionally applies automatic fixes when labeled `auto-fix-docs`
 
 **Usage:**
+
 ```yaml
+
 # Automatically runs on every PR and push
+
 # Add label "auto-fix-docs" to PR for automatic fixing
+
 ```
 
 ### 2. Pre-Commit Validation (`pre-commit-validation.yml`)
@@ -83,13 +87,17 @@ python scripts/git-hooks/setup_git_hooks.py --install
 ### Daily Workflow Commands
 
 ```bash
+
 # Check specific domain before committing
+
 python scripts/linting/domain_linter.py finance --check-only
 
 # Fix issues in a domain
+
 python scripts/linting/domain_linter.py finance --fix --auto-stage
 
 # Repository overview
+
 python scripts/linting/repository_linter.py --all-domains --report
 ```
 
@@ -111,8 +119,11 @@ Different thresholds are used for different contexts:
 Edit the workflow files to adjust error thresholds:
 
 ```yaml
+
 # In .github/workflows/documentation-quality.yml
+
 - name: 🎯 Domain-Specific Linting
+
   run: |
     # Change --max-errors value
     python scripts/linting/domain_linter.py "$DOMAIN" --check-only --max-errors 0
@@ -150,15 +161,21 @@ Quality reports are available in:
 ### Common Issues
 
 **Workflow fails with "script not found":**
+
 ```bash
+
 # Check script permissions in workflow
+
 chmod +x scripts/cli/domain-lint.sh
 chmod +x scripts/git-hooks/*.sh
 ```
 
 **Linting errors block PR merge:**
+
 ```bash
+
 # Local fix process
+
 cd documents
 python scripts/linting/domain_linter.py DOMAIN_NAME --fix --auto-stage
 git commit -m "Fix linting issues"

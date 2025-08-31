@@ -1,10 +1,12 @@
 ---
 tags:
+
   - finance
   - template
   - budget
   - accounting
   - management
+
 ---
 
 # Finance (Template Entity)

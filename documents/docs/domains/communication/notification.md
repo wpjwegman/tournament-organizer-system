@@ -1,10 +1,12 @@
 ---
 tags:
+
   - communication
   - notification
   - template-entity
   - messaging
   - alert
+
 ---
 
 # Notification (Template Entity)

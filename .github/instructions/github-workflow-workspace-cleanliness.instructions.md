@@ -32,6 +32,7 @@ These instructions ensure workspace cleanliness and proper GitHub workflow pract
 #### Pre-PR Checklist
 
 1. **Sync with master**:
+
    ```bash
    git checkout master
    git pull origin master
@@ -40,6 +41,7 @@ These instructions ensure workspace cleanliness and proper GitHub workflow pract
    ```
 
 2. **Run all tests and linters**:
+
    ```bash
    # For documentation
    cd documents
@@ -55,6 +57,7 @@ These instructions ensure workspace cleanliness and proper GitHub workflow pract
    ```
 
 3. **Clean workspace**:
+
    ```bash
    git status  # Should show clean working tree
    git log --oneline master..HEAD  # Review your commits
@@ -73,18 +76,21 @@ These instructions ensure workspace cleanliness and proper GitHub workflow pract
 After successful PR merge:
 
 1. **Switch to master**:
+
    ```bash
    git checkout master
    git pull origin master
    ```
 
 2. **Delete feature branch**:
+
    ```bash
    git branch -d feature-branch-name
    git push origin --delete feature-branch-name
    ```
 
 3. **Verify clean state**:
+
    ```bash
    git status
    git branch -a
@@ -116,10 +122,13 @@ After creating a PR, follow this process to address review feedback:
 #### 1. Check for Review Comments
 
 ```bash
+
 # View PR with comments
+
 gh pr view [PR_NUMBER] --comments
 
 # Check review status
+
 gh pr status
 ```
 
@@ -135,11 +144,14 @@ For each review comment:
 #### 3. Update Pull Request
 
 ```bash
+
 # Make changes to address comments
+
 git add [modified files]
 git commit -m "fix: address review comment - [specific issue fixed]"
 
 # Push updates (don't force push during review)
+
 git push origin [branch-name]
 ```
 
@@ -150,7 +162,9 @@ git push origin [branch-name]
 - **Request re-review** when all comments are addressed:
 
 ```bash
+
 # Request re-review from specific reviewers
+
 gh pr edit [PR_NUMBER] --add-reviewer [username]
 ```
 
@@ -166,11 +180,13 @@ gh pr edit [PR_NUMBER] --add-reviewer [username]
 
 1. **Don't panic** - we can fix this
 2. **Create branch** from the commit:
+
    ```bash
    git branch emergency-fix HEAD
    git reset --hard HEAD~1
    git push --force-with-lease origin master
    ```
+
 3. **Create proper PR** from the emergency branch
 
 ### Large File Accidentally Committed
@@ -218,26 +234,33 @@ The project uses pre-commit hooks to enforce standards:
 ### Useful Git Commands
 
 ```bash
+
 # Clean up local branches
+
 git remote prune origin
 git branch --merged | grep -v master | xargs -n 1 git branch -d
 
 # Check what would be pushed
+
 git log origin/master..HEAD --oneline
 
 # Interactive rebase to clean up commits
+
 git rebase -i HEAD~3
 ```
 
 ### Status Checks
 
 ```bash
+
 # Overall project status
+
 git status
 git branch -a
 git remote -v
 
 # Check for uncommitted changes
+
 git diff --name-only
 git diff --cached --name-only
 ```

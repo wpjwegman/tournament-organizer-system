@@ -1,10 +1,12 @@
 ---
 tags:
+
   - expected-behavior
   - conduct
   - template
   - positive
   - behavior
+
 ---
 
 # Expected Behavior (Template Entity)

@@ -1,11 +1,13 @@
 ---
 tags:
+
   - finance
   - income
   - revenue
   - tracking
   - earnings
   - budget
+
 ---
 
 # Income (Template Entity)

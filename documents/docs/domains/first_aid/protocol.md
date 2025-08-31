@@ -1,10 +1,12 @@
 ---
 tags:
+
   - first-aid
   - protocol
   - medical
   - emergency
   - template
+
 ---
 
 # Protocol (Template Entity)

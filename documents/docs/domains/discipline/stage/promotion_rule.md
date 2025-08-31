@@ -1,10 +1,12 @@
 ---
 tags:
+
   - promotion-rule
   - template-entity
   - advancement
   - stage-progression
   - selection
+
 ---
 
 # Promotion Rule (Template Entity)

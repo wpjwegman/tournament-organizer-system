@@ -1,10 +1,12 @@
 ---
 tags:
+
   - rule
   - template-entity
   - governance
   - eligibility
   - conduct
+
 ---
 
 # Rule (Template Entity)
@@ -70,7 +72,7 @@ graph TD
   R --> CAT[Category: Gameplay]
   R --> CODE[Code: CHESS-BLITZ-005]
   R --> T[Title: 5-Minute Time Control]
-  R --> REF[Reference: https://example.org/chess/blitz-5min]
+  R --> REF[Reference: <https://example.org/chess/blitz-5min]>
   R --> RAT[Rationale: Defines rapid-play variant]
   R --> SEV[Severity: Low]
 ```

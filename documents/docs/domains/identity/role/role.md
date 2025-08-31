@@ -1,9 +1,11 @@
 ---
 tags:
+
   - role
   - template-entity
   - identity
   - authorization
+
 ---
 
 # Role (Template Entity)

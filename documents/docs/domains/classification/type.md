@@ -1,9 +1,11 @@
 ---
 tags:
+
   - type
   - classification
   - template
   - categorization
+
 ---
 
 # Type (Template Entity)

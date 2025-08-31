@@ -1,10 +1,12 @@
 ---
 tags:
+
   - team-format
   - template-entity
   - team-structure
   - composition
   - requirements
+
 ---
 
 # Team Format (Template Entity)

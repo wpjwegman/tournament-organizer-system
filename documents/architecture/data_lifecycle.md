@@ -166,7 +166,9 @@ class DataStatus(Enum):
 ### 2. **Query Filtering**
 
 ```python
+
 # Default queries filter by status
+
 def get_active_entities():
     return collection.find({"status": "active"})
 

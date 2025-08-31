@@ -1,10 +1,12 @@
 ---
 tags:
+
   - stage
   - template-entity
   - tournament-structure
   - advancement
   - grouping
+
 ---
 
 # Stage (Template Entity)

@@ -1,10 +1,12 @@
 ---
 tags:
+
 - finance
 - receipt
 - transaction
 - inflow
 - income
+
 ---
 
 # Receipt (Entity)

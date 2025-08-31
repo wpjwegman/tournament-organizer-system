@@ -31,10 +31,12 @@ business entities, relationships, and rules that define how the tournament manag
 
 1. Each model should be self-contained and focused on a single business concept
 2. Models should include clear documentation of:
+
    - Purpose and scope
    - Attributes and relationships
    - Business rules and constraints
    - Usage examples
+
 3. Cross-references to related models should be maintained
 4. Version history should be tracked for significant changes
 

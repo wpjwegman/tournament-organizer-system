@@ -29,16 +29,11 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 try:
     from linting.domain_linter import DomainLinter
-    from linting.repository_linter import RepositoryLinter
-    from git_hooks.setup_git_hooks import GitHooksManager
 except ImportError:
     # Try alternative import paths
     try:
         sys.path.append(str(Path(__file__).parent.parent / "linting"))
-        sys.path.append(str(Path(__file__).parent.parent / "git-hooks"))
         from domain_linter import DomainLinter
-        from repository_linter import RepositoryLinter
-        from setup_git_hooks import GitHooksManager
     except ImportError as e:
         print(f"❌ Import error: {e}")
         print("   Make sure all required modules are available")
@@ -121,24 +116,24 @@ class DocumentationLintCLI:
             Exit code (0 for success, 1 for failure)
         """
         try:
-            # Create repository linter
-            linter = RepositoryLinter(str(self.base_path), args.verbose)
+            print("🚀 Running enterprise markdown fixes...")
             
-            # Run linting
-            success = linter.lint_repository(
-                domains_only=args.domains_only,
-                fix_mode=args.fix,
-                batch_size=args.batch_size
-            )
+            # Use our enterprise fixer instead
+            from linting.enterprise_fix_all import main as enterprise_main
             
-            # Generate report if requested
-            if args.report or args.save_report:
-                report = linter.generate_comprehensive_report()
-                if args.report:
-                    print(report)
-                if args.save_report:
-                    report_file = linter.save_report(report)
-                    print(f"\n📄 Report saved to: {report_file}")
+            # Build arguments for enterprise fixer
+            enterprise_args = []
+            if args.domains_only:
+                # Add specific domains if requested
+                domains = self.list_available_domains()
+                enterprise_args.extend(domains)
+            
+            # Run enterprise fixer
+            success = True
+            try:
+                enterprise_main(enterprise_args if enterprise_args else None)
+            except SystemExit as e:
+                success = e.code == 0
             
             return 0 if success else 1
             
@@ -156,21 +151,17 @@ class DocumentationLintCLI:
             Exit code (0 for success, 1 for failure)
         """
         try:
-            # Create hooks manager
-            manager = GitHooksManager(str(self.base_path.parent))
-            
-            success = True
-            
             if args.install:
-                print("🚀 Installing Git pre-commit hook...")
-                success = manager.install_pre_commit_hook(force=args.force)
+                print("🚀 To install Git hooks manually:")
+                print("   python scripts/git-hooks/setup_git_hooks.py --install")
             elif args.uninstall:
-                print("🗑️ Uninstalling Git pre-commit hook...")
-                success = manager.uninstall_pre_commit_hook()
+                print("�️ To uninstall Git hooks manually:")
+                print("   python scripts/git-hooks/setup_git_hooks.py --uninstall")
             else:
-                manager.print_status()
+                print("ℹ️ Git hooks status:")
+                print("   Check: python scripts/git-hooks/setup_git_hooks.py --status")
             
-            return 0 if success else 1
+            return 0
             
         except Exception as e:
             print(f"❌ Git hooks operation failed: {e}")
@@ -218,7 +209,7 @@ Commands:
 
 Examples:
   %(prog)s domain finance --fix --auto-stage
-  %(prog)s repository --domains-only --report
+  %(prog)s repository --domains-only
   %(prog)s setup-hooks --install
   %(prog)s list-domains
         """
@@ -240,10 +231,6 @@ Examples:
     # Repository command
     repo_parser = subparsers.add_parser('repository', help='Lint the entire repository')
     repo_parser.add_argument('--domains-only', action='store_true', help='Only process domain files')
-    repo_parser.add_argument('--fix', action='store_true', help='Apply automatic fixes')
-    repo_parser.add_argument('--report', action='store_true', help='Display comprehensive report')
-    repo_parser.add_argument('--save-report', action='store_true', help='Save report to file')
-    repo_parser.add_argument('--batch-size', type=int, default=50, help='Batch size for processing')
     repo_parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')
     
     # Setup hooks command

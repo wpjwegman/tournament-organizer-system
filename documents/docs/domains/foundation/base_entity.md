@@ -1,11 +1,13 @@
 ---
 tags:
+
   - foundation
   - base-entity
   - architecture
   - template
   - entity
   - technical-foundation
+
 ---
 
 # Base Entity (Technical Foundation)
@@ -90,7 +92,7 @@ The Base Entity foundation ensures that every entity in the system - whether a T
 
 ## See Also
 
- - [Account Entity Implementation](../identity/account/account.md)
+- [Account Entity Implementation](../identity/account/account.md)
 - [Foundation Domain Overview](README.md)
- - [Account Entity Implementation](../identity/account/account.md)
- - [Foundation Domain Overview](README.md)
+- [Account Entity Implementation](../identity/account/account.md)
+- [Foundation Domain Overview](README.md)

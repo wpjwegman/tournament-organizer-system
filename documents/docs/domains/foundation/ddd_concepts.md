@@ -1,5 +1,6 @@
 ---
 tags:
+
   - foundation
   - ddd
   - domain-driven-design
@@ -7,6 +8,7 @@ tags:
   - template-entity
   - value-object
   - architecture
+
 ---
 
 # Domain-Driven Design Concepts

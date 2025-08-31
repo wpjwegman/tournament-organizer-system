@@ -1,10 +1,12 @@
 ---
 tags:
+
   - criterium
   - classification
   - template
   - rule
   - eligibility
+
 ---
 
 # Criterium (Template Entity)

@@ -1,10 +1,12 @@
 ---
 tags:
+
   - first-aid
   - instruction
   - procedure
   - medical
   - template
+
 ---
 
 # Instruction (Template Entity)

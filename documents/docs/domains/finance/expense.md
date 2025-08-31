@@ -1,11 +1,13 @@
 ---
 tags:
+
   - finance
   - expense
   - cost
   - tracking
   - expenditure
   - budget
+
 ---
 
 # Expense (Template Entity)

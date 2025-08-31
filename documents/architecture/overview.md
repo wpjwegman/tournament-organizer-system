@@ -44,6 +44,7 @@ promotes maintainability.
 - Embedded documents for related data
 - Mongoose for ODM
 - **Data Lifecycle Management**: Status-based data lifecycle with no hard deletion
+
   ([Data Lifecycle Architecture](data_lifecycle.md))
 
 ### 4. Security
@@ -196,28 +197,47 @@ promotes maintainability.
 ### Professional Follow-up Questions
 
 1. **API Gateway / Reverse Proxy:**
+
    - Will you use an API gateway (e.g., NGINX, Traefik) or reverse proxy for routing, SSL termination, or load
+
      balancing?
 2. **Deployment & Hosting:**
+
    - What is the preferred deployment environment (cloud provider, on-premises, containers, etc.)?
    - Will you use Docker or Kubernetes for orchestration?
+
 3. **CI/CD:**
+
    - Is there a preferred CI/CD pipeline or tool (GitHub Actions, GitLab CI, Jenkins, etc.)?
+
 4. **Testing:**
+
    - What are the requirements for automated testing (unit, integration, end-to-end)?
+
 5. **Monitoring & Logging:**
+
    - What tools or platforms will be used for monitoring, logging, and alerting?
+
 6. **Security:**
+
    - Are there specific security standards or compliance requirements (e.g., GDPR, SOC2)?
    - Will you use OAuth2, OpenID Connect, or other protocols for authentication?
+
 7. **Scalability & Performance:**
+
    - Are there expected scalability or high-availability requirements?
    - Will you use caching (e.g., Redis) or other performance optimizations?
+
 8. **Third-party Integrations:**
+
    - Are there any required integrations (payment gateways, messaging, analytics, etc.)?
+
 9. **Backup & Disaster Recovery:**
+
    - What is the backup and disaster recovery strategy for the database and application?
+
 10. **Internationalization & Localization:**
+
     - Will the application support multiple languages or regions?
 
 Please review and let me know your preferences or any additional requirements for a complete architecture overview.

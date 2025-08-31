@@ -76,24 +76,31 @@ python scripts/git-hooks/setup_git_hooks.py --install
 ### 2. Verify Installation
 
 ```bash
+
 # Test the hooks
+
 git add .
 git commit -m "Test commit"  # Will trigger validation
 
 # Check hook status
+
 python scripts/git-hooks/setup_git_hooks.py --status
 ```
 
 ### 3. Daily Development Commands
 
 ```bash
+
 # Check domain before working
+
 ./scripts/cli/domain-lint.bat finance
 
 # Fix issues when needed  
+
 ./scripts/cli/domain-lint.bat finance fix
 
 # Repository overview
+
 python scripts/linting/repository_linter.py --all-domains --report
 ```
 
@@ -102,16 +109,19 @@ python scripts/linting/repository_linter.py --all-domains --report
 ### For Pull Requests
 
 1. **Normal PR Process:**
+
    - CI automatically validates modified domains
    - Uses development threshold (5 errors/domain)
    - Provides fix suggestions if issues found
 
 2. **Auto-Fix PRs:**
+
    - Add `auto-fix-docs` label to any PR
    - CI will automatically apply fixes
    - Commits are pushed back to PR branch
 
 3. **Quality Validation:**
+
    - All PRs get validation reports
    - Same rules as local pre-commit hooks
    - Clear guidance for fixing any issues
@@ -119,17 +129,20 @@ python scripts/linting/repository_linter.py --all-domains --report
 ### For Maintainers
 
 1. **Weekly Quality Review:**
+
    - Automated reports every Monday
    - Quality dashboard with domain scores
    - GitHub issues created for problems
 
 2. **Manual Quality Maintenance:**
+
    - Go to Actions → "Automated Quality Reports"
    - Click "Run workflow"
    - Check "Apply automatic fixes" if desired
    - Review generated reports
 
 3. **Threshold Adjustment:**
+
    - Edit workflow YAML files to adjust error limits
    - Different thresholds for different contexts
    - Balance between quality and productivity
@@ -151,16 +164,19 @@ The automated quality dashboard includes:
 Quality reports are available through:
 
 1. **GitHub Actions Artifacts:**
+
    - 90-day retention for quality reports
    - 30-day retention for lint reports
    - 14-day retention for PR validation reports
 
 2. **Automatic GitHub Issues:**
+
    - Created when quality problems detected
    - Include full dashboard and fix recommendations
    - Labeled for easy filtering and tracking
 
 3. **Weekly Monitoring:**
+
    - Scheduled reports every Monday at 9:00 AM UTC
    - Comprehensive analysis of all domains
    - Automated improvement suggestions
@@ -170,8 +186,11 @@ Quality reports are available through:
 ### Common Workflow Issues
 
 **"Script not found" errors:**
+
 ```bash
+
 # Ensure proper permissions
+
 chmod +x documents/scripts/cli/domain-lint.sh
 chmod +x documents/scripts/git-hooks/*.sh
 ```
@@ -182,8 +201,11 @@ chmod +x documents/scripts/git-hooks/*.sh
 3. Ensure token has write access to repository
 
 **Local hooks not triggering:**
+
 ```bash
+
 # Reinstall hooks
+
 cd documents
 python scripts/git-hooks/setup_git_hooks.py --uninstall
 python scripts/git-hooks/setup_git_hooks.py --install
@@ -194,10 +216,12 @@ python scripts/git-hooks/setup_git_hooks.py --install
 1. **Check workflow logs** in GitHub Actions tab
 2. **Download artifacts** for detailed error reports
 3. **Run scripts locally** to reproduce issues:
+
    ```bash
    cd documents
    python scripts/linting/domain_linter.py DOMAIN --check-only --verbose
    ```
+
 4. **Review integration guide** at `.github/WORKFLOW_INTEGRATION.md`
 
 ## 🎯 Best Practices

@@ -1,11 +1,13 @@
 ---
 tags:
+
   - finance
   - discount
   - template
   - pricing
   - promotion
   - reduction
+
 ---
 
 # Discount (Template Entity)

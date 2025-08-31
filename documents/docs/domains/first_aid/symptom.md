@@ -1,10 +1,12 @@
 ---
 tags:
+
   - first-aid
   - symptom
   - medical
   - diagnosis
   - template
+
 ---
 
 # Symptom (Template Entity)

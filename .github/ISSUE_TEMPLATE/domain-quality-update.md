@@ -6,6 +6,7 @@ labels: ['documentation', 'quality-improvement', 'domain-update']
 assignees: ''
 ---
 
+# Title
 ## 📋 Domain Information
 
 **Domain Name:** [DOMAIN_NAME]  
@@ -61,12 +62,14 @@ assignees: ''
 ## 🔧 Technical Requirements
 
 ### GitHub Workflow Compatibility
+
 - [ ] Works with `.github/workflows/documentation-quality.yml`
 - [ ] Compatible with pre-commit validation
 - [ ] Supports auto-fix with `auto-fix-docs` label
 - [ ] Generates proper quality reports
 
 ### Documentation Standards
+
 - [ ] Follows `.pymarkdown.json` configuration
 - [ ] Adheres to YAML frontmatter standards
 - [ ] Maintains consistent heading hierarchy
@@ -82,17 +85,22 @@ assignees: ''
 ## 🚀 Implementation Commands
 
 ```bash
+
 # Check current domain status
+
 cd documents
 python scripts/linting/domain_linter.py [DOMAIN] --check-only --verbose --threshold 0
 
 # Apply automated fixes
+
 python scripts/linting/domain_linter.py [DOMAIN] --fix --verbose
 
 # Generate quality report
+
 python scripts/linting/repository_linter.py --domain [DOMAIN] --report --save-report
 
 # Test pre-commit integration
+
 uvx pre-commit run --files docs/domains/[DOMAIN]/*.md
 ```
 
@@ -106,15 +114,18 @@ uvx pre-commit run --files docs/domains/[DOMAIN]/*.md
 ## 🏷️ Branch and PR Guidelines
 
 ### Branch Naming
+
 - Use format: `docs/[domain]-quality-update`
 - Example: `docs/first-aid-quality-update`
 
 ### Commit Messages
+
 - Follow conventional commit format
 - Use scope: `docs([domain]): description`
 - Example: `docs(first_aid): fix markdown linting errors`
 
 ### Pull Request
+
 - Link this issue in PR description: `Closes #[ISSUE_NUMBER]`
 - Add `auto-fix-docs` label if automated fixes are acceptable
 - Request review from documentation maintainers

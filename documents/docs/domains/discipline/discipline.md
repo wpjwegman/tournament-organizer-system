@@ -1,11 +1,13 @@
 ---
 tags:
+
   - discipline
   - sport
   - activity
   - template
   - rule
   - stage
+
 ---
 
 # Discipline (Template Entity)

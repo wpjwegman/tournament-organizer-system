@@ -1,11 +1,13 @@
 ---
 tags:
+
   - foundation
   - ddd
   - architecture
   - base-entity
   - template
   - domain-modeling
+
 ---
 
 # Foundation Domain

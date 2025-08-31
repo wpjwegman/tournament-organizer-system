@@ -1,9 +1,11 @@
 ---
 tags:
+
   - classification
   - value-object
   - measurement
   - dimension
+
 ---
 
 # Dimension (value object)

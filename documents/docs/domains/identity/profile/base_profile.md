@@ -1,9 +1,11 @@
 ---
 tags:
+
   - profile
   - abstract-entity
   - identity
   - base
+
 ---
 
 # Base Profile (Abstract Entity)

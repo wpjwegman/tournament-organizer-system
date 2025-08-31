@@ -1,10 +1,12 @@
 ---
 tags:
+
   - rule
   - conduct
   - template
   - enforcement
   - mandatory
+
 ---
 
 # Rule (Template Entity)

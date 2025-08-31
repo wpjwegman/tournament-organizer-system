@@ -1,10 +1,12 @@
 ---
 tags:
+
   - first-aid
   - medical
   - emergency
   - protocol
   - safety
+
 ---
 
 # First Aid Domain

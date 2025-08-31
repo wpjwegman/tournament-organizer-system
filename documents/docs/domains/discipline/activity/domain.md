@@ -1,10 +1,12 @@
 ---
 tags:
+
   - domain
   - template-entity
   - classification
   - activity
   - grouping
+
 ---
 
 # Domain (Template Entity)
@@ -50,9 +52,9 @@ This template includes the standard attributes from the [Base Entity](../../foun
 
 ```mermaid
 graph TD
-	A[Activity: Basketball] -. classified in .-> B[Domain: Sports]
-	C[Activity: Chess] -. classified in .-> D[Domain: Games]
-	E[Activity: Dance Battle] -. classified in .-> F[Domain: Arts]
+    A[Activity: Basketball] -. classified in .-> B[Domain: Sports]
+    C[Activity: Chess] -. classified in .-> D[Domain: Games]
+    E[Activity: Dance Battle] -. classified in .-> F[Domain: Arts]
 ```
 
 This diagram shows how Activities are tagged with Domains for discovery and navigation. Domains act as lightweight classifiers (Sports, Games, Arts) and do not own rules or participants—those belong to Activity, Discipline, or Stage.

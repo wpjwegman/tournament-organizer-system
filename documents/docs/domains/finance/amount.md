@@ -1,11 +1,13 @@
 ---
 tags:
+
   - finance
   - amount
   - value-object
   - currency
   - money
   - monetary
+
 ---
 
 # Amount (Value Object)
