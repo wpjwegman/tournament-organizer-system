@@ -8,49 +8,50 @@ Professional MD007 Fixer Script
 - Idempotent: can correct its own previous errors
 - Provides detailed reporting of changes and unsolved errors
 """
-import sys
 import re
+import sys
+
 
 def is_code_block(line):
-    return line.strip().startswith('```')
+    return line.strip().startswith("```")
 
 def is_yaml_frontmatter(line):
-    return line.strip() in ('---', '...')
+    return line.strip() in ("---", "...")
 
 def fix_md007(file_path):
-    with open(file_path, 'r', encoding='utf-8') as f:
+    with open(file_path, encoding="utf-8") as f:
         lines = f.readlines()
     fixed_lines = []
     in_code_block = False
     in_yaml = False
     unsolved = []
-    
+
     for idx, line in enumerate(lines):
         # Detect YAML frontmatter start/end
-        if line.strip() == '---':
+        if line.strip() == "---":
             if idx == 0:  # Start of file
                 in_yaml = True
                 fixed_lines.append(line)
                 continue
-            elif in_yaml:  # End of YAML
+            if in_yaml:  # End of YAML
                 in_yaml = False
                 fixed_lines.append(line)
                 continue
-        
+
         # Skip processing list items in YAML frontmatter
         if in_yaml:
             # Special handling for YAML lists that pymarkdownlnt incorrectly flags
-            if re.match(r'^\s*-\s+', line):
+            if re.match(r"^\s*-\s+", line):
                 # This is a YAML list item - normalize to standard YAML indentation
                 content = line.strip()
-                if content.startswith('- '):
-                    fixed_lines.append(f'  {content}\n')
+                if content.startswith("- "):
+                    fixed_lines.append(f"  {content}\n")
                 else:
                     fixed_lines.append(line)
             else:
                 fixed_lines.append(line)
             continue
-            
+
         # Detect code blocks
         if is_code_block(line):
             in_code_block = not in_code_block
@@ -59,37 +60,37 @@ def fix_md007(file_path):
         if in_code_block:
             fixed_lines.append(line)
             continue
-            
+
         # Detect blockquotes
-        blockquote_match = re.match(r'^(>+\s*)(.*)', line)
-        blockquote_prefix = ''
+        blockquote_match = re.match(r"^(>+\s*)(.*)", line)
+        blockquote_prefix = ""
         content = line
         if blockquote_match:
             blockquote_prefix = blockquote_match.group(1)
             content = blockquote_match.group(2)
-            
+
         # Detect unordered list item
-        match = re.match(r'^(\s*)([-*+]) (.*)', content)
+        match = re.match(r"^(\s*)([-*+]) (.*)", content)
         if match:
             indent, bullet, rest = match.groups()
             # For top-level lists, should have no indentation
-            expected_indent = ''
-            
+            expected_indent = ""
+
             # Only fix if indentation is incorrect
             if indent != expected_indent:
-                fixed_line = f'{blockquote_prefix}{expected_indent}{bullet} {rest}\n'
+                fixed_line = f"{blockquote_prefix}{expected_indent}{bullet} {rest}\n"
                 fixed_lines.append(fixed_line)
             else:
                 fixed_lines.append(line)
         else:
             fixed_lines.append(line)
-            
-    fixed = ''.join(fixed_lines)
-    with open(file_path, 'r', encoding='utf-8') as f:
+
+    fixed = "".join(fixed_lines)
+    with open(file_path, encoding="utf-8") as f:
         orig = f.read()
     changed = False
     if fixed != orig:
-        with open(file_path, 'w', encoding='utf-8') as f:
+        with open(file_path, "w", encoding="utf-8") as f:
             f.write(fixed)
         print(f"[MD007] Fixed unordered list indentation in {file_path}")
         changed = True

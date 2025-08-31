@@ -72,7 +72,7 @@ markdown_fixes_backup/
 *.log
 logs/
 
-# Cache directories
+# Cache directories (exclude from container to avoid permission issues)
 .cache/
 .pytest_cache/
 .coverage

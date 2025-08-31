@@ -1,0 +1,38 @@
+# Tournament Organizer Markdownlint Configuration for Podman
+
+# Glob patterns for files to lint
+globs:
+  - "**/*.md"
+
+# Glob patterns for files to ignore  
+ignores:
+  - ".venv/**"
+  - "node_modules/**"
+  - "**/node_modules/**"
+  - "site/**"
+  - "__pycache__/**"
+  - "**/__pycache__/**"
+  - ".git/**"
+  - "markdown_fixes_backup/**"
+  - "**/licenses/**"
+  - "**/*.dist-info/**"
+  - ".github/instructions/documentation-style-link.instructions.md"
+  - ".temp-*.md"
+  - "*_DOMAIN_QUALITY_ISSUE.md"
+  - "*_domain_update_issue.md"
+  - ".cache/**"
+  - "**/.cache/**"
+
+# Rule configuration
+config:
+  # Allow HTML in markdown (for MkDocs)
+  MD033: false
+  # Allow inline HTML (for MkDocs macros)
+  MD007:
+    indent: 2
+  # Allow line length for URLs
+  MD013:
+    line_length: 120
+    code_blocks: false
+    tables: false
+    headings: false

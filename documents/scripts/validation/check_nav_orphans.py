@@ -9,9 +9,10 @@ marker line emitted by MkDocs:
 If found, prints the list and exits with non-zero.
 """
 from __future__ import annotations
+
+import re
 import subprocess
 import sys
-import re
 
 MARKER = 'The following pages exist in the docs directory, but are not included in the "nav" configuration:'
 
@@ -19,7 +20,7 @@ def main() -> int:
     try:
         # Build once; rely on project mkdocs.yml in current working directory
         proc = subprocess.run(
-            [sys.executable, '-m', 'mkdocs', 'build', '--no-directory-urls'],
+            [sys.executable, "-m", "mkdocs", "build", "--no-directory-urls"],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
@@ -29,7 +30,7 @@ def main() -> int:
         print(f"mkdocs build failed to run: {e}", file=sys.stderr)
         return 2
 
-    out = proc.stdout or ''
+    out = proc.stdout or ""
     print(out)
 
     if MARKER in out:
@@ -50,5 +51,5 @@ def main() -> int:
 
     return 0
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     raise SystemExit(main())
