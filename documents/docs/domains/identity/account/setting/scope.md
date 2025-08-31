@@ -35,19 +35,19 @@ in the .
 
 - A `Scope` Template can be referenced by:
 
-  - 🚨 **BROKEN:** 🚨 **BROKEN:** [Setting](../../role/permission/README.md) 🚨 🚨 entities for
+- 🚨 **BROKEN:** 🚨 **BROKEN:** [Setting](../../role/permission/README.md) 🚨 🚨 entities for
 
     defining where settings apply
 
-  - Account configurations for user-specific settings
-  - System configurations for global settings
+- Account configurations for user-specific settings
+- System configurations for global settings
 
 - A `Scope` may be related to:
 
-  - Specific tournaments (via Contexts)
-  - Specific disciplines (via Contexts)
-  - Specific teams (via Contexts)
-  - Specific venues (via Contexts)
+- Specific tournaments (via Contexts)
+- Specific disciplines (via Contexts)
+- Specific teams (via Contexts)
+- Specific venues (via Contexts)
 
 ---
 
@@ -59,16 +59,16 @@ in the .
 - **Scope Types:** Must be consistent across the system to ensure proper setting inheritance
 - **Context Management:**
 
-  - Global scopes (Type: "Global") do not require Contexts
-  - Non-global scopes must specify at least one Context
-  - Contexts must be valid UUIDs of the appropriate entity type
+- Global scopes (Type: "Global") do not require Contexts
+- Non-global scopes must specify at least one Context
+- Contexts must be valid UUIDs of the appropriate entity type
 
 - **Usage Cases:**
 
-  - Tournament-wide settings
-  - Team-specific configurations
-  - Discipline-specific rules
-  - Global system settings
-  - Venue-specific settings
+- Tournament-wide settings
+- Team-specific configurations
+- Discipline-specific rules
+- Global system settings
+- Venue-specific settings
 
 ---

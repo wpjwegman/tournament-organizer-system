@@ -33,7 +33,7 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 - Inherits all relationships from [Base Profile](../../identity/profile/base_profile.md).
 - Additional relationships specific to Robot Profile:
 
-  - [Human Profile](../../identity/profile/human.md) (Operator)
+- [Human Profile](../../identity/profile/human.md) (Operator)
 
 ---
 

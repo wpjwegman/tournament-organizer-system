@@ -8,7 +8,7 @@ age calculation and eligibility checks.
 As a Value Object, it is defined entirely by its attributes and does not have its own identity or lifecycle. It is
 intended to be **embedded** within an owning Entity like .
 
-_(For details on usage, see the <!-- TODO: Create User Guide: Birth Details -->User Guide)._
+*(For details on usage, see the <!-- TODO: Create User Guide: Birth Details -->User Guide).*
 
 It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 

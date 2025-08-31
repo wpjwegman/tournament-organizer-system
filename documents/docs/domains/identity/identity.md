@@ -1,7 +1,9 @@
 ---
 tags:
-- identity
-- domain
+
+  - identity
+  - domain
+
 ---
 
 # Identity Domain
@@ -35,16 +37,3 @@ graph TD
     Identity --> OfficialID[Official Identifier]
     Identity --> Account[Account]
     Identity --> Role[Role]
-```
-
-This diagram shows the main entities and their relationships within the Identity Domain.
-
-## See Also
-
-- [ISO/IEC 24760-1:2019 - IT Security and Privacy — A framework for identity management](https://www.iso.org/standard/77582.html)
-- [Identity README](README.md)
-- [Contact Information](contact_information.md)
-- [Official Identifier](official_identifier.md)
-- [Account](account/account.md)
-- [Role](role/README.md)
-- [Business Domain](../README.md)

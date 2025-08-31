@@ -76,9 +76,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - **Template Management:**
 
-  - Templates should be curated and maintained by measurement specialists
-  - New templates can be added based on measurement standards and organizational requirements
-  - Templates should be reviewed periodically for accuracy and relevance
+- Templates should be curated and maintained by measurement specialists
+- New templates can be added based on measurement standards and organizational requirements
+- Templates should be reviewed periodically for accuracy and relevance
 
 - **Profile Type Specificity:** Different profile types may have different sets of relevant physical measurements
 - **Measurement Flexibility:** The model allows for any type of physical measurement to be associated with a profile
@@ -86,9 +86,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 - **Data Validation:** Measurements should be validated against reasonable ranges for the specific profile type
 - **Customization Balance:**
 
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental physical structure
-  - System should support both template-based and fully custom physical measurements
+- Templates provide structure while allowing personalization
+- Customizations should not break the fundamental physical structure
+- System should support both template-based and fully custom physical measurements
 
 ---
 

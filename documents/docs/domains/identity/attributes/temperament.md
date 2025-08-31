@@ -26,11 +26,11 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 | ------------------- | -------------------------------------------------------------------------------------------------- | ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Name**            | A concise label summarizing the overall temperament template category.                             | String       | Yes      | E.g., "Calm and Friendly", "Shy but Gentle", "High Energy Playful", "Nervous Reactive"                                                                  |
 | **Category**        | A classification based on a predefined scale or system.                                            | String       | Yes      | E.g., "Green - Excellent Pet Potential", "Amber - Needs Support", "Red - Experienced Handler Required"                                                  |
-| **Key Traits**      | A list of specific observable behavioral characteristics for this template.                        | List<String> | Yes      | Example: `["Friendly towards strangers", "Tolerant of handling", "Playful with other dogs", "Anxious in new environments", "Resource Guarding (Food)"]` |
+| **Key Traits**      | A list of specific observable behavioral characteristics for this template.                        | List\<String\> | Yes      | Example: `["Friendly towards strangers", "Tolerant of handling", "Playful with other dogs", "Anxious in new environments", "Resource Guarding (Food)"]` |
 | **Description**     | A narrative summary providing context about the temperament template category.                      | Text         | Yes      | E.g., "Generally relaxed and seeks human attention. Shows some fear response to loud noises but recovers quickly. Good with gentle children."           |
-| **Assessment Criteria** | Standard criteria for evaluating this temperament template.                                       | List<String> | Optional | `["Observe stranger interactions", "Test handling tolerance", "Assess energy levels"]` |
+| **Assessment Criteria** | Standard criteria for evaluating this temperament template.                                       | List\<String\> | Optional | `["Observe stranger interactions", "Test handling tolerance", "Assess energy levels"]` |
 | **Handler Requirements** | Required handler experience level for this temperament template.                                 | String       | Optional | `"Beginner"`, `"Intermediate"`, `"Expert"` |
-| **Activity Restrictions** | Activities that may be restricted for this temperament template.                                | List<String> | Optional | `["High-stress competitions", "Crowded environments"]` |
+| **Activity Restrictions** | Activities that may be restricted for this temperament template.                                | List\<String\> | Optional | `["High-stress competitions", "Crowded environments"]` |
 
 ---
 
@@ -108,9 +108,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - **Template Management:**
 
-  - Templates should be curated and maintained by behavioral specialists
-  - New templates can be added based on behavioral standards and organizational requirements
-  - Templates should be reviewed periodically for accuracy and safety
+- Templates should be curated and maintained by behavioral specialists
+- New templates can be added based on behavioral standards and organizational requirements
+- Templates should be reviewed periodically for accuracy and safety
 
 - **Standardization:** Use consistent categories and assessment criteria across all evaluations
 - **Context:** Consider environmental factors, health status, and recent experiences when applying assessments
@@ -118,9 +118,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 - **Purpose:** Adjust assessment criteria based on intended use (e.g., adoption vs. working animal)
 - **Customization Balance:**
 
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental temperament structure
-  - System should support both template-based and fully custom temperaments
+- Templates provide structure while allowing personalization
+- Customizations should not break the fundamental temperament structure
+- System should support both template-based and fully custom temperaments
 
 ---
 

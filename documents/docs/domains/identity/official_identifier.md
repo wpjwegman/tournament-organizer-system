@@ -1,9 +1,11 @@
 ---
 tags:
-- identity
-- official-identifier
-- value-object
-- domain
+
+  - identity
+  - official-identifier
+  - value-object
+  - domain
+
 ---
 
 # Official Identifier (Value Object)

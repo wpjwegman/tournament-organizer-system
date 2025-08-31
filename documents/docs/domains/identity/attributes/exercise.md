@@ -40,22 +40,22 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - **Template Relationships:**
 
-  - Exercise Templates can be grouped by Category for easier discovery
-  - Exercise Templates can be referenced by training program algorithms for planning
-  - Exercise Templates can be linked to [Category](../../classification/category.md) entities for organization
+- Exercise Templates can be grouped by Category for easier discovery
+- Exercise Templates can be referenced by training program algorithms for planning
+- Exercise Templates can be linked to [Category](../../classification/category.md) entities for organization
 
 - **Instantiation Relationships:**
 
-  - When instantiated, Exercise Templates create Exercise instances embedded within
+- When instantiated, Exercise Templates create Exercise instances embedded within
 
     [Training](training.md) entities
 
-  - When instantiated, Exercise Templates create Exercise instances embedded within
+- When instantiated, Exercise Templates create Exercise instances embedded within
 
     [Exercise Regimen](exercise_regimen.md) entities
 
-  - Multiple training programs may instantiate the same Exercise Template with different customizations
-  - Exercise Templates can be referenced by [Schedule](../../schedule/README.md) entities for planning
+- Multiple training programs may instantiate the same Exercise Template with different customizations
+- Exercise Templates can be referenced by [Schedule](../../schedule/README.md) entities for planning
 
 ---
 
@@ -71,9 +71,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - **Template Management:**
 
-  - Templates should be curated and maintained by system administrators
-  - New templates can be added based on fitness standards and user needs
-  - Templates should be reviewed periodically for safety and effectiveness
+- Templates should be curated and maintained by system administrators
+- New templates can be added based on fitness standards and user needs
+- Templates should be reviewed periodically for safety and effectiveness
 
 - **Safety:** Exercise templates should include safety considerations and requirements.
 - **Progression:** Exercise templates should support progressive difficulty levels.
@@ -81,9 +81,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 - **Monitoring:** Exercise performance should be tracked and monitored appropriately.
 - **Customization Balance:**
 
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental exercise classification
-  - System should support both template-based and fully custom exercises
+- Templates provide structure while allowing personalization
+- Customizations should not break the fundamental exercise classification
+- System should support both template-based and fully custom exercises
 
 ---
 

@@ -9,7 +9,7 @@ treatments, and medications administered to participants.
 As an Entity Template, it inherits from the and provides a standardized definition that can be used across multiple
 medical records.
 
-_(Medicine management guide to be added as future enhancement)._
+*(Medicine management guide to be added as future enhancement).*
 
 It inherits properties from the [Base Entity](../../../../../foundation/base_entity.md).
 
@@ -32,9 +32,9 @@ It inherits properties from the [Base Entity](../../../../../foundation/base_ent
 
 - A `Medicine` **Entity Template** is referenced by:
 
-  - **[Treatment](treatment.md)** entities for specific treatment protocols
-  - **[Medical History](../../medical_history.md)** records for current medications
-  - **Medical Log** entries for administered medications (_future enhancement_)
+- **[Treatment](treatment.md)** entities for specific treatment protocols
+- **[Medical History](../../medical_history.md)** records for current medications
+- **Medical Log** entries for administered medications (*future enhancement*)
 
 ---
 

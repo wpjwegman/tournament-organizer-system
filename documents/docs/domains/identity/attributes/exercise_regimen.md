@@ -40,22 +40,22 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - **Template Relationships:**
 
-  - Exercise Regimen Templates can be grouped by Type for easier discovery
-  - Exercise Regimen Templates can be referenced by training program algorithms for planning
-  - Exercise Regimen Templates can be linked to [Exercise](exercise.md) entities for exercise selection
+- Exercise Regimen Templates can be grouped by Type for easier discovery
+- Exercise Regimen Templates can be referenced by training program algorithms for planning
+- Exercise Regimen Templates can be linked to [Exercise](exercise.md) entities for exercise selection
 
 - **Instantiation Relationships:**
 
-  - When instantiated, Exercise Regimen Templates create Exercise Regimen instances embedded within
+- When instantiated, Exercise Regimen Templates create Exercise Regimen instances embedded within
 
     [Training](training.md) entities
 
-  - When instantiated, Exercise Regimen Templates create Exercise Regimen instances embedded within
+- When instantiated, Exercise Regimen Templates create Exercise Regimen instances embedded within
 
     [Animal Profile](../profile/animal.md) entities
 
-  - Multiple training programs may instantiate the same Exercise Regimen Template with different customizations
-  - Exercise Regimen Templates can be referenced by [Schedule](../../schedule/README.md) entities for planning
+- Multiple training programs may instantiate the same Exercise Regimen Template with different customizations
+- Exercise Regimen Templates can be referenced by [Schedule](../../schedule/README.md) entities for planning
 
 ---
 
@@ -71,9 +71,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - **Template Management:**
 
-  - Templates should be curated and maintained by system administrators
-  - New templates can be added based on fitness standards and training methodologies
-  - Templates should be reviewed periodically for effectiveness and safety
+- Templates should be curated and maintained by system administrators
+- New templates can be added based on fitness standards and training methodologies
+- Templates should be reviewed periodically for effectiveness and safety
 
 - **Progression:** Regimen templates should support progressive difficulty and adaptation.
 - **Individualization:** Regimen templates should be adaptable to individual needs and capabilities.
@@ -81,9 +81,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 - **Recovery:** Regimen templates should include appropriate recovery periods and considerations.
 - **Customization Balance:**
 
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental regimen structure
-  - System should support both template-based and fully custom regimens
+- Templates provide structure while allowing personalization
+- Customizations should not break the fundamental regimen structure
+- System should support both template-based and fully custom regimens
 
 ---
 

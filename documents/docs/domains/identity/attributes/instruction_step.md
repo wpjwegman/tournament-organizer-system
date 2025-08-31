@@ -35,17 +35,17 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 - **Immutability:** Once created, the values should not be modified; create a new instance instead
 - **Validation Rules:**
 
-  - Order must be a positive integer
-  - Action text must not be empty
-  - Order must be unique within its parent Instruction
+- Order must be a positive integer
+- Action text must not be empty
+- Order must be unique within its parent Instruction
 
 - **Usage Cases:**
 
-  - Step-by-step procedures
-  - Safety instructions
-  - Setup procedures
-  - Maintenance tasks
-  - Emergency protocols
+- Step-by-step procedures
+- Safety instructions
+- Setup procedures
+- Maintenance tasks
+- Emergency protocols
 
 ---
 

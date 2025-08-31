@@ -28,11 +28,11 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 | **Type**                 | Categorizes the primary purpose or type of the training template.                          | String       | Yes      | E.g., "Obedience", "Safety", "Agility", "Behavior", "Skills", "Certification", "Orientation"                       |
 | **Description**          | Detailed explanation of the training template content, objectives, and methodology.        | Text         | Yes      | E.g., "Focuses on basic obedience commands with positive reinforcement. Includes sit, stay, and recall exercises." |
 | **Duration**             | Standard duration for this type of training template.                                      | Duration     | Yes      | `PT1H30M` (1 hour 30 minutes)                                                                                      |
-| **Prerequisites**        | List of required skills, certifications, or experience needed before taking this training. | List<String> | Optional | E.g., ["Basic Obedience", "Age 6+ months", "Vaccination Record"]                                                   |
-| **Equipment**            | List of required equipment or materials for the training template.                         | List<String> | Optional | E.g., ["Training Leash", "Treats", "Clicker", "Training Manual"]                                                   |
+| **Prerequisites**        | List of required skills, certifications, or experience needed before taking this training. | List\<String\> | Optional | E.g., ["Basic Obedience", "Age 6+ months", "Vaccination Record"]                                                   |
+| **Equipment**            | List of required equipment or materials for the training template.                         | List\<String\> | Optional | E.g., ["Training Leash", "Treats", "Clicker", "Training Manual"]                                                   |
 | **Location Type**        | Type of venue or setting required for this training template.                              | String       | Yes      | Enum: "Indoor", "Outdoor", "Both", "Virtual"                                                                       |
-| **Trainer Requirements** | Qualifications or certifications required to conduct this training template.               | List<String> | Optional | E.g., ["Certified Dog Trainer", "First Aid Certified", "Minimum 2 years experience"]                               |
-| **Assessment Criteria**  | Standards or metrics used to evaluate training template success.                           | List<String> | Optional | E.g., ["80% command compliance", "No aggressive behavior", "Completed safety quiz"]                                |
+| **Trainer Requirements** | Qualifications or certifications required to conduct this training template.               | List\<String\> | Optional | E.g., ["Certified Dog Trainer", "First Aid Certified", "Minimum 2 years experience"]                               |
+| **Assessment Criteria**  | Standards or metrics used to evaluate training template success.                           | List\<String\> | Optional | E.g., ["80% command compliance", "No aggressive behavior", "Completed safety quiz"]                                |
 
 ---
 
@@ -111,9 +111,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - **Template Management:**
 
-  - Templates should be curated and maintained by training administrators
-  - New templates can be added based on training standards and organizational requirements
-  - Templates should be reviewed periodically for effectiveness and safety
+- Templates should be curated and maintained by training administrators
+- New templates can be added based on training standards and organizational requirements
+- Templates should be reviewed periodically for effectiveness and safety
 
 - **Subject Specificity:** Training templates should be designed with the subject type in mind (human vs. animal)
 - **Flexibility:** Should allow for adaptation to different skill levels and learning styles
@@ -121,9 +121,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 - **Safety:** Consider safety requirements and risk management in the design
 - **Customization Balance:**
 
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental training structure
-  - System should support both template-based and fully custom training
+- Templates provide structure while allowing personalization
+- Customizations should not break the fundamental training structure
+- System should support both template-based and fully custom training
 
 ---
 

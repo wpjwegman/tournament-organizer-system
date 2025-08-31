@@ -1,11 +1,13 @@
 ---
 tags:
+
   - identity
   - account
   - profile
   - contact-information
   - authentication
   - domain
+
 ---
 
 # Identity Domain

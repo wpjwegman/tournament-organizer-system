@@ -27,7 +27,7 @@ in the [Base Entity Model](../../foundation/base_entity.md).
 | **Name**          | The official name of the breed standard template                               | String       | Yes      | `"Labrador Retriever"`, `"Shetland Pony"`                          |
 | **Registry**      | The registry or authority that maintains the standard                          | String       | Yes      | `"FCI"`, `"AKC"`, `"The Kennel Club"`                              |
 | **Description**   | Description of the breed standard template                                     | Text         | Yes      | `"Medium-sized, athletic, friendly temperament"`                   |
-| **Reference URL** | Link to the official standard or documentation                                 | String       | No       | `"https://www.akc.org/dog-breeds/labrador-retriever/"` |
+| **Reference URL** | Link to the official standard or documentation                                 | String       | No       | `"<https://www.akc.org/dog-breeds/labrador-retriever/"`> |
 | **Category**      | Animal category for this breed standard                                        | String       | Yes      | `"Dog"`, `"Horse"`, `"Cat"`, `"Bird"`                              |
 | **Icon**          | (Optional) Icon or visual representation                                       | String       | No       | `"labrador"`, `"pony"`, `"retriever"`                              |
 | **Tags**          | (Optional) Additional tags for categorization                                  | List[String] | No       | `["sporting", "retriever", "family"]`                              |
@@ -73,18 +73,18 @@ in the [Base Entity Model](../../foundation/base_entity.md).
 
 - **Template Relationships:**
 
-  - Breed Standard Templates can be grouped by Category for easier discovery
-  - Breed Standard Templates can be referenced by tournament categories or competition rules
-  - Breed Standard Templates can be linked to Registry <!-- TODO: Create registry model --> entities for authority validation
+- Breed Standard Templates can be grouped by Category for easier discovery
+- Breed Standard Templates can be referenced by tournament categories or competition rules
+- Breed Standard Templates can be linked to Registry <!-- TODO: Create registry model --> entities for authority validation
 
 - **Instantiation Relationships:**
 
-  - When instantiated, Breed Standard Templates create Breed Standard instances embedded within
+- When instantiated, Breed Standard Templates create Breed Standard instances embedded within
 
     [Animal Profile](../profile/animal.md) entities
 
-  - Multiple animal profiles may instantiate the same Breed Standard Template with different customizations
-  - Breed Standard Templates can be referenced by [Competition Category](../../classification/category.md) entities
+- Multiple animal profiles may instantiate the same Breed Standard Template with different customizations
+- Breed Standard Templates can be referenced by [Competition Category](../../classification/category.md) entities
 
 ---
 
@@ -100,57 +100,57 @@ in the [Base Entity Model](../../foundation/base_entity.md).
 
 - **Template Management:**
 
-  - Templates should be curated and maintained by system administrators
-  - New templates can be added based on official registry updates
-  - Templates should be reviewed periodically for accuracy and compliance
+- Templates should be curated and maintained by system administrators
+- New templates can be added based on official registry updates
+- Templates should be reviewed periodically for accuracy and compliance
 
 - **Registry Compliance:**
 
-  - Templates should strictly follow official registry standards
-  - Changes to registry standards should trigger template updates
-  - Versioning may be needed to track standard evolution
+- Templates should strictly follow official registry standards
+- Changes to registry standards should trigger template updates
+- Versioning may be needed to track standard evolution
 
 - **Customization Balance:**
 
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental breed classification
-  - System should support both template-based and fully custom breed standards
+- Templates provide structure while allowing personalization
+- Customizations should not break the fundamental breed classification
+- System should support both template-based and fully custom breed standards
 
 - **Internationalization:**
 
-  - Some breeds have different standards in different countries
-  - Templates should support multiple registry authorities
-  - Localization may be needed for breed names and descriptions
+- Some breeds have different standards in different countries
+- Templates should support multiple registry authorities
+- Localization may be needed for breed names and descriptions
 
 - **Performance:**
 
-  - Template lookups should be optimized for quick selection
-  - Popular templates should be cached for better performance
-  - Search and filtering should work efficiently across templates
+- Template lookups should be optimized for quick selection
+- Popular templates should be cached for better performance
+- Search and filtering should work efficiently across templates
 
 - **Data Consistency:**
 
-  - Template changes should not affect existing instantiations
-  - Customizations should be preserved when templates are updated
-  - Versioning may be needed for template evolution
+- Template changes should not affect existing instantiations
+- Customizations should be preserved when templates are updated
+- Versioning may be needed for template evolution
 
 - **Validation Requirements:**
 
-  - `Name` must be unique within its context
-  - `Registry` should be from a recognized authority
-  - `Description` should be accurate and up-to-date
+- `Name` must be unique within its context
+- `Registry` should be from a recognized authority
+- `Description` should be accurate and up-to-date
 
 ---
 
 ## References
 
-- FCI Breed Standards (www.fci.be/en/nomenclature/) - International breed standards
-- [AKC Breed Standards](https://www.akc.org/dog-breeds/) - American Kennel Club standards
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
+- [FCI Breed Standards](https://www.fci.be/en/nomenclature/) - International breed standards
+- [AKC Breed Standards](https://<www.akc.org/dog-breeds>/) - American Kennel Club standards
+- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://<www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/032112521>5)
 
   by Eric Evans - Template Entity patterns
 
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
+- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://<www.iso.org/standard/36326.htm>l)
 
 ## See Also
 

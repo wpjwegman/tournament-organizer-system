@@ -36,9 +36,9 @@ It inherits properties from the [Base Entity](../../../foundation/base_entity.md
 
 - A `Dietary Information` Template can be referenced by multiple profile entities:
 
-  - [Human Profile](../../profile/human.md)
-  - [Animal Profile](../../profile/animal.md)
-  - [Plant Profile](../../profile/plant.md)
+- [Human Profile](../../profile/human.md)
+- [Animal Profile](../../profile/animal.md)
+- [Plant Profile](../../profile/plant.md)
 
 ---
 

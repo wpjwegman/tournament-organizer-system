@@ -91,9 +91,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - **Template Management:**
 
-  - Templates should be curated and maintained by relationship administrators
-  - New templates can be added based on relationship standards and organizational requirements
-  - Templates should be reviewed periodically for privacy and compliance
+- Templates should be curated and maintained by relationship administrators
+- New templates can be added based on relationship standards and organizational requirements
+- Templates should be reviewed periodically for privacy and compliance
 
 - **Type vs. Sub Type:** The `Type` provides a broad category, while `Sub Type` offers specificity
 - **Privacy:** Relationship template data can be sensitive. Ensure appropriate access controls and adherence to privacy policies
@@ -101,16 +101,16 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
   like:
 
-  - Human to Human (e.g., parent-child, coach-athlete)
-  - Human to Animal (e.g., owner-pet, trainer-horse)
-  - Human to Computer (e.g., owner-device, administrator-system)
-  - Any other valid profile type combinations
+- Human to Human (e.g., parent-child, coach-athlete)
+- Human to Animal (e.g., owner-pet, trainer-horse)
+- Human to Computer (e.g., owner-device, administrator-system)
+- Any other valid profile type combinations
 
 - **Customization Balance:**
 
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental relationship structure
-  - System should support both template-based and fully custom relationships
+- Templates provide structure while allowing personalization
+- Customizations should not break the fundamental relationship structure
+- System should support both template-based and fully custom relationships
 
 ---
 

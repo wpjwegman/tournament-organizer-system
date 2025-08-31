@@ -40,18 +40,18 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - **Template Relationships:**
 
-  - Habitat Templates can be grouped by Type for easier discovery
-  - Habitat Templates can be referenced by venue planning algorithms for facility requirements
-  - Habitat Templates can be linked to [Animal Profile](../profile/animal.md) entities for animal care
+- Habitat Templates can be grouped by Type for easier discovery
+- Habitat Templates can be referenced by venue planning algorithms for facility requirements
+- Habitat Templates can be linked to [Animal Profile](../profile/animal.md) entities for animal care
 
 - **Instantiation Relationships:**
 
-  - When instantiated, Habitat Templates create Habitat instances embedded within
+- When instantiated, Habitat Templates create Habitat instances embedded within
 
     [Animal Profile](../profile/animal.md) entities
 
-  - Multiple animal profiles may instantiate the same Habitat Template with different customizations
-  - Habitat Templates can be referenced by [Venue](../../venue/README.md) entities for facility requirements
+- Multiple animal profiles may instantiate the same Habitat Template with different customizations
+- Habitat Templates can be referenced by [Venue](../../venue/README.md) entities for facility requirements
 
 ---
 
@@ -67,9 +67,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
 - **Template Management:**
 
-  - Templates should be curated and maintained by system administrators
-  - New templates can be added based on animal welfare standards and environmental requirements
-  - Templates should be reviewed periodically for accuracy and completeness
+- Templates should be curated and maintained by system administrators
+- New templates can be added based on animal welfare standards and environmental requirements
+- Templates should be reviewed periodically for accuracy and completeness
 
 - **Animal Welfare:** Habitat templates are crucial for proper animal care and welfare.
 - **Venue Planning:** Habitat template requirements should inform venue selection and setup.
@@ -77,9 +77,9 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 - **Documentation:** Habitat template information should be documented and updated regularly.
 - **Customization Balance:**
 
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental habitat classification
-  - System should support both template-based and fully custom habitats
+- Templates provide structure while allowing personalization
+- Customizations should not break the fundamental habitat classification
+- System should support both template-based and fully custom habitats
 
 ---
 
