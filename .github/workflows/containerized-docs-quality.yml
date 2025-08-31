@@ -1,0 +1,64 @@
+name: 🐳 Containerized Documentation Quality Control
+
+on:
+  pull_request:
+    branches: [master, develop]
+    paths:
+      - 'documents/**/*.md'
+      - 'documents/Containerfile'
+      - 'documents/compose.yml'
+      - 'documents/scripts/**'
+  push:
+    branches: [master, develop]
+    paths:
+      - 'documents/**/*.md'
+      - 'documents/Containerfile'
+      - 'documents/compose.yml'
+      - 'documents/scripts/**'
+
+jobs:
+  containerized-quality-checks:
+    name: 🔍 Containerized Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history for better analysis
+
+    - name: 🐳 Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: 🏗️ Build Development Container
+      run: |
+        cd documents
+        docker compose build docs-dev
+
+    - name: 🔍 Run Comprehensive Quality Checks
+      run: |
+        cd documents
+        docker compose run --rm docs-qa
+
+    - name: 🏗️ Test Documentation Build
+      run: |
+        cd documents
+        docker compose run --rm docs-dev uv run mkdocs build --strict
+
+    - name: 📋 Upload Quality Reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: quality-reports
+        path: |
+          documents/repository_lint_report_*.md
+          documents/scripts/reports/*.md
+        retention-days: 7
+
+    - name: 🌐 Upload Built Documentation
+      uses: actions/upload-artifact@v4
+      if: success()
+      with:
+        name: documentation-site
+        path: documents/site/
+        retention-days: 7

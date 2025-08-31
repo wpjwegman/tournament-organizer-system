@@ -1,0 +1,99 @@
+# Tournament Organizer Documentation Development Environment
+# Professional containerized development setup
+
+services:
+  # Main development environment
+  docs-dev:
+    build:
+      context: .
+      dockerfile: Containerfile
+      target: development
+    volumes:
+      # Mount source code for live development
+      - .:/home/tournament:z
+      # Persist uv cache
+      - uv-cache:/home/tournament/.cache/uv:z
+      # Persist pre-commit cache
+      - precommit-cache:/home/tournament/.cache/pre-commit:z
+    working_dir: /home/tournament
+    environment:
+      - TERM=xterm-256color
+    ports:
+      - "8000:8000"  # MkDocs dev server
+    stdin_open: true
+    tty: true
+    command: ["bash"]
+
+  # Documentation server for testing builds
+  docs-serve:
+    build:
+      context: .
+      dockerfile: Containerfile
+      target: development
+    volumes:
+      - .:/home/tournament:z
+    working_dir: /home/tournament
+    ports:
+      - "8001:8000"
+    command: ["uv", "run", "mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
+
+  # Production documentation server
+  docs-production:
+    build:
+      context: .
+      dockerfile: Containerfile
+      target: serve
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  # Quality assurance container
+  docs-qa:
+    build:
+      context: .
+      dockerfile: Containerfile
+      target: development
+    volumes:
+      - .:/home/tournament:z
+    working_dir: /home/tournament
+    environment:
+      - CI=true
+    command: |
+      bash -c "
+        echo '🔍 Running comprehensive quality checks...'
+        
+        # Run markdownlint-cli2 on all files
+        echo '📋 Running markdownlint-cli2...'
+        markdownlint-cli2 '**/*.md'
+        
+        # Run pre-commit hooks
+        echo '🚦 Running pre-commit hooks...'
+        uv run pre-commit run --all-files
+        
+        # Run domain-specific linting
+        echo '🎯 Running domain-specific linting...'
+        for domain in docs/domains/*/; do
+          if [ -d \$domain ]; then
+            domain_name=\$(basename \$domain)
+            echo \"  Checking \$domain_name domain...\"
+            uv run python scripts/linting/domain_linter.py \$domain_name --check-only --threshold 0 --verbose
+          fi
+        done
+        
+        # Validate navigation
+        echo '🗺️ Validating navigation...'
+        uv run python scripts/validation/check_nav_orphans.py
+        uv run python scripts/validation/check_no_frontmatter_title.py
+        
+        # Test documentation build
+        echo '🏗️ Testing documentation build...'
+        uv run mkdocs build --strict
+        
+        echo '✅ All quality checks completed!'
+      "
+
+volumes:
+  uv-cache:
+    driver: local
+  precommit-cache:
+    driver: local
