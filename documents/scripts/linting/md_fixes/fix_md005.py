@@ -34,7 +34,6 @@ def fix_md005(file_path):
             # Reset list tracking if we hit a non-list line
             if line.strip() and not line.startswith(' ') and in_list:
                 in_list = False
-                list_level = 0
     
     fixed_content = ''.join(fixed_lines)
     

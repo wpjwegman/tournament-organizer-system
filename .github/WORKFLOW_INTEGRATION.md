@@ -183,6 +183,7 @@ git push
 ```
 
 **Auto-fix not working:**
+
 1. Ensure PR has `auto-fix-docs` label
 2. Check workflow permissions in repository settings
 3. Verify token has write access

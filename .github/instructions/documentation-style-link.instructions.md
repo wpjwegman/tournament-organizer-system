@@ -3,12 +3,12 @@
 ---
 tags:
 
-  - documentation
-  - writing
-  - style
-  - formatting
-  - markdown
-  - links
+- documentation
+- writing
+- style
+- formatting
+- markdown
+- links
 
 ---
 
@@ -18,22 +18,30 @@ This document provides clear, concise, and complete instructions for writing, fo
 
 ## Scope
 
-Comprehensive guidelines for writing clear, professional, consistently formatted, and well-linked documentation for the project.
+Comprehensive guidelines for writing clear, professional, consistently formatted,
+and well-linked documentation for the project.
 
 ## MANDATORY: Titles and Tags
 
 - Visible H1 titles: Every Markdown page MUST begin its content with a visible H1 heading (first body line after front matter): `# Page Title`.
-  - Do NOT use `title:` in front matter. If present, remove it to avoid duplicate titles.
-  - Only one H1 per page (MD025). Subsequent sections start at H2 (`##`).
+- Do NOT use `title:` in front matter. If present, remove it to avoid duplicate titles.
+- Only one H1 per page (MD025). Subsequent sections start at H2 (`##`).
 - **Entity type indicators**: For data model entities, MUST include the entity type in the title:
-  - **Template Entity**: `# Entity Name (Template Entity)` - for reusable templates that define structure for creating instances
-  - **Entity**: `# Entity Name (Entity)` - for concrete entities with independent identity and lifecycle  
-  - **Value Object**: `# Entity Name (Value Object)` - for objects embedded in other entities without independent identity
-  - **Domain Overview**: `# Domain Name` - for domain README files (no entity type indicator)
-- Required tags: Every page MUST include a `tags:` list in YAML front matter with relevant, specific tags (2–6 recommended).
-  - **MANDATORY**: Use YAML front matter block format with `tags:` as an array, NOT inline comma-separated format
-  - Prefer domain- and concept-specific tags (e.g., `team`, `roster`, `tournament`, `ranking`, `finance`, `payment`, `identity`, `profile`, `venue`, `schedule`).
-  - Use lowercase, hyphenated tokens when multi-word (e.g., `first-aid`, `match-system`).
+- **Template Entity**: `# Entity Name (Template Entity)` -
+  for reusable templates that define structure for creating instances
+- **Entity**: `# Entity Name (Entity)` -
+  for concrete entities with independent identity and lifecycle  
+- **Value Object**: `# Entity Name (Value Object)` -
+  for objects embedded in other entities without independent identity
+- **Domain Overview**: `# Domain Name` -
+  for domain README files (no entity type indicator)
+- Required tags: Every page MUST include a `tags:` list in YAML front matter with relevant,
+specific tags (2–6 recommended).
+- **MANDATORY**: Use YAML front matter block format with `tags:` as an array,
+NOT inline comma-separated format
+- Prefer domain- and concept-specific tags (e.g., `team`, `roster`, `tournament`,
+`ranking`, `finance`, `payment`, `identity`, `profile`, `venue`, `schedule`).
+- Use lowercase, hyphenated tokens when multi-word (e.g., `first-aid`, `match-system`).
 
 **REQUIRED Template (copy/paste exactly):**
 
@@ -41,14 +49,15 @@ Comprehensive guidelines for writing clear, professional, consistently formatted
 ---
 tags:
 
-  - domain
-  - subdomain
-  - concept
+- domain
+- subdomain
+- concept
 
 ---
-```
+```markdown
 
-**IMPORTANT**: Never use the old inline format like `tag: documentation, writing, style`. Always use the YAML array format shown above.
+**IMPORTANT**: Never use the old inline format like `tag: documentation,
+writing, style`. Always use the YAML array format shown above.
 
 Template complete example:
 
@@ -56,30 +65,35 @@ Template complete example:
 ---
 tags:
 
-  - domain
-  - subdomain
-  - concept
+- domain
+- subdomain
+- concept
 
 ---
 
 # Entity Name (Template Entity)
 
 Intro paragraph…
-```
+```markdown
 
 **Entity Type Examples:**
 
-- Template Entity: `# Protocol (Template Entity)` - defines reusable first aid protocol templates
-- Entity: `# Unit (Entity)` - concrete measurement unit with independent identity  
-- Value Object: `# Measurement (Value Object)` - embedded quantitative value without independent identity
+- Template Entity: `# Protocol (Template Entity)` -
+  defines reusable first aid protocol templates
+- Entity: `# Unit (Entity)` -
+  concrete measurement unit with independent identity  
+- Value Object: `# Measurement (Value Object)` -
+  embedded quantitative value without independent identity
 - Domain: `# First Aid Domain` - domain overview page (no entity type indicator)
 
 Notes
 
-- **CRITICAL**: The Tags plugin requires YAML front matter format. Always use `tags:` as an array in YAML front matter block, never inline comma-separated format.
+- **CRITICAL**: The Tags plugin requires YAML front matter format. Always use `tags:` as an array in YAML front matter block,
+never inline comma-separated format.
 - Tags power search and taxonomy pages through the MkDocs Material theme.
 - Lint rules enforce a single H1 (MD025) and first-line H1 (MD041) when configured for visible titles.
-- When converting existing pages: remove `title:` from front matter, add `# Page Title` as the first body line, convert any inline `tag:` to YAML `tags:` array format.
+- When converting existing pages: remove `title:` from front matter, add `# Page Title` as the first body line,
+convert any inline `tag:` to YAML `tags:` array format.
 
 ## Key Lessons
 
@@ -88,9 +102,9 @@ Notes
 **MANDATORY PRE-COMMIT STEP:**
 Before committing any documentation changes, always run:
 
-```
+```markdown
 python scripts/linting/domain_linter.py <domain> --check-only --threshold 0 --verbose
-```
+```markdown
 
 Fix all reported errors before staging and committing. Only commit when the linter reports zero errors. This prevents failed CI checks and wasted PR cycles.
 
@@ -98,48 +112,65 @@ Fix all reported errors before staging and committing. Only commit when the lint
 - Use direct, active voice and concise sentences.
 - Organize content with clear headings, lists, and sections.
 - Adapt writing for the intended audience:
-  - For technical readers, use precise terminology and provide detailed explanations (without code blocks).
-  - For non-technical readers, avoid jargon, explain concepts simply, and use analogies or visuals where helpful.
+- For technical readers, use precise terminology and provide detailed explanations (without code blocks).
+- For non-technical readers, avoid jargon, explain concepts simply,
+and use analogies or visuals where helpful.
 - Begin each domain file with a brief summary or introduction.
 - Use the following section order in domain files: Overview, Purpose, Structure, Example, See Also.
 - In the Structure section, always reference the Base Entity for standard attributes (do not list them explicitly). This ensures maintainability if the Base Entity changes. Always include an attributes table for template entities to provide clarity and quick reference for users.
-- **Learned Lesson:** Whenever a model is referenced in the attributes table, always include a proper Markdown link to the model documentation. This applies to all referenced entities, value objects, or templates. Links must use relative paths and descriptive link text (e.g., `[Permission](permission/README.md)`).
-- **Learned Lesson:** Always start with content adjustments and restructuring for documentation compliance before running linting, broken link checks, or other automated validation. Content compliance is the foundation for sustainable documentation quality.
-- **Learned Lesson:** When preparing a pull request, always verify the correct base branch (e.g., master vs. main) and ensure the branch is pushed to the remote before creating the PR. If errors occur, check branch existence, sync status, and update instructions to prevent future workflow issues.
-- Remove sections for Relationships, Key Concepts, and References unless absolutely necessary. Prioritize clarity and relevance. Ensure documentation supports both human and automated validation, emphasizing transparency, consistency, and adaptability for future use cases.
+- **Learned Lesson:** Whenever a model is referenced in the attributes table, always include a proper Markdown link to the model documentation. This applies to all referenced entities,
+value objects, or templates. Links must use relative paths and descriptive link text (e.g., `[Permission](permission/README.md)`).
+- **Learned Lesson:** Always start with content adjustments and restructuring for documentation compliance before running linting,
+broken link checks, or other automated validation. Content compliance is the foundation for sustainable documentation quality.
+- **Learned Lesson:** When preparing a pull request, always verify the correct base branch (e.g., master vs. main) and ensure the branch is pushed to the remote before creating the PR. If errors occur,
+check branch existence, sync status, and update instructions to prevent future workflow issues.
+- Remove sections for Relationships, Key Concepts, and References unless absolutely necessary. Prioritize clarity and relevance. Ensure documentation supports both human and automated validation,
+emphasizing transparency, consistency, and adaptability for future use cases.
 
-Add an Example section after Structure to illustrate domain concepts with real-world scenarios or visuals (e.g., mermaid diagrams). Follow these best practices:
+Add an Example section after Structure to illustrate domain concepts with real-world scenarios or visuals (e.g.,
+mermaid diagrams). Follow these best practices:
 
-  - Always provide contextual explanations for each example, immediately following the example.
-  - MANDATORY: Ensure every example represents ALL attributes from the Structure section, both visually (in the diagram) and explicitly in the explanatory paragraph.
-  - If a single diagram would become unreadable, use two small diagrams (Example A/B) to cover all attributes.
-  - Do not add “Also shows” bullet lists. Prefer additional small diagrams or a second example to cover remaining attributes.
-  - Use descriptive, domain-relevant values in examples (avoid technical identifiers or placeholders).
-  - Provide multiple examples for different use cases or variations when possible.
-  - Use readable diagram formats (e.g., `A --> B[Attribute: Value]`) for mermaid diagrams to improve comprehension.
-  - Avoid repetitive or superficial explanations; provide expert-level context that clarifies the purpose, logic, and practical application of each template entity.
-  - Avoid confusing or overly abstract examples unless specifically required for the domain.
-  - Prefer Mermaid flowcharts using `graph TD` for clarity and left-to-right/top-down readability.
-  - Immediately follow each diagram with a concise paragraph that explains the structure and its practical impact (why it matters for organizers, navigation, eligibility, reporting, etc.).
+- Always provide contextual explanations for each example, immediately following the example.
+- MANDATORY: Ensure every example represents ALL attributes from the Structure section,
+both visually (in the diagram) and explicitly in the explanatory paragraph.
+- If a single diagram would become unreadable, use two small diagrams (Example A/B) to cover all attributes.
+- Do not add “Also shows” bullet lists. Prefer additional small diagrams or a second example to cover remaining attributes.
+- Use descriptive, domain-relevant values in examples (avoid technical identifiers or placeholders).
+- Provide multiple examples for different use cases or variations when possible.
+- Use readable diagram formats (e.g., `A --> B[Attribute: Value]`) for mermaid diagrams to improve comprehension.
+- Avoid repetitive or superficial explanations; provide expert-level context that clarifies the purpose,
+logic, and practical application of each template entity.
+- Avoid confusing or overly abstract examples unless specifically required for the domain.
+- Prefer Mermaid flowcharts using `graph TD` for clarity and left-to-right/top-down readability.
+- Immediately follow each diagram with a concise paragraph that explains the structure and its practical impact (why it matters for organizers,
+navigation, eligibility, reporting, etc.).
 
-  ### Modeling Rules (Data, Embedding, Terminology)
+### Modeling Rules (Data, Embedding, Terminology)
 
-  - Embedding within the same domain (document database model):
-    - When one model references another model in the SAME domain (e.g., `discipline/*` → `discipline/stage/*`), embed the referenced model instead of using a UUID. Reflect this in docs:
-      - Use types like `Stage Format`, `Match System`, `List[Stage Phase]`, `List[Stage Tiebreaker]`, `List[Match Unit]`, etc., not `UUID`/`List[UUID]`.
-      - Examples must illustrate embedded/nested data, not identifiers.
-    - If the referenced model is in a DIFFERENT domain (e.g., `discipline/*` → `ranking/*` or `classification/measurement/*`), keep it as a reference by UUID.
-  - Terminology: Teams vs. Participants
-    - Use "team"/"teams" for competitive units throughout docs. A single-player entry is a "team" of one.
-    - Avoid using "player(s)" to describe competitors at the tournament/stage level; reserve "player" for team roster contexts when necessary.
-    - Reserve "participant" for the broad set of people/entities involved in a tournament (teams, officials, staff, etc.), not just competitors.
+- Embedding within the same domain (document database model):
+  -
+  When one model references another model in the SAME domain (e.g., `discipline/*` → `discipline/stage/*`), embed the referenced model instead of using a UUID. Reflect this in docs:
+    -
+  Use types like `Stage Format`, `Match System`, `List[Stage Phase]`, `List[Stage Tiebreaker]`, `List[Match Unit]`, etc., not `UUID`/`List[UUID]`.
+    - Examples must illustrate embedded/nested data, not identifiers.
+  -
+  If the referenced model is in a DIFFERENT domain (e.g., `discipline/*` → `ranking/*` or `classification/measurement/*`), keep it as a reference by UUID.
+- Terminology: Teams vs. Participants
+  -
+  Use "team"/"teams" for competitive units throughout docs. A single-player entry is a "team" of one.
+  -
+  Avoid using "player(s)" to describe competitors at the tournament/stage level; reserve "player" for team roster contexts when necessary.
+  -
+  Reserve "participant" for the broad set of people/entities involved in a tournament (teams, officials, staff, etc.), not just competitors.
 
 Example diagram style (Graph TD) — intent and usage:
 
 - Use `graph TD` flowcharts to show hierarchies and classifications in a way that mirrors how users think about grouping.
-- Label nodes with meaningful, domain-focused names (e.g., "Activity: Basketball", "Domain: Sports").
+- Label nodes with meaningful, domain-focused names (e.g.,
+"Activity: Basketball", "Domain: Sports").
 - Show classification edges with descriptive text when helpful (e.g., `-. classified in .->`).
-- For categories, show parent→child relationships to illustrate how top-level categories (e.g., Sports) contain subcategories (e.g., Darts → 501, 301) and why that helps grouping, scheduling, reporting, and eligibility.
+- For categories, show parent→child relationships to illustrate how top-level categories (e.g., Sports) contain subcategories (e.g.,
+Darts → 501, 301) and why that helps grouping, scheduling, reporting, and eligibility.
 - For geography, show continent→country→region→city→venue to demonstrate how location hierarchies enable filtering and selection during planning and reporting.
 - Maintain a clear, professional, and neutral tone throughout. Focus on actionable guidance and practical examples. Avoid unnecessary jargon or informality.
 
@@ -148,20 +179,20 @@ Example diagram style (Graph TD) — intent and usage:
 - Use consistent Markdown syntax for headings and lists.
 - Avoid code blocks for code samples in documentation. Use diagrams instead. Exception: Mermaid fenced blocks are encouraged for diagrams (prefer `graph TD`).
 - Apply project-specific style rules. Most important MkDocs recommendations:
-  - Use clear, descriptive headings and organize content hierarchically.
-  - Keep navigation simple and intuitive.
-  - Ensure all pages have a title and metadata for searchability.
+- Use clear, descriptive headings and organize content hierarchically.
+- Keep navigation simple and intuitive.
+- Ensure all pages have a title and metadata for searchability.
 - Use whitespace and line breaks to separate sections and improve readability.
 - Follow style and formatting standards for consistency.
 - Review for common Vale warnings (passive voice, wordiness, weasel words).
 - Prefer short, clear sentences over long, complex ones.
 - Follow accessibility best practices:
-  - Add alt text to images.
-  - Use clear, descriptive link text.
-  - Ensure sufficient color contrast and readable font sizes.
+- Add alt text to images.
+- Use clear, descriptive link text.
+- Ensure sufficient color contrast and readable font sizes.
 - Format tables and diagrams for clarity:
-  - Use simple tables with clear headers and consistent alignment.
-  - Add captions or descriptions to diagrams.
+- Use simple tables with clear headers and consistent alignment.
+- Add captions or descriptions to diagrams.
 - Keep formatting simple and intuitive, especially for non-technical users. Avoid complex layouts or excessive styling.
 - Use tags and metadata for organization and searchability.
 
@@ -181,16 +212,17 @@ Example diagram style (Graph TD) — intent and usage:
 - Remove or revise outdated information promptly.
 - Populate empty files and folders with meaningful content and cross-references.
 - Organize domain documentation for clarity and discoverability:
-  - Use a hierarchical folder structure to group documents by domain and subdomain.
-  - Apply consistent naming conventions for files and folders.
-  - Create and follow templates for domain documents to ensure uniformity.
-  - Link related domain documents to support navigation and context.
+- Use a hierarchical folder structure to group documents by domain and subdomain.
+- Apply consistent naming conventions for files and folders.
+- Create and follow templates for domain documents to ensure uniformity.
+- Link related domain documents to support navigation and context.
 
 ## Link Management
 
 ### Internal Links
 
-- Use relative paths for all internal documentation links (e.g., `[Base Entity](../foundation/base_entity.md)`)
+- Use relative paths for all internal documentation links (e.g.,
+`[Base Entity](../foundation/base_entity.md)`)
 - Test links locally before committing to ensure they resolve correctly
 - Use descriptive link text that explains the destination or purpose
 - Avoid generic phrases like "click here" or "read more"
@@ -227,7 +259,8 @@ Example diagram style (Graph TD) — intent and usage:
 **Structure & Content:**
 
 - [ ] Starts with visible H1 title (no `title:` in front matter)
-- [ ] Uses correct entity type indicator in title: (Template Entity), (Entity), (Value Object), or none for domain pages
+- [ ] Uses correct entity type indicator in title: (Template Entity),
+(Entity), (Value Object), or none for domain pages
 - [ ] Includes 2-6 relevant tags in YAML front matter array format (`tags:` not inline `tag:`)
 - [ ] References Base Entity for standard attributes (no explicit listing)
 - [ ] Includes comprehensive examples covering ALL attributes
@@ -261,7 +294,8 @@ Example diagram style (Graph TD) — intent and usage:
 
 ## How to Use
 
-Use this file as a checklist when writing or reviewing documentation. For best results, follow this order:
+Use this file as a checklist when writing or reviewing documentation. For best results,
+follow this order:
 1. Draft content using the writing and structure guidelines.
 2. Apply formatting and accessibility rules.
 3. Check and manage links.

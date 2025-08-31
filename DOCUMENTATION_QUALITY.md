@@ -2,7 +2,9 @@
 
 ## Overview
 
-The Tournament Organizer System maintains enterprise-grade documentation quality through professional linting infrastructure with full GitHub Actions integration.
+The Tournament Organizer System maintains enterprise-grade documentation
+quality through professional linting infrastructure with full GitHub Actions
+integration.
 
 ## 🎯 Quality Standards
 
@@ -196,6 +198,7 @@ chmod +x documents/scripts/git-hooks/*.sh
 ```
 
 **Auto-fix not working:**
+
 1. Verify PR has `auto-fix-docs` label
 2. Check repository workflow permissions
 3. Ensure token has write access to repository

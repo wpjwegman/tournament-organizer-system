@@ -130,7 +130,7 @@ gh pr view [PR_NUMBER] --comments
 # Check review status
 
 gh pr status
-```
+```markdown
 
 #### 2. Address Review Comments
 
@@ -153,7 +153,7 @@ git commit -m "fix: address review comment - [specific issue fixed]"
 # Push updates (don't force push during review)
 
 git push origin [branch-name]
-```
+```markdown
 
 #### 4. Respond to Comments
 
@@ -166,7 +166,7 @@ git push origin [branch-name]
 # Request re-review from specific reviewers
 
 gh pr edit [PR_NUMBER] --add-reviewer [username]
-```
+```markdown
 
 #### 5. Follow-up Actions
 
@@ -247,7 +247,7 @@ git log origin/master..HEAD --oneline
 # Interactive rebase to clean up commits
 
 git rebase -i HEAD~3
-```
+```markdown
 
 ### Status Checks
 
@@ -263,7 +263,7 @@ git remote -v
 
 git diff --name-only
 git diff --cached --name-only
-```
+```markdown
 
 ---
 

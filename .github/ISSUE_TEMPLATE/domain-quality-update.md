@@ -7,6 +7,8 @@ assignees: ''
 ---
 
 # Title
+
+
 ## 📋 Domain Information
 
 **Domain Name:** [DOMAIN_NAME]  
@@ -35,14 +37,18 @@ assignees: ''
 
 ### Phase 1: Assessment
 
-- [ ] Run domain linting check: `python scripts/linting/domain_linter.py [DOMAIN] --check-only --verbose --threshold 0`
-- [ ] Generate domain report: `python scripts/linting/repository_linter.py --domain [DOMAIN] --report`
+- [ ] Run domain linting check: `python scripts/linting/domain_linter.py
+[DOMAIN] --check-only --verbose --threshold 0`
+- [ ] Generate domain report: `python scripts/linting/repository_linter.py
+--domain [DOMAIN] --report`
 - [ ] Review current content for accuracy and completeness
 
 ### Phase 2: Automated Fixes
 
-- [ ] Apply automatic fixes: `python scripts/linting/domain_linter.py [DOMAIN] --fix --verbose`
-- [ ] Verify improvements: `python scripts/linting/domain_linter.py [DOMAIN] --check-only --threshold 0`
+- [ ] Apply automatic fixes: `python scripts/linting/domain_linter.py [DOMAIN]
+--fix --verbose`
+- [ ] Verify improvements: `python scripts/linting/domain_linter.py [DOMAIN]
+--check-only --threshold 0`
 - [ ] Stage and commit automated fixes
 
 ### Phase 3: Manual Review
@@ -86,18 +92,18 @@ assignees: ''
 
 ```bash
 
-# Check current domain status
+## Check current domain status
 
 cd documents
-python scripts/linting/domain_linter.py [DOMAIN] --check-only --verbose --threshold 0
+python scripts/linting/domain_linter.py [DOMAIN] --check-only --verbose
+--threshold 0
+### Apply automated fixes
 
-# Apply automated fixes
-
-python scripts/linting/domain_linter.py [DOMAIN] --fix --verbose
-
+python scripts/linting/domain_linter.py [DOMAIN] --fix --verbose##
 # Generate quality report
 
-python scripts/linting/repository_linter.py --domain [DOMAIN] --report --save-report
+python scripts/linting/repository_linter.py --domain [DOMAIN] --report
+--save-repor##
 
 # Test pre-commit integration
 
@@ -106,9 +112,12 @@ uvx pre-commit run --files docs/domains/[DOMAIN]/*.md
 
 ## 📚 Related Documentation
 
-- [`DOCUMENTATION_QUALITY.md`](../../DOCUMENTATION_QUALITY.md) - Quality standards
-- [`.github/WORKFLOW_INTEGRATION.md`](../WORKFLOW_INTEGRATION.md) - Workflow integration guide
-- [`documents/scripts/README.md`](../../documents/scripts/README.md) - Linting tools documentation
+- [`DOCUMENTATION_QUALITY.md`](../../DOCUMENTATION_QUALITY.md) - Quality
+standards
+- [`.github/WORKFLOW_INTEGRATION.md`](../WORKFLOW_INTEGRATION.md) - Workflow
+integration guide
+- [`documents/scripts/README.md`](../../documents/scripts/README.md) - Linting
+tools documentation
 - [`.github/instructions/`](../instructions/) - GitHub workflow instructions
 
 ## 🏷️ Branch and PR Guidelines
@@ -134,4 +143,5 @@ uvx pre-commit run --files docs/domains/[DOMAIN]/*.md
 
 **Created using:** Domain Documentation Quality Update Template  
 **Workflow Integration:** ✅ Ready for GitHub Actions  
-**Follow:** [GitHub Workflow Instructions](../instructions/github-workflow-workspace-cleanliness.instructions.md)
+**Follow:** [GitHub Workflow
+Instructions](../instructions/github-workflow-workspace-cleanliness.instructions.md)
