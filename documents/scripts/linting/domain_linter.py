@@ -66,16 +66,29 @@ class DomainLinter:
                 # Run markdownlint-cli2 with explicit file list
                 file_paths = [str(f) for f in files]
                 
-                # Use markdownlint-cli2.cmd on Windows for proper execution
+                # Try different markdownlint-cli2 executables for cross-platform compatibility
                 import platform
-                cmd = ["markdownlint-cli2.cmd" if platform.system() == "Windows" else "markdownlint-cli2"]
+                executables = []
+                if platform.system() == "Windows":
+                    executables = ["markdownlint-cli2.cmd", "markdownlint-cli2"]
+                else:
+                    executables = ["markdownlint-cli2"]
                 
-                result = subprocess.run(
-                    cmd + file_paths, 
-                    capture_output=True, 
-                    text=True, 
-                    cwd=self.base_path
-                )
+                result = None
+                for exe in executables:
+                    try:
+                        result = subprocess.run(
+                            [exe] + file_paths, 
+                            capture_output=True, 
+                            text=True, 
+                            cwd=self.base_path
+                        )
+                        break  # Success, use this result
+                    except FileNotFoundError:
+                        continue  # Try next executable
+                
+                if result is None:
+                    raise FileNotFoundError("markdownlint-cli2 not found")
                 
             finally:
                 # Restore .markdownlint-cli2.jsonc
@@ -132,16 +145,29 @@ class DomainLinter:
                 # Get all markdown files in the domain
                 file_paths = [str(f) for f in files]
                 
-                # Use markdownlint-cli2.cmd on Windows for proper execution
+                # Try different markdownlint-cli2 executables for cross-platform compatibility
                 import platform
-                cmd = ["markdownlint-cli2.cmd" if platform.system() == "Windows" else "markdownlint-cli2"]
+                executables = []
+                if platform.system() == "Windows":
+                    executables = ["markdownlint-cli2.cmd", "markdownlint-cli2"]
+                else:
+                    executables = ["markdownlint-cli2"]
                 
-                result = subprocess.run(
-                    cmd + ["--fix"] + file_paths,
-                    capture_output=True, 
-                    text=True,
-                    cwd=self.base_path
-                )
+                result = None
+                for exe in executables:
+                    try:
+                        result = subprocess.run(
+                            [exe, "--fix"] + file_paths,
+                            capture_output=True, 
+                            text=True,
+                            cwd=self.base_path
+                        )
+                        break  # Success, use this result
+                    except FileNotFoundError:
+                        continue  # Try next executable
+                
+                if result is None:
+                    raise FileNotFoundError("markdownlint-cli2 not found")
                 
             finally:
                 # Restore .markdownlint-cli2.jsonc
