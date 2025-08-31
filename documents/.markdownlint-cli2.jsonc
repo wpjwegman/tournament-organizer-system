@@ -17,6 +17,7 @@
     ".git/**",
     "markdown_fixes_backup/**",
     "**/licenses/**",
-    "**/*.dist-info/**"
+    "**/*.dist-info/**",
+    ".github/instructions/documentation-style-link.instructions.md"
   ]
 }

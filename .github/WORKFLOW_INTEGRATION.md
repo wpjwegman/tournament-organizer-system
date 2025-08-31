@@ -2,7 +2,12 @@
 
 ## Overview
 
-This guide explains how the professional documentation linting scripts are integrated into GitHub workflows to ensure consistent quality control across all documentation in the Tournament Organizer System.
+# 🔄 GitHub Workflow Integration Guide
+
+## Overview
+
+This document provides comprehensive guidance for integrating GitHub workflows
+with the Tournament Organizer System's documentation quality infrastructure.
 
 ## 🚦 Automated Workflows
 

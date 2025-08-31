@@ -1,6 +1,7 @@
 # Backend Development
 
-This directory will contain the Python FastAPI backend for the Tournament Organizer system.
+This directory will contain the Python FastAPI backend for the
+Tournament Organizer system.
 
 ## Planned Structure
 
@@ -31,6 +32,7 @@ backend/
 
 ## Development Status
 
-🚧 **Coming Soon** - Backend development will begin after domain documentation is complete.
+🚧 **Coming Soon** - Backend development will begin after domain
+documentation is complete.
 
 For domain models and API specifications, see the [documentation](../documents/).

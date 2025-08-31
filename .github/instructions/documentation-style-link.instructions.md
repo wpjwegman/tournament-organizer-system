@@ -14,16 +14,20 @@ tags:
 
 ## Purpose
 
-This document provides clear, concise, and complete instructions for writing, formatting, and linking documentation. It is designed for both human and AI authors to ensure consistency and quality across all project documentation.
+This document provides clear, concise, and complete instructions for
+writing, formatting, and linking documentation. It is designed for both human
+and AI authors to ensure consistency and quality across all project
+documentation.
 
 ## Scope
 
-Comprehensive guidelines for writing clear, professional, consistently formatted,
-and well-linked documentation for the project.
+Comprehensive guidelines for writing clear, professional, consistently
+formatted, and well-linked documentation for the project.
 
 ## MANDATORY: Titles and Tags
 
-- Visible H1 titles: Every Markdown page MUST begin its content with a visible H1 heading (first body line after front matter): `# Page Title`.
+- Visible H1 titles: Every Markdown page MUST begin its content with a
+  visible H1 heading (first body line after front matter): `# Page Title`.
 - Do NOT use `title:` in front matter. If present, remove it to avoid duplicate titles.
 - Only one H1 per page (MD025). Subsequent sections start at H2 (`##`).
 - **Entity type indicators**: For data model entities, MUST include the entity type in the title:
@@ -88,11 +92,13 @@ Intro paragraph…
 
 Notes
 
-- **CRITICAL**: The Tags plugin requires YAML front matter format. Always use `tags:` as an array in YAML front matter block,
+- **CRITICAL**:
+  The Tags plugin requires YAML front matter format. Always use `tags:` as an array in YAML front matter block,
 never inline comma-separated format.
 - Tags power search and taxonomy pages through the MkDocs Material theme.
 - Lint rules enforce a single H1 (MD025) and first-line H1 (MD041) when configured for visible titles.
-- When converting existing pages: remove `title:` from front matter, add `# Page Title` as the first body line,
+- When converting existing pages:
+  remove `title:` from front matter, add `# Page Title` as the first body line,
 convert any inline `tag:` to YAML `tags:` array format.
 
 ## Key Lessons
@@ -108,7 +114,8 @@ python scripts/linting/domain_linter.py <domain> --check-only --threshold 0 --ve
 
 Fix all reported errors before staging and committing. Only commit when the linter reports zero errors. This prevents failed CI checks and wasted PR cycles.
 
-- For all template entities, always reference standard attributes from the Base Entity (e.g., "This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md)") instead of listing them explicitly. This ensures documentation remains maintainable and up to date if the Base Entity changes.
+- For all template entities, always reference standard attributes from the
+  Base Entity (e.g., "This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md)") instead of listing them explicitly. This ensures documentation remains maintainable and up to date if the Base Entity changes.
 - Use direct, active voice and concise sentences.
 - Organize content with clear headings, lists, and sections.
 - Adapt writing for the intended audience:
@@ -118,11 +125,14 @@ and use analogies or visuals where helpful.
 - Begin each domain file with a brief summary or introduction.
 - Use the following section order in domain files: Overview, Purpose, Structure, Example, See Also.
 - In the Structure section, always reference the Base Entity for standard attributes (do not list them explicitly). This ensures maintainability if the Base Entity changes. Always include an attributes table for template entities to provide clarity and quick reference for users.
-- **Learned Lesson:** Whenever a model is referenced in the attributes table, always include a proper Markdown link to the model documentation. This applies to all referenced entities,
-value objects, or templates. Links must use relative paths and descriptive link text (e.g., `[Permission](permission/README.md)`).
+- **Learned Lesson:** Whenever a model is referenced in the attributes table,
+always include a proper Markdown link to the model documentation. This applies to all referenced entities,
+value objects, or templates. Links must use relative paths and descriptive link text (e.g.,
+`[Permission](permission/README.md)`).
 - **Learned Lesson:** Always start with content adjustments and restructuring for documentation compliance before running linting,
 broken link checks, or other automated validation. Content compliance is the foundation for sustainable documentation quality.
-- **Learned Lesson:** When preparing a pull request, always verify the correct base branch (e.g., master vs. main) and ensure the branch is pushed to the remote before creating the PR. If errors occur,
+- **Learned Lesson:** When preparing a pull request, always verify the correct base branch (e.g.,
+master vs. main) and ensure the branch is pushed to the remote before creating the PR. If errors occur,
 check branch existence, sync status, and update instructions to prevent future workflow issues.
 - Remove sections for Relationships, Key Concepts, and References unless absolutely necessary. Prioritize clarity and relevance. Ensure documentation supports both human and automated validation,
 emphasizing transparency, consistency, and adaptability for future use cases.
@@ -137,7 +147,8 @@ both visually (in the diagram) and explicitly in the explanatory paragraph.
 - Do not add “Also shows” bullet lists. Prefer additional small diagrams or a second example to cover remaining attributes.
 - Use descriptive, domain-relevant values in examples (avoid technical identifiers or placeholders).
 - Provide multiple examples for different use cases or variations when possible.
-- Use readable diagram formats (e.g., `A --> B[Attribute: Value]`) for mermaid diagrams to improve comprehension.
+- Use readable diagram formats (e.g., `A --> B[Attribute:
+  Value]`) for mermaid diagrams to improve comprehension.
 - Avoid repetitive or superficial explanations; provide expert-level context that clarifies the purpose,
 logic, and practical application of each template entity.
 - Avoid confusing or overly abstract examples unless specifically required for the domain.
@@ -149,19 +160,23 @@ navigation, eligibility, reporting, etc.).
 
 - Embedding within the same domain (document database model):
   -
-  When one model references another model in the SAME domain (e.g., `discipline/*` → `discipline/stage/*`), embed the referenced model instead of using a UUID. Reflect this in docs:
+  When one model references another model in the SAME domain (e.g.,
+`discipline/*` → `discipline/stage/*`), embed the referenced model instead of using a UUID. Reflect this in docs:
     -
-  Use types like `Stage Format`, `Match System`, `List[Stage Phase]`, `List[Stage Tiebreaker]`, `List[Match Unit]`, etc., not `UUID`/`List[UUID]`.
+  Use types like `Stage Format`, `Match System`, `List[Stage Phase]`,
+`List[Stage Tiebreaker]`, `List[Match Unit]`, etc., not `UUID`/`List[UUID]`.
     - Examples must illustrate embedded/nested data, not identifiers.
   -
-  If the referenced model is in a DIFFERENT domain (e.g., `discipline/*` → `ranking/*` or `classification/measurement/*`), keep it as a reference by UUID.
+  If the referenced model is in a DIFFERENT domain (e.g., `discipline/*` → `ranking/*` or `classification/measurement/*`),
+keep it as a reference by UUID.
 - Terminology: Teams vs. Participants
   -
   Use "team"/"teams" for competitive units throughout docs. A single-player entry is a "team" of one.
   -
   Avoid using "player(s)" to describe competitors at the tournament/stage level; reserve "player" for team roster contexts when necessary.
   -
-  Reserve "participant" for the broad set of people/entities involved in a tournament (teams, officials, staff, etc.), not just competitors.
+  Reserve "participant" for the broad set of people/entities involved in a tournament (teams,
+officials, staff, etc.), not just competitors.
 
 Example diagram style (Graph TD) — intent and usage:
 
@@ -169,7 +184,8 @@ Example diagram style (Graph TD) — intent and usage:
 - Label nodes with meaningful, domain-focused names (e.g.,
 "Activity: Basketball", "Domain: Sports").
 - Show classification edges with descriptive text when helpful (e.g., `-. classified in .->`).
-- For categories, show parent→child relationships to illustrate how top-level categories (e.g., Sports) contain subcategories (e.g.,
+- For categories, show parent→child relationships to illustrate how top-level categories (e.g.,
+Sports) contain subcategories (e.g.,
 Darts → 501, 301) and why that helps grouping, scheduling, reporting, and eligibility.
 - For geography, show continent→country→region→city→venue to demonstrate how location hierarchies enable filtering and selection during planning and reporting.
 - Maintain a clear, professional, and neutral tone throughout. Focus on actionable guidance and practical examples. Avoid unnecessary jargon or informality.
@@ -230,7 +246,8 @@ Darts → 501, 301) and why that helps grouping, scheduling, reporting, and elig
 ### External Links
 
 - Use full URLs for external resources
-- Include link text that identifies the external source (e.g., `[MkDocs Material Documentation](https://squidfunk.github.io/mkdocs-material/)`)
+- Include link text that identifies the external source (e.g.,
+`[MkDocs Material Documentation](https://squidfunk.github.io/mkdocs-material/)`)
 - Verify external links are stable and likely to remain available
 - Consider using archive links for important but potentially unstable resources
 
