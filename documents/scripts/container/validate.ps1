@@ -6,8 +6,8 @@ $ErrorActionPreference = "Stop"
 
 # --- Configuration ---
 $ContainerImage = "localhost/docs-quality:latest"
-# The script is in documents/scripts. The project root is two levels up.
-$ProjectRoot = (Resolve-Path "$PSScriptRoot\..\..").Path
+# The script is in documents/scripts/container. The project root is three levels up.
+$ProjectRoot = (Resolve-Path "$PSScriptRoot\..\..\..").Path
 
 # --- Script Body ---
 
