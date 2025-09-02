@@ -19,7 +19,7 @@ fi
 # Run the orchestrator with domain-specific linting
 if [ -f "$SCRIPT_DIR/run_all_md_fixes.py" ]; then
     python "$SCRIPT_DIR/run_all_md_fixes.py" "$ROOT_DIR" "$DOMAIN"
-    
+
     # Check if there are any changes to stage
     if git diff --quiet documents/docs/domains/"$DOMAIN"/ 2>/dev/null; then
         echo "✅ No markdown fixes needed"

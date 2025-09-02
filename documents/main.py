@@ -36,7 +36,8 @@ def define_env(env):
                             ["git", "log", "-1", "--format=%cd", "--date=format:%B %d, %Y", str(file_path)],
                             capture_output=True,
                             text=True,
-                            cwd=docs_dir.parent, check=False  # Go to documents directory where .git is
+                            cwd=docs_dir.parent,
+                            check=False,  # Go to documents directory where .git is
                         )
                         if result.returncode == 0 and result.stdout.strip():
                             return result.stdout.strip()
@@ -68,7 +69,8 @@ def define_env(env):
                 ["git", "rev-parse", "--short", "HEAD"],
                 capture_output=True,
                 text=True,
-                cwd=Path(env.conf["docs_dir"]).parent, check=False
+                cwd=Path(env.conf["docs_dir"]).parent,
+                check=False,
             )
             if result.returncode == 0:
                 commit_hash = result.stdout.strip()
@@ -86,10 +88,12 @@ def define_env(env):
         page_path = None
         if hasattr(env, "variables") and env.variables:
             # Try different ways to get the page path
-            page_path = (env.variables.get("page.file.src_path") or
-                        env.variables.get("page.file.src_uri") or
-                        env.variables.get("page.file.name") or
-                        "index.md")
+            page_path = (
+                env.variables.get("page.file.src_path")
+                or env.variables.get("page.file.src_uri")
+                or env.variables.get("page.file.name")
+                or "index.md"
+            )
         else:
             page_path = "index.md"
 
@@ -98,8 +102,8 @@ def define_env(env):
 
         return f"""
 !!! info "Page Information"
-    **Last Updated:** {updated}  
-    **Build Date:** {build}  
+    **Last Updated:** {updated}
+    **Build Date:** {build}
     **Page:** `{page_path}`
 """
 
@@ -216,7 +220,10 @@ def on_post_build(env):
 
     # Define social media meta tags template
     site_name = config.get("site_name", "Tournament Organizer Documentation")
-    site_description = config.get("site_description", "Comprehensive documentation for the Tournament Organizer project including domains, architecture, and development guides")
+    site_description = config.get(
+        "site_description",
+        "Comprehensive documentation for the Tournament Organizer project including domains, architecture, and development guides",
+    )
     site_url = config.get("site_url", "https://wpjwegman.github.io/TO-Documentation")
     site_author = config.get("site_author", "wpjwegman")
 
@@ -230,7 +237,7 @@ def on_post_build(env):
             title_start = content.find("<title>")
             title_end = content.find("</title>")
             if title_start != -1 and title_end != -1:
-                page_title = content[title_start + 7:title_end]
+                page_title = content[title_start + 7 : title_end]
             else:
                 page_title = site_name
 
@@ -255,13 +262,13 @@ def on_post_build(env):
   <meta property="og:description" content="{site_description}">
   <meta property="og:image" content="{social_image}">
   <meta property="og:url" content="{page_url}">
-  
+
   <!-- Twitter Cards Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{page_title}">
   <meta name="twitter:description" content="{site_description}">
   <meta name="twitter:image" content="{social_image}">
-  
+
   <!-- Additional SEO Meta Tags -->
   <meta name="author" content="{site_author}">
   <meta name="robots" content="index,follow">

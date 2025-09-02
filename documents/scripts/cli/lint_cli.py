@@ -54,7 +54,7 @@ class DocumentationLintCLI:
 
     def list_available_domains(self) -> list[str]:
         """Get list of available domains.
-        
+
         Returns:
             List of domain names
         """
@@ -71,10 +71,10 @@ class DocumentationLintCLI:
 
     def cmd_domain(self, args) -> int:
         """Handle domain-specific linting command.
-        
+
         Args:
             args: Parsed command arguments
-            
+
         Returns:
             Exit code (0 for success, 1 for failure)
         """
@@ -87,10 +87,7 @@ class DocumentationLintCLI:
 
             # Run linting
             success = linter.lint_domain(
-                fix_mode=fix_mode,
-                auto_stage=args.auto_stage,
-                max_errors=args.max_errors,
-                verbose=args.verbose
+                fix_mode=fix_mode, auto_stage=args.auto_stage, max_errors=args.max_errors, verbose=args.verbose
             )
 
             # Generate report if requested
@@ -107,10 +104,10 @@ class DocumentationLintCLI:
 
     def cmd_repository(self, args) -> int:
         """Handle repository-wide linting command.
-        
+
         Args:
             args: Parsed command arguments
-            
+
         Returns:
             Exit code (0 for success, 1 for failure)
         """
@@ -142,10 +139,10 @@ class DocumentationLintCLI:
 
     def cmd_setup_hooks(self, args) -> int:
         """Handle Git hooks setup command.
-        
+
         Args:
             args: Parsed command arguments
-            
+
         Returns:
             Exit code (0 for success, 1 for failure)
         """
@@ -168,10 +165,10 @@ class DocumentationLintCLI:
 
     def cmd_list_domains(self, args) -> int:
         """Handle list domains command.
-        
+
         Args:
             args: Parsed command arguments
-            
+
         Returns:
             Exit code (always 0)
         """
@@ -192,7 +189,7 @@ class DocumentationLintCLI:
 
 def create_parser() -> argparse.ArgumentParser:
     """Create the main argument parser.
-    
+
     Returns:
         Configured argument parser
     """
@@ -211,7 +208,7 @@ Examples:
   %(prog)s repository --domains-only
   %(prog)s setup-hooks --install
   %(prog)s list-domains
-        """
+        """,
     )
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")

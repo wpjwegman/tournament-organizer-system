@@ -5,6 +5,7 @@ MD010 Fixer: Hard Tabs to Spaces
 Converts hard tabs to spaces in markdown files.
 Part of the enterprise automation suite.
 """
+
 import sys
 
 
@@ -23,6 +24,7 @@ def fix_md010(file_path):
         return True
     return False
 
+
 def main():
     files = sys.argv[1:]
     fixed_count = 0
@@ -34,6 +36,7 @@ def main():
         print(f"[MD010] Fixed {fixed_count} files with hard tabs")
     else:
         print("[MD010] No hard tabs found")
+
 
 if __name__ == "__main__":
     main()

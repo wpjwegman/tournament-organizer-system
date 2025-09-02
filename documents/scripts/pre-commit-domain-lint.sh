@@ -33,7 +33,7 @@ cd "$DOCUMENTS_DIR" || exit 1
 
 for domain in $domains; do
     echo -e "\n${YELLOW}🎯 Checking $domain domain...${NC}"
-    
+
     # Run domain linting with threshold (allow some errors for domains under development)
     if python "$DOMAIN_LINT_SCRIPT" "$domain" --check-only --threshold 10; then
         echo -e "${GREEN}✅ $domain domain passed${NC}"

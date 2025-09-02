@@ -5,6 +5,7 @@ Enterprise Markdown Automation Suite
 Professional, targeted automation for fixing all markdown linting errors
 across multiple domains with comprehensive reporting and rollback capability.
 """
+
 import shutil
 import subprocess
 import sys
@@ -48,20 +49,18 @@ class EnterpriseMarkdownFixer:
 
         for domain in self.domains:
             try:
-                result = subprocess.run([
-                    "markdownlint-cli2",
-                    f"documents/docs/domains/{domain}/**/*.md"
-                ], capture_output=True, text=True, check=False)
+                result = subprocess.run(
+                    ["markdownlint-cli2", f"documents/docs/domains/{domain}/**/*.md"],
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
 
                 error_count = 0
                 if result.returncode != 0 and result.stdout:
-                    error_count = len([line for line in result.stdout.split("\n")
-                                     if "MD" in line and ":" in line])
+                    error_count = len([line for line in result.stdout.split("\n") if "MD" in line and ":" in line])
 
-                results[domain] = {
-                    "error_count": error_count,
-                    "status": "errors" if error_count > 0 else "clean"
-                }
+                results[domain] = {"error_count": error_count, "status": "errors" if error_count > 0 else "clean"}
 
             except Exception as e:
                 results[domain] = {"error_count": -1, "status": "error", "message": str(e)}
@@ -86,9 +85,18 @@ class EnterpriseMarkdownFixer:
 
         # Run all fixers
         fixer_scripts = [
-            "fix_md005.py", "fix_md007.py", "fix_md010.py", "fix_md012.py",
-            "fix_md022.py", "fix_md025.py", "fix_md031.py", "fix_md032.py",
-            "fix_md034.py", "fix_md041.py", "fix_md047.py", "fix_md049.py"
+            "fix_md005.py",
+            "fix_md007.py",
+            "fix_md010.py",
+            "fix_md012.py",
+            "fix_md022.py",
+            "fix_md025.py",
+            "fix_md031.py",
+            "fix_md032.py",
+            "fix_md034.py",
+            "fix_md041.py",
+            "fix_md047.py",
+            "fix_md049.py",
         ]
 
         for fixer in fixer_scripts:
@@ -96,9 +104,12 @@ class EnterpriseMarkdownFixer:
             if fixer_path.exists():
                 try:
                     file_paths = [str(f) for f in md_files]
-                    result = subprocess.run([
-                        "uv", "run", "python", str(fixer_path)
-                    ] + file_paths, capture_output=True, text=True, check=False)
+                    result = subprocess.run(
+                        ["uv", "run", "python", str(fixer_path)] + file_paths,
+                        capture_output=True,
+                        text=True,
+                        check=False,
+                    )
 
                     if "Fixed" in result.stdout:
                         files_changed += 1
@@ -111,7 +122,7 @@ class EnterpriseMarkdownFixer:
             "status": "completed",
             "files_processed": len(md_files),
             "fixers_run": fixers_run,
-            "files_changed": files_changed
+            "files_changed": files_changed,
         }
 
     def analyze_errors_after(self) -> dict[str, dict]:
@@ -149,7 +160,7 @@ class EnterpriseMarkdownFixer:
             "backup_location": str(self.backup_dir) if self.backup_enabled else None,
             "before_results": before_results,
             "fix_results": fix_results,
-            "after_results": after_results
+            "after_results": after_results,
         }
 
     def print_comprehensive_report(self, results: dict):
@@ -159,8 +170,12 @@ class EnterpriseMarkdownFixer:
         print("=" * 80)
 
         # Summary
-        total_before = sum(r.get("error_count", 0) for r in results["before_results"].values() if r.get("error_count", 0) > 0)
-        total_after = sum(r.get("error_count", 0) for r in results["after_results"].values() if r.get("error_count", 0) > 0)
+        total_before = sum(
+            r.get("error_count", 0) for r in results["before_results"].values() if r.get("error_count", 0) > 0
+        )
+        total_after = sum(
+            r.get("error_count", 0) for r in results["after_results"].values() if r.get("error_count", 0) > 0
+        )
         reduction = total_before - total_after
         reduction_pct = (reduction / total_before * 100) if total_before > 0 else 0
 
@@ -181,7 +196,9 @@ class EnterpriseMarkdownFixer:
 
             status_emoji = "✅" if after_count == 0 else "⚠️" if after_count < before_count else "❌"
 
-            print(f"  {status_emoji} {domain:15s} | {before_count:3d} → {after_count:3d} errors | {files_processed:3d} files processed")
+            print(
+                f"  {status_emoji} {domain:15s} | {before_count:3d} → {after_count:3d} errors | {files_processed:3d} files processed"
+            )
 
         # Recommendations
         print("\n💡 NEXT STEPS:")
@@ -192,9 +209,18 @@ class EnterpriseMarkdownFixer:
         else:
             print("   🎉 All domains are now clean! Ready for production.")
 
+
 def main():
-    domains = ["classification", "code_of_conduct", "communication", "discipline",
-               "finance", "first_aid", "foundation", "identity"]
+    domains = [
+        "classification",
+        "code_of_conduct",
+        "communication",
+        "discipline",
+        "finance",
+        "first_aid",
+        "foundation",
+        "identity",
+    ]
 
     # Parse command line arguments
     selected_domains = domains
@@ -213,6 +239,7 @@ def main():
     fixer.print_comprehensive_report(results)
 
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())

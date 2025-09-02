@@ -5,6 +5,7 @@ MD005 Fixer: Inconsistent List Indentation
 Standardizes list indentation for consistent markdown formatting.
 Part of the enterprise automation suite.
 """
+
 import re
 import sys
 
@@ -48,6 +49,7 @@ def fix_md005(file_path):
         return True
     return False
 
+
 def main():
     files = sys.argv[1:]
     fixed_count = 0
@@ -59,6 +61,7 @@ def main():
         print(f"[MD005] Fixed {fixed_count} files with inconsistent list indentation")
     else:
         print("[MD005] No inconsistent list indentation found")
+
 
 if __name__ == "__main__":
     main()

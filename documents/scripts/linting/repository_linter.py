@@ -43,9 +43,10 @@ def main():
         # Basic fallback - just verify no critical errors
         try:
             import subprocess
-            result = subprocess.run([
-                "markdownlint-cli2", "docs/domains/**/*.md"
-            ], capture_output=True, text=True, check=False)
+
+            result = subprocess.run(
+                ["markdownlint-cli2", "docs/domains/**/*.md"], capture_output=True, text=True, check=False
+            )
 
             if result.returncode == 0:
                 print("✅ Basic repository check passed")
@@ -58,6 +59,7 @@ def main():
         except Exception as fallback_error:
             print(f"❌ Fallback check also failed: {fallback_error}")
             return 1
+
 
 if __name__ == "__main__":
     sys.exit(main())

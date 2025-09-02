@@ -7,14 +7,14 @@
   --to-yellow: #FAC32A;
   --to-blue: #1876CB;
   --to-red: #EA4B26;
-  
+
   /* Override Material theme colors with custom colors */
   --md-primary-fg-color: var(--to-purple);
   --md-primary-fg-color--light: #7E5CC7;
   --md-primary-fg-color--dark: #4F349F;
   --md-accent-fg-color: var(--to-yellow);
   --md-accent-fg-color--transparent: rgba(250, 195, 42, 0.1);
-  
+
   /* Optional: Use blue for links and other elements */
   --md-typeset-a-color: var(--to-blue);
 }
@@ -99,19 +99,19 @@
     height: 40px !important;
     margin: 6px !important;
   }
-  
+
   .md-header {
     min-height: 52px !important;
   }
-  
+
   .md-header__title {
     line-height: 40px !important;
   }
-  
+
   .md-header__option {
     line-height: 40px !important;
   }
-  
+
   .md-search {
     line-height: 40px !important;
   }
@@ -124,19 +124,19 @@
     height: 36px !important;
     margin: 6px !important;
   }
-  
+
   .md-header {
     min-height: 48px !important;
   }
-  
+
   .md-header__title {
     line-height: 36px !important;
   }
-  
+
   .md-header__option {
     line-height: 36px !important;
   }
-  
+
   .md-search {
     line-height: 36px !important;
   }

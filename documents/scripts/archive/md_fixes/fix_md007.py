@@ -1,4 +1,3 @@
-
 """
 Professional MD007 Fixer Script
 
@@ -8,6 +7,7 @@ Professional MD007 Fixer Script
 - Idempotent: can correct its own previous errors
 - Provides detailed reporting of changes and unsolved errors
 """
+
 import re
 import sys
 
@@ -15,8 +15,10 @@ import sys
 def is_code_block(line):
     return line.strip().startswith("```")
 
+
 def is_yaml_frontmatter(line):
     return line.strip() in ("---", "...")
+
 
 def fix_md007(file_path):
     with open(file_path, encoding="utf-8") as f:
@@ -100,6 +102,7 @@ def fix_md007(file_path):
             print(f"  Line {line_num}: {line_text}")
     return changed, unsolved
 
+
 def main():
     files = sys.argv[1:]
     total_unsolved = {}
@@ -115,6 +118,7 @@ def main():
                 print(f"  Line {line_num}: {line_text}")
     else:
         print("All MD007 errors fixed!")
+
 
 if __name__ == "__main__":
     main()

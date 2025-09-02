@@ -3,6 +3,7 @@ import sys
 
 ## Removed unused imports
 
+
 def fix_md012(file_path):
     with open(file_path, encoding="utf-8") as f:
         content = f.read()
@@ -13,6 +14,7 @@ def fix_md012(file_path):
         print(f"[MD012] Fixed multiple blank lines in {file_path}")
         return True
     return False
+
 
 if __name__ == "__main__":
     files = sys.argv[1:]

@@ -19,10 +19,7 @@ def setup_git_hooks():
 
     # Find Git root
     try:
-        git_root = subprocess.check_output(
-            ["git", "rev-parse", "--show-toplevel"],
-            text=True
-        ).strip()
+        git_root = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip()
         git_root = Path(git_root)
     except subprocess.CalledProcessError:
         print("❌ Not in a Git repository")
@@ -37,6 +34,7 @@ def setup_git_hooks():
 
     # Determine which hook to use based on platform
     import platform
+
     if platform.system() == "Windows":
         # Setup PowerShell hook
         source_hook = git_hooks_dir / "pre-commit-domain-lint.ps1"
@@ -82,10 +80,7 @@ def test_domain_script():
 
     # Find Git root first
     try:
-        git_root = subprocess.check_output(
-            ["git", "rev-parse", "--show-toplevel"],
-            text=True
-        ).strip()
+        git_root = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip()
         git_root = Path(git_root)
         domain_script = git_root / "documents" / "scripts" / "linting" / "domain_linter.py"
     except subprocess.CalledProcessError:
@@ -99,9 +94,13 @@ def test_domain_script():
 
     try:
         # Test on finance domain
-        result = subprocess.run([
-            "python", str(domain_script), "finance", "--check-only"
-        ], capture_output=True, text=True, cwd=Path.cwd(), check=False)
+        result = subprocess.run(
+            ["python", str(domain_script), "finance", "--check-only"],
+            capture_output=True,
+            text=True,
+            cwd=Path.cwd(),
+            check=False,
+        )
 
         if result.returncode == 0:
             print("✅ Domain script test passed")

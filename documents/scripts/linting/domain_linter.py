@@ -17,6 +17,7 @@ Usage:
     python scripts/domain_lint.py finance --fix --auto-stage
     python scripts/domain_lint.py finance --check-only --report
 """
+
 from __future__ import annotations
 
 import argparse
@@ -67,6 +68,7 @@ class DomainLinter:
 
                 # Try different markdownlint-cli2 executables for cross-platform compatibility
                 import platform
+
                 executables = []
                 if platform.system() == "Windows":
                     executables = ["markdownlint-cli2.cmd", "markdownlint-cli2"]
@@ -77,10 +79,7 @@ class DomainLinter:
                 for exe in executables:
                     try:
                         result = subprocess.run(
-                            [exe] + file_paths,
-                            capture_output=True,
-                            text=True,
-                            cwd=self.base_path, check=False
+                            [exe] + file_paths, capture_output=True, text=True, cwd=self.base_path, check=False
                         )
                         break  # Success, use this result
                     except FileNotFoundError:
@@ -146,6 +145,7 @@ class DomainLinter:
 
                 # Try different markdownlint-cli2 executables for cross-platform compatibility
                 import platform
+
                 executables = []
                 if platform.system() == "Windows":
                     executables = ["markdownlint-cli2.cmd", "markdownlint-cli2"]
@@ -156,10 +156,7 @@ class DomainLinter:
                 for exe in executables:
                     try:
                         result = subprocess.run(
-                            [exe, "--fix"] + file_paths,
-                            capture_output=True,
-                            text=True,
-                            cwd=self.base_path, check=False
+                            [exe, "--fix"] + file_paths, capture_output=True, text=True, cwd=self.base_path, check=False
                         )
                         break  # Success, use this result
                     except FileNotFoundError:
@@ -196,12 +193,12 @@ class DomainLinter:
             if script.exists():
                 try:
                     file_paths = [str(f) for f in files]
-                    result = subprocess.run([
-                        "uv", "run", "python", str(script)
-                    ] + file_paths,
-                    capture_output=True,
-                    text=True,
-                    cwd=self.base_path, check=False
+                    result = subprocess.run(
+                        ["uv", "run", "python", str(script)] + file_paths,
+                        capture_output=True,
+                        text=True,
+                        cwd=self.base_path,
+                        check=False,
                     )
 
                     if "Fixed" in result.stdout:
@@ -218,12 +215,8 @@ class DomainLinter:
     def stage_changes(self) -> bool:
         """Stage the fixed files in Git."""
         try:
-            result = subprocess.run([
-                "git", "add", str(self.domain_path)
-            ],
-            capture_output=True,
-            text=True,
-            cwd=self.base_path, check=False
+            result = subprocess.run(
+                ["git", "add", str(self.domain_path)], capture_output=True, text=True, cwd=self.base_path, check=False
             )
             return result.returncode == 0
         except Exception:
@@ -288,24 +281,17 @@ Examples:
     python scripts/domain_lint.py finance --fix --auto-stage
     python scripts/domain_lint.py tournament --fix --report --verbose
     python scripts/domain_lint.py identity --check-only --save-report
-        """
+        """,
     )
 
     parser.add_argument("domain", help="Domain name to lint (e.g., finance, tournament)")
-    parser.add_argument("--check-only", action="store_true",
-                       help="Run lint check without fixing")
-    parser.add_argument("--fix", action="store_true",
-                       help="Apply automatic fixes")
-    parser.add_argument("--auto-stage", action="store_true",
-                       help="Automatically stage fixed files in Git")
-    parser.add_argument("--report", action="store_true",
-                       help="Display detailed report")
-    parser.add_argument("--save-report", action="store_true",
-                       help="Save report to file")
-    parser.add_argument("--verbose", "-v", action="store_true",
-                       help="Detailed output")
-    parser.add_argument("--threshold", type=int, default=0,
-                       help="Maximum acceptable errors (default: 0)")
+    parser.add_argument("--check-only", action="store_true", help="Run lint check without fixing")
+    parser.add_argument("--fix", action="store_true", help="Apply automatic fixes")
+    parser.add_argument("--auto-stage", action="store_true", help="Automatically stage fixed files in Git")
+    parser.add_argument("--report", action="store_true", help="Display detailed report")
+    parser.add_argument("--save-report", action="store_true", help="Save report to file")
+    parser.add_argument("--verbose", "-v", action="store_true", help="Detailed output")
+    parser.add_argument("--threshold", type=int, default=0, help="Maximum acceptable errors (default: 0)")
 
     args = parser.parse_args()
 

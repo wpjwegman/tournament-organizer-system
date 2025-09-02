@@ -2,6 +2,7 @@ import sys
 
 ## Removed unused import
 
+
 def fix_md047(file_path):
     with open(file_path, "rb") as f:
         content = f.read()
@@ -13,6 +14,7 @@ def fix_md047(file_path):
         print(f"[MD047] Fixed trailing newline in {file_path}")
         return True
     return False
+
 
 if __name__ == "__main__":
     files = sys.argv[1:]

@@ -7,6 +7,7 @@ Usage (pre-commit passes file list):
 
 If no files are passed (e.g., always_run job), the script discovers staged files with git.
 """
+
 from __future__ import annotations
 
 import re

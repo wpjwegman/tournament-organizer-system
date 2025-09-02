@@ -5,6 +5,7 @@ MD049 Fixer: Emphasis Style Standardization
 Converts underscore emphasis to asterisk emphasis for consistency.
 Part of the enterprise automation suite.
 """
+
 import re
 import sys
 
@@ -30,6 +31,7 @@ def fix_md049(file_path):
         return True
     return False
 
+
 def main():
     files = sys.argv[1:]
     fixed_count = 0
@@ -41,6 +43,7 @@ def main():
         print(f"[MD049] Fixed {fixed_count} files with underscore emphasis")
     else:
         print("[MD049] No underscore emphasis found")
+
 
 if __name__ == "__main__":
     main()

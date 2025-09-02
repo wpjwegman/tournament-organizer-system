@@ -3,6 +3,7 @@ import sys
 
 ## Removed unused import
 
+
 def fix_md022(file_path):
     with open(file_path, encoding="utf-8") as f:
         lines = f.readlines()
@@ -16,7 +17,7 @@ def fix_md022(file_path):
                 fixed_lines.append("\n")
             fixed_lines.append(line)
             # Ensure one blank line after
-            if i + 1 < len(lines) and lines[i+1].strip() != "":
+            if i + 1 < len(lines) and lines[i + 1].strip() != "":
                 fixed_lines.append("\n")
         else:
             fixed_lines.append(line)
@@ -30,6 +31,7 @@ def fix_md022(file_path):
         print(f"[MD022] Fixed heading blank lines in {file_path}")
         return True
     return False
+
 
 if __name__ == "__main__":
     files = sys.argv[1:]

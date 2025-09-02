@@ -27,6 +27,7 @@ def fix_md025(file_path):
         return True
     return False
 
+
 if __name__ == "__main__":
     files = sys.argv[1:]
     for file_path in files:

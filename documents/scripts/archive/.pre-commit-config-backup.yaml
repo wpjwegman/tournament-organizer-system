@@ -12,7 +12,7 @@ repos:
         types: [markdown]
         minimum_pre_commit_version: "1.15.0"
         additional_dependencies: ["markdownlint-cli2@0.18.1"]
-  
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:

@@ -18,10 +18,10 @@ if (-not $modifiedFiles) {
 }
 
 # Extract unique domains from modified files
-$domains = $modifiedFiles | ForEach-Object { 
-    if ($_ -match '^documents/docs/domains/([^/]*)/') { 
-        $Matches[1] 
-    } 
+$domains = $modifiedFiles | ForEach-Object {
+    if ($_ -match '^documents/docs/domains/([^/]*)/') {
+        $Matches[1]
+    }
 } | Sort-Object -Unique
 
 Write-Host "📁 Modified domains: $($domains -join ', ')" -ForegroundColor Yellow
@@ -32,10 +32,10 @@ Push-Location $DocumentsDir
 
 foreach ($domain in $domains) {
     Write-Host "`n🎯 Checking $domain domain..." -ForegroundColor Yellow
-    
+
     # Run domain linting with threshold (allow some errors for domains under development)
     python $DomainLintScript $domain --check-only --threshold 10 | Out-Null
-    
+
     if ($LASTEXITCODE -eq 0) {
         Write-Host "✅ $domain domain passed" -ForegroundColor Green
     } else {

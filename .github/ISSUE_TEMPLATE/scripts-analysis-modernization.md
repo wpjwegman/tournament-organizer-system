@@ -96,7 +96,7 @@ graph TD
     A --> C[repository_linter.py]
     A --> D[markdownlint-cli2]
     A --> E[Pre-commit hooks]
-    
+
     B --> F[Domain-specific validation]
     C --> G[Repository reporting]
     D --> H[Markdown linting]

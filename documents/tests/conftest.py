@@ -1,11 +1,13 @@
 """
 Test configuration and shared fixtures for the tournament organizer documentation system.
 """
-import pytest
-from pathlib import Path
-from unittest.mock import Mock, patch
+
 import tempfile
-import shutil
+from pathlib import Path
+from unittest.mock import Mock
+from unittest.mock import patch
+
+import pytest
 
 
 @pytest.fixture
@@ -13,17 +15,18 @@ def temp_docs_structure():
     """Create a temporary documentation structure for testing."""
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_path = Path(temp_dir)
-        
+
         # Create test structure
         docs_path = temp_path / "docs" / "domains"
         docs_path.mkdir(parents=True)
-        
+
         # Create sample domain
         finance_path = docs_path / "finance"
         finance_path.mkdir()
-        
+
         # Create sample markdown files
-        (finance_path / "README.md").write_text("""# Finance Domain
+        (finance_path / "README.md").write_text(
+            """# Finance Domain
 
 ## Overview
 
@@ -37,9 +40,12 @@ This is a test finance domain.
 ## Implementation
 
 More details here.
-""", encoding="utf-8")
-        
-        (finance_path / "budget.md").write_text("""# Budget Management
+""",
+            encoding="utf-8",
+        )
+
+        (finance_path / "budget.md").write_text(
+            """# Budget Management
 
 ## Planning
 
@@ -49,8 +55,10 @@ Budget planning details.
 
 - Revenue
 - Expenses
-""", encoding="utf-8")
-        
+""",
+            encoding="utf-8",
+        )
+
         yield temp_path
 
 
@@ -58,11 +66,7 @@ Budget planning details.
 def mock_subprocess():
     """Mock subprocess for testing without executing external commands."""
     with patch("subprocess.run") as mock_run:
-        mock_run.return_value = Mock(
-            returncode=0,
-            stdout="",
-            stderr=""
-        )
+        mock_run.return_value = Mock(returncode=0, stdout="", stderr="")
         yield mock_run
 
 
@@ -78,7 +82,7 @@ def sample_markdown_content():
     """Sample markdown content for testing."""
     return {
         "valid": """---
-title: "Test Document" 
+title: "Test Document"
 ---
 
 # Test Document

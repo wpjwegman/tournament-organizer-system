@@ -10,7 +10,7 @@ jobs:
   validate-commit-quality:
     name: 🔍 Validate Commit Quality
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: 📥 Checkout Repository
       uses: actions/checkout@v4
@@ -41,42 +41,42 @@ jobs:
     - name: �🔍 Simulate Pre-Commit Hook
       run: |
         cd documents
-        
+
         echo "🔍 Simulating pre-commit hook validation..."
-        
+
         # Get list of modified markdown files in this PR
         MODIFIED_FILES=$(git diff --name-only origin/master HEAD | grep '\.md$' || true)
-        
+
         if [ -z "$MODIFIED_FILES" ]; then
           echo "::notice::No markdown files modified in this PR"
           exit 0
         fi
-        
+
         echo "Modified files:"
         echo "$MODIFIED_FILES" | sed 's/^/  /'
-        
+
         # Extract unique domains from modified files
         DOMAINS=$(echo "$MODIFIED_FILES" | grep '^documents/docs/domains/' | cut -d'/' -f4 | sort -u || true)
-        
+
         if [ -z "$DOMAINS" ]; then
           echo "::notice::No domain files modified"
           exit 0
         fi
-        
+
         echo "Affected domains:"
         echo "$DOMAINS" | sed 's/^/  /'
-        
+
         # Check each modified domain with development threshold (same as pre-commit hook)
         FAILED_DOMAINS=""
         for DOMAIN in $DOMAINS; do
           echo "::group::📋 Checking domain: $DOMAIN"
-          
+
           # Use same threshold as pre-commit hook (5 errors) and capture output
           OUTPUT=$(uv run python scripts/linting/domain_linter.py "$DOMAIN" --check-only --threshold 5 --verbose 2>&1)
           EXIT_CODE=$?
-          
+
           echo "$OUTPUT"
-          
+
           # Check if output contains success message OR exit code is 0
           if echo "$OUTPUT" | grep -q "No linting errors found!" || [ $EXIT_CODE -eq 0 ]; then
             echo "✅ Domain $DOMAIN passed validation"
@@ -84,10 +84,10 @@ jobs:
             FAILED_DOMAINS="$FAILED_DOMAINS $DOMAIN"
             echo "❌ Domain $DOMAIN failed validation"
           fi
-          
+
           echo "::endgroup::"
         done
-        
+
         # Report results (same format as pre-commit hook)
         if [ -n "$FAILED_DOMAINS" ]; then
           echo "::error::Pre-commit validation failed for domains:$FAILED_DOMAINS"
@@ -108,31 +108,31 @@ jobs:
       if: always()
       run: |
         cd documents
-        
+
         # Generate comprehensive report for PR context
         uv run python scripts/linting/repository_linter.py --all-domains --save-report
-        
+
         # Create PR-specific report
         cat > pr_validation_report.md << 'EOF'
         # 📊 PR Documentation Validation Report
-        
+
         **Pull Request:** #${{ github.event.number }}
         **Branch:** `${{ github.head_ref }}`
         **Generated:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
-        
+
         ## Validation Results
-        
+
         This report shows the documentation quality validation results for this pull request.
         The validation uses the same rules and thresholds as the Git pre-commit hooks.
-        
+
         EOF
-        
+
         if [ -f "repository_lint_report_"*.md ]; then
           echo "## Repository Status" >> pr_validation_report.md
           echo "" >> pr_validation_report.md
           tail -n +10 repository_lint_report_*.md >> pr_validation_report.md
         fi
-        
+
         echo "" >> pr_validation_report.md
         echo "## Pre-Commit Hook Integration" >> pr_validation_report.md
         echo "" >> pr_validation_report.md

@@ -56,6 +56,7 @@ def run_linter(domain=None, stage="before"):
     cmd += ["--check-only", "--threshold", "0", "--verbose", "--report"]
     subprocess.run(cmd, check=False)
 
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python run_all_md_fixes.py <root_dir> [domain]")
@@ -79,6 +80,7 @@ def main():
         else:
             print(f"[UNCHANGED] {f}")
     print("\nAll fixers executed. Ready for pre-commit integration.")
+
 
 if __name__ == "__main__":
     main()

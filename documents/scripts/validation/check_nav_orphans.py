@@ -8,6 +8,7 @@ marker line emitted by MkDocs:
 
 If found, prints the list and exits with non-zero.
 """
+
 from __future__ import annotations
 
 import re
@@ -15,6 +16,7 @@ import subprocess
 import sys
 
 MARKER = 'The following pages exist in the docs directory, but are not included in the "nav" configuration:'
+
 
 def main() -> int:
     try:
@@ -34,7 +36,9 @@ def main() -> int:
     print(out)
 
     if MARKER in out:
-        print("\nERROR: Pages found outside nav. Add them to mkdocs.yml nav or move/remove from docs/.", file=sys.stderr)
+        print(
+            "\nERROR: Pages found outside nav. Add them to mkdocs.yml nav or move/remove from docs/.", file=sys.stderr
+        )
         # Extract indented list items immediately following the marker
         lines = out.splitlines()
         try:
@@ -42,7 +46,7 @@ def main() -> int:
         except StopIteration:
             idx = -1
         if idx >= 0:
-            for line in lines[idx+1:]:
+            for line in lines[idx + 1 :]:
                 if re.match(r"^\s+- ", line):
                     print(line, file=sys.stderr)
                 else:
@@ -50,6 +54,7 @@ def main() -> int:
         return 1
 
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

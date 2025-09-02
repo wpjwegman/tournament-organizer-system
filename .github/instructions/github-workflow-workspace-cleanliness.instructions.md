@@ -46,11 +46,11 @@ These instructions ensure workspace cleanliness and proper GitHub workflow pract
    # For documentation
    cd documents
    uvx pre-commit run --all-files
-   
+
    # For backend (when implemented)
    cd backend
    # Run backend tests
-   
+
    # For frontend (when implemented)  
    cd frontend
    # Run frontend tests
@@ -63,7 +63,32 @@ These instructions ensure workspace cleanliness and proper GitHub workflow pract
    git log --oneline master..HEAD  # Review your commits
    ```
 
-### 5. Pull Request Standards
+### 5. Professional Local Workflow: Containerized Validation
+
+To ensure your local results match CI (GitHub Actions uses Ubuntu), run all hooks and tools inside a Linux container with your code mounted:
+
+```powershell
+# Build the container (if not already built)
+podman build -f documents/Containerfile -t docs-quality:latest documents
+
+# Run the container interactively, mounting your project
+podman run --rm -it -v ${PWD}:/workspace -w /workspace/documents docs-quality:latest pwsh
+
+# Inside the container:
+. .venv/Scripts/Activate.ps1  # Activate Python environment if needed
+uv run pre-commit run --all-files
+uv run python scripts/validation/check_nav_orphans.py
+uv run python scripts/linting/domain_linter.py --check-only
+uv run python scripts/linting/repository_linter.py --all-domains --report
+markdownlint-cli2 "docs/**/*.md"
+```
+
+**Workflow:**
+- Run all validation inside the container.
+- Fix issues locally, re-run validation in the container.
+- Commit only when all checks pass.
+
+### 6. Pull Request Standards
 
 - **Link to GitHub issue** in PR description
 - **Clear PR title** describing the change

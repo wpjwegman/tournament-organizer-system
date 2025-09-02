@@ -5,6 +5,7 @@ MD034 Fixer: Bare URL Wrapper
 Wraps bare URLs in proper markdown link syntax.
 Part of the enterprise automation suite.
 """
+
 import re
 import sys
 
@@ -33,6 +34,7 @@ def fix_md034(file_path):
         return True
     return False
 
+
 def main():
     files = sys.argv[1:]
     fixed_count = 0
@@ -44,6 +46,7 @@ def main():
         print(f"[MD034] Fixed {fixed_count} files with bare URLs")
     else:
         print("[MD034] No bare URLs found")
+
 
 if __name__ == "__main__":
     main()

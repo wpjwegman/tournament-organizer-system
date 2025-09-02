@@ -20,7 +20,7 @@ jobs:
   containerized-quality-checks:
     name: 🔍 Containerized Quality Checks
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: 📥 Checkout Repository
       uses: actions/checkout@v4

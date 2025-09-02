@@ -3,6 +3,7 @@ import sys
 
 ## Removed unused import
 
+
 def fix_md041(file_path):
     with open(file_path, encoding="utf-8") as f:
         lines = f.readlines()
@@ -24,6 +25,7 @@ def fix_md041(file_path):
             f.writelines(lines)
         return True
     return False
+
 
 if __name__ == "__main__":
     files = sys.argv[1:]

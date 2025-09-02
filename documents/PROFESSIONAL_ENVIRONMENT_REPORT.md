@@ -49,12 +49,12 @@ exclude = __pycache__,*.pyc,.git
 ```toml
 [tool.ruff.lint]
 select = [
-    "F", "E", "W", "C90", "I", "N", "D", "UP", "YTT", "ANN", 
-    "ASYNC", "S", "BLE", "FBT", "B", "A", "COM", "CPY", "C4", 
-    "DTZ", "T10", "DJ", "EM", "EXE", "FA", "ISC", "ICN", "LOG", 
-    "G", "INP", "PIE", "T20", "PYI", "PT", "Q", "RSE", "RET", 
-    "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH", 
-    "TD", "FIX", "ERA", "PD", "PGH", "PL", "TRY", "FLY", "NPY", 
+    "F", "E", "W", "C90", "I", "N", "D", "UP", "YTT", "ANN",
+    "ASYNC", "S", "BLE", "FBT", "B", "A", "COM", "CPY", "C4",
+    "DTZ", "T10", "DJ", "EM", "EXE", "FA", "ISC", "ICN", "LOG",
+    "G", "INP", "PIE", "T20", "PYI", "PT", "Q", "RSE", "RET",
+    "SLF", "SLOT", "SIM", "TID", "TCH", "INT", "ARG", "PTH",
+    "TD", "FIX", "ERA", "PD", "PGH", "PL", "TRY", "FLY", "NPY",
     "AIR", "PERF", "FURB", "RUF"
 ]
 ```

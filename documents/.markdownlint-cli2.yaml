@@ -4,7 +4,7 @@
 globs:
   - "**/*.md"
 
-# Glob patterns for files to ignore  
+# Glob patterns for files to ignore
 ignores:
   - ".venv/**"
   - "node_modules/**"

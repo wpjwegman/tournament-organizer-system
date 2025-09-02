@@ -7,11 +7,11 @@ skips:
   - B603  # subprocess_without_shell_equals_false - We handle this in Ruff
 
 # Confidence levels to report
-confidence: 
+confidence:
   - high
   - medium
 
-# Severity levels to report  
+# Severity levels to report
 severity:
   - high
   - medium

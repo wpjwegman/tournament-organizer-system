@@ -26,33 +26,33 @@ function Show-Help {
 
 function Build-Documentation {
     Write-Host "Building static documentation..." -ForegroundColor Yellow
-    
+
     # Check if we're in the right directory
     if (-not (Test-Path "documents/mkdocs.yml")) {
         Write-Host "Error: Must be run from project root directory" -ForegroundColor Red
         return
     }
-    
+
     # Check if uv is available
     if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
         Write-Host "Error: uv not found. Run setup.ps1 first." -ForegroundColor Red
         return
     }
-    
+
     # Navigate to documents directory
     Set-Location documents
-    
+
     try {
         Write-Host "🏗️  Building documentation site..." -ForegroundColor Green
-        
+
         # Build the documentation
         uv run mkdocs build --site-dir "../$OutputPath"
-        
+
         Write-Host ""
         Write-Host "✅ Documentation built successfully!" -ForegroundColor Green
         Write-Host "📁 Location: $((Resolve-Path "../$OutputPath").Path)" -ForegroundColor Cyan
         Write-Host ""
-        
+
         # Open if requested
         if ($Open) {
             $indexPath = "../$OutputPath/index.html"
@@ -61,7 +61,7 @@ function Build-Documentation {
                 Start-Process (Resolve-Path $indexPath).Path
             }
         }
-        
+
     } catch {
         Write-Host "Error building documentation: $_" -ForegroundColor Red
     } finally {
@@ -74,11 +74,11 @@ function Main {
         Show-Help
         return
     }
-    
+
     Write-Host "Tournament Organizer Documentation Builder" -ForegroundColor Green
     Write-Host "==========================================" -ForegroundColor Green
     Write-Host ""
-    
+
     Build-Documentation
 }
 

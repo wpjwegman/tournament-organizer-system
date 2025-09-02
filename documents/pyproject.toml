@@ -33,7 +33,7 @@ line-length = 120
 # Enable comprehensive rule sets
 select = [
     "E",      # pycodestyle errors
-    "W",      # pycodestyle warnings  
+    "W",      # pycodestyle warnings
     "F",      # Pyflakes
     "I",      # isort
     "N",      # pep8-naming
@@ -232,7 +232,7 @@ cc_min = "C"        # Minimum complexity grade (A, B, C, D, E, F)
 mi_min = "B"        # Maintainability Index minimum grade
 exclude = [
     ".venv/*",
-    "site/*", 
+    "site/*",
     "__pycache__/*",
     "tests/*",
     "markdown_fixes_backup/*"
@@ -241,25 +241,9 @@ exclude = [
 # Xenon Configuration (Complexity Monitoring)
 [tool.xenon]
 max_absolute = 10   # Maximum cyclomatic complexity
-max_modules = 10    # Maximum average complexity per module  
+max_modules = 10    # Maximum average complexity per module
 max_average = 5     # Maximum average complexity per function
 
 # McCabe Complexity Configuration (via Ruff)
 [tool.ruff.lint.mccabe]
 max-complexity = 10  # Maximum cyclomatic complexity per function
-
-[dependency-groups]
-dev = [
-    "bandit>=1.8.6",
-    "coverage>=7.10.6",
-    "flake8-cognitive-complexity>=0.1.0",
-    "mccabe>=0.7.0",
-    "mypy>=1.17.1",
-    "pytest>=8.4.1",
-    "pytest-cov>=6.2.1",
-    "pytest-mock>=3.14.1",
-    "radon>=6.0.1",
-    "safety>=3.6.0",
-    "types-requests>=2.32.4.20250809",
-    "xenon>=0.9.3",
-]

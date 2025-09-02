@@ -5,6 +5,7 @@ Enterprise Markdown Error Analysis Tool
 Analyzes markdownlint-cli2 output to categorize errors and generate fix plans.
 Part of the professional automation suite for enterprise documentation quality.
 """
+
 import re
 import subprocess
 from collections import defaultdict
@@ -19,12 +20,11 @@ class MarkdownErrorAnalyzer:
     def analyze_domain(self, domain: str) -> dict[str, list[str]]:
         """Analyze a single domain for markdown errors."""
         try:
-            result = subprocess.run([
-                "markdownlint-cli2",
-                f"documents/docs/domains/{domain}/**/*.md"
-            ],
-            capture_output=True,
-            text=True, check=False
+            result = subprocess.run(
+                ["markdownlint-cli2", f"documents/docs/domains/{domain}/**/*.md"],
+                capture_output=True,
+                text=True,
+                check=False,
             )
 
             errors = {}
@@ -45,12 +45,14 @@ class MarkdownErrorAnalyzer:
 
                             if file_path not in errors:
                                 errors[file_path] = []
-                            errors[file_path].append({
-                                "line": line_num,
-                                "column": col_num,
-                                "code": error_code,
-                                "detail": error_detail.strip()
-                            })
+                            errors[file_path].append(
+                                {
+                                    "line": line_num,
+                                    "column": col_num,
+                                    "code": error_code,
+                                    "detail": error_detail.strip(),
+                                }
+                            )
 
             return errors
 
@@ -74,12 +76,9 @@ class MarkdownErrorAnalyzer:
                     total_summary[error_code] += 1
 
                     # Store for detailed fix planning
-                    self.error_summary[domain][error_code].append({
-                        "file": file_path,
-                        "line": error["line"],
-                        "column": error["column"],
-                        "detail": error["detail"]
-                    })
+                    self.error_summary[domain][error_code].append(
+                        {"file": file_path, "line": error["line"], "column": error["column"], "detail": error["detail"]}
+                    )
 
             if domain_summary:
                 print(f"  📊 {domain}: {dict(domain_summary)}")
@@ -99,7 +98,7 @@ class MarkdownErrorAnalyzer:
                 "automation": "FULL",
                 "method": "find_replace",
                 "description": "Replace hard tabs with spaces",
-                "script_needed": True
+                "script_needed": True,
             }
 
         # MD007: List indentation - Custom fixer exists
@@ -109,7 +108,7 @@ class MarkdownErrorAnalyzer:
                 "automation": "FULL",
                 "method": "existing_fixer",
                 "description": "Use existing fix_md007.py script",
-                "script_needed": False
+                "script_needed": False,
             }
 
         # MD005: Inconsistent list indentation - Custom automation
@@ -119,7 +118,7 @@ class MarkdownErrorAnalyzer:
                 "automation": "FULL",
                 "method": "list_standardization",
                 "description": "Standardize list indentation",
-                "script_needed": True
+                "script_needed": True,
             }
 
         # MD034: Bare URLs - Pattern replacement
@@ -129,7 +128,7 @@ class MarkdownErrorAnalyzer:
                 "automation": "SEMI",
                 "method": "url_wrapping",
                 "description": "Wrap bare URLs in markdown link syntax",
-                "script_needed": True
+                "script_needed": True,
             }
 
         # MD049: Emphasis style - Pattern replacement
@@ -139,7 +138,7 @@ class MarkdownErrorAnalyzer:
                 "automation": "FULL",
                 "method": "emphasis_standardization",
                 "description": "Convert underscore emphasis to asterisk",
-                "script_needed": True
+                "script_needed": True,
             }
 
         # MD033: Inline HTML - Manual review needed
@@ -149,16 +148,16 @@ class MarkdownErrorAnalyzer:
                 "automation": "MANUAL",
                 "method": "review_required",
                 "description": "Review inline HTML elements for necessity",
-                "script_needed": False
+                "script_needed": False,
             }
 
         return fix_plan
 
     def print_analysis_report(self, error_summary: dict[str, int], fix_plan: dict[str, dict]):
         """Print comprehensive analysis report."""
-        print("\n" + "="*80)
+        print("\n" + "=" * 80)
         print("📊 ENTERPRISE MARKDOWN ERROR ANALYSIS REPORT")
-        print("="*80)
+        print("=" * 80)
 
         print("\n🎯 SUMMARY:")
         print(f"   Total Error Types: {len(error_summary)}")
@@ -180,14 +179,26 @@ class MarkdownErrorAnalyzer:
         print(f"   Semi Automation: {semi_auto} error types")
         print(f"   Manual Review: {manual} error types")
 
-        total_auto_errors = sum(count for code, count in error_summary.items()
-                               if fix_plan.get(code, {}).get("automation") in ["FULL", "SEMI"])
+        total_auto_errors = sum(
+            count
+            for code, count in error_summary.items()
+            if fix_plan.get(code, {}).get("automation") in ["FULL", "SEMI"]
+        )
         automation_percentage = (total_auto_errors / sum(error_summary.values())) * 100
         print(f"   Automation Coverage: {automation_percentage:.1f}%")
 
+
 def main():
-    domains = ["classification", "code_of_conduct", "communication", "discipline",
-               "finance", "first_aid", "foundation", "identity"]
+    domains = [
+        "classification",
+        "code_of_conduct",
+        "communication",
+        "discipline",
+        "finance",
+        "first_aid",
+        "foundation",
+        "identity",
+    ]
 
     analyzer = MarkdownErrorAnalyzer(domains)
     error_summary = analyzer.analyze_all_domains()
@@ -195,6 +206,7 @@ def main():
     analyzer.print_analysis_report(error_summary, fix_plan)
 
     return analyzer, error_summary, fix_plan
+
 
 if __name__ == "__main__":
     analyzer, errors, plan = main()

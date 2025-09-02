@@ -3,6 +3,7 @@ import sys
 
 ## Removed unused import
 
+
 def fix_md032(file_path):
     with open(file_path, encoding="utf-8") as f:
         lines = f.readlines()
@@ -33,6 +34,7 @@ def fix_md032(file_path):
         print(f"[MD032] Fixed list blank lines in {file_path}")
         return True
     return False
+
 
 if __name__ == "__main__":
     files = sys.argv[1:]

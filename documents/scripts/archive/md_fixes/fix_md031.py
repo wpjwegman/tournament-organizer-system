@@ -2,6 +2,7 @@ import sys
 
 ## Removed unused imports
 
+
 def fix_md031(file_path):
     with open(file_path, encoding="utf-8") as f:
         lines = f.readlines()
@@ -22,7 +23,7 @@ def fix_md031(file_path):
             if i < len(lines):
                 fixed_lines.append(lines[i])
                 # Ensure blank line after
-                if i + 1 < len(lines) and lines[i+1].strip() != "":
+                if i + 1 < len(lines) and lines[i + 1].strip() != "":
                     fixed_lines.append("\n")
         else:
             fixed_lines.append(line)
@@ -36,6 +37,7 @@ def fix_md031(file_path):
         print(f"[MD031] Fixed code block blank lines in {file_path}")
         return True
     return False
+
 
 if __name__ == "__main__":
     files = sys.argv[1:]

@@ -26,8 +26,11 @@ RUN pip install uv
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash tournament
+# Ensure permissions for Python interpreter and uv managed installations
+RUN chmod -R a+rx /home/tournament/.local || true
 USER tournament
-WORKDIR /home/tournament
+# Set working directory to project documents for pre-commit
+WORKDIR /workspace/documents
 
 # Development stage
 FROM base as development
@@ -38,24 +41,5 @@ COPY --chown=tournament:tournament pyproject.toml uv.lock ./
 # Install dependencies with uv
 RUN uv sync --frozen
 
-# Copy source code
-COPY --chown=tournament:tournament . ./
-
 # Default command
-CMD ["bash"]
-
-# Production build stage
-FROM development as production
-
-# Run quality checks and build
-RUN uv run pre-commit run --all-files || true
-RUN uv run python scripts/validation/check_nav_orphans.py
-RUN uv run python scripts/validation/check_no_frontmatter_title.py
-RUN uv run mkdocs build --strict
-
-# Serve stage
-FROM nginx:alpine as serve
-COPY --from=production /home/tournament/site /usr/share/nginx/html
-EXPOSE 80
-HEALTHCHECK --interval=30s --timeout=3s \
-    CMD curl -f http://localhost/ || exit 1
+CMD ["pwsh"]
