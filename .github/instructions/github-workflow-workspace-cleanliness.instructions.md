@@ -84,6 +84,7 @@ markdownlint-cli2 "docs/**/*.md"
 ```
 
 **Workflow:**
+
 - Run all validation inside the container.
 - Fix issues locally, re-run validation in the container.
 - Commit only when all checks pass.

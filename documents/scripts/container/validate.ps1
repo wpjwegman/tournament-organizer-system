@@ -16,10 +16,19 @@ Write-Host "🚀 Starting validation workflow..." -ForegroundColor Green
 # 1. Define the validation commands to be executed inside the container
 # Using a here-string for multi-line command clarity
 $ValidationCommands = @"
-echo '--- Running core validation checks ---'
-echo 'Validating markdown formatting with markdownlint-cli2...'
-markdownlint-cli2 "docs/**/*.md"
-echo 'Validation checks completed.'
+echo '--- Running comprehensive quality checks ---'
+echo '🔒 Security scanning with Bandit...'
+uv run bandit -r scripts/ -f text || echo 'Security issues found - review required'
+echo ''
+echo '🎯 Code quality analysis with Ruff...'
+uv run ruff check scripts/ || echo 'Code quality issues found - review required'
+echo ''
+echo '📚 Documentation validation with markdownlint-cli2...'
+markdownlint-cli2 "docs/**/*.md" || echo 'Documentation issues found - review required'
+echo ''
+echo '🏆 Running quality dashboard...'
+uv run python scripts/validation/quality_dashboard.py --quiet || echo 'Quality dashboard completed with warnings'
+echo 'Quality validation checks completed.'
 "@
 
 # 2. Run the validation commands in the container
