@@ -52,12 +52,12 @@ jobs:
         echo "$DOMAINS" | sed 's/^/  /'
 
         # Run container-based validation for each domain with same threshold as pre-commit hook
-        # Key: stay in /workspace/documents working directory where pyproject.toml exists
-        # Fix permissions: run as tournament user to avoid permission issues
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents --user tournament localhost/docs-quality:latest bash -c "
+        # Key: copy files to /tmp and run there to avoid permission issues
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '🔍 Setting up Python environment...' &&
           rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
           /usr/local/bin/uv sync &&
           
@@ -102,14 +102,15 @@ jobs:
         cd documents
 
         # Generate comprehensive report using container
-        # Key: stay in /workspace/documents working directory where pyproject.toml exists
-        # Fix permissions: run as tournament user to avoid permission issues
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents --user tournament localhost/docs-quality:latest bash -c "
+        # Key: copy files to /tmp and run there to avoid permission issues
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
           /usr/local/bin/uv sync &&
-          /usr/local/bin/uv run python scripts/linting/repository_linter.py --all-domains --save-report
+          /usr/local/bin/uv run python scripts/linting/repository_linter.py --all-domains --save-report &&
+          cp repository_lint_report_*.md /workspace/documents/ 2>/dev/null || true
         "
 
         # Create PR-specific report

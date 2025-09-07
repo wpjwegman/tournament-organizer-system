@@ -28,13 +28,13 @@ jobs:
         docker build -t localhost/docs-quality:latest -f Containerfile .
         
         # Run the exact same validation commands as our local container script
-        # Key: stay in /workspace/documents working directory where pyproject.toml exists
-        # Fix permissions: run as tournament user to avoid permission issues
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents --user tournament localhost/docs-quality:latest bash -c "
+        # Key: copy files to /tmp and run there to avoid permission issues
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '--- Running comprehensive quality checks ---' &&
           echo '🔍 Setting up Python environment...' &&
           rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
           /usr/local/bin/uv sync &&
           echo '' &&
@@ -48,8 +48,8 @@ jobs:
           echo 'Markdown validation skipped (requires Node.js setup in container)' &&
           echo '' &&
           echo '🏆 Running quality dashboard...' &&
-          mkdir -p reports &&
-          (/usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /workspace/documents --quiet || echo 'Quality dashboard completed with warnings') &&
+          mkdir -p /tmp/project-documents/reports &&
+          (/usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents --quiet || echo 'Quality dashboard completed with warnings') &&
           echo '' &&
           echo '🏗️ Testing MkDocs build...' &&
           (/usr/local/bin/uv run mkdocs build --strict --clean || echo 'Documentation build issues found - review required') &&

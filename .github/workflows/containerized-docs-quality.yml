@@ -40,11 +40,11 @@ jobs:
         cd documents
         # Use the exact same validation approach as our local container system    
         # The key difference: we COPY the files but stay in /workspace/documents working directory
-        # Fix permissions: run as tournament user to avoid permission issues
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents --user tournament localhost/docs-quality:latest bash -c "
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '🔍 Setting up Python environment...' &&
           rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
           /usr/local/bin/uv sync &&
           echo '' &&
@@ -58,15 +58,15 @@ jobs:
           echo 'Markdown validation skipped (requires Node.js setup in container)' &&
           echo '' &&
           echo '🏆 Running quality dashboard...' &&
-          mkdir -p reports &&
-          (/usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /workspace/documents --quiet || echo 'Quality dashboard completed with warnings') &&
+          mkdir -p /tmp/project-documents/reports &&
+          (/usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents --quiet || echo 'Quality dashboard completed with warnings') &&
           echo '✅ Quality validation checks completed.'
         "
 
     - name: 🏗️ Test Documentation Build
       run: |
         cd documents
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents --user tournament localhost/docs-quality:latest bash -c "
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           uv run mkdocs build --strict --clean
         "
 

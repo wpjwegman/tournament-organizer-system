@@ -32,18 +32,18 @@ jobs:
         docker build -t localhost/docs-quality:latest -f Containerfile .
         
         # Run comprehensive quality analysis using container
-        # Key: stay in /workspace/documents working directory where pyproject.toml exists
-        # Fix permissions: run as tournament user to avoid permission issues
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents --user tournament localhost/docs-quality:latest bash -c "
+        # Key: copy files to /tmp and run there to avoid permission issues
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '🔍 Setting up Python environment...' &&
           rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
           /usr/local/bin/uv sync &&
           
           echo '🏆 Running comprehensive quality dashboard...' &&
-          mkdir -p reports &&
-          /usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /workspace/documents --save-report &&
+          mkdir -p /tmp/project-documents/reports &&
+          /usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents --save-report &&
           
           echo '📊 Generating domain-specific reports...' &&
           for domain_dir in docs/domains/*/; do
@@ -55,7 +55,11 @@ jobs:
           done &&
           
           echo '📋 Running comprehensive repository analysis...' &&
-          /usr/local/bin/uv run python scripts/linting/repository_linter.py --all-domains --report --save-report --verbose
+          /usr/local/bin/uv run python scripts/linting/repository_linter.py --all-domains --report --save-report --verbose &&
+          
+          echo '📁 Copying reports back to workspace...' &&
+          cp -r /tmp/project-documents/reports /workspace/documents/ 2>/dev/null || true &&
+          cp /tmp/project-documents/repository_lint_report_*.md /workspace/documents/ 2>/dev/null || true
         "
 
     - name: 📈 Create Quality Dashboard
