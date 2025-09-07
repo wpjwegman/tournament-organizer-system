@@ -25,7 +25,7 @@ jobs:
         cd documents
 
         # Build the same container as our local validation system
-        docker build -t localhost/docs-quality:latest .
+        docker build -t localhost/docs-quality:latest -f Containerfile .
 
         echo "🔍 Running container-based pre-commit hook validation..."
 

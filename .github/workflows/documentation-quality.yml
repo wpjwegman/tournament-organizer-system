@@ -34,7 +34,7 @@ jobs:
         cd documents
 
         # Build the same container as our local validation system
-        docker build -t localhost/docs-quality:latest .
+        docker build -t localhost/docs-quality:latest -f Containerfile .
 
         # Get modified domains from changed files
         CHANGED_FILES=$(git diff --name-only origin/master HEAD)
@@ -148,11 +148,9 @@ jobs:
     - name: � Apply Container-Based Automatic Fixes
       run: |
         cd documents
-
+        
         # Build the same container as our local validation system
-        docker build -t localhost/docs-quality:latest .
-
-        # Get modified domains
+        docker build -t localhost/docs-quality:latest -f Containerfile .        # Get modified domains
         CHANGED_FILES=$(git diff --name-only origin/master HEAD)
         MODIFIED_DOMAINS=$(echo "$CHANGED_FILES" | grep '^documents/docs/domains/' | cut -d'/' -f4 | sort -u || true)
         MODIFIED_MD_FILES=$(echo "$CHANGED_FILES" | grep '\.md$' || true)

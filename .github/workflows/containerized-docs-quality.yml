@@ -33,13 +33,13 @@ jobs:
     - name: 🏗️ Build Quality Control Container
       run: |
         cd documents
-        docker build -t localhost/docs-quality:latest .
+        docker build -t localhost/docs-quality:latest -f Containerfile .
 
     - name: 🔍 Run Container-Based Quality Validation
       run: |
         cd documents
         # Use the exact same validation approach as our local container system
-        docker build -t localhost/docs-quality:latest .
+        docker build -t localhost/docs-quality:latest -f Containerfile .
         
         # Run comprehensive quality checks matching our container validation script
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "

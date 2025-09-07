@@ -25,7 +25,7 @@ jobs:
       run: |
         cd documents
         # Build the exact same container as our local validation system
-        docker build -t localhost/docs-quality:latest .
+        docker build -t localhost/docs-quality:latest -f Containerfile .
         
         # Run the exact same validation commands as our local container script
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
