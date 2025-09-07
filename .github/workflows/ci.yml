@@ -29,7 +29,7 @@ jobs:
         
         # Run the exact same validation commands as our local container script
         # Key: copy files to /tmp and run there to avoid permission issues
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+        docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '--- Running comprehensive quality checks ---' &&
           echo '🔍 Setting up Python environment...' &&
           rm -rf /tmp/project-documents &&

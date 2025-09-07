@@ -53,7 +53,7 @@ jobs:
 
         # Run container-based validation for each domain with same threshold as pre-commit hook
         # Key: copy files to /tmp and run there to avoid permission issues
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+        docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '🔍 Setting up Python environment...' &&
           rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
@@ -103,7 +103,7 @@ jobs:
 
         # Generate comprehensive report using container
         # Key: copy files to /tmp and run there to avoid permission issues
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+        docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
           cd /tmp/project-documents &&
