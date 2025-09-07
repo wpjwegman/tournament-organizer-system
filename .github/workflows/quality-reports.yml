@@ -21,50 +21,48 @@ jobs:
     - name: 📥 Checkout Repository
       uses: actions/checkout@v4
 
-    - name: 🐍 Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13'
+    - name: � Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
-    - name: 📦 Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install uv
-        cd documents
-        uv sync --frozen
-
-    - name: 🔧 Setup Node.js for markdownlint-cli2
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-
-    - name: 📋 Install markdownlint-cli2
-      run: |
-        npm install -g markdownlint-cli2
-
-    - name: 🔧 Apply Fixes (Optional)
-      if: github.event.inputs.include_fixes == 'true'
+    - name: � Run Container-Based Quality Analysis
       run: |
         cd documents
-        echo "🔧 Applying automatic fixes to all domains..."
-        python scripts/linting/repository_linter.py --all-domains --fix --verbose
-
-    - name: 📊 Generate Comprehensive Report
-      run: |
-        cd documents
-
-        echo "📊 Generating comprehensive quality report..."
-        python scripts/linting/repository_linter.py --all-domains --report --save-report --verbose
-
-        # Generate domain-specific reports
-        echo "📋 Generating domain-specific reports..."
-        for domain_dir in docs/domains/*/; do
-          if [ -d "$domain_dir" ]; then
-            domain=$(basename "$domain_dir")
-            echo "  Processing domain: $domain"
-            python scripts/linting/domain_linter.py "$domain" --check-only --save-report --report
-          fi
-        done
+        
+        # Build the same container as our local validation system
+        docker build -t localhost/docs-quality:latest .
+        
+        # Run comprehensive quality analysis using container
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          echo '� Setting up Python environment...' &&
+          rm -rf /tmp/project-venv /tmp/project-documents &&
+          cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
+          export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
+          /usr/local/bin/uv venv /tmp/project-venv &&
+          /usr/local/bin/uv sync &&
+          
+          echo '🏆 Running comprehensive quality dashboard...' &&
+          mkdir -p /tmp/project-documents/reports &&
+          /usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents --save-report &&
+          
+          echo '� Generating domain-specific reports...' &&
+          for domain_dir in docs/domains/*/; do
+            if [ -d \"\$domain_dir\" ]; then
+              domain=\$(basename \"\$domain_dir\")
+              echo \"  Processing domain: \$domain\"
+              /usr/local/bin/uv run python scripts/linting/domain_linter.py \"\$domain\" --check-only --save-report --report
+            fi
+          done &&
+          
+          echo '📋 Running comprehensive repository analysis...' &&
+          /usr/local/bin/uv run python scripts/linting/repository_linter.py --all-domains --report --save-report --verbose
+        "
+        
+        # Copy reports from container back to host
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          cp -r /tmp/project-documents/reports/* reports/ || true &&
+          cp /tmp/project-documents/repository_lint_report_*.md . || true
+        "
 
     - name: 📈 Create Quality Dashboard
       run: |
