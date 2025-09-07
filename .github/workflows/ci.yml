@@ -31,18 +31,17 @@ jobs:
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '--- Running comprehensive quality checks ---' &&
           echo '🔍 Setting up Python environment...' &&
-          rm -rf /tmp/project-venv /tmp/project-documents &&
+          rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
           cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
-          /usr/local/bin/uv venv /tmp/project-venv &&
           /usr/local/bin/uv sync &&
           echo '' &&
           echo '🔒 Security scanning with Bandit...' &&
           (/usr/local/bin/uv run bandit -r scripts/ --configfile pyproject.toml -f screen || echo 'Security issues found - review required') &&
           echo '' &&
           echo '🎯 Code quality analysis with Ruff...' &&
-          (/usr/local/bin/uv run python -m ruff check scripts/ || echo 'Code quality issues found - review required') &&
+          (/usr/local/bin/uv run ruff check scripts/ || echo 'Code quality issues found - review required') &&
           echo '' &&
           echo '📚 Documentation validation with markdownlint-cli2...' &&
           (markdownlint-cli2 'docs/**/*.md' --config .markdownlint.json || echo 'Documentation formatting issues found - review required') &&

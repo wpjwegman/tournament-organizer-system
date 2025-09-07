@@ -34,11 +34,10 @@ jobs:
         # Run comprehensive quality analysis using container
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '� Setting up Python environment...' &&
-          rm -rf /tmp/project-venv /tmp/project-documents &&
+          rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
           cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
-          /usr/local/bin/uv venv /tmp/project-venv &&
           /usr/local/bin/uv sync &&
           
           echo '🏆 Running comprehensive quality dashboard...' &&
