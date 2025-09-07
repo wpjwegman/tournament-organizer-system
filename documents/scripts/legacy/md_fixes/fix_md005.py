@@ -10,14 +10,13 @@ import re
 import sys
 
 
-def fix_md005(file_path):
+def fix_md005(file_path) -> bool:
     """Fix MD005: Standardize list indentation."""
     with open(file_path, encoding="utf-8") as f:
         lines = f.readlines()
 
     fixed_lines = []
     in_list = False
-    list_level = 0
 
     for line in lines:
         # Check if this is a list item
@@ -50,7 +49,7 @@ def fix_md005(file_path):
     return False
 
 
-def main():
+def main() -> None:
     files = sys.argv[1:]
     fixed_count = 0
     for file_path in files:

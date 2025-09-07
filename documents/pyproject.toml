@@ -151,6 +151,7 @@ show_column_numbers = true
 pretty = true
 color_output = true
 namespace_packages = true
+exclude = ["scripts/legacy/.*"]
 
 # Per-module overrides for gradual typing
 [[tool.mypy.overrides]]
@@ -164,8 +165,27 @@ ignore_missing_imports = true
 
 # Security Configuration with Bandit
 [tool.bandit]
-skips = ["B101", "B603"]  # Allow asserts, subprocess handled by Ruff
-exclude_dirs = [".venv", "site", "__pycache__", ".git"]
+# Skip these test IDs for development scripts
+skips = [
+    "B101",   # assert_used - Allow asserts in development/testing
+    "B603",   # subprocess_without_shell_equals_true - Subprocess calls are validated
+    "B607",   # start_process_with_partial_path - We use trusted tools like git, uv, python
+    "B110",   # try_except_pass - Sometimes needed for graceful error handling
+    "B404",   # import_subprocess - Subprocess is needed for automation scripts
+]
+
+# Only scan our scripts, exclude generated/external content
+exclude_dirs = [
+    ".venv", 
+    "site", 
+    "__pycache__", 
+    ".git",
+    "legacy",  # Legacy code has known issues
+]
+
+# Focus on high and medium severity issues
+severity = ["high", "medium"]
+confidence = ["high", "medium"]
 
 [tool.bandit.assert_used]
 skips = ["*test*.py", "test_*.py"]

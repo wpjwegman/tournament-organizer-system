@@ -10,7 +10,7 @@ import re
 import sys
 
 
-def fix_md049(file_path):
+def fix_md049(file_path) -> bool:
     """Fix MD049: Convert underscore emphasis to asterisk."""
     with open(file_path, encoding="utf-8") as f:
         content = f.read()
@@ -32,7 +32,7 @@ def fix_md049(file_path):
     return False
 
 
-def main():
+def main() -> None:
     files = sys.argv[1:]
     fixed_count = 0
     for file_path in files:

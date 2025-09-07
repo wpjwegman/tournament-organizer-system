@@ -2,7 +2,7 @@ import re
 import sys
 
 
-def fix_md025(file_path):
+def fix_md025(file_path) -> bool:
     with open(file_path, encoding="utf-8") as f:
         lines = f.readlines()
     h1_count = 0

@@ -13,14 +13,14 @@ import sys
 from pathlib import Path
 
 
-def setup_git_hooks():
+def setup_git_hooks() -> bool:
     """Setup Git hooks for domain linting."""
     print("🔧 Setting up Git hooks for domain-specific markdown linting...")
 
     # Find Git root
     try:
-        git_root = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip()
-        git_root = Path(git_root)
+        git_root_str = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip()
+        git_root = Path(git_root_str)
     except subprocess.CalledProcessError:
         print("❌ Not in a Git repository")
         return False
@@ -74,14 +74,14 @@ exit /b %ERRORLEVEL%
     return True
 
 
-def test_domain_script():
+def test_domain_script() -> bool | None:
     """Test the domain linting script."""
     print("\n🧪 Testing domain linting script...")
 
     # Find Git root first
     try:
-        git_root = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip()
-        git_root = Path(git_root)
+        git_root_str = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip()
+        git_root = Path(git_root_str)
         domain_script = git_root / "documents" / "scripts" / "linting" / "domain_linter.py"
     except subprocess.CalledProcessError:
         print("❌ Not in a Git repository")
@@ -114,7 +114,7 @@ def test_domain_script():
         return False
 
 
-def main():
+def main() -> int:
     print("🚀 Git Hooks Setup for Domain-Specific Markdown Linting")
     print("=" * 60)
 

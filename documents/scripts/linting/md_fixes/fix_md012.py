@@ -4,7 +4,7 @@ import sys
 ## Removed unused imports
 
 
-def fix_md012(file_path):
+def fix_md012(file_path) -> bool:
     with open(file_path, encoding="utf-8") as f:
         content = f.read()
     fixed = re.sub(r"\n{3,}", "\n\n", content)

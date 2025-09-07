@@ -35,7 +35,7 @@ class FixResult:
 class CIIssueResolver:
     """Automated CI issue resolution system."""
 
-    def __init__(self, project_root: Path):
+    def __init__(self, project_root: Path) -> None:
         self.project_root = project_root
         self.docs_dir = project_root / "documents"
         self.scripts_dir = self.docs_dir / "scripts"
@@ -117,7 +117,7 @@ class CIIssueResolver:
         """Analyze and triage security issues."""
         print("🔒 Analyzing security issues...")
 
-        cmd = ["uv", "run", "bandit", "-r", "scripts/", "-f", "json"]
+        cmd = ["uv", "run", "bandit", "-r", "scripts/", "--configfile", "pyproject.toml", "-f", "json"]
         success, stdout, stderr = self.run_command(cmd)
 
         issues_analysis = {"total": 0, "high": 0, "medium": 0, "low": 0, "fixable": 0}
@@ -253,7 +253,7 @@ class CIIssueResolver:
                 comment += f"  - Modified {len(fix.files_modified)} files\n"
             comment += f"  - {fix.details}\n\n"
 
-        total_files = len(set(f for fix in fixes for f in fix.files_modified))
+        total_files = len({f for fix in fixes for f in fix.files_modified})
         if total_files > 0:
             comment += f"**Total**: {total_files} files were automatically fixed.\n\n"
             comment += "Please review the changes and re-run the CI pipeline.\n"
@@ -264,7 +264,7 @@ class CIIssueResolver:
         return comment
 
 
-def main():
+def main() -> None:
     """Main entry point."""
     parser = argparse.ArgumentParser(description="Automated CI Issue Resolution")
     parser.add_argument("--commit", action="store_true", help="Create commit with fixes")

@@ -103,7 +103,7 @@ def fix_md007(file_path):
     return changed, unsolved
 
 
-def main():
+def main() -> None:
     files = sys.argv[1:]
     total_unsolved = {}
     for file_path in files:

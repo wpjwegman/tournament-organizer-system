@@ -22,6 +22,7 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from dataclasses import field
+from datetime import UTC
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -31,7 +32,7 @@ from typing import Any
 class QualityMetrics:
     """Quality metrics data structure."""
 
-    timestamp: str = field(default_factory=lambda: datetime.now().isoformat())
+    timestamp: str = field(default_factory=lambda: datetime.now(UTC).isoformat())
     security_issues: int = 0
     security_details: dict[str, Any] = field(default_factory=dict)
     code_quality_issues: int = 0
@@ -47,7 +48,7 @@ class QualityMetrics:
 class QualityDashboard:
     """Professional quality control dashboard."""
 
-    def __init__(self, project_root: Path):
+    def __init__(self, project_root: Path) -> None:
         self.project_root = project_root
         self.docs_dir = project_root / "documents"
         self.scripts_dir = self.docs_dir / "scripts"
@@ -70,7 +71,7 @@ class QualityDashboard:
         """Run Bandit security scanning."""
         print("🔒 Running security analysis with Bandit...")
 
-        cmd = ["uv", "run", "bandit", "-r", "scripts/", "-f", "json"]
+        cmd = ["uv", "run", "bandit", "-r", "scripts/", "--configfile", "pyproject.toml", "-f", "json"]
         success, stdout, stderr = self.run_command(cmd)
 
         issues_count = 0
@@ -135,16 +136,16 @@ class QualityDashboard:
         success, stdout, stderr = self.run_command(cmd)
 
         coverage = 0.0
-        test_results = {}
+        test_results: dict[str, any] = {}
 
         # Try to read coverage JSON report
         coverage_file = self.docs_dir / "coverage.json"
         if coverage_file.exists():
             try:
-                with open(coverage_file) as f:
+                with coverage_file.open() as f:
                     data = json.load(f)
                     coverage = data.get("totals", {}).get("percent_covered", 0.0)
-            except Exception:
+            except (json.JSONDecodeError, FileNotFoundError, KeyError):
                 pass
 
         return {
@@ -223,10 +224,10 @@ class QualityDashboard:
 
         # Test coverage (high impact)
         if metrics.test_coverage < 80:
-            score -= (80 - metrics.test_coverage) * 2
+            score = score - (80 - metrics.test_coverage) * 2
 
         # Documentation issues (low impact)
-        score -= metrics.documentation_issues * 0.5
+        score = score - metrics.documentation_issues * 0.5
 
         # Complexity penalty
         complexity_scores = {"A": 0, "B": -5, "C": -15, "D": -25, "F": -40}
@@ -336,17 +337,17 @@ class QualityDashboard:
 
     def save_report(self, metrics: QualityMetrics, format_type: str = "json") -> Path:
         """Save quality report to file."""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now(UTC).strftime("%Y%m%d_%H%M%S")
 
         if format_type == "json":
             report_file = self.reports_dir / f"quality_report_{timestamp}.json"
-            with open(report_file, "w") as f:
+            with report_file.open("w") as f:
                 json.dump(metrics.__dict__, f, indent=2)
 
         return report_file
 
 
-def main():
+def main() -> None:
     """Main entry point."""
     parser = argparse.ArgumentParser(description="Professional Quality Control Dashboard")
     parser.add_argument("--save-report", action="store_true", help="Save report to file")

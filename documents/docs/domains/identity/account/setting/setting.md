@@ -1,7 +1,5 @@
 # **Setting** (Data Model - Template Entity)
 
-*Allowed values and groups for account settings are defined in .*
-
 ## **Introduction**
 
 A **Setting** is an **Entity Template** that defines a configurable parameter or preference that can be applied to
@@ -47,9 +45,9 @@ It inherits properties from the [Base Entity](../../../foundation/base_entity.md
 
 ## **Considerations**
 
-- **Dual Purpose (Template & Instance):** This model structure defines both the setting *template* (managed by admins)
+- **Dual Purpose (Template & Instance):** This model structure defines both the setting _template_ (managed by admins)
 
-  and serves as the structure for the *instance* data embedded within an `Account` document.
+  and serves as the structure for the _instance_ data embedded within an `Account` document.
 
 - **Interpreting `Values`:** When viewing this structure as a template, `Values` holds the default value(s). When
 
@@ -68,6 +66,6 @@ It inherits properties from the [Base Entity](../../../foundation/base_entity.md
 
 - **Lifecycle:** The template itself (the standalone entity) can be `Active` or `Deprecated` via the inherited `Status`.
 
-  The lifecycle of the *applied* setting instance is tied to the parent `Account`.
+  The lifecycle of the _applied_ setting instance is tied to the parent `Account`.
 
 ---

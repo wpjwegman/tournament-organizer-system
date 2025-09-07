@@ -24,7 +24,7 @@ TITLE_RE = re.compile(r"^\s*title:\s*", re.IGNORECASE)
 def staged_markdown_files() -> list[Path]:
     try:
         out = subprocess.check_output(["git", "diff", "--cached", "--name-only"], text=True)
-    except Exception:
+    except (subprocess.CalledProcessError, FileNotFoundError):
         return []
     paths = [ROOT / p.strip() for p in out.splitlines() if p.strip().endswith(".md")]
     return [p for p in paths if DOCS_DIR in p.parents or p == DOCS_DIR]
@@ -33,7 +33,7 @@ def staged_markdown_files() -> list[Path]:
 def has_front_matter_title(path: Path) -> bool:
     try:
         text = path.read_text(encoding="utf-8", errors="ignore")
-    except Exception:
+    except (FileNotFoundError, PermissionError, OSError):
         return False
 
     # Only scan the YAML front matter block if present at top of file
@@ -52,10 +52,7 @@ def main(argv: list[str]) -> int:
     if not files:
         files = staged_markdown_files()
 
-    offending: list[Path] = []
-    for p in files:
-        if p.is_file() and has_front_matter_title(p):
-            offending.append(p.relative_to(ROOT))
+    offending = [p.relative_to(ROOT) for p in files if p.is_file() and has_front_matter_title(p)]
 
     if offending:
         print("Found forbidden 'title:' in front matter:", file=sys.stderr)

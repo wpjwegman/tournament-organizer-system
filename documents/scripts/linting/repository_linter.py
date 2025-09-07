@@ -10,7 +10,7 @@ import argparse
 import sys
 
 
-def main():
+def main() -> int | None:
     """Main entry point - delegates to enterprise automation."""
     parser = argparse.ArgumentParser(description="Repository-wide markdown linting")
     parser.add_argument("--all-domains", action="store_true", help="Process all domains")

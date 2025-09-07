@@ -10,7 +10,7 @@ import re
 import sys
 
 
-def fix_md034(file_path):
+def fix_md034(file_path) -> bool:
     """Fix MD034: Wrap bare URLs in markdown link syntax."""
     with open(file_path, encoding="utf-8") as f:
         content = f.read()
@@ -35,7 +35,7 @@ def fix_md034(file_path):
     return False
 
 
-def main():
+def main() -> None:
     files = sys.argv[1:]
     fixed_count = 0
     for file_path in files:

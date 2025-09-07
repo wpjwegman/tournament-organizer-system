@@ -42,7 +42,7 @@ except ImportError:
 class DocumentationLintCLI:
     """Professional CLI for documentation linting operations."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize the CLI."""
         self.base_path = Path.cwd()
 

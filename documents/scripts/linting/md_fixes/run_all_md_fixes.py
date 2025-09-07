@@ -31,20 +31,20 @@ def find_markdown_files(root_dir, domain=None):
             search_dir = os.path.join(root_dir, "documents", "docs", "domains", domain)
     else:
         search_dir = root_dir
-    for root, dirs, files in os.walk(search_dir):
+    for root, _dirs, files in os.walk(search_dir):
         for file in files:
             if file.endswith(".md"):
                 yield os.path.join(root, file)
 
 
-def run_fixer(fixer, files):
+def run_fixer(fixer, files) -> None:
     fixer_path = os.path.join(SCRIPT_DIR, fixer)
     print(f"\nRunning {fixer}...")
     for file in files:
         subprocess.run([sys.executable, fixer_path, file], check=False)
 
 
-def run_linter(domain=None, stage="before"):
+def run_linter(domain=None, stage="before") -> None:
     print(f"\n--- Linting Report ({stage}) ---")
     # Use the updated domain_linter.py which now uses markdownlint-cli2
     linter_path = os.path.join("documents", "scripts", "linting", "domain_linter.py")
@@ -57,7 +57,7 @@ def run_linter(domain=None, stage="before"):
     subprocess.run(cmd, check=False)
 
 
-def main():
+def main() -> None:
     if len(sys.argv) < 2:
         print("Usage: python run_all_md_fixes.py <root_dir> [domain]")
         sys.exit(1)

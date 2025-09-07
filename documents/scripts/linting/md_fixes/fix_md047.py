@@ -3,7 +3,7 @@ import sys
 ## Removed unused import
 
 
-def fix_md047(file_path):
+def fix_md047(file_path) -> bool:
     with open(file_path, "rb") as f:
         content = f.read()
     # Remove trailing blank lines, ensure single newline

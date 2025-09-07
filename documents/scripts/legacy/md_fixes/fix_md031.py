@@ -3,7 +3,7 @@ import sys
 ## Removed unused imports
 
 
-def fix_md031(file_path):
+def fix_md031(file_path) -> bool:
     with open(file_path, encoding="utf-8") as f:
         lines = f.readlines()
     fixed_lines = []

@@ -41,7 +41,7 @@ repos:
     rev: 1.8.0
     hooks:
       - id: bandit
-        args: ["-r", "scripts/", "-c", "pyproject.toml"]
+        args: ["-r", "scripts/", "--configfile", "pyproject.toml"]
         types: [python]
 
   - repo: local

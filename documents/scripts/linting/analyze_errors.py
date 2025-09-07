@@ -12,7 +12,7 @@ from collections import defaultdict
 
 
 class MarkdownErrorAnalyzer:
-    def __init__(self, domains: list[str]):
+    def __init__(self, domains: list[str]) -> None:
         self.domains = domains
         self.error_summary = defaultdict(lambda: defaultdict(list))
         self.fix_plan = defaultdict(list)
@@ -153,7 +153,7 @@ class MarkdownErrorAnalyzer:
 
         return fix_plan
 
-    def print_analysis_report(self, error_summary: dict[str, int], fix_plan: dict[str, dict]):
+    def print_analysis_report(self, error_summary: dict[str, int], fix_plan: dict[str, dict]) -> None:
         """Print comprehensive analysis report."""
         print("\n" + "=" * 80)
         print("📊 ENTERPRISE MARKDOWN ERROR ANALYSIS REPORT")

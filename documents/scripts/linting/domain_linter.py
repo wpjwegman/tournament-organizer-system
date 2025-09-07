@@ -28,7 +28,7 @@ from pathlib import Path
 
 
 class DomainLinter:
-    def __init__(self, domain: str, base_path: Path, config_path: Path | None = None, verbose: bool = False):
+    def __init__(self, domain: str, base_path: Path, config_path: Path | None = None, verbose: bool = False) -> None:
         self.domain = domain
         self.base_path = base_path
         self.config_path = config_path or base_path / ".markdownlint.json"
@@ -36,7 +36,8 @@ class DomainLinter:
         self.domain_path = base_path / "docs" / "domains" / domain
 
         if not self.domain_path.exists():
-            raise ValueError(f"Domain '{domain}' not found at {self.domain_path}")
+            msg = f"Domain '{domain}' not found at {self.domain_path}"
+            raise ValueError(msg)
 
     def get_domain_files(self) -> list[Path]:
         """Get all markdown files in the domain."""
@@ -79,14 +80,15 @@ class DomainLinter:
                 for exe in executables:
                     try:
                         result = subprocess.run(
-                            [exe] + file_paths, capture_output=True, text=True, cwd=self.base_path, check=False
+                            [exe, *file_paths], capture_output=True, text=True, cwd=self.base_path, check=False
                         )
                         break  # Success, use this result
                     except FileNotFoundError:
                         continue  # Try next executable
 
                 if result is None:
-                    raise FileNotFoundError("markdownlint-cli2 not found")
+                    msg = "markdownlint-cli2 not found"
+                    raise FileNotFoundError(msg)
 
             finally:
                 # Restore .markdownlint-cli2.jsonc
@@ -156,14 +158,15 @@ class DomainLinter:
                 for exe in executables:
                     try:
                         result = subprocess.run(
-                            [exe, "--fix"] + file_paths, capture_output=True, text=True, cwd=self.base_path, check=False
+                            [exe, "--fix", *file_paths], capture_output=True, text=True, cwd=self.base_path, check=False
                         )
                         break  # Success, use this result
                     except FileNotFoundError:
                         continue  # Try next executable
 
                 if result is None:
-                    raise FileNotFoundError("markdownlint-cli2 not found")
+                    msg = "markdownlint-cli2 not found"
+                    raise FileNotFoundError(msg)
 
             finally:
                 # Restore .markdownlint-cli2.jsonc
@@ -194,7 +197,7 @@ class DomainLinter:
                 try:
                     file_paths = [str(f) for f in files]
                     result = subprocess.run(
-                        ["uv", "run", "python", str(script)] + file_paths,
+                        ["uv", "run", "python", str(script), *file_paths],
                         capture_output=True,
                         text=True,
                         cwd=self.base_path,
@@ -230,7 +233,7 @@ class DomainLinter:
         error_types: dict[str, int] = {}
         total_errors = 0
 
-        for file_path, file_errors in errors.items():
+        for file_errors in errors.values():
             for error in file_errors:
                 if error.strip():
                     total_errors += 1

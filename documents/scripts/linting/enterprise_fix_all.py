@@ -14,13 +14,13 @@ from pathlib import Path
 
 
 class EnterpriseMarkdownFixer:
-    def __init__(self, domains: list[str], backup_enabled: bool = True):
+    def __init__(self, domains: list[str], backup_enabled: bool = True) -> None:
         self.domains = domains
         self.backup_enabled = backup_enabled
         self.backup_dir = Path("markdown_fixes_backup") / f"backup_{int(time.time())}"
         self.fix_results = {}
 
-    def create_backup(self):
+    def create_backup(self) -> None:
         """Create backup of all files before fixing."""
         if not self.backup_enabled:
             return
@@ -105,7 +105,7 @@ class EnterpriseMarkdownFixer:
                 try:
                     file_paths = [str(f) for f in md_files]
                     result = subprocess.run(
-                        ["uv", "run", "python", str(fixer_path)] + file_paths,
+                        ["uv", "run", "python", str(fixer_path), *file_paths],
                         capture_output=True,
                         text=True,
                         check=False,
@@ -163,7 +163,7 @@ class EnterpriseMarkdownFixer:
             "after_results": after_results,
         }
 
-    def print_comprehensive_report(self, results: dict):
+    def print_comprehensive_report(self, results: dict) -> None:
         """Print comprehensive automation report."""
         print("\n" + "=" * 80)
         print("📊 ENTERPRISE AUTOMATION RESULTS")
@@ -210,7 +210,7 @@ class EnterpriseMarkdownFixer:
             print("   🎉 All domains are now clean! Ready for production.")
 
 
-def main():
+def main() -> int:
     domains = [
         "classification",
         "code_of_conduct",
