@@ -17,32 +17,17 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: 🐍 Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13'
+    - name: � Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
-    - name: 📦 Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install uv
-        cd documents
-        uv sync --frozen
-
-    - name: � Setup Node.js for markdownlint-cli2
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-
-    - name: 📋 Install markdownlint-cli2
-      run: |
-        npm install -g markdownlint-cli2
-
-    - name: �🔍 Simulate Pre-Commit Hook
+    - name: � Container-Based Pre-Commit Validation
       run: |
         cd documents
 
-        echo "🔍 Simulating pre-commit hook validation..."
+        # Build the same container as our local validation system
+        docker build -t localhost/docs-quality:latest .
+
+        echo "🔍 Running container-based pre-commit hook validation..."
 
         # Get list of modified markdown files in this PR
         MODIFIED_FILES=$(git diff --name-only origin/master HEAD | grep '\.md$' || true)
@@ -66,51 +51,71 @@ jobs:
         echo "Affected domains:"
         echo "$DOMAINS" | sed 's/^/  /'
 
-        # Check each modified domain with development threshold (same as pre-commit hook)
-        FAILED_DOMAINS=""
-        for DOMAIN in $DOMAINS; do
-          echo "::group::📋 Checking domain: $DOMAIN"
-
-          # Use same threshold as pre-commit hook (5 errors) and capture output
-          OUTPUT=$(uv run python scripts/linting/domain_linter.py "$DOMAIN" --check-only --threshold 5 --verbose 2>&1)
-          EXIT_CODE=$?
-
-          echo "$OUTPUT"
-
-          # Check if output contains success message OR exit code is 0
-          if echo "$OUTPUT" | grep -q "No linting errors found!" || [ $EXIT_CODE -eq 0 ]; then
-            echo "✅ Domain $DOMAIN passed validation"
+        # Run container-based validation for each domain with same threshold as pre-commit hook
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          echo '🔍 Setting up Python environment...' &&
+          rm -rf /tmp/project-venv /tmp/project-documents &&
+          cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
+          export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
+          /usr/local/bin/uv venv /tmp/project-venv &&
+          /usr/local/bin/uv sync &&
+          
+          echo '📋 Checking modified domains with pre-commit thresholds...' &&
+          FAILED_DOMAINS=\"\" &&
+          for DOMAIN in $DOMAINS; do
+            echo \"::group::📋 Checking domain: \$DOMAIN\" &&
+            
+            # Use same threshold as pre-commit hook (5 errors) and capture output
+            if OUTPUT=\$(/usr/local/bin/uv run python scripts/linting/domain_linter.py \"\$DOMAIN\" --check-only --threshold 5 --verbose 2>&1); then
+              echo \"\$OUTPUT\" &&
+              echo \"✅ Domain \$DOMAIN passed validation\"
+            else
+              echo \"\$OUTPUT\" &&
+              FAILED_DOMAINS=\"\$FAILED_DOMAINS \$DOMAIN\" &&
+              echo \"❌ Domain \$DOMAIN failed validation\"
+            fi &&
+            
+            echo \"::endgroup::\"
+          done &&
+          
+          # Report results (same format as pre-commit hook)
+          if [ -n \"\$FAILED_DOMAINS\" ]; then
+            echo \"::error::Pre-commit validation failed for domains:\$FAILED_DOMAINS\" &&
+            echo \"\" &&
+            echo \"💡 To fix issues automatically:\" &&
+            for DOMAIN in \$FAILED_DOMAINS; do
+              echo \"   uv run python scripts/linting/domain_linter.py \$DOMAIN --fix --auto-stage\"
+            done &&
+            echo \"\" &&
+            echo \"🚫 To bypass this check locally (not recommended):\" &&
+            echo \"   git commit --no-verify\" &&
+            exit 1
           else
-            FAILED_DOMAINS="$FAILED_DOMAINS $DOMAIN"
-            echo "❌ Domain $DOMAIN failed validation"
+            echo \"✅ All modified domains pass pre-commit validation\"
           fi
-
-          echo "::endgroup::"
-        done
-
-        # Report results (same format as pre-commit hook)
-        if [ -n "$FAILED_DOMAINS" ]; then
-          echo "::error::Pre-commit validation failed for domains:$FAILED_DOMAINS"
-          echo ""
-          echo "💡 To fix issues automatically:"
-          for DOMAIN in $FAILED_DOMAINS; do
-            echo "   uv run python scripts/linting/domain_linter.py $DOMAIN --fix --auto-stage"
-          done
-          echo ""
-          echo "🚫 To bypass this check locally (not recommended):"
-          echo "   git commit --no-verify"
-          exit 1
-        else
-          echo "✅ All modified domains pass pre-commit validation"
-        fi
+        "
 
     - name: 📊 Generate Validation Report
       if: always()
       run: |
         cd documents
 
-        # Generate comprehensive report for PR context
-        uv run python scripts/linting/repository_linter.py --all-domains --save-report
+        # Generate comprehensive report using container
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          rm -rf /tmp/project-venv /tmp/project-documents &&
+          cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
+          export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
+          /usr/local/bin/uv venv /tmp/project-venv &&
+          /usr/local/bin/uv sync &&
+          /usr/local/bin/uv run python scripts/linting/repository_linter.py --all-domains --save-report
+        "
+
+        # Copy report from container
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          cp /tmp/project-documents/repository_lint_report_*.md . || true
+        "
 
         # Create PR-specific report
         cat > pr_validation_report.md << 'EOF'
@@ -133,6 +138,11 @@ jobs:
           tail -n +10 repository_lint_report_*.md >> pr_validation_report.md
         fi
 
+        echo "" >> pr_validation_report.md
+        echo "## Container-Based Validation" >> pr_validation_report.md
+        echo "" >> pr_validation_report.md
+        echo "This PR validation uses the same container-based approach as local validation." >> pr_validation_report.md
+        echo "All checks run in the exact same environment as \`scripts/container/validate.ps1\`." >> pr_validation_report.md
         echo "" >> pr_validation_report.md
         echo "## Pre-Commit Hook Integration" >> pr_validation_report.md
         echo "" >> pr_validation_report.md
