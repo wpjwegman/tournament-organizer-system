@@ -67,6 +67,9 @@ jobs:
       run: |
         cd documents
         docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          rm -rf /tmp/project-documents &&
+          cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
           uv run mkdocs build --strict --clean
         "
 
