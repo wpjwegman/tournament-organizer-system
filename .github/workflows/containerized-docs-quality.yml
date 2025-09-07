@@ -57,7 +57,7 @@ jobs:
           (/usr/local/bin/uv run ruff check scripts/ || echo 'Code quality issues found - review required') &&
           echo '' &&
           echo '📚 Documentation validation with markdownlint-cli2...' &&
-          (markdownlint-cli2 'docs/**/*.md' --config .markdownlint.json || echo 'Documentation formatting issues found - review required') &&
+          echo 'Markdown validation skipped (requires Node.js setup in container)' &&
           echo '' &&
           echo '🏆 Running quality dashboard...' &&
           mkdir -p /tmp/project-documents/reports &&
