@@ -29,7 +29,8 @@ jobs:
         
         # Run the exact same validation commands as our local container script
         # Key: stay in /workspace/documents working directory where pyproject.toml exists
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+        # Fix permissions: run as tournament user to avoid permission issues
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents --user tournament localhost/docs-quality:latest bash -c "
           echo '--- Running comprehensive quality checks ---' &&
           echo '🔍 Setting up Python environment...' &&
           rm -rf /tmp/project-documents &&
