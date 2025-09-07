@@ -38,15 +38,12 @@ jobs:
     - name: 🔍 Run Container-Based Quality Validation
       run: |
         cd documents
-        # Use the exact same validation approach as our local container system
-        docker build -t localhost/docs-quality:latest -f Containerfile .
-        
-        # Run comprehensive quality checks matching our container validation script
+        # Use the exact same validation approach as our local container system    
+        # The key difference: we COPY the files but stay in /workspace/documents working directory
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '🔍 Setting up Python environment...' &&
           rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
-          cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
           /usr/local/bin/uv sync &&
           echo '' &&
@@ -60,8 +57,8 @@ jobs:
           echo 'Markdown validation skipped (requires Node.js setup in container)' &&
           echo '' &&
           echo '🏆 Running quality dashboard...' &&
-          mkdir -p /tmp/project-documents/reports &&
-          (/usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents --quiet || echo 'Quality dashboard completed with warnings') &&
+          mkdir -p reports &&
+          (/usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /workspace/documents --quiet || echo 'Quality dashboard completed with warnings') &&
           echo '✅ Quality validation checks completed.'
         "
 

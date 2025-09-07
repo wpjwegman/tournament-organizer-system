@@ -52,11 +52,11 @@ jobs:
         echo "$DOMAINS" | sed 's/^/  /'
 
         # Run container-based validation for each domain with same threshold as pre-commit hook
+        # Key: stay in /workspace/documents working directory where pyproject.toml exists
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '🔍 Setting up Python environment...' &&
           rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
-          cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
           /usr/local/bin/uv sync &&
           
@@ -101,19 +101,13 @@ jobs:
         cd documents
 
         # Generate comprehensive report using container
+        # Key: stay in /workspace/documents working directory where pyproject.toml exists
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
-          rm -rf /tmp/project-venv /tmp/project-documents &&
+          rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
-          cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
-          /usr/local/bin/uv venv /tmp/project-venv &&
           /usr/local/bin/uv sync &&
           /usr/local/bin/uv run python scripts/linting/repository_linter.py --all-domains --save-report
-        "
-
-        # Copy report from container
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
-          cp /tmp/project-documents/repository_lint_report_*.md . || true
         "
 
         # Create PR-specific report

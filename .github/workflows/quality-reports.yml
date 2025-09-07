@@ -32,19 +32,19 @@ jobs:
         docker build -t localhost/docs-quality:latest -f Containerfile .
         
         # Run comprehensive quality analysis using container
+        # Key: stay in /workspace/documents working directory where pyproject.toml exists
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
-          echo '� Setting up Python environment...' &&
+          echo '🔍 Setting up Python environment...' &&
           rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
-          cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
           /usr/local/bin/uv sync &&
           
           echo '🏆 Running comprehensive quality dashboard...' &&
-          mkdir -p /tmp/project-documents/reports &&
-          /usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents --save-report &&
+          mkdir -p reports &&
+          /usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /workspace/documents --save-report &&
           
-          echo '� Generating domain-specific reports...' &&
+          echo '📊 Generating domain-specific reports...' &&
           for domain_dir in docs/domains/*/; do
             if [ -d \"\$domain_dir\" ]; then
               domain=\$(basename \"\$domain_dir\")
@@ -55,12 +55,6 @@ jobs:
           
           echo '📋 Running comprehensive repository analysis...' &&
           /usr/local/bin/uv run python scripts/linting/repository_linter.py --all-domains --report --save-report --verbose
-        "
-        
-        # Copy reports from container back to host
-        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
-          cp -r /tmp/project-documents/reports/* reports/ || true &&
-          cp /tmp/project-documents/repository_lint_report_*.md . || true
         "
 
     - name: 📈 Create Quality Dashboard
