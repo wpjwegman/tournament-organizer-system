@@ -145,12 +145,12 @@ in the [Base Entity Model](../../foundation/base_entity.md).
 ## References
 
 - [FCI Breed Standards](https://www.fci.be/en/nomenclature/) - International breed standards
-- [AKC Breed Standards](https://<www.akc.org/dog-breeds>/) - American Kennel Club standards
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://<www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/032112521>5)
+- [AKC Breed Standards](https://www.akc.org/dog-breeds/) - American Kennel Club standards
+- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
 
   by Eric Evans - Template Entity patterns
 
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://<www.iso.org/standard/36326.htm>l)
+- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
 
 ## See Also
 
