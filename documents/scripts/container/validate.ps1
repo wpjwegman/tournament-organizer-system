@@ -14,15 +14,14 @@ $ProjectRoot = (Resolve-Path "$PSScriptRoot\..\..\..").Path
 Write-Host "🚀 Starting validation workflow..." -ForegroundColor Green
 
 # 1. Define the validation commands to be executed inside the container
-# Using a here-string for multi-line command clarity
+# Convert Windows line endings to Unix to avoid bash errors in Linux container
 $ValidationCommands = @"
 echo '--- Running comprehensive quality checks ---' && \
 echo '🔍 Setting up Python environment...' && \
-rm -rf /tmp/project-venv /tmp/project-documents && \
+rm -rf /tmp/project-documents && \
 cp -r /workspace/documents /tmp/project-documents && \
 cd /tmp/project-documents && \
 export PATH="/usr/local/bin:/usr/bin:/bin:`$PATH" && \
-/usr/local/bin/uv venv /tmp/project-venv && \
 /usr/local/bin/uv sync && \
 echo '' && \
 echo '🔒 Security scanning with Bandit...' && \
@@ -38,7 +37,7 @@ echo '🏆 Running quality dashboard...' && \
 mkdir -p /tmp/project-documents/reports && \
 (/usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents --quiet || echo 'Quality dashboard completed with warnings') && \
 echo 'Quality validation checks completed.'
-"@
+"@ -replace "`r`n", "`n"
 
 # 2. Run the validation commands in the container
 Write-Host "🔍 Running validation commands in container..." -ForegroundColor Cyan

@@ -25,37 +25,16 @@ jobs:
       with:
         fetch-depth: 0  # Full history for better analysis
 
-    - name: 🐍 Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13'
+    - name: 🐳 Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
-    - name: 📦 Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install uv
-        cd documents
-        uv sync --frozen
-
-    - name: 🔧 Setup Node.js for markdownlint-cli2
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-
-    - name: 📋 Install markdownlint-cli2
-      run: |
-        npm install -g markdownlint-cli2
-
-    - name: 🔧 Configure Scripts
-      run: |
-        cd documents
-        chmod +x scripts/cli/domain-lint.sh
-        chmod +x scripts/git-hooks/*.sh
-
-    - name: 🎯 Domain-Specific Linting
+    - name: 🎯 Container-Based Domain-Specific Linting
       id: domain-lint
       run: |
         cd documents
+
+        # Build the same container as our local validation system
+        docker build -t localhost/docs-quality:latest -f Containerfile .
 
         # Get modified domains from changed files
         CHANGED_FILES=$(git diff --name-only origin/master HEAD)
@@ -68,26 +47,43 @@ jobs:
           exit 0
         fi
 
-        # Check each modified domain with strict threshold for CI
-        FAILED_DOMAINS=""
-        for DOMAIN in $MODIFIED_DOMAINS; do
-          echo "::group::🔍 Checking domain: $DOMAIN"
-
-          if ! python scripts/linting/domain_linter.py "$DOMAIN" --check-only --threshold 0 --verbose; then
-            FAILED_DOMAINS="$FAILED_DOMAINS $DOMAIN"
-            echo "::error::Domain $DOMAIN has linting errors"
-          else
-            echo "::notice::Domain $DOMAIN passed linting"
+        # Check each modified domain using container with strict threshold for CI
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          echo '🔍 Setting up Python environment...' &&
+          rm -rf /tmp/project-documents &&
+          cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
+          export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
+          /usr/local/bin/uv sync &&
+          
+          echo '🎯 Checking each modified domain with strict CI standards...' &&
+          FAILED_DOMAINS=\"\" &&
+          for DOMAIN in $MODIFIED_DOMAINS; do
+            echo \"::group::🔍 Checking domain: \$DOMAIN\" &&
+            
+            if /usr/local/bin/uv run python scripts/linting/domain_linter.py \"\$DOMAIN\" --check-only --threshold 0 --verbose; then
+              echo \"::notice::Domain \$DOMAIN passed linting\"
+            else
+              FAILED_DOMAINS=\"\$FAILED_DOMAINS \$DOMAIN\" &&
+              echo \"::error::Domain \$DOMAIN has linting errors\"
+            fi &&
+            
+            echo \"::endgroup::\"
+          done &&
+          
+          if [ -n \"\$FAILED_DOMAINS\" ]; then
+            echo \"::error::Linting failed for domains:\$FAILED_DOMAINS\" &&
+            echo \"failed_domains=\$FAILED_DOMAINS\" >> /tmp/github_output &&
+            exit 1
           fi
+        "
 
-          echo "::endgroup::"
-        done
-
-        if [ -n "$FAILED_DOMAINS" ]; then
-          echo "::error::Linting failed for domains:$FAILED_DOMAINS"
-          echo "failed_domains=$FAILED_DOMAINS" >> $GITHUB_OUTPUT
-          exit 1
-        fi
+        # Copy any output back from container
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          if [ -f /tmp/github_output ]; then
+            cat /tmp/github_output >> $GITHUB_OUTPUT
+          fi
+        "
 
     - name: 📊 Repository-Wide Analysis
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -95,7 +91,21 @@ jobs:
         cd documents
         echo "::group::📊 Repository-wide linting analysis"
 
-        python scripts/linting/repository_linter.py --all-domains --report --save-report
+        # Use container for repository-wide analysis
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          rm -rf /tmp/project-documents &&
+          cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
+          export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
+          /usr/local/bin/uv sync &&
+          /usr/local/bin/uv run python scripts/linting/repository_linter.py --all-domains --report --save-report
+        "
+
+        # Copy reports from container
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          cp /tmp/project-documents/repository_lint_report_*.md . || true &&
+          cp -r /tmp/project-documents/scripts/reports/* scripts/reports/ || true
+        "
 
         echo "::endgroup::"
 
@@ -130,23 +140,15 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: 🐍 Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13'
+    - name: 🐳 Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
-    - name: 📦 Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install uv
-        cd documents
-        uv sync --frozen
-
-    - name: 🔧 Apply Automatic Fixes
+    - name: 🔧 Apply Container-Based Automatic Fixes
       run: |
         cd documents
-
-        # Get modified domains
+        
+        # Build the same container as our local validation system
+        docker build -t localhost/docs-quality:latest -f Containerfile .        # Get modified domains
         CHANGED_FILES=$(git diff --name-only origin/master HEAD)
         MODIFIED_DOMAINS=$(echo "$CHANGED_FILES" | grep '^documents/docs/domains/' | cut -d'/' -f4 | sort -u || true)
         MODIFIED_MD_FILES=$(echo "$CHANGED_FILES" | grep '\.md$' || true)
@@ -156,22 +158,29 @@ jobs:
           exit 0
         fi
 
-        # First apply professional markdown fixes to all modified files
-        echo "🔧 Applying professional markdown fixes with markdownlint-cli2"
-        for file in $MODIFIED_MD_FILES; do
-          if [ -f "$file" ]; then
-            echo "  Fixing: $file"
-            markdownlint-cli2 --fix "$file" || true
+        # Apply fixes using container (same environment as validation)
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          rm -rf /tmp/project-documents &&
+          cp -r /workspace/documents /tmp/project-documents &&
+          cd /tmp/project-documents &&
+          export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
+          /usr/local/bin/uv sync &&
+          
+          echo '🔧 Applying professional markdown fixes with markdownlint-cli2' &&
+          markdownlint-cli2 --fix 'docs/**/*.md' || true &&
+          
+          if [ -n \"$MODIFIED_DOMAINS\" ]; then
+            for DOMAIN in $MODIFIED_DOMAINS; do
+              echo \"🔧 Applying domain-specific fixes: \$DOMAIN\" &&
+              /usr/local/bin/uv run python scripts/linting/domain_linter.py \"\$DOMAIN\" --fix --verbose || true
+            done
           fi
-        done
+        "
 
-        # Then apply domain-specific fixes if domains were modified
-        if [ -n "$MODIFIED_DOMAINS" ]; then
-          for DOMAIN in $MODIFIED_DOMAINS; do
-            echo "🔧 Applying domain-specific fixes: $DOMAIN"
-            python scripts/linting/domain_linter.py "$DOMAIN" --fix --verbose
-          done
-        fi
+        # Copy fixed files back from container
+        docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+          cp -r /tmp/project-documents/docs/* docs/ || true
+        "
 
     - name: 📝 Commit Fixes
       run: |
@@ -185,12 +194,12 @@ jobs:
           git add .
           git commit -m "🔧 Auto-fix documentation linting issues
 
-          Applied automatic fixes using professional tools:
+          Applied automatic fixes using container-based tools:
           - markdownlint-cli2 --fix for markdown formatting
           - domain_linter.py for domain-specific business rules
           - Fixed list spacing, heading spacing, YAML frontmatter
           - Maintained code quality standards
 
-          Generated by: markdownlint-cli2 + domain_linter.py"
+          Generated by: Container-based validation system"
           git push
         fi
