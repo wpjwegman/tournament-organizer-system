@@ -25,7 +25,7 @@ jobs:
       with:
         fetch-depth: 0  # Full history for better analysis
 
-    - name: � Set up Docker Buildx
+    - name: 🐳 Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
     - name: 🎯 Container-Based Domain-Specific Linting
@@ -50,11 +50,10 @@ jobs:
         # Check each modified domain using container with strict threshold for CI
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '🔍 Setting up Python environment...' &&
-          rm -rf /tmp/project-venv /tmp/project-documents &&
+          rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
           cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
-          /usr/local/bin/uv venv /tmp/project-venv &&
           /usr/local/bin/uv sync &&
           
           echo '🎯 Checking each modified domain with strict CI standards...' &&
@@ -94,11 +93,10 @@ jobs:
 
         # Use container for repository-wide analysis
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
-          rm -rf /tmp/project-venv /tmp/project-documents &&
+          rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
           cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
-          /usr/local/bin/uv venv /tmp/project-venv &&
           /usr/local/bin/uv sync &&
           /usr/local/bin/uv run python scripts/linting/repository_linter.py --all-domains --report --save-report
         "
@@ -142,10 +140,10 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: � Set up Docker Buildx
+    - name: 🐳 Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    - name: � Apply Container-Based Automatic Fixes
+    - name: 🔧 Apply Container-Based Automatic Fixes
       run: |
         cd documents
         
@@ -162,17 +160,16 @@ jobs:
 
         # Apply fixes using container (same environment as validation)
         docker run --rm -v "$PWD:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
-          rm -rf /tmp/project-venv /tmp/project-documents &&
+          rm -rf /tmp/project-documents &&
           cp -r /workspace/documents /tmp/project-documents &&
           cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
-          /usr/local/bin/uv venv /tmp/project-venv &&
           /usr/local/bin/uv sync &&
           
           echo '🔧 Applying professional markdown fixes with markdownlint-cli2' &&
           markdownlint-cli2 --fix 'docs/**/*.md' || true &&
           
-          if [ -n '$MODIFIED_DOMAINS' ]; then
+          if [ -n \"$MODIFIED_DOMAINS\" ]; then
             for DOMAIN in $MODIFIED_DOMAINS; do
               echo \"🔧 Applying domain-specific fixes: \$DOMAIN\" &&
               /usr/local/bin/uv run python scripts/linting/domain_linter.py \"\$DOMAIN\" --fix --verbose || true

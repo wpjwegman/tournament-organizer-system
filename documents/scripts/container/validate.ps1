@@ -28,7 +28,7 @@ echo '🔒 Security scanning with Bandit...' && \
 (/usr/local/bin/uv run bandit -r scripts/ --configfile pyproject.toml -f screen || echo 'Security issues found - review required') && \
 echo '' && \
 echo '🎯 Code quality analysis with Ruff...' && \
-(/usr/local/bin/uv run ruff check scripts/ || echo 'Code quality issues found - review required') && \
+(/usr/local/bin/uv run python -m ruff check scripts/ || echo 'Code quality issues found - review required') && \
 echo '' && \
 echo '📚 Documentation validation with markdownlint-cli2...' && \
 echo 'Markdown validation skipped (requires Node.js setup in container)' && \
