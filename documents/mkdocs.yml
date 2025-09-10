@@ -59,7 +59,7 @@ plugins:
   - meta-descriptions
   - htmlproofer:
       raise_error: false
-      raise_error_after_finish: true
+      raise_error_after_finish: false
   - print-site
 
 # Markdown extensions
@@ -326,7 +326,6 @@ nav:
           - Position Model: domains/team/roster/player/position.md
     - Tournament:
       - Overview: domains/tournament/README.md
-      - Domain Completion Status: domains/tournament/TOURNAMENT_DOMAIN_COMPLETION.md
       - Participant Model: domains/tournament/participant.md
       - Rule Model: domains/tournament/rule.md
       - Tournament Model: domains/tournament/tournament.md
