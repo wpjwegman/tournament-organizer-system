@@ -48,21 +48,16 @@ jobs:
         cd documents
         
         # Generate the complete documentation site using our container
+        # Build directly in workspace to avoid permission issues
         docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
           echo '🔍 Setting up Python environment...' &&
-          rm -rf /tmp/project-documents &&
-          cp -r /workspace/documents /tmp/project-documents &&
-          cd /tmp/project-documents &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
           /usr/local/bin/uv sync &&
           echo '' &&
           echo '📚 Building MkDocs site...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
-          echo '✅ Documentation site built successfully' &&
-          
-          # Copy the built site back to workspace
-          cp -r site /workspace/documents/
+          echo '✅ Documentation site built successfully'
         "
 
     - name: 🔍 Validate Generated Site

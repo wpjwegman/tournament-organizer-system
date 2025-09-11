@@ -1,5 +1,5 @@
-# validate.ps1 - Runs all quality checks inside the pre-built Podman container.
-# This script ensures a consistent validation environment.
+# validate.ps1 - Runs all quality checks inside the Docker container.
+# This script ensures perfect parity with GitHub Actions validation.
 
 # Stop script execution on any error
 $ErrorActionPreference = "Stop"
@@ -30,9 +30,6 @@ echo '' && \
 echo '🎯 Code quality analysis with Ruff...' && \
 (/usr/local/bin/uv run python -m ruff check scripts/ || echo 'Code quality issues found - review required') && \
 echo '' && \
-echo '📚 Documentation validation with markdownlint-cli2...' && \
-echo 'Markdown validation skipped (requires Node.js setup in container)' && \
-echo '' && \
 echo '🏆 Running quality dashboard...' && \
 mkdir -p /tmp/project-documents/reports && \
 (/usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents --quiet || echo 'Quality dashboard completed with warnings') && \
@@ -43,23 +40,23 @@ echo 'Quality validation checks completed.'
 Write-Host "🔍 Running validation commands in container..." -ForegroundColor Cyan
 Write-Host "   (This will use your local files. Fix any reported errors in your editor and re-run this script.)"
 
-# Run the podman command and capture the exit code
-$podmanExitCode = 0
+# Run the docker command and capture the exit code
+$dockerExitCode = 0
 try {
     # Mounts the project root to /workspace and sets the working directory to /workspace/documents
-    podman run --pull=never --rm -v "${ProjectRoot}:/workspace" -w /workspace/documents $ContainerImage bash -c "$ValidationCommands"
-    $podmanExitCode = $LASTEXITCODE
+    docker run --pull=never --rm -v "${ProjectRoot}:/workspace" -w /workspace/documents $ContainerImage bash -c "$ValidationCommands"
+    $dockerExitCode = $LASTEXITCODE
 } catch {
-    $podmanExitCode = 1
+    $dockerExitCode = 1
     Write-Host "❌ Container execution failed: $($_.Exception.Message)" -ForegroundColor Red
 }
 
 # Check the exit code and report results
-if ($podmanExitCode -eq 0) {
+if ($dockerExitCode -eq 0) {
     Write-Host "✅ All validation checks passed successfully!" -ForegroundColor Green
     Write-Host "🎉 Validation workflow completed." -ForegroundColor Green
 } else {
-    Write-Host "❌ Validation failed with exit code: $podmanExitCode" -ForegroundColor Red
+    Write-Host "❌ Validation failed with exit code: $dockerExitCode" -ForegroundColor Red
     Write-Host "   Please review the errors above, fix them locally, and re-run this script." -ForegroundColor Yellow
-    exit $podmanExitCode
+    exit $dockerExitCode
 }

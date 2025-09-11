@@ -77,7 +77,7 @@ This repository implements an enterprise-level CI/CD workflow architecture that 
 
 ### 🔒 Container Parity
 
-All workflows use the **same container environment** as local development:
+All workflows use the **same Docker container environment** as local development:
 
 - **Container**: `localhost/docs-quality:latest`
 - **Python**: 3.13 with UV package management
@@ -152,9 +152,11 @@ graph TB
 - **Domain Compliance**: Threshold-based validation per domain
 
 ### Container Configuration
+
 - **Base Image**: Python 3.13 with UV package manager
 - **Build Context**: `documents/Containerfile`
 - **Validation Script**: Perfect parity with `documents/scripts/container/validate.ps1`
+- **Container Runtime**: Docker (aligned with GitHub Actions)
 
 ### Artifact Management
 - **Quality Reports**: 14-day retention for pull request artifacts
@@ -207,16 +209,17 @@ graph TB
 4. **Scheduled Report Failures**: Check for repository access and artifact storage
 
 ### Debug Commands
+
 ```bash
-# Local container validation
+# Local container validation (requires Docker Desktop or Docker Engine)
 cd documents
-podman build -t localhost/docs-quality:latest -f Containerfile .
+docker build -t localhost/docs-quality:latest -f Containerfile .
 ./scripts/container/validate.ps1
 
-# Manual quality check
+# Alternative: Direct UV commands (without container)
+cd documents
+uv sync
 uv run python scripts/linting/domain_linter.py <domain> --check-only --verbose
-
-# Repository analysis
 uv run python scripts/linting/repository_linter.py --all-domains --report
 ```
 
