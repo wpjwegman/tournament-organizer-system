@@ -15,6 +15,8 @@ jobs:
     steps:
     - name: 📥 Checkout Repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history needed for change detection
 
     - name: 🎯 Detect Application Changes
       id: changes
@@ -22,7 +24,9 @@ jobs:
         # Check for application-specific changes
         CHANGED_FILES=""
         if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }} HEAD)
+          # Fetch the base branch for comparison
+          git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
+          CHANGED_FILES=$(git diff --name-only ${{ github.base_ref }} HEAD)
         else
           CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
         fi
