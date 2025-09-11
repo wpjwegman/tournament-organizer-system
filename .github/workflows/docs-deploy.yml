@@ -48,13 +48,14 @@ jobs:
         cd documents
         
         # Generate the complete documentation site using our container
-        # Use a simple approach that works with GitHub Actions permissions
+        # Use system packages directly to avoid permission issues
         docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
-          echo '🔍 Setting up Python environment...' &&
+          echo '🔍 Using system Python packages (avoiding permission issues)...' &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
-          echo '📚 Building MkDocs site with system Python (avoiding .venv permission issues)...' &&
-          /usr/local/bin/uv run --no-project mkdocs build --clean --strict &&
+          export PYTHONPATH=\"/usr/local/lib/python3.13/site-packages:\$PYTHONPATH\" &&
+          echo '📚 Building MkDocs site...' &&
+          mkdocs build --clean --strict &&
           echo '✅ Documentation site built successfully'
         "
 
