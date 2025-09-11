@@ -71,7 +71,7 @@ jobs:
           
           echo '' &&
           echo '🏆 Generating quality dashboard...' &&
-          /usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents --verbose &&
+          /usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents &&
           cp quality_dashboard_*.md reports/scheduled/ 2>/dev/null || true &&
           
           echo '' &&
@@ -84,8 +84,9 @@ jobs:
             fi
           done &&
           
-          # Copy all reports back to workspace
-          cp -r reports /workspace/documents/ &&
+          # Copy all reports back to workspace with proper permissions
+          mkdir -p /workspace/documents/reports 2>/dev/null || true &&
+          cp -r reports/* /workspace/documents/reports/ 2>/dev/null || true &&
           echo 'All scheduled reports generated successfully.'
         "
 
