@@ -48,8 +48,8 @@ jobs:
         cd documents
         
         # Generate the complete documentation site using our container
-        # Build directly in workspace to avoid permission issues
-        docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+        # Use user mapping to avoid permission issues
+        docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents --user $(id -u):$(id -g) localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
           echo '🔍 Setting up Python environment...' &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
