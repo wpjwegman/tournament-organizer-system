@@ -1,87 +1,107 @@
-name: Project CI/CD
+name: 🚀 Continuous Integration
 
 on:
   push:
-    branches: [ master ]
+    branches: [master, develop]
   pull_request:
-    branches: [ master ]
-  workflow_dispatch:
+    branches: [master]
 
 jobs:
-  # Use containerized quality checks to match our container validation system
-  containerized-quality:
-    name: 🐳 Container-Based Quality Validation
+  application-ci:
+    name: 🏗️ Application Build & Test
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.modified, 'documents/') || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    if: contains(github.event.head_commit.message, '[ci]') || github.event_name == 'pull_request'
 
     steps:
-    - name: Checkout code
+    - name: 📥 Checkout Repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history needed for change detection
 
-    - name: 🐳 Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-
-    - name: 🔍 Run Container-Based Quality Validation
+    - name: 🎯 Detect Application Changes
+      id: changes
       run: |
-        cd documents
-        # Build the exact same container as our local validation system
-        docker build -t localhost/docs-quality:latest -f Containerfile .
+        # Check for application-specific changes
+        CHANGED_FILES=""
+        if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+          # Fetch the base branch for comparison
+          git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
+          CHANGED_FILES=$(git diff --name-only ${{ github.base_ref }} HEAD)
+        else
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+        fi
         
-        # Run the exact same validation commands as our local container script
-        # Key: copy files to /tmp and run there to avoid permission issues
-        docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
-          echo '--- Running comprehensive quality checks ---' &&
-          echo '🔍 Setting up Python environment...' &&
-          rm -rf /tmp/project-documents &&
-          cp -r /workspace/documents /tmp/project-documents &&
-          cd /tmp/project-documents &&
-          export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
-          /usr/local/bin/uv sync &&
-          echo '' &&
-          echo '🔒 Security scanning with Bandit...' &&
-          (/usr/local/bin/uv run bandit -r scripts/ --configfile pyproject.toml -f screen || echo 'Security issues found - review required') &&
-          echo '' &&
-          echo '🎯 Code quality analysis with Ruff...' &&
-          (/usr/local/bin/uv run ruff check scripts/ || echo 'Code quality issues found - review required') &&
-          echo '' &&
-          echo '📚 Documentation validation with markdownlint-cli2...' &&
-          echo 'Markdown validation skipped (requires Node.js setup in container)' &&
-          echo '' &&
-          echo '🏆 Running quality dashboard...' &&
-          mkdir -p /tmp/project-documents/reports &&
-          (/usr/local/bin/uv run python scripts/validation/quality_dashboard.py --project-root /tmp/project-documents --quiet || echo 'Quality dashboard completed with warnings') &&
-          echo '' &&
-          echo '🏗️ Testing MkDocs build...' &&
-          (/usr/local/bin/uv run mkdocs build --strict --clean || echo 'Documentation build issues found - review required') &&
-          echo 'Quality validation checks completed.'
-        "
+        # Application areas to check
+        BACKEND_CHANGES=$(echo "$CHANGED_FILES" | grep -E '^backend/' | wc -l)
+        FRONTEND_CHANGES=$(echo "$CHANGED_FILES" | grep -E '^frontend/' | wc -l)
+        DOCS_CHANGES=$(echo "$CHANGED_FILES" | grep -E '^documents/' | wc -l)
+        
+        echo "backend_changes=$BACKEND_CHANGES" >> $GITHUB_OUTPUT
+        echo "frontend_changes=$FRONTEND_CHANGES" >> $GITHUB_OUTPUT
+        echo "docs_changes=$DOCS_CHANGES" >> $GITHUB_OUTPUT
+        
+        echo "::notice::Backend changes: $BACKEND_CHANGES files"
+        echo "::notice::Frontend changes: $FRONTEND_CHANGES files"
+        echo "::notice::Documentation changes: $DOCS_CHANGES files"
 
-  # Future: Backend tests (when implemented)
-  backend-tests:
-    name: Backend Tests
-    runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.modified, 'backend/') || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Backend placeholder
+    - name: 🔧 Backend Application CI
+      if: steps.changes.outputs.backend_changes > 0
       run: |
-        echo "Backend tests will be implemented when backend development begins"
-        echo "Current status: Documentation-first development phase"
+        echo "::group::� Backend Application Build"
+        cd backend
+        
+        # Backend CI pipeline would go here
+        # Example: Python/Node.js/etc. application tests
+        echo "✅ Backend application CI placeholder"
+        echo "   - Unit tests"
+        echo "   - Integration tests"
+        echo "   - Security scanning"
+        echo "   - Build verification"
+        
+        echo "::endgroup::"
 
-  # Future: Frontend tests (when implemented)
-  frontend-tests:
-    name: Frontend Tests
-    runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.modified, 'frontend/') || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Frontend placeholder
+    - name: 🎨 Frontend Application CI  
+      if: steps.changes.outputs.frontend_changes > 0
       run: |
-        echo "Frontend tests will be implemented when frontend development begins"
-        echo "Current status: Documentation-first development phase"
+        echo "::group::🎨 Frontend Application Build"
+        cd frontend
+        
+        # Frontend CI pipeline would go here
+        # Example: React/Vue/Angular build and test
+        echo "✅ Frontend application CI placeholder"
+        echo "   - Dependency installation"
+        echo "   - Build process"
+        echo "   - Unit tests"
+        echo "   - E2E tests"
+        
+        echo "::endgroup::"
+
+    - name: 📊 Application Quality Gates
+      run: |
+        echo "::group::📊 Quality Gates"
+        
+        # Application-level quality checks
+        echo "✅ Application quality gates placeholder"
+        echo "   - Code coverage analysis"
+        echo "   - Performance benchmarks"
+        echo "   - Security vulnerability scanning"
+        echo "   - Dependency audit"
+        
+        echo "::endgroup::"
+
+    - name: 💡 CI Summary
+      if: always()
+      run: |
+        echo "## 🚀 Continuous Integration Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Application Areas Checked" >> $GITHUB_STEP_SUMMARY
+        echo "- **Backend**: ${{ steps.changes.outputs.backend_changes }} files changed" >> $GITHUB_STEP_SUMMARY
+        echo "- **Frontend**: ${{ steps.changes.outputs.frontend_changes }} files changed" >> $GITHUB_STEP_SUMMARY
+        echo "- **Documentation**: ${{ steps.changes.outputs.docs_changes }} files changed" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Quality Standards" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ **Separation of Concerns**: CI focuses on application code" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ **Documentation Quality**: Handled by quality-gate.yml workflow" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ **Focused Pipeline**: Only runs on application changes or [ci] commits" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "> **Note**: Documentation quality validation is handled by the Quality Gate workflow"
