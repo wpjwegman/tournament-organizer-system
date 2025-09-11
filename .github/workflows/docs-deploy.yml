@@ -48,15 +48,13 @@ jobs:
         cd documents
         
         # Generate the complete documentation site using our container
-        # Use user mapping to avoid permission issues
-        docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents --user $(id -u):$(id -g) localhost/docs-quality:latest bash -c "
+        # Use a simple approach that works with GitHub Actions permissions
+        docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
           echo '🔍 Setting up Python environment...' &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
-          /usr/local/bin/uv sync &&
-          echo '' &&
-          echo '📚 Building MkDocs site...' &&
-          /usr/local/bin/uv run mkdocs build --clean --strict &&
+          echo '📚 Building MkDocs site with system Python (avoiding .venv permission issues)...' &&
+          /usr/local/bin/uv run --no-project mkdocs build --clean --strict &&
           echo '✅ Documentation site built successfully'
         "
 
