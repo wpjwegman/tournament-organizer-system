@@ -48,14 +48,29 @@ jobs:
         cd documents
         
         # Generate the complete documentation site using our container
-        # Use uv run to properly execute mkdocs
-        docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace/documents localhost/docs-quality:latest bash -c "
+        # Use a temporary directory inside container to avoid permission issues
+        docker run --rm \
+          -v "${{ github.workspace }}:/workspace" \
+          -w /tmp \
+          localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
-          echo '🔍 Using virtual environment with uv...' &&
+          echo '🔍 Using temporary directory to avoid permission issues...' &&
           export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
+          
+          # Copy project to tmp with proper permissions
+          echo '📦 Copying project files...' &&
+          cp -r /workspace/documents /tmp/project &&
+          cd /tmp/project &&
+          
+          echo '📦 Setting up Python environment...' &&
           /usr/local/bin/uv sync &&
+          
           echo '📚 Building MkDocs site...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
+          
+          echo '📤 Copying generated site back...' &&
+          cp -r site /workspace/documents/ &&
+          
           echo '✅ Documentation site built successfully'
         "
 
