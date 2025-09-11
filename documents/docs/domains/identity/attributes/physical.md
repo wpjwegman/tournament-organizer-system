@@ -95,7 +95,7 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 ## References
 
 - [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 31:1992 - Quantities and units](https://www.iso.org/standard/3621.html)
+- [ISO/IEC 80000-1:2009 - Quantities and units - Part 1: General](https://www.iso.org/standard/30669.html)
 - [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
 
   by Eric Evans - Entity Template patterns
