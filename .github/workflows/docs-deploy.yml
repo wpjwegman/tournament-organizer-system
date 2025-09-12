@@ -54,10 +54,14 @@ jobs:
         # Generate the complete documentation site using our container
         docker run --rm \
           -v "${{ github.workspace }}:/workspace" \
-          -e "PYTHONPATH=/workspace/documents" \
+          -w /tmp \
           localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
-          cd /workspace/documents &&
+          
+          # Copy entire project to temp with full permissions
+          echo '📦 Setting up build environment...' &&
+          cp -r /workspace /tmp/project &&
+          cd /tmp/project/documents &&
           
           echo '📦 Setting up Python environment...' &&
           /usr/local/bin/uv sync &&
@@ -65,12 +69,12 @@ jobs:
           echo '📚 Building MkDocs site...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
+          echo '📤 Copying site to workspace...' &&
+          rm -rf /workspace/documents/site/* &&
+          cp -r site/* /workspace/documents/site/ &&
+          
           echo '✅ Documentation site built successfully'
           "
-        
-        # Fix permissions on generated files
-        sudo chown -R runner:docker site || true
-        sudo chmod -R 755 site || true
 
     - name: 🔍 Validate Generated Site
       run: |
