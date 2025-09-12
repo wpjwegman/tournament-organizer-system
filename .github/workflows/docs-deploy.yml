@@ -69,11 +69,20 @@ jobs:
           echo '📚 Building MkDocs site...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
-          echo '📤 Copying site to workspace...' &&
-          rm -rf /workspace/documents/site/* &&
-          cp -r site/* /workspace/documents/site/ &&
+          echo '📤 Packaging site for extraction...' &&
+          tar -czf /tmp/site.tar.gz -C site . &&
           
           echo '✅ Documentation site built successfully'
+          "
+        
+        # Extract the site with proper permissions
+        sudo rm -rf site/*
+        docker run --rm \
+          -v "${{ github.workspace }}:/workspace" \
+          localhost/docs-quality:latest bash -c "
+          cd /workspace/documents &&
+          tar -xzf /tmp/site.tar.gz -C site/ &&
+          echo 'Site extracted successfully'
           "
 
     - name: 🔍 Validate Generated Site
