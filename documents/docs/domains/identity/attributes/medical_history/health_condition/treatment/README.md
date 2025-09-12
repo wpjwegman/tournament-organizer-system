@@ -26,7 +26,7 @@ This directory contains models related to treatment within the health_condition 
 
   by Eric Evans - Entity patterns
 
-- [WHO Guidelines for Essential Medicines](https://www.who.int/groups/expert-committee-on-selection-and-use-of-essential-medicines)
+- [WHO Guidelines for Essential Medicines](https://www.who.int/news-room/fact-sheets/detail/essential-medicines)
 
 ## See Also
 

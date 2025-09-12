@@ -64,7 +64,7 @@ It inherits properties from the [Base Entity](../../../foundation/base_entity.md
 
   by Eric Evans - Entity patterns
 
-- [WHO Guidelines for Food Safety](https://www.who.int/health-topics/food-safety)
+- [WHO Guidelines for Food Safety](https://www.who.int/news-room/fact-sheets/detail/food-safety)
 
 ## See Also
 
