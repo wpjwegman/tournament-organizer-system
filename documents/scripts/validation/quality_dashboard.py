@@ -50,10 +50,18 @@ class QualityDashboard:
 
     def __init__(self, project_root: Path) -> None:
         self.project_root = project_root
-        self.docs_dir = project_root / "documents"
-        self.scripts_dir = self.docs_dir / "scripts"
-        self.reports_dir = self.docs_dir / "reports"
-        self.reports_dir.mkdir(exist_ok=True)
+        # Detect if we're in a container environment
+        if "project-documents" in str(project_root):
+            # In container with copied documents
+            self.docs_dir = project_root
+            self.scripts_dir = project_root / "scripts"
+        else:
+            # Normal workspace environment
+            self.docs_dir = project_root / "documents"
+            self.scripts_dir = self.docs_dir / "scripts"
+        
+        self.reports_dir = project_root / "reports"
+        self.reports_dir.mkdir(parents=True, exist_ok=True)
 
     def run_command(self, cmd: list[str], cwd: Path | None = None) -> tuple[bool, str, str]:
         """Execute command and return success, stdout, stderr."""
@@ -343,8 +351,102 @@ class QualityDashboard:
             report_file = self.reports_dir / f"quality_report_{timestamp}.json"
             with report_file.open("w") as f:
                 json.dump(metrics.__dict__, f, indent=2)
+        elif format_type == "markdown":
+            report_file = self.reports_dir / f"quality_dashboard_{timestamp}.md"
+            with report_file.open("w") as f:
+                f.write(self._generate_markdown_report(metrics))
 
         return report_file
+
+    def _generate_markdown_report(self, metrics: QualityMetrics) -> str:
+        """Generate markdown quality report."""
+        report = f"""# 🏆 Quality Control Dashboard
+
+**Analysis Date:** {metrics.timestamp}
+**Overall Grade:** {metrics.overall_grade}
+**Report Type:** Automated Quality Assessment
+
+## 📊 Quality Metrics Summary
+
+| Metric | Value | Status |
+|--------|-------|--------|
+| 🔒 Security Issues | {metrics.security_issues} | {"✅ Good" if metrics.security_issues == 0 else "⚠️ Issues"} |
+| 🎯 Code Quality Issues | {metrics.code_quality_issues} | {"✅ Good" if metrics.code_quality_issues == 0 else "⚠️ Issues"} |
+| 🔍 Type Safety Issues | {metrics.type_issues} | {"✅ Good" if metrics.type_issues == 0 else "⚠️ Issues"} |
+| 🧪 Test Coverage | {metrics.test_coverage:.1f}% | {"✅ Good" if metrics.test_coverage >= 80 else "⚠️ Low"} |
+| 📚 Documentation Issues | {metrics.documentation_issues} | {"✅ Good" if metrics.documentation_issues == 0 else "⚠️ Issues"} |
+| 🏗️ Complexity Grade | {metrics.complexity_score} | {"✅ Good" if metrics.complexity_score in ["A", "B"] else "⚠️ High"} |
+
+## 🔒 Security Analysis Details
+
+"""
+        if metrics.security_details:
+            report += f"""- **High Severity Issues:** {metrics.security_details.get('high_severity', 0)}
+- **Medium Severity Issues:** {metrics.security_details.get('medium_severity', 0)}
+- **Low Severity Issues:** {metrics.security_details.get('low_severity', 0)}
+- **Total Lines Scanned:** {metrics.security_details.get('total_lines_scanned', 0):,}
+- **Files Scanned:** {metrics.security_details.get('files_scanned', 0)}
+
+"""
+        else:
+            report += "Security analysis details not available.\n\n"
+
+        if metrics.recommendations:
+            report += f"""## 💡 Recommendations ({len(metrics.recommendations)})
+
+"""
+            for i, rec in enumerate(metrics.recommendations, 1):
+                report += f"{i}. {rec}\n"
+            report += "\n"
+
+        status_map = {
+            "A": "🌟 EXCELLENT",
+            "B": "👍 GOOD",
+            "C": "⚠️ NEEDS IMPROVEMENT",
+            "D": "⚠️ NEEDS IMPROVEMENT",
+            "F": "🚨 CRITICAL"
+        }
+        quality_status = status_map.get(metrics.overall_grade, "❓ UNKNOWN")
+
+        report += f"""## 🎯 Quality Assessment
+
+**Overall Quality Grade:** {metrics.overall_grade}
+
+### Grade Scale
+- **A (90-100%):** Excellent - Production ready with best practices
+- **B (80-89%):** Good - Minor improvements recommended
+- **C (70-79%):** Fair - Moderate improvements needed
+- **D (60-69%):** Poor - Significant improvements required
+- **F (<60%):** Critical - Major remediation needed
+
+### Quality Status: {quality_status}
+
+## 📈 Enterprise Quality Standards
+
+This analysis ensures compliance with enterprise-level quality standards:
+
+- **Security First:** Zero-tolerance for high-severity security issues
+- **Code Quality:** Maintainable, readable, and well-structured code
+- **Type Safety:** Strong typing for reliability and maintainability
+- **Test Coverage:** Comprehensive testing for confidence in changes
+- **Documentation:** Clear, accurate, and up-to-date documentation
+- **Complexity Management:** Simple, understandable code architecture
+
+## 🚀 Next Steps
+
+1. **Address High Priority Issues:** Focus on security and critical quality issues first
+2. **Improve Test Coverage:** Aim for 80%+ coverage across all modules
+3. **Enhance Documentation:** Keep documentation synchronized with code changes
+4. **Monitor Trends:** Regular quality assessments to track improvements
+5. **Automate Fixes:** Use available auto-fix tools where appropriate
+
+---
+
+*Report generated by Tournament Organizer Quality Control System*
+*Container Environment: `localhost/docs-quality:latest`*
+*Analysis Tools: Bandit, Ruff, MyPy, Pytest, markdownlint-cli2, Radon*
+"""
+        return report
 
 
 def main() -> None:
@@ -365,8 +467,11 @@ def main() -> None:
             dashboard.display_dashboard(metrics)
 
         if args.save_report:
-            report_file = dashboard.save_report(metrics)
-            print(f"\n📄 Report saved: {report_file}")
+            json_report = dashboard.save_report(metrics, "json")
+            md_report = dashboard.save_report(metrics, "markdown")
+            print("\n📄 Reports saved:")
+            print(f"   JSON: {json_report}")
+            print(f"   Markdown: {md_report}")
 
         # Exit with error code if quality is poor
         if metrics.overall_grade in ["D", "F"]:
@@ -375,7 +480,7 @@ def main() -> None:
     except KeyboardInterrupt:
         print("\n🛑 Analysis interrupted by user")
         sys.exit(1)
-    except Exception as e:
+    except (OSError, ValueError, json.JSONDecodeError) as e:
         print(f"❌ Error during analysis: {e}")
         sys.exit(1)
 

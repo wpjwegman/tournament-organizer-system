@@ -69,7 +69,8 @@ jobs:
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
           echo '📤 Copying generated site back...' &&
-          cp -r site /workspace/documents/ &&
+          mkdir -p /workspace/documents/site &&
+          cp -r site/* /workspace/documents/site/ &&
           
           echo '✅ Documentation site built successfully'
         "
