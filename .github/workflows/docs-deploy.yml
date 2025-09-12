@@ -47,15 +47,15 @@ jobs:
       run: |
         cd documents
         
-        # Remove existing site directory and recreate it
-        rm -rf site
+        # Remove existing site directory and recreate it with runner permissions
+        sudo rm -rf site
         mkdir -p site
         
         # Generate the complete documentation site using our container
-        # Build site in temporary location and copy back to avoid permission issues
         docker run --rm \
           -v "${{ github.workspace }}:/workspace" \
           -w /tmp \
+          --user="$(id -u):$(id -g)" \
           localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
           
@@ -70,8 +70,7 @@ jobs:
           echo '📚 Building MkDocs site...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
-          echo '📤 Copying site back to workspace...' &&
-          rm -rf /workspace/documents/site/* &&
+          echo '📤 Moving site to workspace...' &&
           cp -r site/* /workspace/documents/site/ &&
           
           echo '✅ Documentation site built successfully'
