@@ -109,7 +109,7 @@ As a Template Entity, it possesses a unique identity and lifecycle, managed acco
 
   by Eric Evans - Entity Template patterns
 
-- [WHO Guidelines for Vaccination](https://www.who.int/health-topics/vaccines-and-immunization)
+- [WHO Guidelines for Vaccination](https://www.who.int/news-room/questions-and-answers/item/vaccines-and-immunization-what-is-vaccination)
 
 ## See Also
 
