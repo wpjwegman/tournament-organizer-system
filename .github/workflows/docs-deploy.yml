@@ -47,22 +47,17 @@ jobs:
       run: |
         cd documents
         
-        # Remove existing site directory and recreate it with runner permissions
+        # Remove existing site directory and recreate it
         sudo rm -rf site
         mkdir -p site
         
         # Generate the complete documentation site using our container
         docker run --rm \
           -v "${{ github.workspace }}:/workspace" \
-          -w /tmp \
-          --user="$(id -u):$(id -g)" \
+          -e "PYTHONPATH=/workspace/documents" \
           localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
-          
-          # Copy documents to tmp for building
-          echo '📦 Copying project to build location...' &&
-          cp -r /workspace/documents /tmp/build &&
-          cd /tmp/build &&
+          cd /workspace/documents &&
           
           echo '📦 Setting up Python environment...' &&
           /usr/local/bin/uv sync &&
@@ -70,11 +65,12 @@ jobs:
           echo '📚 Building MkDocs site...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
-          echo '📤 Moving site to workspace...' &&
-          cp -r site/* /workspace/documents/site/ &&
-          
           echo '✅ Documentation site built successfully'
           "
+        
+        # Fix permissions on generated files
+        sudo chown -R runner:docker site || true
+        sudo chmod -R 755 site || true
 
     - name: 🔍 Validate Generated Site
       run: |
