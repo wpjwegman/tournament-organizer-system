@@ -48,8 +48,8 @@ jobs:
         cd documents
         
         # Create site directory with proper permissions first
-        mkdir -p documents/site
-        chmod 755 documents/site
+        mkdir -p site
+        chmod 755 site
         
         # Generate the complete documentation site using our container
         # Use a temporary directory inside container to avoid permission issues
@@ -70,6 +70,13 @@ jobs:
           /usr/local/bin/uv sync &&
           
           echo '📚 Building MkDocs site...' &&
+          /usr/local/bin/uv run mkdocs build --clean --strict &&
+          
+          echo '📤 Copying generated site back...' &&
+          cp -r site/* /workspace/documents/site/ &&
+          
+          echo '✅ Documentation site built successfully'
+          "
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
           echo '📤 Copying generated site back...' &&
