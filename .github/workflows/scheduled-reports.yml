@@ -94,6 +94,9 @@ jobs:
       run: |
         cd documents
         
+        # Ensure reports directory exists
+        mkdir -p reports/scheduled
+        
         # Create an executive summary of all reports
         TIMESTAMP=$(date -u +"%Y%m%d_%H%M%S")
         cat > reports/scheduled/executive_summary_${TIMESTAMP}.md << 'EOF'
@@ -168,6 +171,9 @@ jobs:
       if: github.event_name == 'schedule'
       run: |
         cd documents
+        
+        # Ensure reports directory exists
+        mkdir -p reports/scheduled
         
         # Create a trend analysis for scheduled runs
         TIMESTAMP=$(date -u +"%Y%m%d_%H%M%S")
