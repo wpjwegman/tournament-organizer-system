@@ -47,6 +47,10 @@ jobs:
       run: |
         cd documents
         
+        # Create site directory with proper permissions first
+        mkdir -p documents/site
+        chmod 755 documents/site
+        
         # Generate the complete documentation site using our container
         # Use a temporary directory inside container to avoid permission issues
         docker run --rm \
@@ -69,7 +73,6 @@ jobs:
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
           echo '📤 Copying generated site back...' &&
-          mkdir -p /workspace/documents/site &&
           cp -r site/* /workspace/documents/site/ &&
           
           echo '✅ Documentation site built successfully'
