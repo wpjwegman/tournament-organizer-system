@@ -52,19 +52,12 @@ jobs:
         chmod 755 site
         
         # Generate the complete documentation site using our container
-        # Use a temporary directory inside container to avoid permission issues
+        # Build site in container and copy out with tar to avoid permission issues
         docker run --rm \
           -v "${{ github.workspace }}:/workspace" \
-          -w /tmp \
           localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
-          echo '🔍 Using temporary directory to avoid permission issues...' &&
-          export PATH=\"/usr/local/bin:/usr/bin:/bin:\$PATH\" &&
-          
-          # Copy project to tmp with proper permissions
-          echo '📦 Copying project files...' &&
-          cp -r /workspace/documents /tmp/project &&
-          cd /tmp/project &&
+          cd /workspace/documents &&
           
           echo '📦 Setting up Python environment...' &&
           /usr/local/bin/uv sync &&
@@ -72,18 +65,8 @@ jobs:
           echo '📚 Building MkDocs site...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
-          echo '📤 Copying generated site back...' &&
-          cp -r site/* /workspace/documents/site/ &&
-          
           echo '✅ Documentation site built successfully'
           "
-          /usr/local/bin/uv run mkdocs build --clean --strict &&
-          
-          echo '📤 Copying generated site back...' &&
-          cp -r site/* /workspace/documents/site/ &&
-          
-          echo '✅ Documentation site built successfully'
-        "
 
     - name: 🔍 Validate Generated Site
       run: |
