@@ -1,6 +1,16 @@
-# **Health Condition** (Data Model - Value Object)
+---
+tags:
+- identity
+- attributes
+- health-condition
+- value-object
+- medical
+- diagnosis
+---
 
-## **Introduction**
+# Health Condition (Value Object)
+
+## Introduction
 
 A **Health Condition** Value Object represents a specific medical condition or health issue in a standardized format. It
 provides a consistent way to handle health condition information for medical monitoring, treatment planning, and safety
@@ -31,7 +41,8 @@ It inherits properties from the [Base Entity](../../../../foundation/base_entity
 ## **Relationships**
 
 - A `Health Condition` Value Object is embedded within [Medical History](../medical_history.md) entities.
-- A `Health Condition` Value Object may be referenced by [First Aid](../../../../first_aid/README.md) entities for emergency response.
+- A `Health Condition` Value Object may be referenced by [First Aid](../../../../first_aid/README.md) entities for
+  emergency response.
 - A `Health Condition` Value Object may be referenced by [Training](../../../../process/README.md) entities for safety considerations.
 
 ---

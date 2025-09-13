@@ -1,6 +1,16 @@
-# **Exercise Regimen** (Data Model - Template Entity)
+---
+tags:
+- identity
+- attributes
+- exercise
+- regimen
+- template-entity
+- fitness
+---
 
-## **Introduction**
+# Exercise Regimen (Template Entity)
+
+## Introduction
 
 An **Exercise Regimen** Template Entity represents a standardized training program that can be selected and customized
 by users. It provides a consistent way to handle training programs for fitness development, performance improvement,
@@ -13,13 +23,15 @@ original template.
 
 It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
 
 ---
 
 ## **Attributes**
 
-**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity Model](../../foundation/base_entity.md).
+**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`)
+defined in the [Base Entity Model](../../foundation/base_entity.md).
 
 | Attribute       | Description                                          | Type     | Required | Notes / Example                                                                          |
 | --------------- | ---------------------------------------------------- | -------- | -------- | ---------------------------------------------------------------------------------------- |

@@ -1,6 +1,16 @@
-# **Medicine** (Data Model - Template Entity)
+---
+tags:
+- identity
+- attributes
+- medicine
+- template-entity
+- medical
+- treatment
+---
 
-## **Introduction**
+# Medicine (Template Entity)
+
+## Introduction
 
 A **Medicine** Entity Template represents a standardized definition of a medication or medical treatment that can be
 used across the tournament system. It serves as a reusable template for recording and managing medical interventions,

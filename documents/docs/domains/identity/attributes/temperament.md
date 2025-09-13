@@ -1,6 +1,16 @@
-# **Temperament** (Data Model - Template Entity)
+---
+tags:
+- identity
+- attributes
+- temperament
+- template-entity
+- behavior
+- animal
+---
 
-## **Introduction**
+# Temperament (Template Entity)
+
+## Introduction
 
 A **Temperament** Template Entity defines a reusable blueprint for temperament categories and assessment criteria that
 can be used to evaluate animal behavioral characteristics. It provides a standardized framework for categorizing
@@ -14,13 +24,15 @@ It provides crucial insights for:
 - Owner matching
 - Activity suitability
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
 
 ---
 
 ## **Attributes**
 
-**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../../foundation/base_entity.md).
+**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`)
+defined in the [Base Entity](../../foundation/base_entity.md).
 
 | Attribute           | Description                                                                                        | Type         | Required | Notes / Example                                                                                                                                         |
 | ------------------- | -------------------------------------------------------------------------------------------------- | ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
