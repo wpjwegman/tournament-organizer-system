@@ -1,19 +1,33 @@
-# **Gender Identity** (Data Model - Value Object)
+---
+tags:
 
-## **Introduction**
-
-A **Gender Identity** Value Object represents an individual's personal sense of their gender in a standardized format.
-It provides a consistent way to handle gender identity information for respectful and inclusive interactions within the
-tournament system.
-
-It describes personal characteristics and is typically embedded within other entities (like
-[Human Profile](../profile/human.md)) to specify gender identity details.
-
-It inherits properties from the [Base Entity](../../foundation/base_entity.md).
+- identity
+- attribute
+- gender-identity
+- value-object
+- inclusion
+- diversity
 
 ---
 
-## **Attributes**
+# Gender Identity (Value Object)
+
+A **Gender Identity** Value Object represents an individual's personal sense of their gender in a standardized format.
+This template entity includes standard attributes from the [Base Entity](../../foundation/base_entity.md) and provides
+a consistent way to handle gender identity information for respectful and inclusive interactions within the
+tournament system.
+
+As a Value Object, it describes personal characteristics and is typically embedded within other entities
+to specify gender identity details with appropriate privacy and respect.
+
+## Purpose
+
+Gender identity provides inclusive identification frameworks within the identity domain, enabling respectful
+participant registration, appropriate facility accommodations, and inclusive communication practices.
+This supports diversity and inclusion requirements, anti-discrimination policies, and respectful tournament
+environment standards.
+
+## Structure
 
 | Attribute       | Description                                                  | Type   | Required | Notes / Example                                     |
 | --------------- | ------------------------------------------------------------ | ------ | -------- | --------------------------------------------------- |
@@ -22,40 +36,25 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 | **Pronouns**    | Preferred pronouns for the individual.                       | String | Optional | `"he/him"`, `"she/her"`, `"they/them"`              |
 | **Description** | Additional description or context about the gender identity. | String | Optional | `"Identifies as a transgender woman"`               |
 
----
+## Example
 
-## **Relationships**
+```mermaid
+graph TD
+    A[Gender Identity Value Object] --> B[Identity: Non-binary]
+    A --> C[Code: NB]
+    A --> D[Pronouns: they/them]
+    A --> E[Description: Uses inclusive pronouns]
+```
 
-- A `Gender Identity` Value Object is embedded within [Human Profile](../profile/human.md) entities.
-- A `Gender Identity` Value Object may be referenced by [Registration](../../registration/README.md) entities for inclusive
-
-  practices.
-
----
-
-## **Considerations**
-
-- **Respect:** Gender identity should always be respected and used appropriately.
-- **Privacy:** This information is personal and should be handled with confidentiality.
-- **Inclusivity:** The system should support diverse gender identities.
-- **Optional:** Gender identity should be optional and not required for participation.
-
----
-
-## References
-
-- [ISO/IEC 27001:2022 - Information security, cybersecurity and privacy protection](https://www.iso.org/standard/27001)
-- [ISO 26000:2010 - Guidance on social responsibility](https://www.iso.org/standard/42546.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Value Object patterns
-
-- [GLAAD Media Reference Guide](https://www.glaad.org/reference) - Gender identity and LGBTQ+ terminology
+This example shows a non-binary gender identity configuration that enables respectful communication and inclusive
+tournament policies. The structured format allows tournament staff to use appropriate pronouns in announcements,
+ensure inclusive facility arrangements, and maintain respectful participant interactions while supporting diversity
+and inclusion objectives throughout tournament operations.
 
 ## See Also
 
+- [Base Entity](../../foundation/base_entity.md)
 - [Human Profile](../profile/human.md)
+- [Identity Domain](../README.md)
 - [Registration](../../registration/README.md)
-- [Identity README](../../identity/README.md)
-- [Team Format](../../discipline/stage/team_format.md)
-- [Business README](../../README.md)
+- [Code of Conduct](../../code_of_conduct/README.md)

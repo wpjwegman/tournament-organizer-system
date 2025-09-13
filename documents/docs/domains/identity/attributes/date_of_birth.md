@@ -1,19 +1,31 @@
-# **Date of Birth** (Data Model - Value Object)
+---
+tags:
 
-## **Introduction**
-
-A **Date of Birth** Value Object represents an individual's birth date in a standardized format. It provides a
-consistent way to handle birth date information for age calculations, eligibility verification, and administrative
-purposes within the tournament system.
-
-It describes temporal characteristics and is typically embedded within other entities (like or ) to specify birth
-details.
-
-It inherits properties from the [Base Entity](../../foundation/base_entity.md).
+- identity
+- attribute
+- date-of-birth
+- value-object
+- age
 
 ---
 
-## **Attributes**
+# Date of Birth (Value Object)
+
+A **Date of Birth** Value Object represents an individual's birth date in a standardized format.
+This template entity includes standard attributes from the [Base Entity](../../foundation/base_entity.md)
+and provides a consistent way to handle birth date information for age calculations, eligibility verification,
+and administrative purposes within the tournament system.
+
+As a Value Object, it describes temporal characteristics and is typically embedded within other entities
+to specify birth details.
+
+## Purpose
+
+Date of Birth serves as a fundamental temporal identifier within the identity domain, enabling age-based
+eligibility verification, category classification, and compliance with age-restricted tournament regulations.
+This supports fair competition grouping and legal compliance for youth protection requirements.
+
+## Structure
 
 | Attribute | Description                            | Type    | Required | Notes / Example                |
 | --------- | -------------------------------------- | ------- | -------- | ------------------------------ |
@@ -23,23 +35,25 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 | **Day**   | The birth day (1-31).                  | Integer | Optional | `15`, `3`                      |
 | **Age**   | Calculated age as of a reference date. | Integer | Optional | `33`, `18`                     |
 
----
+## Example
 
-## **Relationships**
+```mermaid
+graph TD
+    A[Date of Birth Value Object] --> B[Date: 1995-08-22]
+    A --> C[Year: 1995]
+    A --> D[Month: 8]
+    A --> E[Day: 22]
+    A --> F[Age: 28 calculated for 2024]
+```
 
-- A `Date of Birth` Value Object is embedded within entities.
-- A `Date of Birth` Value Object is embedded within entities.
-- A `Date of Birth` Value Object may be referenced by [Registration](../../registration/registration.md)
+This example shows a tournament participant's birth date that enables automatic age calculation for category
+placement. The structured format allows the tournament system to verify eligibility for age-restricted divisions,
+calculate current age dynamically for ongoing tournaments, and ensure compliance with youth protection policies
+while maintaining privacy through secure data handling.
 
-  entities for age verification.
+## See Also
 
----
-
-## **Considerations**
-
-- **Privacy:** Birth date information should be handled according to privacy regulations.
-- **Age Calculation:** Age should be calculated dynamically based on current date.
-- **Validation:** Birth dates should be validated for reasonable ranges.
-- **Format:** Use ISO 8601 format for consistent date handling.
-
----
+- [Base Entity](../../foundation/base_entity.md)
+- [Registration](../../registration/registration.md)
+- [Identity Domain](../README.md)
+- [Age Verification](../age_verification.md)
