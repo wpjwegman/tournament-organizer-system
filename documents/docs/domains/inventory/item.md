@@ -1,73 +1,75 @@
-# **Item** (Data Model - Template Entity)
+---
+tags:
 
-## **Introduction**
-
-An **Item** Entity represents a specific type of equipment, supply, or resource that can be tracked in inventories. It
-defines the base characteristics and categorization of an item, which can then be referenced by stock records to track
-actual quantities and by groups for logical organization.
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
+- inventory
+- template-entity
+- equipment
+- supplies
+- tracking
 
 ---
 
-## **Attributes**
+# Item (Template Entity)
 
-**Note:** This Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../foundation/base_entity.md).
+## Overview
 
-| Attribute          | Description                               | Type    | Required | Notes / Example                              |
-| ------------------ | ----------------------------------------- | ------- | -------- | -------------------------------------------- |
-| **Name**           | Unique identifier for the item type.      | String  | Yes      | `"Official Match Ball"`, `"Field Cone"`      |
-| **Description**    | Detailed explanation of the item.         | Text    | Yes      | `"Official tournament match ball"`           |
-| **Type**           | Classification of the item.               | String  | Yes      | `Prop`, `Marker`, `Equipment`, `Supply`      |
-| **Category**       | Primary category for grouping.            | String  | Yes      | `Sports`, `Technical`, `Furniture`, `Safety` |
-| **Unit**           | Unit of measurement.                      | String  | Yes      | `pieces`, `sets`, `pairs`                    |
-| **Specifications** | Technical specifications or requirements. | Object  | No       | `{ size: "5", material: "leather" }`         |
-| **Quantity**       | Total quantity available.                 | Integer | Yes      | `50`                                         |
-| **Reserved**       | Quantity currently reserved.              | Integer | Yes      | `10`                                         |
-| **Available**      | Quantity currently available.             | Integer | Yes      | `40`                                         |
-| **Media**          | List of references to assets.             | Array   | No       | `[media-uuid-1, media-uuid-2]`               |
+An Item template entity represents a specific type of equipment, supply, or resource that can be tracked in
+inventories. It defines the base characteristics and categorization of an item, which can then be referenced by
+stock records to track actual quantities and by groups for logical organization.
 
----
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
-## **Relationships**
+## Purpose
 
-- May be referenced by multiple inventories
+The Item template entity enables:
 
----
+- Defining equipment and supply types with detailed specifications
+- Tracking quantities, reservations, and availability
+- Categorizing items for organization and filtering
+- Managing stock levels across multiple inventories
+- Supporting media attachments for item identification
 
-## **Considerations**
+## Structure
 
-- **Quantity Management:** Changes in stock level (additions, removals, reservations) update the Quantity and Available
+| Attribute | Description | Type | Required | Notes |
+|-----------|-------------|------|----------|--------|
+| Name | Unique identifier for the item type | String | Yes | "Official Match Ball", "Field Cone" |
+| Description | Detailed explanation of the item | Text | Yes | "Official tournament match ball" |
+| Type | Classification of the item | String | Yes | Prop, Marker, Equipment, Supply |
+| Category | Primary category for grouping | String | Yes | Sports, Technical, Furniture, Safety |
+| Unit | Unit of measurement | String | Yes | pieces, sets, pairs |
+| Specifications | Technical specifications or requirements | Object | No | { size: "5", material: "leather" } |
+| Quantity | Total quantity available | Integer | Yes | 50 |
+| Reserved | Quantity currently reserved | Integer | Yes | 10 |
+| Available | Quantity currently available | Integer | Yes | 40 |
+| Media | List of references to assets | Array | No | [media-uuid-1, media-uuid-2] |
 
-  fields
+## Example
 
-- **Zero Quantity:** A quantity of zero indicates the item is out of stock
-- **Validation:** Available quantity must be less than or equal to Quantity minus Reserved
-- **Reusability:** Items are reusable across different inventories and groups
-- **Categorization:** Clear categorization helps with organization and filtering
-- **Specifications:** Detailed specifications help ensure correct item usage
-- **Media:** Visual references help with item identification
+```mermaid
+graph TD
+    A[Official Match Ball] --> B[Name: Basketball Official]
+    A --> C[Type: Equipment]
+    A --> D[Category: Sports]
+    A --> E[Specifications: Size 7, Leather]
+    
+    F[Quantity Management] --> G[Total: 25 balls]
+    F --> H[Reserved: 8 balls]
+    F --> I[Available: 17 balls]
+    
+    J[Safety Cone] --> K[Name: Traffic Cone Orange]
+    J --> L[Type: Marker]
+    J --> M[Category: Safety]
+    J --> N[Unit: pieces]
+```
 
----
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 28000:2007 - Specification for security management systems for the supply chain](https://www.iso.org/standard/44651.html)
-- [ISO 9001:2015 - Quality management systems — Requirements](https://www.iso.org/standard/62085.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event equipment management
-
-  standards
+This example shows how item template entities manage different types of equipment with detailed tracking. The match
+ball item includes sports-specific specifications and quantity management, while safety cones provide marking
+capabilities. Each item tracks total quantity, reservations, and availability to support accurate allocation and
+planning decisions across multiple tournaments and venues.
 
 ## See Also
 
-- [Inventory](../inventory/inventory.md)
-- [Stock Record](../inventory/stock_record.md)
+- [Inventory](inventory.md)
+- [Stock Record](stock_record.md)
 - [Media README](../media/README.md)
-- [Business README](../README.md)
-
----
