@@ -51,20 +51,20 @@ jobs:
         sudo rm -rf site
         mkdir -p site
         
-        # Get the current user ID for proper file permissions in the container
-        USER_ID=$(id -u)
-        GROUP_ID=$(id -g)
-        
-        # Generate documentation site with proper permission handling
+        # Generate documentation site using professional container isolation
+        # Build in container's temp space and copy results to workspace
         docker run --rm \
           -v "${{ github.workspace }}:/workspace" \
-          -w /workspace/documents \
-          -e USER_ID=$USER_ID \
-          -e GROUP_ID=$GROUP_ID \
           localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
-          echo 'Container user: \$(id)' &&
-          echo 'Target user: \$USER_ID:\$GROUP_ID' &&
+          
+          # Create isolated build environment in container's temp space
+          BUILD_DIR=/tmp/docs-build
+          mkdir -p \$BUILD_DIR &&
+          
+          echo '📦 Copying source files to build environment...' &&
+          cp -r /workspace/documents/* \$BUILD_DIR/ &&
+          cd \$BUILD_DIR &&
           
           echo '📦 Setting up Python environment...' &&
           export UV_CACHE_DIR=/tmp/uv-cache &&
@@ -74,12 +74,12 @@ jobs:
           echo '📚 Building MkDocs site with strict validation...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
-          echo '📤 Setting proper ownership for generated files...' &&
-          chown -R \$USER_ID:\$GROUP_ID site/ &&
+          echo '📤 Copying built site to workspace...' &&
+          cp -r site/* /workspace/documents/site/ &&
           
           echo '✅ Documentation site built successfully' &&
           echo 'Generated files:' &&
-          ls -la site/ | head -10
+          ls -la /workspace/documents/site/ | head -10
           "
         
         # Verify the build was successful
