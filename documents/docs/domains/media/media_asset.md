@@ -1,49 +1,73 @@
-# **Media Asset** (Data Model - Entity)
+---
+tags:
 
-## **Introduction**
+- media
+- entity
+- digital-assets
+- files
+- storage
 
-A **Media Asset** Entity represents a digital media file (image, video, document, etc.) within the tournament system. It
-provides a consistent way to handle media information for content management, file storage, and media organization
+---
+
+# Media Asset (Entity)
+
+## Overview
+
+A Media Asset entity represents a digital media file (image, video, document, audio) within the tournament system.
+It provides a consistent way to handle media information for content management, file storage, and media organization
 within the tournament system.
 
-It describes media characteristics and is typically managed by media systems to provide comprehensive asset oversight.
+This entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
+## Purpose
 
----
+The Media Asset entity enables:
 
-## **Attributes**
+- Storing and managing digital media files with comprehensive metadata
+- Organizing media content by type, format, and tags
+- Controlling access and permissions for media assets
+- Tracking usage and lifecycle of digital content
+- Supporting various media formats and storage solutions
 
-| Attribute       | Description                                             | Type     | Required | Notes / Example                                                              |
-| --------------- | ------------------------------------------------------- | -------- | -------- | ---------------------------------------------------------------------------- |
-| **ID**          | Unique identifier for the media asset entity.           | UUID     | Yes      | `"ma123e456-7890-1234-5678-901234567890"`                                    |
-| **Name**        | The name of the media asset.                            | String   | Yes      | `"tournament_logo.png"`, `"../match_system/match_tiebreaker.md.mp4"`                            |
-| **Type**        | The type of media asset.                                | String   | Yes      | `"Image"`, `"Video"`, `"Document"`, `"Audio"`                                |
-| **Format**      | The file format of the media asset.                     | String   | Optional | `"PNG"`, `"MP4"`, `"PDF"`, `"MP3"`                                           |
-| **Size**        | The file size in bytes.                                 | Integer  | Optional | `1024000`, `5242880`, `10485760`                                             |
-| **URL**         | The URL or path to the media asset.                     | String   | Optional | `"/assets/images/logo.png"`, `"https:/cdn.example.com/video.mp4"`            |
-| **Description** | Description of the media asset.                         | String   | Optional | `"Official tournament logo"`, `"Highlights from championship match"`         |
-| **Tags**        | List of tags for categorizing the media asset.          | List     | Optional | `["logo", "official", "branding"]`, `["highlights", "championship", "2024"]` |
-| **Status**      | The status of the media asset.                          | String   | Optional | `"Active"`, `"Archived"`, `"Processing"`, `"Error"`                          |
-| **Created At**  | Timestamp when the media asset entity was created.      | DateTime | Yes      | `"2024-01-15T10:30:00Z"`                                                     |
-| **Updated At**  | Timestamp when the media asset entity was last updated. | DateTime | Yes      | `"2024-01-20T14:45:00Z"`                                                     |
+## Structure
 
----
+| Attribute | Description | Type | Required | Notes |
+|-----------|-------------|------|----------|--------|
+| Name | The name of the media asset | String | Yes | "tournament_logo.png", "match_highlights.mp4" |
+| Type | The type of media asset | String | Yes | Image, Video, Document, Audio |
+| Format | The file format of the media asset | String | No | PNG, MP4, PDF, MP3 |
+| Size | The file size in bytes | Integer | No | 1024000, 5242880 |
+| URL | The URL or path to the media asset | String | No | "/assets/images/logo.png", "<https://cdn.example.com/video.mp4>" |
+| Description | Description of the media asset | String | No | "Official tournament logo", "Championship match highlights" |
+| Tags | List of tags for categorizing the media asset | Array | No | ["logo", "official", "branding"], ["highlights", "championship"] |
 
-## **Relationships**
+## Example
 
-- A `Media Asset` Entity may be associated with entities.
-- A `Media Asset` Entity may be associated with entities.
-- A `Media Asset` Entity may be associated with entities.
+```mermaid
+graph TD
+    A[Media Asset: Tournament Logo] --> B[Name: basketball_logo_2024.png]
+    A --> C[Type: Image]
+    A --> D[Format: PNG]
+    A --> E[Size: 2048000 bytes]
+    A --> F[URL: /assets/images/basketball_logo_2024.png]
+    
+    G[Tags] --> H[official]
+    G --> I[logo]
+    G --> J[branding]
+    G --> K[basketball]
+    
+    L[Media Asset: Match Video] --> M[Name: championship_final.mp4]
+    L --> N[Type: Video]
+    L --> O[Format: MP4]
+    L --> P[Size: 104857600 bytes]
+```
 
----
+This example shows how media asset entities manage different types of digital content with comprehensive metadata.
+The tournament logo asset includes visual branding information with categorization tags, while the match video asset
+handles larger multimedia content. Each asset tracks technical specifications, storage locations, and organizational
+metadata to support efficient content management and delivery.
 
-## **Considerations**
+## See Also
 
-- **Storage:** Media assets should be stored securely and efficiently.
-- **Access Control:** Media asset access should be controlled based on permissions.
-- **Optimization:** Media assets should be optimized for web delivery.
-- **Backup:** Media assets should be backed up regularly.
-- **Metadata:** Media asset metadata should be comprehensive and searchable.
-
----
+- [Digital Channel](digital_channel.md)
+- [QR Code](qr_code.md)

@@ -1,196 +1,72 @@
-# **Media Domain**
+---
+tags:
 
-## **Overview**
+- media
+- digital-assets
+- communication
+- channels
+- qr-codes
+
+---
+
+# Media Domain
+
+## Overview
 
 The Media domain manages digital assets, communication channels, and visual elements within the Tournament Organizer
 system. It provides comprehensive frameworks for storing, organizing, and referencing media content such as images,
 videos, documents, and digital communication channels.
 
-This domain uses a combination of entities and value objects to support both standalone media assets and embedded media
-elements within other entities.
+This domain uses a combination of entities and value objects to support both standalone media assets and embedded
+media elements within other entities.
 
-## **Domain Structure**
+## Purpose
 
-### **Core Models**
+This domain enables tournament organizers to:
 
-- **[Media Asset](../media/media_asset.md)**: Entity for digital media files (images, videos, documents,
+- Manage digital media assets with comprehensive metadata
+- Configure and utilize digital communication channels
+- Generate and track QR codes for various purposes
+- Organize media content by type, category, and usage
+- Ensure secure and efficient media storage and access
 
-  audio) with comprehensive metadata
+## Structure
 
-- **[Digital Channel](../media/digital_channel.md)**: Value object for digital communication channels
+The media domain consists of the following models:
 
-  (embedded in Contact Information)
+| Model | Type | Purpose |
+|-------|------|---------|
+| [Media Asset](media_asset.md) | Entity | Digital media files with comprehensive metadata and lifecycle management |
+| [Digital Channel](digital_channel.md) | Value Object | Communication channels embedded in contact information |
+| [QR Code](qr_code.md) | Value Object | QR code data and visual representation embedded in entities |
 
-- **[QR Code](../media/qr_code.md)**: Value object for QR code data and visual representation (embedded in
+All entities include standard attributes from the [Base Entity](../foundation/base_entity.md).
 
-  entities like Tournament)
+## Example
 
-### **Supporting Models**
+```mermaid
+graph TD
+    A[Media Asset: Tournament Logo] --> B[Type: Image]
+    A --> C[Format: PNG]
+    A --> D[Status: Active]
+    A --> E[Tags: logo, official, branding]
+    
+    F[Digital Channel: Email] --> G[Platform: Gmail]
+    F --> H[Type: Email]
+    F --> I[Status: Active]
+    
+    J[QR Code: Registration] --> K[Type: Registration]
+    J --> L[URL: tournament.com/register/123]
+    J --> M[Target: tournament-uuid-123]
+```
 
-- \*\*\*\*: Value object for image data and metadata (referenced by QR Code)
-- **[Contact Information](../identity/contact_information.md)**: Contact details that embed Digital
-
-  Channel value objects
-
-## **Template Entity Analysis**
-
-### **Current Template Entities**
-
-- **Digital Channel**: Value object template for digital communication channels
-- **QR Code**: Value object template for QR code data and images
-- **Image**: Value object template for image data and metadata
-
-### **Potential Template Entities**
-
-- **Media Asset Type Templates**: Standard media asset categories and their attributes
-- **Digital Channel Templates**: Standard channel configurations and settings
-- **QR Code Type Templates**: Standard QR code categories and their purposes
-- **Media Format Templates**: Standard media format configurations and requirements
-
-## **Status Lifecycle**
-
-### **Media Asset Statuses**
-
-- **Active**: Media asset is available and in use
-- **Archived**: Media asset is archived but preserved
-- **Deleted**: Media asset is marked for deletion
-
-### **Value Object Lifecycles**
-
-- **Digital Channel**: No status (embedded value object)
-- **QR Code**: No status (embedded value object)
-- **Image**: No status (embedded value object)
-
-### **Lifecycle Transitions**
-
-- Media Asset: Active → Archived → Deleted
-
-## **Relationships & Cross-References**
-
-- **Media Asset ↔ Multiple Entities**: Referenced by Human Profile, Animal Profile, Plant Profile, Organization, Team,
-
-  Venue, etc.
-
-- **Digital Channel ↔ Contact Information**: Embedded digital presence information
-- **QR Code ↔ Tournament**: Embedded QR code data for tournament information
-- **QR Code ↔ Image**: Embedded visual representation of QR code
-- **Media Asset ↔ Thumbnail**: Optional thumbnail references for preview
-- **Media Asset ↔ Metadata**: Technical metadata about media files
-
-## **Media Asset Management**
-
-### **Asset Types**
-
-- **Images**: Photos, logos, graphics, thumbnails
-- **Videos**: Recordings, promotional content, instructional videos
-- **Documents**: PDFs, forms, certificates, reports
-- **Audio**: Sound recordings, announcements, music
-
-### **Metadata System**
-
-- File size, format, and dimensions
-- Duration for audio/video content
-- Technical metadata (bitrate, codec, etc.)
-- Tags and categorization
-- Alt text for accessibility
-- Description and context
-
-### **Storage and Access**
-
-- CDN-based storage with URL references
-- Access control based on media type and associated entities
-- Versioning support for updated media
-- Backup and cleanup procedures
-- Performance optimization with lazy loading and caching
-
-## **Digital Communication Channels**
-
-### **Channel Categories**
-
-- **Social**: Social media platforms and profiles
-- **Website**: Official websites and blogs
-- **IM**: Instant messaging platforms
-- **Professional**: Professional networking platforms
-
-### **Platform Support**
-
-- LinkedIn, Twitter, Facebook, Instagram, TikTok
-- Company blogs, personal websites
-- WhatsApp, Telegram, Discord
-- GitHub, professional portfolios
-
-### **Validation and Management**
-
-- Platform-specific value validation
-- User-defined labels for organization
-- Immutable value object replacement
-- Clear boundary with core contact information
-
-## **QR Code System**
-
-### **QR Code Types**
-
-- **TournamentInfo**: Links to tournament information
-- **RegistrationLink**: Direct registration links
-- **ParticipantCheckIn**: Participant check-in codes
-
-### **Data and Visual Representation**
-
-- Encoded data payload (URLs, IDs)
-- Optional visual image representation
-- Administrative context and descriptions
-- Generation process separate from model
-
-## **Quality Standards**
-
-- All models include comprehensive attribute documentation
-- Cross-references are accurate and up to date
-- Status lifecycles are clearly defined
-- Value object usage is documented
-- Metadata systems are well-defined
-- Practical examples are provided where relevant
-- Consistent formatting and terminology throughout
-
-## **Implementation Guidelines**
-
-- Use CDN-based storage for media assets
-- Implement proper access control and validation
-- Support versioning and backup procedures
-- Optimize performance with lazy loading and caching
-- Maintain clear boundaries between entities and value objects
-- Ensure proper validation for digital channels and QR codes
-- Maintain accurate cross-references between all related models
-- Regularly review and update documentation for clarity and completeness
-
-## **Related Domains**
-
-- \*\*\*\*: Profile media and contact information
-- \*\*\*\*: Digital channels and messaging
-- \*\*\*\*: Tournament media and QR codes
-- \*\*\*\*: Organizational media assets
-- \*\*\*\*: Venue media and visual content
-
----
-
-**Last Updated**: June 24, 2025 **Version**: 1.0 **Status**: Active **Next Review**: July 24, 2025
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO/IEC 27001:2022 - Information security, cybersecurity and privacy protection](https://www.iso.org/standard/27001)
-- [ISO 19005-1:2005 - Document management — Electronic document file format for long-term preservation](https://www.iso.org/standard/38920.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity and Value Object patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event media management
-
-  standards
+This example demonstrates how the media domain handles different types of digital content. Media assets provide
+comprehensive file management with metadata and lifecycle tracking, digital channels enable communication platform
+integration, and QR codes facilitate quick access to tournament information and actions.
 
 ## See Also
 
-- [Media Asset](../media/media_asset.md)
-- [Digital Channel](../media/digital_channel.md)
-- [Qr Code](../media/qr_code.md)
+- [Media Asset](media_asset.md)
+- [Digital Channel](digital_channel.md)
+- [QR Code](qr_code.md)
 - [Contact Information](../identity/contact_information.md)
-- [Business README](../README.md)

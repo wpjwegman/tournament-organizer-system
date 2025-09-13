@@ -1,62 +1,71 @@
-# **QR Code** (Data Model - Template Entity)
+---
+tags:
 
-## **Introduction**
-
-A **QR Code** Entity represents a Quick Response code that can be scanned to provide quick access to information or
-actions within the tournament system. QR codes can be used for various purposes such as registration, check-in, access
-control, or information sharing.
-
-As an Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../foundation/base_entity.md).
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
+- media
+- value-object
+- qr-codes
+- registration
+- embedded
 
 ---
 
-## **Attributes**
+# QR Code (Value Object)
 
-**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../foundation/base_entity.md).
+## Overview
 
-| Attribute       | Description                                              | Type     | Required | Notes / Example                                             |
-| --------------- | -------------------------------------------------------- | -------- | -------- | ----------------------------------------------------------- |
-| **Code**        | The actual QR code data or identifier.                   | String   | Yes      | `"REG-2024-001"`, `"CHECKIN-12345"`                         |
-| **Type**        | The type or purpose of the QR code.                      | String   | Yes      | `"Registration"`, `"Check-in"`, `"Access"`, `"Information"` |
-| **URL**         | The URL or action that the QR code points to.            | String   | Yes      | `"https:/tournament.com/register/123"`                      |
-| **Target**      | Reference to the entity this QR code is associated with. | UUID     | Optional | `tournament-uuid-123`, `participant-uuid-456`               |
-| **Expiry Date** | When this QR code expires (if applicable).               | DateTime | Optional | `2024-12-31T23:59:59Z`                                      |
-| **Usage Count** | Number of times this QR code has been scanned.           | Integer  | Optional | `0` (initial value)                                         |
-| **Notes**       | Additional notes about the QR code.                      | Text     | Optional | `"For tournament registration only"`                        |
+A QR Code value object represents Quick Response code data that can be scanned to provide quick access to information
+or actions within the tournament system. QR codes can be used for various purposes such as registration, check-in,
+access control, or information sharing.
 
----
+This value object is embedded in entities like tournaments and does not have independent identity.
 
-## **Relationships**
+## Purpose
 
-- A `QR Code` Template Entity may be associated with a entity.
-- A `QR Code` Template Entity may be associated with a entity.
-- A `QR Code` Template Entity may be associated with a entity.
+The QR Code value object enables:
 
-### Parent Relationships
+- Providing quick access to tournament information and actions
+- Facilitating registration and check-in processes
+- Encoding various types of data (URLs, IDs, text)
+- Supporting different QR code purposes and contexts
+- Embedding QR functionality within other entities
 
-- - The tournament this QR code belongs to
-- - The participant this QR code is for
-- - The venue this QR code is associated with
+## Structure
 
-### Child Relationships
+| Attribute | Description | Type | Required | Notes |
+|-----------|-------------|------|----------|--------|
+| Code | The actual QR code data or identifier | String | Yes | "REG-2024-001", "CHECKIN-12345" |
+| Type | The type or purpose of the QR code | String | Yes | Registration, Check-in, Access, Information |
+| URL | The URL or action that the QR code points to | String | Yes | "<https://tournament.com/register/123>" |
+| Target | Reference to the entity this QR code is associated with | UUID | No | tournament-uuid-123, participant-uuid-456 |
+| Expiry Date | When this QR code expires (if applicable) | DateTime | No | 2024-12-31T23:59:59Z |
+| Usage Count | Number of times this QR code has been scanned | Integer | No | 0 (initial value) |
+| Notes | Additional notes about the QR code | Text | No | "For tournament registration only" |
 
-- None
+## Example
 
-### Related Entities
+```mermaid
+graph TD
+    A[Tournament Entity] --> B[QR Code: Registration]
+    B --> C[Code: REG-BBALL-2024-001]
+    B --> D[Type: Registration]
+    B --> E[URL: tournament.com/register/123]
+    B --> F[Target: tournament-uuid-123]
+    B --> G[Expiry: 2024-12-31]
+    
+    H[Tournament Entity] --> I[QR Code: Check-in]
+    I --> J[Code: CHECKIN-VENUE-456]
+    I --> K[Type: Check-in]
+    I --> L[URL: tournament.com/checkin/456]
+    I --> M[Usage Count: 47]
+```
 
-- [Media Asset](../media/media_asset.md) - The visual representation of the QR code
+This example shows how QR code value objects are embedded within tournament entities to facilitate various functions.
+The registration QR code provides direct access to tournament sign-up with expiration date management, while the
+check-in QR code tracks usage for attendance monitoring. Each QR code encodes specific data and maintains contextual
+information for its intended purpose.
 
----
+## See Also
 
-## **Considerations**
-
-- **QR Code Generation:** QR codes should be generated with appropriate error correction levels.
-- **Security:** QR codes should be secure and not expose sensitive information.
-- **Expiry Management:** QR codes with expiry dates should be automatically deactivated.
-- **Usage Tracking:** Track QR code usage for analytics and security purposes.
-
----
+- [Media Asset](media_asset.md)
+- [Digital Channel](digital_channel.md)
+- [Tournament](../tournament/tournament.md)
