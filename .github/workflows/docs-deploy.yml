@@ -1,4 +1,4 @@
-name: "📚 Documentation Deploy Fixed"
+name: "📚 Documentation Deployment Pipeline"
 
 on:
   push:
@@ -52,37 +52,22 @@ jobs:
         mkdir -p site
         
         # Generate the complete documentation site using our container
+        # Use a simplified approach that directly builds into the host directory
         docker run --rm \
           -v "${{ github.workspace }}:/workspace" \
-          -w /tmp \
+          -w /workspace/documents \
           localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
-          
-          # Copy entire project to temp with full permissions
-          echo '📦 Setting up build environment...' &&
-          cp -r /workspace /tmp/project &&
-          cd /tmp/project/documents &&
           
           echo '📦 Setting up Python environment...' &&
           /usr/local/bin/uv sync &&
           
-          echo '📚 Building MkDocs site...' &&
+          echo '📚 Building MkDocs site with strict validation...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
-          echo '📤 Packaging site for extraction...' &&
-          tar -czf /tmp/site.tar.gz -C site . &&
-          
-          echo '✅ Documentation site built successfully'
-          "
-        
-        # Extract the site with proper permissions
-        sudo rm -rf site/*
-        docker run --rm \
-          -v "${{ github.workspace }}:/workspace" \
-          localhost/docs-quality:latest bash -c "
-          cd /workspace/documents &&
-          tar -xzf /tmp/site.tar.gz -C site/ &&
-          echo 'Site extracted successfully'
+          echo '✅ Documentation site built successfully' &&
+          echo 'Generated files:' &&
+          ls -la site/ | head -10
           "
 
     - name: 🔍 Validate Generated Site
