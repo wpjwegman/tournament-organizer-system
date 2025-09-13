@@ -1,22 +1,32 @@
-# organization - unit
+---
+tags:
+  - subdomain
+  - unit
+  - organization
+  - data-model
+---
 
-This directory contains models related to unit within the organization domain.
+# Unit Subdomain
 
-## Files
+This subdomain contains models related to organizational units within the organization domain. It provides structure
+for managing hierarchical organizational divisions and their membership.
 
-- [Member](member.md) - Individual members within organizational units
-- [Unit](unit.md) - Organizational unit structure and management
+## Models
 
-## Related Models
+- **[Member](member.md)** - Individual members within organizational units
+- **[Unit](unit.md)** - Organizational unit structure and management
 
-- See parent directory: [Organization](../README.md)
-- See business models: [Business Models](../../README.md)
+## Related Domains
 
-## TODO
+- Parent domain: **[Organization](../README.md)**
+- All domains: **[Business Models](../../README.md)**
 
-- Add comprehensive documentation for each model
-- Establish relationships with other business models
-- Define business rules and constraints
+## Implementation Status
+
+- ✅ Core entity definitions complete
+- 🔄 Comprehensive documentation in progress
+- 📋 Business rules and constraints being defined
+- 🔗 Cross-domain relationships being established
 
 ## References
 

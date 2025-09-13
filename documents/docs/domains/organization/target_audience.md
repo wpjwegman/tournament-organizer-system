@@ -1,24 +1,25 @@
-# **Target Audience** (Data Model - Template Entity)
-
-## **Introduction**
-
-A **Target Audience** Entity Template defines a reusable blueprint for identifying and categorizing groups of
-participants, spectators, or other stakeholders in a tournament context. It serves as a standardized format for defining
-audience characteristics, requirements, and roles.
-
-As an Entity Template, it ensures consistent audience targeting across the system while maintaining flexibility for
-different types of tournaments and their specific requirements. It is commonly referenced by [Rule](../discipline/activity/variation/rule.md) and Safety Guideline templates to specify which groups they apply to.
-
-It inherits standard attributes from the .
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
+---
+tags:
+  - template-entity
+  - target-audience
+  - organization
+  - data-model
 ---
 
-## **Attributes**
+# Target Audience (Template Entity)
 
-**Note:** This Entity Template includes the standard attributes (`ID`, `Status` [e.g., Active, Inactive], `CreatedAt`,
-`LastUpdatedAt`, `Version`) defined in the [Base Entity](../foundation/base_entity.md).
+## Introduction
+
+A **Target Audience** Template Entity defines a reusable blueprint for identifying and categorizing groups of
+participants, spectators, or other stakeholders in a tournament context. It provides standardized audience targeting
+templates that ensure consistency across different tournament types and contexts.
+
+Target Audience templates enable precise rule application, safety guideline targeting, and participant categorization
+while maintaining flexibility for diverse tournament requirements and organizational structures.
+
+## Structure
+
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
 | Attribute           | Description                                                  | Type         | Required | Notes / Example                                                                     |
 | ------------------- | ------------------------------------------------------------ | ------------ | -------- | ----------------------------------------------------------------------------------- |
@@ -34,75 +35,38 @@ It inherits properties from the [Base Entity](../foundation/base_entity.md).
 
 ---
 
-## **Relationships**
+## Relationships
 
 - A `Target Audience` template can be referenced by:
-
-  - to define its participant requirements
-  - [Rule](../discipline/activity/variation/rule.md) templates to
-
-    specify which groups the rules apply to
-
+  - **[Tournament](../tournament/tournament.md)** to define its participant requirements
+  - [Rule](../discipline/activity/variation/rule.md) templates to specify which groups the rules apply to
   - Safety Guideline templates to specify which groups the guidelines apply to (*future enhancement*)
-
 - The specific implementation of a target audience within a tournament will be linked to records.
 - A target audience may be referenced by multiple entities across the system.
 
----
+## Example
 
-## **Considerations**
+```mermaid
+graph TD
+    A[Target Audience: Youth Division] --> B[Name: Youth Division]
+    A --> C[Type: Participant]
+    A --> D[Description: Players aged 12-18 with intermediate skill]
+    A --> E[Age Range: 12-18 years]
+    A --> F[Skill Level: Intermediate]
+    A --> G[Gender Category: Mixed]
+    A --> H[Region: North America]
+    A --> I[Requirements: Valid ID, Age Verification]
+    A --> J[Roles: Player, Coach Assistant]
+```
 
-- **Template Nature:** This template defines a standard target audience type. Instance-specific variations or customizations
-
-  belong on the copied instance within its specific context (e.g., a specific tournament's implementation).
-
-- **Copy Mechanism:** The process of copying this template definition into a target context (like a specific tournament)
-
-  needs to be handled by application logic.
-
-- **Template Management:**
-
-  - Templates should be curated and maintained by organizational administrators
-  - New templates can be added based on demographic standards and tournament requirements
-  - Templates should be reviewed periodically for inclusivity and relevance
-
-- **Template Usage:** The template should be referenced rather than copied, as target audiences are standardized across
-
-  the system.
-
-- **Flexibility:** Not all attributes are required for all audience types (e.g., Spectators don't need Skill Level).
-- **Validation:** Required attributes must be validated against participant data when applicable.
-- **Inclusivity:** Gender Category and other demographic attributes should comply with tournament regulations and
-
-  inclusivity policies.
-
-- **Role Alignment:** The Roles attribute should align with the tournament's [Role](../foundation/base_entity.md) definitions.
-- **Requirement Verification:** All Requirements must be verifiable and documented when applicable.
-- **Customization Balance:**
-
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental audience structure
-  - System should support both template-based and fully custom target audiences
-
----
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 9001:2015 - Quality management systems — Requirements](https://www.iso.org/standard/62085.html)
-- [ISO 26000:2020 - Guidance on social responsibility](https://www.iso.org/standard/42546.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity Template patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event audience management
-
-  standards
+This example illustrates a Youth Division target audience template designed for intermediate-level tournaments. The
+template defines participants aged 12-18 with mixed gender categories and regional scope for North America. Required
+verification includes valid identification and age confirmation, while permitted roles encompass both player
+participation and coaching assistance opportunities.
 
 ## See Also
 
-- [Organization README](../organization/README.md)
-- [Organization](../organization/organization.md)
-- [Rule](../discipline/activity/variation/rule.md)
-- [Safety Guideline](../safety/safety.md)
-- [Business README](../README.md)
+- **[Organization](organization.md)** - Parent organization template structure
+- **[Tournament](../tournament/tournament.md)** - Tournament participant requirements
+- **[Rule](../discipline/activity/variation/rule.md)** - Rule application targeting
+- **[Safety Guidelines](../safety/safety_guideline.md)** - Safety requirement targeting
