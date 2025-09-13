@@ -1,8 +1,17 @@
-# **Plant Profile** (Data Model – Entity)
+---
+tags:
+- identity
+- profile
+- plant
+- entity
+- nature
+---
 
-## **Introduction**
+# Plant Profile (Entity)
 
-The **Plant Profile** Entity inherits from the [Base Profile](../../identity/profile/base_profile.md) and
+## Introduction
+
+The **Plant Profile** Entity inherits from the [Base Profile](base_profile.md) and
 represents a plant participant or resource within Tournament Organizer. It adds plant-specific attributes and
 relationships, such as species, variety, date of planting, and caretaker.
 

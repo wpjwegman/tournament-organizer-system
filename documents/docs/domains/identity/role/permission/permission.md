@@ -1,13 +1,22 @@
-# **Permission** (Data Model - Template Entity)
+---
+tags:
+- identity
+- role
+- permission
+- authorization
+- template-entity
+---
 
-## **Introduction**
+# Permission (Template Entity)
+
+## Introduction
 
 A **Permission** Entity Template defines a reusable blueprint for a specific authorization or access right within the
 tournament system. It provides a standardized way to define what actions or resources an entity can access or modify.
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../../foundation/base_entity.md). When used, its
-definition is typically **copied** into the target context, allowing for potential minor modifications or annotations
-without altering the original template.
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../../foundation/base_entity.md). When used, its definition is typically **copied** into the target
+context, allowing for potential minor modifications or annotations without altering the original template.
 
 It inherits properties from the [Base Entity](../../../foundation/base_entity.md).
 

@@ -1,8 +1,17 @@
-# **Digital Profile** (Data Model – Entity)
+---
+tags:
+- identity
+- profile
+- digital
+- entity
+- platform
+---
 
-## **Introduction**
+# Digital Profile (Entity)
 
-The **Digital Profile** Entity inherits from the [Base Profile](../../identity/profile/base_profile.md) and
+## Introduction
+
+The **Digital Profile** Entity inherits from the [Base Profile](base_profile.md) and
 represents a digital asset, identity, or resource within Tournament Organizer. It adds digital-specific attributes and
 relationships, such as platform, handle, and owner.
 

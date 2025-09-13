@@ -1,14 +1,23 @@
-# **Specialization** (Data Model - Template Entity)
+---
+tags:
+- identity
+- role
+- specialization
+- template-entity
+- variation
+---
 
-## **Introduction**
+# Specialization (Template Entity)
+
+## Introduction
 
 A **Specialization** Entity Template defines a reusable blueprint for a specific variation or specialization of a role
 within the tournament system. It allows for creating more specific versions of base roles, such as "Senior Referee" or
 "Junior Coach".
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../foundation/base_entity.md). When used, its
-definition is typically **copied** into the target context, allowing for potential minor modifications or annotations
-without altering the original template.
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../foundation/base_entity.md). When used, its definition is typically **copied** into the target
+context, allowing for potential minor modifications or annotations without altering the original template.
 
 It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 

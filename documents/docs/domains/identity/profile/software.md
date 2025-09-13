@@ -1,8 +1,17 @@
-# **Software Profile** (Data Model – Entity)
+---
+tags:
+- identity
+- profile
+- software
+- entity
+- application
+---
 
-## **Introduction**
+# Software Profile (Entity)
 
-The **Software Profile** Entity inherits from the [Base Profile](../../identity/profile/base_profile.md) and
+## Introduction
+
+The **Software Profile** Entity inherits from the [Base Profile](base_profile.md) and
 represents a software participant or resource within Tournament Organizer. It adds software-specific attributes and
 relationships, such as type, vendor, version, license, and administrator.
 

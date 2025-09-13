@@ -1,8 +1,17 @@
-# **Art Profile** (Data Model – Entity)
+---
+tags:
+- identity
+- profile
+- art
+- entity
+- asset
+---
 
-## **Introduction**
+# Art Profile (Entity)
 
-The **Art Profile** Entity inherits from the [Base Profile](../../identity/profile/base_profile.md) and
+## Introduction
+
+The **Art Profile** Entity inherits from the [Base Profile](base_profile.md) and
 represents an art asset, identity, or resource within Tournament Organizer. It adds art-specific attributes and
 relationships, such as type, artist, year, and owner.
 
@@ -10,34 +19,34 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 
 ---
 
-## **Additional Attributes**
+## Additional Attributes
 
-**Note:** This entity inherits all attributes from [Base Profile](../../identity/profile/base_profile.md).
+**Note:** This entity inherits all attributes from [Base Profile](base_profile.md).
 
 | Attribute               | Description                                         | Type            | Required | Notes / Example                                                                                                                 |
 | ----------------------- | --------------------------------------------------- | --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | **Type**                | The type of art                                     | String          | Yes      | `"Painting"`, `"Sculpture"`, `"Poster"`                                                                                         |
 | **Artist**              | The artist or creator of the art                    | String          | No       | `"Van Gogh"`, `"Banksy"`                                                                                                        |
 | **Year**                | The year the art was created                        | Integer         | No       | `2021`                                                                                                                          |
-| **Owner**               | Reference to the human profile of the owner         | UUID            | No       | Links to [Human Profile](../../identity/profile/human.md)                                                            |
+| **Owner**               | Reference to the human profile of the owner         | UUID            | No       | Links to [Human Profile](human.md)                                                            |
 | **Provenance**          | Reference to provenance or ownership history entity | UUID            | No       | Links to Provenance <!-- TODO: Create provenance model --> |
 | **Exhibition History**  | List of exhibitions or competitions entered         | List[UUID]      | No       | Links to Exhibition <!-- TODO: Create exhibition model -->   |
 | **Appraisal/Valuation** | Reference to appraisal or valuation entity          | UUID            | No       | Links to Appraisal <!-- TODO: Create appraisal model -->     |
 
 ---
 
-## **Relationships**
+## Relationships
 
-- Inherits all relationships from [Base Profile](../../identity/profile/base_profile.md).
+- Inherits all relationships from [Base Profile](base_profile.md).
 - Additional relationships specific to Art Profile:
 
-- [Human Profile](../../identity/profile/human.md) (Owner)
+- [Human Profile](human.md) (Owner)
 
 ---
 
-## **Considerations**
+## Considerations
 
-- Inherits all considerations from [Base Profile](../../identity/profile/base_profile.md).
+- Inherits all considerations from [Base Profile](base_profile.md).
 - Art profiles may be linked to human owners, teams, or organizations.
 
 ---
@@ -56,9 +65,9 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 
 ## See Also
 
-- [Base Profile](../../identity/profile/base_profile.md)
-- [Human](../../identity/profile/human.md)
-- [Identity README](../../identity/README.md)
+- [Base Profile](base_profile.md)
+- [Human](human.md)
+- [Identity README](../README.md)
 - [Business README](../../README.md)
 
 ---

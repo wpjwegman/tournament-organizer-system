@@ -1,14 +1,23 @@
-# **Resource Type** (Data Model - Template Entity)
+---
+tags:
+- identity
+- role
+- permission
+- resource-type
+- template-entity
+---
 
-## **Introduction**
+# Resource Type (Template Entity)
+
+## Introduction
 
 A **Resource Type** Entity Template defines a reusable blueprint for a specific category of resources or entities within
 the tournament system. It provides a standardized way to classify and organize different types of resources that can be
 managed, accessed, or operated upon.
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../../foundation/base_entity.md). When used, its
-definition is typically **copied** into the target context, allowing for potential minor modifications or annotations
-without altering the original template.
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../../foundation/base_entity.md). When used, its definition is typically **copied** into the target
+context, allowing for potential minor modifications or annotations without altering the original template.
 
 It inherits properties from the [Base Entity](../../../foundation/base_entity.md).
 

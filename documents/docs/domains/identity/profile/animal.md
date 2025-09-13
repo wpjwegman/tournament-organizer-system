@@ -1,17 +1,26 @@
-# **Animal Profile** (Data Model – Entity)
+---
+tags:
+- identity
+- profile
+- animal
+- entity
+- participant
+---
 
-## **Introduction**
+# Animal Profile (Entity)
+
+## Introduction
 
 The **Animal Profile** Entity inherits from the [Base Profile](base_profile.md) and
 represents an animal participant or resource within Tournament Organizer. It includes only the most essential
 animal-specific attributes and relationships, with all context-specific roles (handler, trainer, etc.) managed elsewhere
 in the system.
 
-It inherits properties from the [Base Entity](../../foundation/README.md).
+It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 
 ---
 
-## **Additional Attributes**
+## Additional Attributes
 
 **Note:** This entity inherits all attributes from [Base Profile](base_profile.md).
 
@@ -27,7 +36,7 @@ It inherits properties from the [Base Entity](../../foundation/README.md).
 
 ---
 
-## **Relationships**
+## Relationships
 
 - Inherits all relationships from [Base Profile](base_profile.md).
 - Additional relationships specific to Animal Profile:
@@ -36,7 +45,7 @@ It inherits properties from the [Base Entity](../../foundation/README.md).
 
 ---
 
-## **Considerations**
+## Considerations
 
 - Inherits all considerations from [Base Profile](base_profile.md).
 - Only the owner is tracked at the profile level; all other roles are managed in team/event/assignment contexts.
