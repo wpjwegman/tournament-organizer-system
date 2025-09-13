@@ -1,6 +1,13 @@
-# **Organization Domain**
+---
+tags:
+  - domain
+  - organization
+  - data-model
+---
 
-## **Overview**
+# Organization Domain
+
+## Overview
 
 The Organization domain manages structured groups, their internal hierarchies, and member relationships within the
 Tournament Organizer system. It provides comprehensive frameworks for representing businesses, sports federations,
@@ -9,58 +16,50 @@ sponsors, educational institutions, and other organizational entities involved i
 This domain uses a hierarchical approach where organizations contain units, units contain members, and members have
 specific roles within their organizational context.
 
-## **Domain Structure**
+## Domain Structure
 
-### **Core Models**
+### Core Models
 
-- \*\*\*\*: Structured group entity (business, federation, sponsor) with hierarchical units
-- \*\*\*\*: Template for identifying and categorizing participant groups and stakeholders
-- **🚨 **BROKEN:** [Unit](../organization/unit/unit.md) 🚨**: Distinct division within an organization
+- **[Organization](organization.md)**: Structured group entity (business, federation, sponsor) with hierarchical units
+- **[Target Audience](target_audience.md)**: Template for identifying and categorizing participant groups and stakeholders
+- **[Unit](unit/unit.md)**: Distinct division within an organization (department, team, project group)
+- **[Member](unit/member.md)**: Individual participant with roles within organizational context
 
-  (department, team, project group)
+### Supporting Models
 
-- **🚨 **BROKEN:** [Member](../organization/unit/member.md) 🚨**: Individual participant with roles within
+- **[Contact Information](../identity/contact_information.md)**: Contact details for organizations and units
+- **[Inventory Items](../inventory/inventory_item.md)**: Equipment and supplies managed by organizations
+- **[Media](../media/media.md)**: Media associated with organizations
 
-  organizational context
+## Template Entity Analysis
 
-### **Supporting Models**
-
-- **[Contact Information](../identity/contact_information.md)**: Contact details for organizations and
-
-  units
-
-- \*\*\*\*: Equipment and supplies managed by organizations
-- \*\*\*\*: Media associated with organizations
-
-## **Template Entity Analysis**
-
-### **Current Template Entities**
+### Current Template Entities
 
 - **Target Audience**: Used as a template for standard audience definitions, referenced by tournaments and rules
 - **Role**: Referenced by members for role assignments within organizational contexts
 
-### **Potential Template Entities**
+### Potential Template Entities
 
 - **Organization Type Templates**: Standard organization categories and their attributes
 - **Unit Type Templates**: Standard unit categories and their structures
 - **Membership Role Templates**: Standard role definitions for different organizational contexts
 - **Organizational Structure Templates**: Standard organizational hierarchies and reporting relationships
 
-## **Status Lifecycle**
+## Status Lifecycle
 
-### **Organization Statuses**
+### Organization Statuses
 
 - **Active**: Organization is operational and participating in tournaments
 - **Inactive**: Organization is temporarily not operational
 - **Pending Verification**: Organization is being verified for participation
 - **Suspended**: Organization is temporarily suspended from participation
 
-### **Target Audience Statuses**
+### Target Audience Statuses
 
 - **Active**: Template is available for use in tournaments and rules
 - **Inactive**: Template is deprecated or no longer recommended
 
-### **Unit Statuses**
+### Unit Statuses
 
 - **Active**: Unit is operational and functioning
 - **Inactive**: Unit is temporarily not operational
@@ -72,14 +71,14 @@ specific roles within their organizational context.
 - **Inactive**: Member is temporarily not participating
 - **Suspended**: Member is temporarily suspended from organizational activities
 
-### **Lifecycle Transitions**
+### Lifecycle Transitions
 
 - Organization: Pending Verification → Active → Inactive/Suspended
 - Target Audience: Active → Inactive
 - Unit: Active → Inactive → Archived
 - Member: Active → Inactive/Suspended
 
-## **Relationships & Cross-References**
+## Relationships & Cross-References
 
 - **Organization ↔ Tournament**: Organization as organizer or sponsor
 - **Organization ↔ Venue**: Organization as owner or manager
@@ -93,23 +92,23 @@ specific roles within their organizational context.
 - **Organization ↔ Inventory**: Equipment and resource management
 - **Organization ↔ Media Asset**: Branding and promotional materials
 
-## **Hierarchical Structure**
+## Hierarchical Structure
 
-### **Organization Hierarchy**
+### Organization Hierarchy
 
 - Organizations can contain multiple units
 - Units can have parent-child relationships
 - Units can have collaborative relationships
 - Members are assigned to specific units with roles
 
-### **Role Assignment System**
+### Role Assignment System
 
 - Members can have multiple roles within a unit
 - Roles are context-dependent (organization-specific)
 - Role assignments can be updated as organizational needs change
 - External context determines role scope and permissions
 
-## **Quality Standards**
+## Quality Standards
 
 - All models include comprehensive attribute documentation
 - Cross-references are accurate and up to date
@@ -119,7 +118,7 @@ specific roles within their organizational context.
 - Practical examples are provided where relevant
 - Consistent formatting and terminology throughout
 
-## **Implementation Guidelines**
+## Implementation Guidelines
 
 - Use hierarchical structures for organizational management
 - Enforce status transitions and lifecycle rules
@@ -129,13 +128,13 @@ specific roles within their organizational context.
 - Maintain accurate cross-references between all related models
 - Regularly review and update documentation for clarity and completeness
 
-## **Related Domains**
+## Related Domains
 
-- \*\*\*\*: Tournament structure and management
-- \*\*\*\*: Team composition and organizational affiliation
-- \*\*\*\*: Member profiles and contact information
-- \*\*\*\*: Venue ownership and management
-- \*\*\*\*: Equipment and resource management
+- **[Tournament](../tournament/README.md)**: Tournament structure and management
+- **[Team](../team/README.md)**: Team composition and organizational affiliation
+- **[Identity](../identity/README.md)**: Member profiles and contact information
+- **[Venue](../venue/README.md)**: Venue ownership and management
+- **[Inventory](../inventory/README.md)**: Equipment and resource management
 
 ---
 
