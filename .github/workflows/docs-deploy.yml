@@ -51,11 +51,15 @@ jobs:
         sudo rm -rf site
         mkdir -p site
         
+        # Ensure proper permissions for the documents directory
+        sudo chmod -R 755 .
+        
         # Generate the complete documentation site using our container
-        # Use a simplified approach that directly builds into the host directory
+        # Use proper user permissions to avoid permission denied errors
         docker run --rm \
           -v "${{ github.workspace }}:/workspace" \
           -w /workspace/documents \
+          --user "$(id -u):$(id -g)" \
           localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
           
