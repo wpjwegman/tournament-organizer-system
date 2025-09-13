@@ -23,10 +23,10 @@ It inherits properties from the [Base Entity](../../../foundation/base_entity.md
 
 ---
 
-## **Attributes**
+## Attributes
 
 **Note:** This Entity Template includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
-in the .
+in the [Base Entity](../../../foundation/base_entity.md).
 
 | Attribute        | Description                                                                                                                                                                       | Type       | Required | Notes / Example                                                            |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | -------- | -------------------------------------------------------------------------- |
@@ -40,7 +40,7 @@ in the .
 
 ---
 
-## **Relationships**
+## Relationships
 
 - A `Responsibility` Entity Template is referenced by [Role](../role.md) entities.
 - A `Responsibility` Entity Template may contain multiple [Task](task.md) entities.

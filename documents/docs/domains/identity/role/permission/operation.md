@@ -23,10 +23,10 @@ It inherits properties from the [Base Entity](../../../foundation/base_entity.md
 
 ---
 
-## **Attributes**
+## Attributes
 
 **Note:** This Entity Template includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
-in the .
+in the [Base Entity](../../../foundation/base_entity.md).
 
 | Attribute       | Description                                                      | Type         | Required | Notes / Example                                          |
 | --------------- | ---------------------------------------------------------------- | ------------ | -------- | -------------------------------------------------------- |
@@ -39,12 +39,10 @@ in the .
 
 ---
 
-## **Relationships**
+## Relationships
 
 - An `Operation` Entity Template is referenced by entities.
-- An `Operation` Entity Template may be applicable to multiple 🚨 **BROKEN:** 🚨 **BROKEN:** 🚨 **BROKEN:**
-
-  [Resource Type](../permission/resource_type.md) 🚨 🚨 🚨 entities.
+- An `Operation` Entity Template may be applicable to multiple [Resource Type](resource_type.md) entities.
 
 ### Parent Relationships
 
@@ -56,9 +54,7 @@ in the .
 
 ### Related Entities
 
-- 🚨 **BROKEN:** 🚨 **BROKEN:** 🚨 **BROKEN:** [Resource Type](../permission/resource_type.md)
-
-  🚨 🚨 🚨 - Resource types this operation can be applied to
+- [Resource Type](resource_type.md) - Resource types this operation can be applied to
 
 ---
 

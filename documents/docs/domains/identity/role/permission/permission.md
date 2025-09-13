@@ -22,10 +22,10 @@ It inherits properties from the [Base Entity](../../../foundation/base_entity.md
 
 ---
 
-## **Attributes**
+## Attributes
 
 **Note:** This Entity Template includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
-in the .
+in the [Base Entity](../../../foundation/base_entity.md).
 
 | Attribute       | Description                                                                                                                                                                                   | Type   | Required | Notes / Example                                        |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- | ------------------------------------------------------ |
@@ -39,7 +39,7 @@ in the .
 
 ---
 
-## **Relationships**
+## Relationships
 
 - A `Permission` Entity Template is referenced by [Role](../../../foundation/base_entity.md) entities.
 - A `Permission` Entity Template applies to one [Resource Type](resource_type.md) entity.
