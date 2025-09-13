@@ -1,18 +1,32 @@
-# **Sex** (Data Model - Value Object)
+---
+tags:
 
-## **Introduction**
-
-A **Sex** Value Object represents biological sex classification in a standardized format. It provides a consistent way
-to handle sex information for medical, legal, and administrative purposes within the tournament system.
-
-It describes biological characteristics and is typically embedded within other entities (like
-[Human Profile](../profile/human.md) or [Medical History](medical_history/medical_history.md)) to specify biological details.
-
-It inherits properties from the [Base Entity](../../foundation/base_entity.md).
+- identity
+- attribute
+- sex
+- value-object
+- biological
+- classification
 
 ---
 
-## **Attributes**
+# Sex (Value Object)
+
+A **Sex** Value Object represents biological sex classification in a standardized format. This template entity
+includes standard attributes from the [Base Entity](../../foundation/base_entity.md) and provides a consistent
+way to handle sex information for medical, legal, and administrative purposes within the tournament system.
+
+As a Value Object, it describes biological characteristics and is typically embedded within other entities
+to specify biological details for appropriate record-keeping and regulatory compliance.
+
+## Purpose
+
+Sex classification provides essential biological identification within the identity domain, enabling appropriate
+medical care coordination, legal compliance with sporting regulations, and administrative record accuracy.
+This supports gender-specific competition categories, medical emergency response, and regulatory compliance
+requirements for various tournament types.
+
+## Structure
 
 | Attribute       | Description                                                     | Type   | Required | Notes / Example                              |
 | --------------- | --------------------------------------------------------------- | ------ | -------- | -------------------------------------------- |
@@ -20,39 +34,24 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 | **Code**        | A standardized code for the sex category.                       | String | Optional | `"M"`, `"F"`, `"I"`                          |
 | **Description** | Additional description or context about the sex classification. | String | Optional | `"Biological male"`, `"Intersex individual"` |
 
----
+## Example
 
-## **Relationships**
+```mermaid
+graph TD
+    A[Sex Value Object] --> B[Category: Female]
+    A --> C[Code: F]
+    A --> D[Description: Biological female classification]
+```
 
-- A `Sex` Value Object is embedded within [Human Profile](../profile/human.md) entities.
-- A `Sex` Value Object may be embedded within [Medical History](medical_history/medical_history.md) entities.
-- A `Sex` Value Object may be referenced by [Registration](../../registration/README.md) entities for eligibility purposes.
-
----
-
-## **Considerations**
-
-- **Privacy:** Sex information should be handled according to privacy regulations.
-- **Sensitivity:** This information is personal and should be treated with appropriate confidentiality.
-- **Medical Context:** Sex information may be relevant for medical and safety considerations.
-- **Legal Requirements:** Some jurisdictions have specific requirements for sex classification.
-
----
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO/IEC 27001:2022 - Information security, cybersecurity and privacy protection](https://www.iso.org/standard/27001)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Value Object patterns
-
-- [WHO: Gender and health](https://www.who.int/health-topics/gender)
+This example shows a biological sex classification that enables appropriate tournament category placement and
+medical record keeping. The structured format allows tournament organizers to comply with sporting federation
+rules for gender-specific competitions, ensure proper medical emergency response protocols, and maintain
+accurate administrative records while respecting privacy and regulatory requirements.
 
 ## See Also
 
-- [Human Profile](../profile/human.md)
+- [Base Entity](../../foundation/base_entity.md)
+- [Gender Identity](gender_identity.md)
 - [Medical History](medical_history/medical_history.md)
-- [Identity README](../README.md)
-- [Registration](../../registration/README.md)
-- [Business README](../../README.md)
+- [Human Profile](../profile/human.md)
+- [Identity Domain](../README.md)
