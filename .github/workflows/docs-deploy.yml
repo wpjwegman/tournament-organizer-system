@@ -51,19 +51,23 @@ jobs:
         sudo rm -rf site
         mkdir -p site
         
-        # Generate documentation site using professional container isolation
-        # Build in container's temp space and copy results to workspace
+        # Professional solution: Use Docker volume to handle file permissions correctly
+        # Create a temporary directory that the container can write to
+        TEMP_SITE_DIR=$(mktemp -d)
+        
+        # Generate documentation site with proper volume handling
         docker run --rm \
-          -v "${{ github.workspace }}:/workspace" \
+          -v "${{ github.workspace }}/documents:/source:ro" \
+          -v "$TEMP_SITE_DIR:/output" \
           localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
           
-          # Create isolated build environment in container's temp space
+          # Create isolated build environment
           BUILD_DIR=/tmp/docs-build
           mkdir -p \$BUILD_DIR &&
           
           echo '📦 Copying source files to build environment...' &&
-          cp -r /workspace/documents/* \$BUILD_DIR/ &&
+          cp -r /source/* \$BUILD_DIR/ &&
           cd \$BUILD_DIR &&
           
           echo '📦 Setting up Python environment...' &&
@@ -74,13 +78,20 @@ jobs:
           echo '📚 Building MkDocs site with strict validation...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
-          echo '📤 Copying built site to workspace...' &&
-          cp -r site/* /workspace/documents/site/ &&
+          echo '📤 Copying built site to output volume...' &&
+          cp -r site/* /output/ &&
           
           echo '✅ Documentation site built successfully' &&
           echo 'Generated files:' &&
-          ls -la /workspace/documents/site/ | head -10
+          ls -la /output/ | head -10
           "
+        
+        # Copy the results from temp directory to workspace with proper permissions
+        echo "📤 Transferring built site to workspace..."
+        cp -r "$TEMP_SITE_DIR"/* site/
+        
+        # Clean up temp directory
+        rm -rf "$TEMP_SITE_DIR"
         
         # Verify the build was successful
         if [ ! -f "site/index.html" ]; then
