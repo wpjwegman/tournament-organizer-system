@@ -79,11 +79,13 @@ jobs:
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
           echo '📤 Copying built site to output volume...' &&
-          if [ -d site ] && [ \"\$(ls -A site)\" ]; then
+          if [ -d site ] && [ \"\$(ls -A site 2>/dev/null)\" ]; then
+            echo 'Site directory contains files, copying to output...' &&
             cp -r site/* /output/ &&
             echo 'Site files copied successfully'
           else
-            echo 'ERROR: site directory is empty or missing'
+            echo 'ERROR: site directory is empty or missing' &&
+            ls -la site/ || echo 'site directory does not exist' &&
             exit 1
           fi &&
           
