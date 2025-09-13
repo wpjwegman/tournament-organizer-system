@@ -1,8 +1,17 @@
-# **Machine Profile** (Data Model – Entity)
+---
+tags:
+- identity
+- profile
+- machine
+- entity
+- equipment
+---
 
-## **Introduction**
+# Machine Profile (Entity)
 
-The **Machine Profile** Entity inherits from the [Base Profile](../../identity/profile/base_profile.md) and
+## Introduction
+
+The **Machine Profile** Entity inherits from the [Base Profile](base_profile.md) and
 represents a machine participant or resource within Tournament Organizer. It adds machine-specific attributes and
 relationships, such as type, manufacturer, model, year, and operator.
 

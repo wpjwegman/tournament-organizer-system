@@ -1,23 +1,32 @@
-# **Operation** (Data Model - Template Entity)
+---
+tags:
+- identity
+- role
+- permission
+- operation
+- template-entity
+---
 
-## **Introduction**
+# Operation (Template Entity)
+
+## Introduction
 
 An **Operation** Entity Template defines a reusable blueprint for a specific action or activity that can be performed on
 resources within the tournament system. It provides a standardized way to define what operations are available and how
 they should be executed.
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../../foundation/base_entity.md). When used, its
-definition is typically **copied** into the target context, allowing for potential minor modifications or annotations
-without altering the original template.
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../../foundation/base_entity.md). When used, its definition is typically **copied** into the target
+context, allowing for potential minor modifications or annotations without altering the original template.
 
 It inherits properties from the [Base Entity](../../../foundation/base_entity.md).
 
 ---
 
-## **Attributes**
+## Attributes
 
 **Note:** This Entity Template includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
-in the .
+in the [Base Entity](../../../foundation/base_entity.md).
 
 | Attribute       | Description                                                      | Type         | Required | Notes / Example                                          |
 | --------------- | ---------------------------------------------------------------- | ------------ | -------- | -------------------------------------------------------- |
@@ -30,12 +39,10 @@ in the .
 
 ---
 
-## **Relationships**
+## Relationships
 
 - An `Operation` Entity Template is referenced by entities.
-- An `Operation` Entity Template may be applicable to multiple 🚨 **BROKEN:** 🚨 **BROKEN:** 🚨 **BROKEN:**
-
-  [Resource Type](../permission/resource_type.md) 🚨 🚨 🚨 entities.
+- An `Operation` Entity Template may be applicable to multiple [Resource Type](resource_type.md) entities.
 
 ### Parent Relationships
 
@@ -47,9 +54,7 @@ in the .
 
 ### Related Entities
 
-- 🚨 **BROKEN:** 🚨 **BROKEN:** 🚨 **BROKEN:** [Resource Type](../permission/resource_type.md)
-
-  🚨 🚨 🚨 - Resource types this operation can be applied to
+- [Resource Type](resource_type.md) - Resource types this operation can be applied to
 
 ---
 

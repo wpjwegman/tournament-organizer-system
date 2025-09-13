@@ -1,8 +1,17 @@
-# **Vehicle Profile** (Data Model – Entity)
+---
+tags:
+- identity
+- profile
+- vehicle
+- entity
+- transportation
+---
 
-## **Introduction**
+# Vehicle Profile (Entity)
 
-The **Vehicle Profile** Entity inherits from the [Base Profile](../../identity/profile/base_profile.md) and
+## Introduction
+
+The **Vehicle Profile** Entity inherits from the [Base Profile](base_profile.md) and
 represents a vehicle participant or resource within Tournament Organizer. It adds vehicle-specific attributes and
 relationships, such as type, make, model, year, registration, and owner.
 

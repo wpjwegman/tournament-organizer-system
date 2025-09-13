@@ -1,26 +1,32 @@
-# **Scope** (Data Model - Template Entity)
+---
+tags:
+- identity
+- account
+- scope
+- template-entity
+- configuration
+---
 
-## **Introduction**
+# Scope (Template Entity)
 
-A **Scope** Entity Template defines the context or domain where settings and configurations apply within the Tournament
-Organizer system. It provides a standardized way to manage and organize settings across different contexts such as
-tournaments, disciplines, teams, or global system settings.
+## Introduction
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../../foundation/base_entity.md). When used, its
-definition is typically **copied** into the target context, allowing for potential modifications while maintaining the
-original template's structure.
+A **Scope** Entity Template defines the context or domain where settings and configurations apply within the
+Tournament Organizer system. It provides a standardized way to manage and organize settings across different contexts
+such as tournaments, disciplines, teams, or global system settings.
 
-_(For a guide on how scopes are used in settings management, see the
-<!-- [User Guide: Account Settings](# ../user_guide/ (TODO: Create user guide) -->))._
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../../foundation/base_entity.md). When used, its definition is typically **copied** into the target
+context, allowing for potential modifications while maintaining the original template's structure.
 
 It inherits properties from the [Base Entity](../../../foundation/base_entity.md).
 
 ---
 
-## **Attributes**
+## Attributes
 
 **Note:** This Entity Template includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
-in the .
+in the [Base Entity](../../../foundation/base_entity.md).
 
 | Attribute       | Description                                                  | Type       | Required | Notes / Example                                                                                     |
 | --------------- | ------------------------------------------------------------ | ---------- | -------- | --------------------------------------------------------------------------------------------------- |
@@ -31,13 +37,11 @@ in the .
 
 ---
 
-## **Relationships**
+## Relationships
 
 - A `Scope` Template can be referenced by:
 
-- 🚨 **BROKEN:** 🚨 **BROKEN:** [Setting](../../role/permission/README.md) 🚨 🚨 entities for
-
-    defining where settings apply
+- [Setting](setting.md) entities for defining where settings apply
 
 - Account configurations for user-specific settings
 - System configurations for global settings
@@ -51,7 +55,7 @@ in the .
 
 ---
 
-## **Considerations**
+## Considerations
 
 - **Template Usage:** Serves as a reusable component for defining setting contexts across the system
 - **Copy Mechanism:** When instantiated, creates a new scope record with its own identity and context

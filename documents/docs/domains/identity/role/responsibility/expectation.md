@@ -1,6 +1,15 @@
-# **Expectation** (Data Model - Value Object)
+---
+tags:
+- identity
+- role
+- responsibility
+- expectation
+- value-object
+---
 
-## **Introduction**
+# Expectation (Value Object)
+
+## Introduction
 
 An **Expectation** is a Value Object that represents a standard of conduct, behavior, or outcome expected from a Role or
 Responsibility. Expectations are referenced to clarify what is required or valued in a given context.

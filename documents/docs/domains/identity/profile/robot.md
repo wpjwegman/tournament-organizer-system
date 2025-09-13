@@ -1,8 +1,17 @@
-# **Robot Profile** (Data Model – Entity)
+---
+tags:
+- identity
+- profile
+- robot
+- entity
+- automation
+---
 
-## **Introduction**
+# Robot Profile (Entity)
 
-The **Robot Profile** Entity inherits from the [Base Profile](../../identity/profile/base_profile.md) and
+## Introduction
+
+The **Robot Profile** Entity inherits from the [Base Profile](base_profile.md) and
 represents a robot participant or resource within Tournament Organizer. It adds robot-specific attributes and
 relationships, such as type, manufacturer, model, year, and operator.
 

@@ -1,6 +1,15 @@
-# **Tracking** (Data Model - Value Object)
+---
+tags:
+- identity
+- role
+- responsibility
+- tracking
+- value-object
+---
 
-## **Introduction**
+# Tracking (Value Object)
+
+## Introduction
 
 A **Tracking** is a **Value Object** that represents the execution monitoring and progress tracking for a Task. This
 model captures the "how it's being done" aspects of task execution, including progress, time tracking, and

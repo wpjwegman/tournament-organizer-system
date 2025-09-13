@@ -1,23 +1,32 @@
-# **Responsibility** (Data Model - Template Entity)
+---
+tags:
+- identity
+- role
+- responsibility
+- duty
+- template-entity
+---
 
-## **Introduction**
+# Responsibility (Template Entity)
+
+## Introduction
 
 A **Responsibility** Entity Template defines a reusable blueprint for a specific duty, task, or obligation that can be
 assigned to roles within the tournament system. It provides a standardized way to define what individuals or entities
 are expected to do in their assigned roles.
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../../foundation/base_entity.md). When used, its
-definition is typically **copied** into the target context, allowing for potential minor modifications or annotations
-without altering the original template.
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../../foundation/base_entity.md). When used, its definition is typically **copied** into the target
+context, allowing for potential minor modifications or annotations without altering the original template.
 
 It inherits properties from the [Base Entity](../../../foundation/base_entity.md).
 
 ---
 
-## **Attributes**
+## Attributes
 
 **Note:** This Entity Template includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
-in the .
+in the [Base Entity](../../../foundation/base_entity.md).
 
 | Attribute        | Description                                                                                                                                                                       | Type       | Required | Notes / Example                                                            |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | -------- | -------------------------------------------------------------------------- |
@@ -31,7 +40,7 @@ in the .
 
 ---
 
-## **Relationships**
+## Relationships
 
 - A `Responsibility` Entity Template is referenced by [Role](../role.md) entities.
 - A `Responsibility` Entity Template may contain multiple [Task](task.md) entities.

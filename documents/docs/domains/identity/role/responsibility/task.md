@@ -1,6 +1,15 @@
-# **Task** (Data Model - Entity)
+---
+tags:
+- identity
+- role
+- responsibility
+- task
+- entity
+---
 
-## **Introduction**
+# Task (Entity)
+
+## Introduction
 
 A **Task** Entity represents a specific task or assignment that needs to be completed within the tournament system. It
 provides a consistent way to handle task information for work management, assignment tracking, and responsibility

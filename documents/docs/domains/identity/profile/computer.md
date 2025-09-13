@@ -1,8 +1,17 @@
-# **Computer Profile** (Data Model – Entity)
+---
+tags:
+- identity
+- profile
+- computer
+- entity
+- technology
+---
 
-## **Introduction**
+# Computer Profile (Entity)
 
-The **Computer Profile** Entity inherits from the [Base Profile](../../identity/profile/base_profile.md) and
+## Introduction
+
+The **Computer Profile** Entity inherits from the [Base Profile](base_profile.md) and
 represents a computer participant or resource within Tournament Organizer. It adds computer-specific attributes and
 relationships, such as type, manufacturer, model, year, and user.
 
@@ -10,9 +19,9 @@ It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 
 ---
 
-## **Additional Attributes**
+## Additional Attributes
 
-**Note:** This entity inherits all attributes from [Base Profile](../../identity/profile/base_profile.md).
+**Note:** This entity inherits all attributes from [Base Profile](base_profile.md).
 
 | Attribute              | Description                                      | Type       | Required | Notes / Example                                                                                                                                       |
 | ---------------------- | ------------------------------------------------ | ---------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |

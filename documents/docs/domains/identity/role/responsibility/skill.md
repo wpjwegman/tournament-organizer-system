@@ -1,6 +1,15 @@
-# **Skill** (Data Model - Value Object)
+---
+tags:
+- identity
+- role
+- responsibility
+- skill
+- value-object
+---
 
-## **Introduction**
+# Skill (Value Object)
+
+## Introduction
 
 A **Skill** is a Value Object that represents a specific ability, competency, or area of expertise required to fulfill a
 Responsibility or Role. Skills are referenced in Responsibilities to clarify requirements and support evaluation or

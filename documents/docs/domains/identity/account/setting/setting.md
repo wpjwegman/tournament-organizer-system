@@ -1,49 +1,57 @@
-# **Setting** (Data Model - Template Entity)
+---
+tags:
+- identity
+- account
+- setting
+- template-entity
+- configuration
+---
 
-## **Introduction**
+# Setting (Template Entity)
 
-A **Setting** is an **Entity Template** that defines a configurable parameter or preference that can be applied to
-various entities in the system. It provides a standardized way to manage and apply configuration values across different
-contexts.
+## Introduction
 
-When this template is used (e.g., within a specific context), its definition is applied according to the
+A **Setting** is a **Template Entity** that defines a configurable parameter or preference that can be applied to
+various entities in the system. It provides a standardized way to manage and apply configuration values across
+different contexts.
 
-<!-- [copying mechanism](# ../concepts/ddd_concepts.md (TODO: Create DDD concepts) -->#entity-template).
-
-_(For a guide on how settings fit into the overall structure, see the
-<!-- [User Guide: Setting](# ../user_guide/ (TODO: Create user guide) -->))._
+When this template is used (e.g., within a specific context), its definition is applied according to the Base Entity
+framework.
 
 It inherits properties from the [Base Entity](../../../foundation/base_entity.md).
 
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../../foundation/base_entity.md), with additional template-specific attributes for versioning and
+reuse.
+
 ---
 
-## **Attributes**
+## Attributes
 
-**Note:** This Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../../../foundation/base_entity.md).
+**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`)
+defined in the [Base Entity](../../../foundation/base_entity.md).
 
 | Attribute       | Description                                                                                                                                                                             | Type         | Required | Notes / Example                                                                                         |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | -------- | ------------------------------------------------------------------------------------------------------- |
 | **Group**       | Logical grouping of the setting template (e.g., `Notifications`, `Privacy`, `UI`).                                                                                                      | String       | Yes      | Example: `Notifications`                                                                                |
-| **Name**        | Machine-readable key for the setting template (e.g., `email_../match_system/match_tiebreaker.md`).                                                                                                          | String       | Yes      | Example: `email_../match_system/match_tiebreaker.md`                                                                        |
+| **Name**        | Machine-readable key for the setting template (e.g., `email_notifications`).                                                                                                          | String       | Yes      | Example: `email_notifications`                                                                         |
 | **Description** | Optional: Human-readable description of the setting template's purpose.                                                                                                                 | String       | Optional | Example: `Enable email reminders before matches start.`                                                 |
-| **Scope**       | Reference (by ID) to the 🚨 **BROKEN:** 🚨 **BROKEN:** 🚨 **BROKEN:** [Scope](../../role/permission/README.md) 🚨 🚨 🚨 entity that defines where this setting applies. | UUID         | No       | Example: `a1b2c3d4-e5f6-7890-1234-567890abc999`                                                         |
+| **Scope**       | Reference (by ID) to the [Scope](scope.md) entity that defines where this setting applies. | UUID         | No       | Example: `a1b2c3d4-e5f6-7890-1234-567890abc999`                                                         |
 | **Values**      | Represents default value(s) in the template context, or the user's chosen value(s) when embedded in the Account document.                                                               | List[String] | Yes      | Example (Template Default): `["true"]`. Example (Instance): `["dark", "compact"]`. Stored as String(s). |
 
 ---
 
-## **Relationships**
+## Relationships
 
 - A `Setting` (Template) can be associated with multiple entities through the `Apply To` attribute.
 - It references a **[Setting Type](../../../foundation/base_entity.md)** that defines its behavior and validation rules.
-- It references a **🚨 **BROKEN:** 🚨 **BROKEN:** 🚨 **BROKEN:**
-
-  [Scope](../../role/permission/README.md) 🚨 🚨 🚨** entity that defines where this setting applies.
+- It references a **[Scope](scope.md)** entity that defines where this setting applies.
 
 - This template is designed to be **copied** when used within a specific context.
 
 ---
 
-## **Considerations**
+## Considerations
 
 - **Dual Purpose (Template & Instance):** This model structure defines both the setting _template_ (managed by admins)
 
