@@ -1,6 +1,16 @@
-# **Habitat** (Data Model - Template Entity)
+---
+tags:
+- identity
+- attributes
+- habitat
+- template-entity
+- environment
+- animal
+---
 
-## **Introduction**
+# Habitat (Template Entity)
+
+## Introduction
 
 A **Habitat** Template Entity represents a standardized habitat type that can be selected and customized
 by users. It provides a consistent way to handle habitat information for animal care, venue requirements, and competition
@@ -13,13 +23,15 @@ original template.
 
 It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
 
 ---
 
 ## **Attributes**
 
-**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity Model](../../foundation/base_entity.md).
+**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`)
+defined in the [Base Entity Model](../../foundation/base_entity.md).
 
 | Attribute       | Description                                          | Type     | Required | Notes / Example                                                    |
 | --------------- | ---------------------------------------------------- | -------- | -------- | ------------------------------------------------------------------ |

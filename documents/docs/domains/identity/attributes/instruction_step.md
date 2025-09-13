@@ -1,6 +1,15 @@
-# **Instruction Step** (Data Model - Value Object)
+---
+tags:
+- identity
+- attributes
+- instruction-step
+- value-object
+- procedure
+---
 
-## **Introduction**
+# Instruction Step (Value Object)
+
+## Introduction
 
 An **Instruction Step** Value Object represents a single, distinct action or step within an ordered set of
 [Instructions](../../first_aid/instruction.md). It follows the Value Object pattern, meaning it has no

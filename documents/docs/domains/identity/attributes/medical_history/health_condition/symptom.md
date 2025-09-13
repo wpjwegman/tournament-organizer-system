@@ -1,6 +1,16 @@
-# **Symptom** (Data Model - Template Entity)
+---
+tags:
+- identity
+- attributes
+- symptom
+- template-entity
+- medical
+- health-condition
+---
 
-## **Introduction**
+# Symptom (Template Entity)
+
+## Introduction
 
 A **Symptom** Entity Template defines a reusable blueprint for documenting and tracking health-related symptoms within
 the tournament system. It serves as a standardized format for recording participant health conditions and their impact

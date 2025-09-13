@@ -1,6 +1,16 @@
-# **Medical History** (Data Model - Value Object)
+---
+tags:
+- identity
+- attributes
+- medical-history
+- value-object
+- health
+- emergency
+---
 
-## **Introduction**
+# Medical History (Value Object)
+
+## Introduction
 
 A **Medical History** Value Object represents a comprehensive record of medical information in a standardized format. It
 provides a consistent way to handle medical history information for health monitoring, emergency response, and safety
@@ -32,7 +42,8 @@ It inherits properties from the [Base Entity](../../../foundation/base_entity.md
 
 - A `Medical History` Value Object is embedded within [Human Profile](../../profile/human.md) entities.
 - A `Medical History` Value Object is embedded within [Animal Profile](../../profile/animal.md) entities.
-- A `Medical History` Value Object may be referenced by [First Aid](../../../first_aid/README.md) entities for emergency response.
+- A `Medical History` Value Object may be referenced by [First Aid](../../../first_aid/README.md) entities for
+  emergency response.
 
 ---
 

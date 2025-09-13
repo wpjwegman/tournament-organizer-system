@@ -1,18 +1,30 @@
-# **Vaccination Record** (Data Model – Template Entity)
+---
+tags:
+- identity
+- attributes
+- vaccination
+- template-entity
+- medical
+- health
+---
 
-## **Introduction**
+# Vaccination Record (Template Entity)
+
+## Introduction
 
 A **Vaccination Record** Template Entity defines a reusable blueprint for vaccination record types and configurations
 that can be used to create specific vaccination record instances. It provides a standardized framework for vaccine
 types, administration requirements, and record keeping that can be applied across different contexts and organizations.
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
 
 ---
 
 ## **Attributes**
 
-**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../../foundation/base_entity.md).
+**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`)
+defined in the [Base Entity](../../foundation/base_entity.md).
 
 | Attribute           | Description                                                           | Type        | Required | Notes / Example                           |
 | ------------------- | --------------------------------------------------------------------- | ----------- | -------- | ----------------------------------------- |

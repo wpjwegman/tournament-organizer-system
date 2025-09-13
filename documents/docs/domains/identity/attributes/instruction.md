@@ -1,6 +1,16 @@
-# **Instruction** (Data Model - Template Entity)
+---
+tags:
+- identity
+- attributes
+- instruction
+- template-entity
+- training
+- competition
+---
 
-## **Introduction**
+# Instruction (Template Entity)
+
+## Introduction
 
 An **Instruction** Template Entity represents a standardized instruction or command that can be selected and customized
 by users. It provides a consistent way to handle instruction information for training, competition rules, and operational
@@ -8,18 +18,20 @@ procedures within the tournament system.
 
 As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
 [Base Entity](../../foundation/base_entity.md). When used, its definition is typically **copied** into the target
-context (like a specific training program), allowing for potential minor modifications or annotations without altering the
-original template.
+context (like a specific training program), allowing for potential minor modifications or annotations without altering
+the original template.
 
 It inherits properties from the [Base Entity](../../foundation/base_entity.md).
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
 
 ---
 
 ## **Attributes**
 
-**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity Model](../../foundation/base_entity.md).
+**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined
+in the [Base Entity Model](../../foundation/base_entity.md).
 
 | Attribute       | Description                                              | Type     | Required | Notes / Example                                             |
 | --------------- | -------------------------------------------------------- | -------- | -------- | ----------------------------------------------------------- |

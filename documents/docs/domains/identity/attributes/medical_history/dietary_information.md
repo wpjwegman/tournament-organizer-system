@@ -1,6 +1,16 @@
-# **Dietary Information** (Data Model - Template Entity)
+---
+tags:
+- identity
+- attributes
+- dietary-information
+- template-entity
+- medical
+- nutrition
+---
 
-## **Introduction**
+# Dietary Information (Template Entity)
+
+## Introduction
 
 A **Dietary Information** Entity Template serves as a blueprint for creating specific dietary requirement instances that
 can be referenced by various profiles (Human, Animal, Plant, Resource). It represents standardized dietary needs,

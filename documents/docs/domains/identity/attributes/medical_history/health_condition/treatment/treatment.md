@@ -1,6 +1,16 @@
-# **Treatment** (Data Model - Template Entity)
+---
+tags:
+- identity
+- attributes
+- treatment
+- template-entity
+- medical
+- health-condition
+---
 
-## **Introduction**
+# Treatment (Template Entity)
+
+## Introduction
 
 A **Treatment** Entity Template defines a blueprint for a specific course of medical care, intervention, or management
 plan designed to address [Health Condition](../health_condition.md) or manage
@@ -15,7 +25,8 @@ It provides crucial insights for:
 - Medication administration
 - Medical history documentation
 
-This template has its own identity and lifecycle, managed according to the [Base Entity](../../../../../foundation/base_entity.md). When a treatment is administered, its
+This template has its own identity and lifecycle, managed according to the
+[Base Entity](../../../../../foundation/base_entity.md). When a treatment is administered, its
 definition is applied according to the
 described in the core concepts (template copying mechanism documentation pending).
 
