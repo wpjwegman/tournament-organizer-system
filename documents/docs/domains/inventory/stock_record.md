@@ -1,37 +1,62 @@
-# Stock Record Model (Inventory)
+---
+tags:
 
-This model (formerly located in Docs/models/inventory/stock_record.md) has been recreated as a placeholder. It is
-intended to represent inventory stock records (for example, quantities, reorder thresholds, etc.) and is now embedded
-within the Item model.
+- inventory
+- value-object
+- stock
+- tracking
+- embedded
 
-## Attributes
+---
 
-- **ID** (UUID, Required) – Unique identifier for the stock record.
-- **Quantity** (Integer, Required) – Current quantity on hand.
-- **Reorder Threshold** (Integer, Optional) – Threshold below which reordering is triggered.
-- **Last Updated** (DateTime, Required) – Timestamp of the last update.
+# Stock Record (Value Object)
 
-## Notes
+## Overview
 
-- This model is now embedded (or merged) into the Item model. (See [Item Model](../inventory/item.md) for
+A Stock Record value object represents inventory tracking data that is embedded within Item entities. It provides
+detailed quantity management, reorder thresholds, and update timestamps to support comprehensive inventory control
+within the tournament organization system.
 
-  details.)
+This value object is embedded in [Item](item.md) entities and does not have independent identity.
 
-## References
+## Purpose
 
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 28000:2007 - Specification for security management systems for the supply chain](https://www.iso.org/standard/44651.html)
-- [ISO 9001:2015 - Quality management systems — Requirements](https://www.iso.org/standard/62085.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
+The Stock Record value object enables:
 
-  by Eric Evans - Value Object patterns
+- Tracking current quantities and stock levels
+- Managing reorder thresholds for automatic replenishment alerts
+- Recording update timestamps for audit and synchronization
+- Embedding inventory control data within item definitions
+- Supporting stock management decisions and planning
 
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event inventory control
+## Structure
 
-  standards
+| Attribute | Description | Type | Required | Notes |
+|-----------|-------------|------|----------|--------|
+| Quantity | Current quantity on hand | Integer | Yes | 50, 0 (out of stock) |
+| Reorder Threshold | Threshold below which reordering is triggered | Integer | No | 10, null (no automatic reorder) |
+| Last Updated | Timestamp of the last update | DateTime | Yes | 2024-03-15T10:30:00Z |
+
+## Example
+
+```mermaid
+graph TD
+    A[Item: Match Balls] --> B[Stock Record]
+    B --> C[Quantity: 25]
+    B --> D[Reorder Threshold: 5]
+    B --> E[Last Updated: 2024-03-15]
+    
+    F[Item: Safety Cones] --> G[Stock Record]
+    G --> H[Quantity: 0]
+    G --> I[Reorder Threshold: null]
+    G --> J[Last Updated: 2024-03-14]
+```
+
+This example shows how stock record value objects provide embedded tracking within item entities. The match balls
+maintain quantity and reorder threshold information for automated management, while safety cones track current stock
+without automatic reordering. Each record includes timestamp data for audit trails and synchronization purposes.
 
 ## See Also
 
-- [Item](../inventory/item.md)
-- [Inventory](../inventory/inventory.md)
-- [Business README](../README.md)
+- [Item](item.md)
+- [Inventory](inventory.md)

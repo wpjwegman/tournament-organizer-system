@@ -1,67 +1,70 @@
-# **Inventory** (Data Model - Template Entity)
+---
+tags:
 
-## **Introduction**
-
-An **Inventory** Entity represents a collection of [Items](../inventory/item.md) and their
-[Stock Records](stock_record.md) managed by a specific organization, tournament, venue, or fixture. It provides a way to
-track, group, and manage items that are inherently coupled to their location or organizational context.
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
+- inventory
+- template-entity
+- equipment
+- organization
+- tracking
 
 ---
 
-## **Attributes**
+# Inventory (Template Entity)
 
-**Note:** This Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../foundation/base_entity.md).
+## Overview
 
-| Attribute       | Description                                                                | Type   | Required | Notes / Example                                  |
-| --------------- | -------------------------------------------------------------------------- | ------ | -------- | ------------------------------------------------ |
-| **Name**        | Unique identifier for the inventory.                                       | String | Yes      | `"Tournament X Supplies"`, `"Venue Y Equipment"` |
-| **Description** | Detailed explanation of the inventory.                                     | Text   | Yes      | `"All equipment and supplies for Tournament X"`  |
-| **Type**        | Classification of the inventory.                                           | String | Yes      | `Tournament`, `Venue`, `Fixture`, `Organization` |
-| **Owner**       | Reference to the owning entity.                                            | UUID   | Yes      | `tournament-uuid-x`, `venue-uuid-y`              |
-| **Items**       | List of references to [Item](../inventory/item.md) entities. | Array  | No       | `[item-uuid-1, item-uuid-2]`                     |
+An Inventory template entity represents a collection of [Items](item.md) and their stock records managed by a
+specific organization, tournament, venue, or fixture. It provides a way to track, group, and manage items that are
+inherently coupled to their location or organizational context.
 
----
+This template entity includes standard attributes from the [Base Entity](../foundation/base_entity.md).
 
-## **Relationships**
+## Purpose
 
-- May be owned by:
+The Inventory template entity enables:
 
-  - [Tournament](../tournament/tournament.md)
-  - [Fixture](../schedule/fixture.md)
+- Grouping items by organizational context (tournament, venue, fixture)
+- Tracking item collections for specific events or locations
+- Managing ownership and responsibility for equipment and supplies
+- Organizing inventory for planning and allocation purposes
 
-- Contains multiple [Item](../inventory/item.md) entities
+## Structure
 
----
+| Attribute | Description | Type | Required | Notes |
+|-----------|-------------|------|----------|--------|
+| Name | Unique identifier for the inventory | String | Yes | "Tournament X Supplies", "Venue Y Equipment" |
+| Description | Detailed explanation of the inventory | Text | Yes | "All equipment and supplies for Tournament X" |
+| Type | Classification of the inventory | String | Yes | Tournament, Venue, Fixture, Organization |
+| Owner | Reference to the owning entity | UUID | Yes | tournament-uuid-x, venue-uuid-y |
+| Items | List of references to [Item](item.md) entities | Array | No | [item-uuid-1, item-uuid-2] |
 
-## **Considerations**
+## Example
 
-- **Ownership:** Each inventory must have a clear owner (Tournament, Venue, etc.)
-- **Item Management:** Items can be added to multiple inventories
-- **Validation:** Implement checks for sufficient items across all matches
+```mermaid
+graph TD
+    A[Tournament Inventory] --> B[Name: Basketball Tournament 2024]
+    A --> C[Type: Tournament]
+    A --> D[Owner: tournament-uuid-123]
+    A --> E[Items: 15 total items]
+    
+    E --> F[Official Match Balls: 10]
+    E --> G[Referee Whistles: 6]
+    E --> H[Score Sheets: 100]
+    
+    I[Venue Inventory] --> J[Name: Sports Complex Equipment]
+    I --> K[Type: Venue]
+    I --> L[Owner: venue-uuid-456]
+    I --> M[Items: 8 total items]
+```
 
----
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 28000:2007 - Specification for security management systems for the supply chain](https://www.iso.org/standard/44651.html)
-- [ISO 9001:2015 - Quality management systems — Requirements](https://www.iso.org/standard/62085.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event inventory management
-
-  standards
+This example demonstrates how inventory template entities organize equipment by context. The tournament inventory
+manages competition-specific items like match balls and referee equipment, while the venue inventory handles
+facility-related items. Each inventory clearly identifies its owner and maintains references to its item collection
+for efficient tracking and allocation.
 
 ## See Also
 
-- [Item](../inventory/item.md)
-- [Stock Record](../inventory/stock_record.md)
+- [Item](item.md)
+- [Stock Record](stock_record.md)
 - [Tournament](../tournament/tournament.md)
 - [Fixture](../schedule/fixture.md)
-- [Business README](../README.md)
-
----
