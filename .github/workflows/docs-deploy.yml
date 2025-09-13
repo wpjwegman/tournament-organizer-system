@@ -79,10 +79,18 @@ jobs:
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
           echo '📤 Copying built site to output volume...' &&
-          cp -r site/* /output/ &&
+          if [ -d site ] && [ \"\$(ls -A site)\" ]; then
+            cp -r site/* /output/ &&
+            echo 'Site files copied successfully'
+          else
+            echo 'ERROR: site directory is empty or missing'
+            exit 1
+          fi &&
           
           echo '✅ Documentation site built successfully' &&
-          echo 'Generated files:' &&
+          echo 'Generated files in build directory:' &&
+          ls -la site/ | head -10 &&
+          echo 'Generated files in output volume:' &&
           ls -la /output/ | head -10
           "
         
