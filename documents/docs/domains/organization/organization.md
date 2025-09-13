@@ -24,7 +24,7 @@ This template entity includes standard attributes from the [Base Entity](../foun
 | ----------------------- | ----------------------------------------------------------------------------------------------- | ---------- | -------- | -------------------------------------------------------------------------------- |
 | **Name**                | The official or common name of the organization.                                                | String     | Yes      | Should be unique within a relevant scope. Example: "Global Badminton Federation" |
 | **Description**         | A brief description of the organization and its purpose or activities.                          | String     | Optional | "The international governing body for badminton."                                |
-| **Type**                | Categorizes the organization. See .                                                             | String     | Optional | Example: `"Sports Federation"`, `"Educational"`, `"Sponsor"`                     |
+| **Type**                | Categorizes the organization.                                                       | String     | Optional | Example: `"Sports Federation"`, `"Educational"`, `"Sponsor"`                     |
 | **Contact Information** | Optional reference (by ID) to the primary **[Contact Information](../identity/contact_information.md)** Entity for this organization. | UUID       | Optional | Example: `ci-a1b2c3d4-e5f6-4890-1234-567890abc020`                               |
 | **Units**               | List of references (by ID) to internal **[Unit](unit/unit.md)** Entities.                                       | List[UUID] | Optional | Example: `[ou-a1b2c3d4-e5f6-4890-1234-567890abc022]`                             |
 | **Tax Identifier**      | Optional tax identification number (e.g., VAT ID, EIN) or similar official registration number. | String     | Optional | Example: "NL123456789B01"                                                        |
@@ -59,16 +59,5 @@ promotional media assets for tournament operations.
 - **[Target Audience](target_audience.md)** - Audience categorization templates
 - **[Contact Information](../identity/contact_information.md)** - Contact details management
 - **[Inventory](../inventory/inventory.md)** - Equipment and resource management
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 9001:2015 - Quality management systems — Requirements](https://www.iso.org/standard/62085.html)
-- [ISO 26000:2020 - Guidance on social responsibility](https://www.iso.org/standard/42546.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-- [Contact Information](../identity/contact_information.md)
-- [Inventory README](../inventory/README.md)
-- [Business README](../README.md)
 
 ---

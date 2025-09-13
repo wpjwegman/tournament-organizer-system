@@ -55,6 +55,5 @@ Manager. Each unit maintains its own contact information and member assignments 
 - **[Organization](../organization.md)** - Parent organization management
 - **[Member](member.md)** - Unit membership and role assignment
 - **[Contact Information](../../identity/contact_information.md)** - Unit contact details
-  - Member assignments can be updated as needed
 
 ---

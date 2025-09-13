@@ -35,15 +35,6 @@ This template entity includes standard attributes from the [Base Entity](../foun
 
 ---
 
-## Relationships
-
-- A `Target Audience` template can be referenced by:
-  - **[Tournament](../tournament/tournament.md)** to define its participant requirements
-  - [Rule](../discipline/activity/variation/rule.md) templates to specify which groups the rules apply to
-  - Safety Guideline templates to specify which groups the guidelines apply to (*future enhancement*)
-- The specific implementation of a target audience within a tournament will be linked to records.
-- A target audience may be referenced by multiple entities across the system.
-
 ## Example
 
 ```mermaid
