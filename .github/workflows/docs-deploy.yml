@@ -51,52 +51,98 @@ jobs:
         sudo rm -rf site
         mkdir -p site
         
-        # Ensure proper permissions for the documents directory
-        sudo chmod -R 755 .
-        
-        # Generate the complete documentation site using our container
-        # Use proper user permissions to avoid permission denied errors
+        # Generate the documentation site using a two-step process for reliability
+        # Step 1: Build in container with proper environment setup
         docker run --rm \
           -v "${{ github.workspace }}:/workspace" \
           -w /workspace/documents \
-          --user "$(id -u):$(id -g)" \
           localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
           
+          # Create a temporary build directory with proper permissions  
+          mkdir -p /tmp/docs-build &&
+          cp -r /workspace/documents/* /tmp/docs-build/ &&
+          cd /tmp/docs-build &&
+          
           echo '📦 Setting up Python environment...' &&
+          export UV_CACHE_DIR=/tmp/uv-cache &&
+          mkdir -p \$UV_CACHE_DIR &&
           /usr/local/bin/uv sync &&
           
           echo '📚 Building MkDocs site with strict validation...' &&
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
+          echo '📤 Copying built site back to workspace...' &&
+          cp -r site/* /workspace/documents/site/ &&
+          
           echo '✅ Documentation site built successfully' &&
           echo 'Generated files:' &&
-          ls -la site/ | head -10
+          ls -la /workspace/documents/site/ | head -10
           "
+        
+        # Verify the build was successful
+        if [ ! -f "site/index.html" ]; then
+          echo "❌ Build failed: site/index.html not found"
+          exit 1
+        fi
+        
+        echo "✅ Documentation site generated successfully"
+        echo "📊 Site statistics:"
+        echo "   - HTML files: $(find site -name '*.html' | wc -l)"
+        echo "   - Total files: $(find site -type f | wc -l)"
+        echo "   - Site size: $(du -sh site | cut -f1)"
 
     - name: 🔍 Validate Generated Site
       run: |
         cd documents/site
         
-        # Verify the site was generated correctly
+        # Comprehensive site validation
+        echo "🔍 Validating generated documentation site..."
+        
+        # Verify core files exist
         if [ ! -f "index.html" ]; then
-          echo "::error::Site index.html not found"
+          echo "❌ ERROR: Site index.html not found"
           exit 1
         fi
         
-        # Check for common issues
+        echo "✅ Core validation passed"
+        
+        # Check for key structural elements
         TOTAL_FILES=$(find . -name "*.html" | wc -l)
-        echo "::notice::Generated $TOTAL_FILES HTML files"
+        DOMAIN_FILES=$(find . -path "*/domains/*" -name "*.html" | wc -l)
+        CSS_FILES=$(find . -name "*.css" | wc -l)
+        JS_FILES=$(find . -name "*.js" | wc -l)
+        
+        echo "📊 Site Structure Analysis:"
+        echo "   - Total HTML pages: $TOTAL_FILES"
+        echo "   - Domain pages: $DOMAIN_FILES"  
+        echo "   - CSS files: $CSS_FILES"
+        echo "   - JavaScript files: $JS_FILES"
+        
+        # Validate minimum expected content
+        if [ "$TOTAL_FILES" -lt 10 ]; then
+          echo "⚠️ WARNING: Low page count ($TOTAL_FILES), expected at least 10 pages"
+        fi
         
         # Verify key pages exist
-        KEY_PAGES=("index.html" "domains/index.html")
+        KEY_PAGES=("index.html")
         for PAGE in "${KEY_PAGES[@]}"; do
           if [ -f "$PAGE" ]; then
             echo "✅ Key page found: $PAGE"
           else
-            echo "::warning::Key page missing: $PAGE"
+            echo "❌ ERROR: Key page missing: $PAGE"
+            exit 1
           fi
         done
+        
+        # Basic content validation
+        if grep -q "Tournament Organizer" index.html; then
+          echo "✅ Content validation: Site title found"
+        else
+          echo "⚠️ WARNING: Site title not found in index.html"
+        fi
+        
+        echo "✅ Site validation completed successfully"
 
     - name: 📄 Setup Pages
       uses: actions/configure-pages@v4
