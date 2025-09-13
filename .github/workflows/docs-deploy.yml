@@ -55,12 +55,18 @@ jobs:
         # Create a temporary directory that the container can write to
         TEMP_SITE_DIR=$(mktemp -d)
         
-        # Generate documentation site with proper volume handling
+        # Get the current user ID to run container with proper permissions
+        USER_ID=$(id -u)
+        GROUP_ID=$(id -g)
+        
+        # Generate documentation site with proper volume handling and user mapping
         docker run --rm \
+          --user "$USER_ID:$GROUP_ID" \
           -v "${{ github.workspace }}/documents:/source:ro" \
           -v "$TEMP_SITE_DIR:/output" \
           localhost/docs-quality:latest bash -c "
           echo '--- Building Documentation Site ---' &&
+          echo 'Running as user: \$(id)' &&
           
           # Create isolated build environment
           BUILD_DIR=/tmp/docs-build
@@ -79,28 +85,14 @@ jobs:
           /usr/local/bin/uv run mkdocs build --clean --strict &&
           
           echo '📤 Copying built site to output volume...' &&
-          if [ -d site ] && [ \"\$(ls -A site 2>/dev/null)\" ]; then
-            echo 'Site directory contains files, copying to output...' &&
-            echo 'Contents of site directory:' &&
-            ls -la site/ &&
-            echo 'Contents of output directory before copy:' &&
-            ls -la /output/ &&
-            echo 'Performing copy operation...' &&
-            cp -r site/* /output/ &&
-            echo 'Site files copied successfully' &&
-            echo 'Contents of output directory after copy:' &&
-            ls -la /output/
-          else
-            echo 'ERROR: site directory is empty or missing' &&
-            ls -la site/ || echo 'site directory does not exist' &&
-            exit 1
-          fi &&
-          
-          echo '✅ Documentation site built successfully' &&
-          echo 'Generated files in build directory:' &&
-          ls -la site/ | head -10 &&
-          echo 'Generated files in output volume:' &&
-          ls -la /output/ | head -10
+          echo 'Contents of site directory:' &&
+          ls -la site/ | head -5 &&
+          echo 'Output directory permissions:' &&
+          ls -la /output/ &&
+          cp -r site/* /output/ &&
+          echo '✅ Site files copied successfully to output volume' &&
+          echo 'Final output contents:' &&
+          ls -la /output/ | head -5
           "
         
         # Copy the results from temp directory to workspace with proper permissions
