@@ -1,4 +1,13 @@
-# health_condition - treatment
+---
+tags:
+- identity
+- attributes
+- treatment
+- medical
+- overview
+---
+
+# Treatment
 
 This directory contains models related to treatment within the health_condition domain.
 

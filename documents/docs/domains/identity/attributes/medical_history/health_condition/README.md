@@ -1,3 +1,12 @@
+---
+tags:
+- identity
+- attributes
+- health-condition
+- medical
+- overview
+---
+
 # Health Condition
 
 This directory contains documentation for health condition entities in the Tournament Organizer system.
