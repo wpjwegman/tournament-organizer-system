@@ -1,30 +1,62 @@
-# Process
+---
+tags:
+  - domain
+  - process
+  - workflow
+  - role-assignment
+  - data-model
+---
 
-This section documents the process models for the Tournament Organizer system.
+# Process Domain
 
-## Files
+## Overview
 
-- [role_assignment.md](../process/role_assignment.md)
+The Process domain manages workflow operations and procedural activities within the Tournament Organizer system.
+It provides comprehensive frameworks for role assignments, process tracking, and context-specific workflow management
+across tournaments, teams, and organizational structures.
 
-## TODO
+This domain focuses on the dynamic aspects of tournament operations, handling the assignment and management of roles
+to participants within various contexts and ensuring proper workflow execution throughout the tournament lifecycle.
 
-- Add detailed documentation for process models.
+## Domain Structure
 
-## References
+### Core Models
 
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 9001:2015 - Quality management systems — Requirements](https://www.iso.org/standard/62085.html)
-- [ISO 21500:2021 - Guidance on project management](https://www.iso.org/standard/50003.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
+- **[Role Assignment](role_assignment.md)**: Template Entity for managing role-participant relationships within
+  specific contexts (tournaments, teams, organizations)
 
-  by Eric Evans - Entity and Value Object patterns
+### Supporting Integration
 
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event process management
+- **[Identity Domain](../identity/README.md)**: Role definitions and registrant management
+- **[Organization Domain](../organization/README.md)**: Organizational context for role assignments
+- **[Tournament Domain](../tournament/README.md)**: Tournament-specific role assignments
+- **[Team Domain](../team/README.md)**: Team-specific role assignments
 
-  standards
+## Status Lifecycle
+
+### Role Assignment Statuses
+
+- **Pending**: Role assignment awaiting confirmation or activation
+- **Active**: Role assignment currently in effect and operational
+- **Inactive**: Role assignment temporarily suspended or paused
+- **Terminated**: Role assignment permanently ended or cancelled
+
+### Workflow States
+
+- **Initiated**: Process workflow has been started
+- **In Progress**: Workflow is actively being executed
+- **Completed**: Workflow has finished successfully
+- **Failed**: Workflow encountered errors and could not complete
+
+## Implementation Status
+
+- ✅ Core role assignment template entity defined
+- 🔄 Context management integration in progress
+- 📋 Workflow tracking capabilities being developed
+- 🔗 Cross-domain relationship establishment ongoing
 
 ## See Also
 
-- [Role README](../identity/role/role.md)
-- [Organization README](../organization/README.md)
-- [Business README](../README.md)
+- **[Role Assignment](role_assignment.md)** - Core template entity for role management
+- **[Identity Domain](../identity/README.md)** - Role and registrant definitions
+- **[Organization Domain](../organization/README.md)** - Organizational context integration
