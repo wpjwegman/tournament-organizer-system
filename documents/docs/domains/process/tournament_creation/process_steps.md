@@ -55,11 +55,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 **Trigger**: Process moves from initiation to template selection
 
 **Inputs**:
+
 - Available tournament templates
 - Organization preferences
 - Tournament type requirements
 
 **Actions**:
+
 1. Present available tournament templates filtered by organization permissions
 2. Allow template preview and comparison
 3. Capture template selection decision
@@ -67,11 +69,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 5. Log template selection in audit trail
 
 **Outputs**:
+
 - Selected tournament template reference
 - Template configuration baseline
 - Updated process status
 
 **Validation Checks**:
+
 - Selected template is active and available
 - Template is compatible with organization type
 - Template meets minimum system requirements
@@ -85,11 +89,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 **Trigger**: Template selection completed successfully
 
 **Inputs**:
+
 - Base template configuration
 - Organization-specific requirements
 - User customization preferences
 
 **Actions**:
+
 1. Load template default configuration
 2. Present configuration interface with template parameters
 3. Apply organization-specific defaults and constraints
@@ -99,11 +105,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 7. Store configuration data in process record
 
 **Outputs**:
+
 - Complete tournament configuration data
 - Configuration validation results
 - Updated process status and audit log
 
 **Validation Checks**:
+
 - All required configuration fields are completed
 - Configuration values meet business rule constraints
 - No conflicts with organization policies
@@ -118,11 +126,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 **Trigger**: Basic configuration validation passes
 
 **Inputs**:
+
 - Tournament configuration requirements
 - Venue availability data
 - Organization venue preferences
 
 **Actions**:
+
 1. Query venue availability based on tournament requirements
 2. Present available venue options with capacity and feature matching
 3. Capture venue selection and reservation requests
@@ -132,11 +142,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 7. Log venue assignment decisions
 
 **Outputs**:
+
 - Venue assignment records
 - Preliminary reservation confirmations
 - Updated configuration with venue details
 
 **Validation Checks**:
+
 - Selected venues meet tournament capacity requirements
 - Venue features support tournament configuration
 - No scheduling conflicts with existing reservations
@@ -151,11 +163,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 **Trigger**: Venue assignment completed successfully
 
 **Inputs**:
+
 - Tournament configuration and format
 - Venue availability and constraints
 - Organization scheduling preferences
 
 **Actions**:
+
 1. Generate preliminary tournament schedule based on configuration
 2. Apply venue constraints and availability windows
 3. Optimize schedule for resource utilization and participant convenience
@@ -165,11 +179,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 7. Finalize preliminary schedule
 
 **Outputs**:
+
 - Complete tournament schedule
 - Schedule validation results
 - Resource allocation plan
 
 **Validation Checks**:
+
 - Schedule respects venue availability constraints
 - Adequate time between matches for setup and breakdown
 - Schedule meets tournament format requirements
@@ -184,11 +200,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 **Trigger**: Schedule setup completed successfully
 
 **Inputs**:
+
 - Complete tournament configuration
 - Venue assignments and schedule
 - Organization approval requirements
 
 **Actions**:
+
 1. Compile complete tournament configuration summary
 2. Run comprehensive validation checks across all components
 3. Generate tournament preview and impact analysis
@@ -198,11 +216,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 7. Update process status to `"Validating"` or `"Approved"`
 
 **Outputs**:
+
 - Complete tournament specification
 - Validation report
 - Approval status and approver information
 
 **Validation Checks**:
+
 - All tournament components are consistent and complete
 - Configuration meets all business rules and constraints
 - Resource requirements are confirmed and available
@@ -217,11 +237,13 @@ procedures, decision points, and validation requirements for each phase of tourn
 **Trigger**: Final validation and approval completed
 
 **Inputs**:
+
 - Approved tournament configuration
 - Confirmed venue and schedule assignments
 - Process completion authorization
 
 **Actions**:
+
 1. Create official Tournament record from process configuration
 2. Confirm all venue reservations and resource allocations
 3. Initialize tournament registration and management systems
@@ -231,12 +253,14 @@ procedures, decision points, and validation requirements for each phase of tourn
 7. Archive process data for audit and reference
 
 **Outputs**:
+
 - Official Tournament record
 - Confirmed reservations and allocations
 - Tournament ready for registration phase
 - Completed process audit trail
 
 **Validation Checks**:
+
 - Tournament record creation successful
 - All system integrations completed
 - Resource confirmations received
