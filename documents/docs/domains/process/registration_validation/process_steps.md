@@ -302,10 +302,10 @@ procedures for document verification, eligibility checking, and compliance valid
 
 ### Alert Conditions
 
-- Validation processing time exceeds acceptable limits
-- High rejection rates indicating systemic issues
-- Document authentication failures above threshold
-- Compliance verification problems requiring policy review
+- The validation processing time exceeds acceptable limits
+- The high rejection rates indicate systemic issues
+- The document authentication failures are above threshold
+- The compliance verification problems require policy review
 
 ## Integration Points
 

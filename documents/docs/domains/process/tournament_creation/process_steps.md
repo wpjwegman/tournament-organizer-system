@@ -278,10 +278,10 @@ procedures, decision points, and validation requirements for each phase of tourn
 
 ### Alert Conditions
 
-- Process duration exceeds expected timeframes
-- Repeated failures at specific steps
-- High error rates or recovery failures
-- Approval delays beyond acceptable limits
+- The process duration exceeds expected timeframes
+- The repeated failures at specific steps
+- The high error rates or recovery failures
+- The approval delays beyond acceptable limits
 
 ## Integration Points
 
