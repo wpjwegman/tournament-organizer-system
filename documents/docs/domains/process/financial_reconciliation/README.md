@@ -47,6 +47,7 @@ This process model establishes standardized procedures for:
 ## Scope
 
 ### Included Financial Areas
+
 - Registration fees and revenue streams
 - Vendor payments and expense management
 - Prize money and award distributions
@@ -57,6 +58,7 @@ This process model establishes standardized procedures for:
 - Tax obligations and reporting
 
 ### Integration Points
+
 - **Audit Trail Generation**: Financial transaction logging and compliance documentation
 - **Performance Analysis**: Financial KPI tracking and variance analysis
 - **Process Improvement**: Cost optimization and efficiency enhancement opportunities
@@ -65,12 +67,14 @@ This process model establishes standardized procedures for:
 ## Key Stakeholders
 
 ### Primary Stakeholders
+
 - **Finance Manager**: Overall financial oversight and reconciliation management
 - **Tournament Director**: Budget approval and financial decision-making authority
 - **Audit Coordinator**: Compliance verification and audit trail maintenance
 - **Operations Manager**: Operational expense tracking and vendor payment coordination
 
 ### Secondary Stakeholders
+
 - Registration teams for fee collection reconciliation
 - Venue managers for facility cost validation
 - Sponsorship coordinators for revenue recognition
@@ -79,6 +83,7 @@ This process model establishes standardized procedures for:
 ## Process Framework
 
 ### Financial Control Principles
+
 1. **Segregation of Duties**: Clear separation of financial authorization, recording, and custody functions
 2. **Dual Authorization**: Two-person approval for significant financial transactions
 3. **Real-time Monitoring**: Continuous tracking of financial positions and transactions
@@ -87,6 +92,7 @@ This process model establishes standardized procedures for:
 6. **Audit Readiness**: Continuous maintenance of supporting documentation and audit trails
 
 ### Reconciliation Frequency
+
 - **Daily**: Cash handling and payment processing reconciliation
 - **Weekly**: Vendor account and expense category reconciliation
 - **Monthly**: Comprehensive account reconciliation and variance analysis
@@ -96,6 +102,7 @@ This process model establishes standardized procedures for:
 ## Financial Categories
 
 ### Revenue Streams
+
 - **Registration Fees**: Player and team registration revenue tracking
 - **Sponsorship Revenue**: Corporate sponsorship and partnership income
 - **Vendor Fees**: Facility rental and vendor booth revenue
@@ -104,6 +111,7 @@ This process model establishes standardized procedures for:
 - **Other Income**: Miscellaneous revenue sources and one-time income
 
 ### Expense Categories
+
 - **Facility Costs**: Venue rental, utilities, and facility-related expenses
 - **Personnel Costs**: Staff salaries, contractor payments, and volunteer expenses
 - **Equipment Expenses**: Tournament equipment rental, purchase, and maintenance
@@ -114,6 +122,7 @@ This process model establishes standardized procedures for:
 ## Risk Management
 
 ### Financial Risk Areas
+
 - **Cash Flow Management**: Ensuring adequate liquidity for operational needs
 - **Budget Variance Control**: Managing deviations from approved budgets
 - **Fraud Prevention**: Implementing controls to prevent financial misconduct
@@ -122,6 +131,7 @@ This process model establishes standardized procedures for:
 - **Revenue Recognition**: Accurate timing and classification of revenue streams
 
 ### Control Mechanisms
+
 - Automated reconciliation tools and exception reporting
 - Regular internal audit reviews and compliance checks
 - Secure payment processing and authorization workflows
@@ -132,6 +142,7 @@ This process model establishes standardized procedures for:
 ## Technology Integration
 
 ### Financial Systems
+
 - **Accounting Software**: Integrated financial management and reporting systems
 - **Payment Processing**: Secure payment gateways and transaction processing
 - **Budget Management**: Real-time budget tracking and variance reporting tools
@@ -140,6 +151,7 @@ This process model establishes standardized procedures for:
 - **Compliance Tools**: Regulatory reporting and compliance monitoring systems
 
 ### Data Security
+
 - Encrypted financial data storage and transmission
 - Access control and user authentication systems
 - Regular security audits and vulnerability assessments
@@ -150,6 +162,7 @@ This process model establishes standardized procedures for:
 ## Performance Metrics
 
 ### Financial Accuracy Metrics
+
 - Reconciliation completion rates and timeliness
 - Error detection and correction efficiency
 - Audit finding frequency and severity
@@ -158,6 +171,7 @@ This process model establishes standardized procedures for:
 - Cash flow forecasting accuracy
 
 ### Process Efficiency Metrics
+
 - Reconciliation cycle time and automation rates
 - Report generation speed and accuracy
 - Vendor payment processing efficiency
@@ -168,6 +182,7 @@ This process model establishes standardized procedures for:
 ## Compliance Requirements
 
 ### Regulatory Standards
+
 - Generally Accepted Accounting Principles (GAAP)
 - Internal Revenue Service (IRS) requirements
 - State and local tax obligations
@@ -176,6 +191,7 @@ This process model establishes standardized procedures for:
 - Insurance and bonding requirements
 
 ### Documentation Requirements
+
 - Complete transaction records and supporting documentation
 - Approval chains and authorization trails
 - Reconciliation reports and variance explanations
@@ -186,6 +202,7 @@ This process model establishes standardized procedures for:
 ## Implementation Considerations
 
 ### Prerequisites
+
 - Qualified financial management staff
 - Integrated financial management systems
 - Established chart of accounts and coding structure
@@ -194,6 +211,7 @@ This process model establishes standardized procedures for:
 - Audit and compliance monitoring capabilities
 
 ### Success Factors
+
 - Executive leadership support and financial oversight
 - Clear roles and responsibilities definition
 - Comprehensive staff training and development

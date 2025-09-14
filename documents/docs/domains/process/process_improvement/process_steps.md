@@ -17,8 +17,8 @@ related_processes: ["performance_analysis", "quality_assessment", "audit_trail_g
 
 ## Process Overview
 
-This document defines the detailed step-by-step procedures for systematic continuous improvement 
-and optimization workflows, covering opportunity identification, implementation planning, execution 
+This document defines the detailed step-by-step procedures for systematic continuous improvement
+and optimization workflows, covering opportunity identification, implementation planning, execution
 monitoring, and outcome validation across all tournament management processes.
 
 ## Step 1: Improvement Opportunity Identification

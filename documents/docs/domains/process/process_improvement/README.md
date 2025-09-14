@@ -18,13 +18,13 @@ compliance_requirements: ["quality_standards", "process_excellence", "operationa
 
 ## Overview
 
-The Process Improvement Process provides systematic continuous improvement and optimization 
-frameworks for tournament management system efficiency, quality enhancement, and operational 
+The Process Improvement Process provides systematic continuous improvement and optimization
+frameworks for tournament management system efficiency, quality enhancement, and operational
 excellence through data-driven analysis, stakeholder feedback, and best practice implementation.
 
 ## Purpose
 
-This process enables systematic identification, evaluation, and implementation of process 
+This process enables systematic identification, evaluation, and implementation of process
 improvements across all tournament management activities to achieve:
 
 - **Operational Excellence**: Continuously optimize processes for maximum efficiency and effectiveness
