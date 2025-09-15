@@ -4,12 +4,12 @@
 
 The Reservation Domain handles comprehensive service and amenity booking for all tournament participants,
 staff, and stakeholders. This domain provides sophisticated booking management for premium facilities,
-equipment rental, hospitality services, and specialized tournament amenities, ensuring optimal resource
+equipment rental, hospitality services, and specialized tournament amenities. It ensures optimal resource
 utilization and enhanced participant experience through systematic availability management and booking control.
 
 The domain implements advanced reservation systems supporting different service types, time-based availability
-windows, capacity management, and comprehensive booking lifecycle tracking while maintaining clear separation
-from competitive event scheduling and supporting flexible pricing and access control mechanisms.
+windows, and capacity management. It provides comprehensive booking lifecycle tracking while maintaining clear
+separation from competitive event scheduling. The system supports flexible pricing and access control mechanisms.
 
 ## Purpose
 

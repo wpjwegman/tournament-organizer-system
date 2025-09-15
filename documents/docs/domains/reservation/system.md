@@ -24,7 +24,7 @@ This template entity standardizes reservation processes across tournaments and s
 - Defining booking workflows and approval processes for different service categories
 - Configuring availability rules, capacity management, and allocation priorities
 - Supporting different reservation types from first-come-first-served to priority-based systems
-- Enabling consistent booking application across multiple tournaments and venues
+- Enabling consistent booking processes across multiple tournaments and venues
 - Providing foundation for automated reservation validation and conflict prevention
 
 ## Structure

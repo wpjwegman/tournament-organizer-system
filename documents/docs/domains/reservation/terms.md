@@ -33,7 +33,7 @@ This value object includes the following reservation terms-specific attributes:
 
 | Attribute | Description | Type | Required | Notes / Example |
 |-----------|-------------|------|----------|-----------------|
-| **Pricing Model** | How service costs are calculated and charged | Enum | Yes | `FIXED_RATE`, `HOURLY_RATE`, `TIERED_PRICING`, `DYNAMIC_PRICING`, `COMPLIMENTARY` |
+| **Pricing Model** | How service costs are calculated and charged | Enum | Yes | `FIXED_RATE`, `HOURLY_RATE`, `TIERED_PRICING`, `DYNAMIC_PRICING`, `COMPLIMENTARY_RATE` |
 | **Base Rate** | Standard pricing for the service | String | Optional | `"$50/hour"`, `"$200/day"`, `"Complimentary"`, `"VIP tier discount"` |
 | **Payment Terms** | When and how payment is processed | String | Yes | `"Payment at booking"`, `"Invoice net 30"`, `"Credit card hold"` |
 | **Deposit Requirements** | Upfront payment or security deposit needed | String | Optional | `"50% deposit required"`, `"$100 damage deposit"`, `"No deposit"` |
@@ -86,7 +86,7 @@ service delivery that maintains the exclusive VIP experience while protecting fa
 ```mermaid
 graph TD
   RT[Reservation Terms: Tournament Equipment Rental]
-  RT --> PM[Pricing Model: COMPLIMENTARY]
+  RT --> PM[Pricing Model: COMPLIMENTARY_RATE]
   RT --> BR[Base Rate: Complimentary for tournament participants]
   RT --> PT[Payment Terms: No payment required]
   RT --> DR[Deposit Requirements: $50 damage deposit for premium equipment]
