@@ -10,8 +10,8 @@ tags:
 
 ## Overview
 
-A Standing Entity represents a team's position and performance within a specific scope of a tournament. Teams can  
-have multiple standing instances as they progress through different stages and disciplines, tracking their current  
+A Standing Entity represents a team's position and performance within a specific scope of a tournament. Teams can
+have multiple standing instances as they progress through different stages and disciplines, tracking their current
 position and performance statistics within each context.
 
 As an Entity, it maintains its own identity and lifecycle, managed according to the [Base Entity](../foundation/base_entity.md).
@@ -28,7 +28,7 @@ This entity enables comprehensive tournament standing management by:
 
 ## Structure
 
-This entity includes standard attributes from the [Base Entity](../foundation/base_entity.md)  
+This entity includes standard attributes from the [Base Entity](../foundation/base_entity.md)
 and adds the following standing-specific attributes:
 
 | Attribute | Description | Type | Required | Notes / Example |
@@ -59,10 +59,10 @@ graph TD
   S --> L[Losses: 2]
 ```
 
-This example demonstrates a multi-discipline standing for the Eagles team participating in tennis, basketball, and  
-volleyball competitions. The standing shows their overall position (2nd place) across all three disciplines with  
-comprehensive performance statistics including total points (142), wins (15), draws (3), and losses (2). This  
-structure enables tournament organizers to track team performance across multiple disciplines while maintaining  
+This example demonstrates a multi-discipline standing for the Eagles team participating in tennis, basketball, and
+volleyball competitions. The standing shows their overall position (2nd place) across all three disciplines with
+comprehensive performance statistics including total points (142), wins (15), draws (3), and losses (2). This
+structure enables tournament organizers to track team performance across multiple disciplines while maintaining
 separate discipline-specific standings for detailed analysis and progression decisions.
 
 ## Considerations

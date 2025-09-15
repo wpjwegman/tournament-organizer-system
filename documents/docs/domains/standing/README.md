@@ -10,8 +10,8 @@ tags:
 
 ## Overview
 
-The Standing Domain manages tournament performance tracking and position calculation for teams across different  
-contexts (stages, disciplines, or combinations of disciplines). This domain focuses on calculating and maintaining  
+The Standing Domain manages tournament performance tracking and position calculation for teams across different
+contexts (stages, disciplines, or combinations of disciplines). This domain focuses on calculating and maintaining
 current standings that reflect team performance within specific tournament contexts.
 
 ## Purpose
