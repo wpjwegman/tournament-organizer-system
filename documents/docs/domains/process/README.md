@@ -20,10 +20,10 @@ to participants within various contexts and ensuring proper workflow execution t
 
 ## Domain Structure
 
-### Core Models
+### Core Processes
 
-- **[Role Assignment](role_assignment.md)**: Template Entity for managing role-participant relationships within
-  specific contexts (tournaments, teams, organizations)
+- **[Role Assignment](role_assignment/README.md)**: Comprehensive process for managing all personnel
+  assignments including volunteers, staff, participants, and officials across tournament operations
 
 ### Supporting Integration
 
@@ -57,6 +57,6 @@ to participants within various contexts and ensuring proper workflow execution t
 
 ## See Also
 
-- **[Role Assignment](role_assignment.md)** - Core template entity for role management
+- **[Role Assignment](role_assignment/README.md)** - Comprehensive personnel assignment process
 - **[Identity Domain](../identity/README.md)** - Role and registrant definitions
 - **[Organization Domain](../organization/README.md)** - Organizational context integration

@@ -70,5 +70,5 @@ maintains detailed configuration data and recovery checkpoints to ensure process
 - **[Tournament](../../tournament/tournament.md)** - Tournament template entity structure
 - **[Organization](../../organization/README.md)** - Organizational context and approval workflows
 - **[Registrant](../../identity/registrant.md)** - Creator and approver identity management
-- **[Role Assignment](../role_assignment.md)** - Process role and permission management
+- **[Role Assignment](../role_assignment/README.md)** - Process role and permission management
 - **[Venue](../../venue/README.md)** - Venue availability and assignment integration
