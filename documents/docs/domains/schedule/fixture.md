@@ -28,36 +28,49 @@ and adds the following fixture-specific attributes:
 | **Venue** | Reference to the Venue where this fixture takes place | UUID | Yes | `venue-uuid-main-stadium` |
 | **Area** | Reference to the specific Area within the venue where this fixture occurs | UUID | Yes | `area-uuid-court-1` |
 | **Status** | Current status of the fixture | String | Yes | `"Scheduled"`, `"In Progress"`, `"Completed"`, `"Cancelled"` |
+| **Scores** | List of team scores for this fixture, embedded as Value Objects | List[Score] | Optional | List of embedded [Score](score.md) Value Objects |
+| **Events** | List of events that occurred during this fixture | List[Event] | Optional | List of embedded [Event](event.md) entities |
 | **Notes** | Additional operational notes about this specific fixture | Text | Optional | `"Delayed due to weather"`, `"Special equipment required"` |
 
-## Relationships
+## Purpose
 
-- A Fixture Entity is contained within a Schedule entity
-- A Fixture Entity references one Match entity
-- A Fixture Entity is scheduled at one Venue and Area
-- A Fixture Entity may have multiple Official entities assigned
+This template entity enables comprehensive fixture management by:
 
-### Parent Relationships
+- Coordinating scheduled competition instances with precise timing and location details
+- Centralizing operational data including scores, events, and status tracking for tournament oversight
+- Supporting diverse tournament formats through flexible template-based fixture configurations
+- Enabling real-time status updates and progress monitoring throughout tournament execution
+- Facilitating resource allocation and venue coordination across complex tournament schedules
 
-- **Schedule** - The schedule containing this fixture
+## Example
 
-### Child Relationships
+### Championship Semifinal Fixture
 
-- **Match** - The match being scheduled
-- **Officials** - Officials assigned to this fixture
+```mermaid
+graph TD
+  F[Fixture: Championship Semifinal A]
+  F --> M[Match: teams-eagles-vs-hawks-uuid]
+  F --> T[Timeslot: 2024-11-17T19:00-21:30Z, 150min, EST]
+  F --> V[Venue: main-stadium-uuid]
+  F --> A[Area: center-court-uuid]
+  F --> ST[Status: In Progress]
+  F --> SC[Scores: Eagles 45, Hawks 42]
+  F --> E[Events: Timeout, Penalty, Substitution]
+  F --> N[Notes: Championship semifinal broadcast]
+```
 
-### Related Entities
-
-- **Venue** - Where the fixture takes place
-- **Area** - Specific area within the venue
-- **Timeslot** - When the fixture occurs
+This example demonstrates a championship semifinal fixture showing all operational attributes: match reference linking  
+participating teams, embedded timeslot with precise scheduling, venue and area allocation, current progress status,  
+embedded score tracking for both teams, event recording for match incidents, and administrative notes. This structure  
+enables tournament organizers to coordinate all aspects of fixture execution from scheduling through completion while  
+maintaining centralized data for real-time monitoring and historical records.
 
 ## Considerations
 
 - **Scheduling:** Fixtures are the primary unit for tournament scheduling and time management
 - **Status Tracking:** Fixture status should be updated as the tournament progresses
 - **Venue Allocation:** Each fixture must be assigned to a specific venue and area
-- **Official Assignment:** Officials should be assigned to fixtures based on availability and qualifications
+- **Data Centralization:** Scores and events are embedded within fixtures for complete operational context
 
 ## See Also
 

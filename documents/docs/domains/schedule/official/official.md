@@ -16,6 +16,16 @@ qualifications, and assignments.
 
 As an Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../foundation/base_entity.md).
 
+## Purpose
+
+This entity enables comprehensive official management by:
+
+- Managing certified personnel responsible for competitive oversight and rule enforcement
+- Coordinating official assignments across tournaments, matches, and competitive events
+- Tracking professional qualifications, certifications, and specialized expertise areas
+- Supporting fair competition through qualified and available official allocation
+- Facilitating assignment scheduling based on certification levels and availability status
+
 ## Structure
 
 This entity includes standard attributes from the [Base Entity](../../foundation/base_entity.md)  
@@ -30,17 +40,28 @@ and adds the following official-specific attributes:
 | **Qualifications** | List of certifications and their details | List[Qualification] | No | List of embedded [Qualification](qualification.md) Value Objects |
 | **Availability** | The official's general availability status | String | Yes | Example: "Available", "Unavailable", "Part-time", "On-call" |
 | **Notes** | Additional administrative notes about the official | Text | No | `"Prefers morning assignments", "Requires transport"` |
-and adds the following official-specific attributes:
 
-| Attribute | Description | Type | Required | Notes / Example |
-|-----------|-------------|------|----------|-----------------|
-| **Profile** | Reference to the Profile of the individual serving as the official | UUID | Yes | `550e8400-e29b-41d4-a716-446655440000` |
-| **Type** | The category of official role | String | Yes | Example: "Referee", "Judge", "Umpire", "Scorekeeper", "Timekeeper" |
-| **Level** | The official's certification or experience level | String | Yes | Example: "International", "National", "Regional", "Local", "Trainee" |
-| **Specializations** | List of specific areas of expertise or focus | List[String] | No | Example: ["Basketball", "Volleyball", "Tennis"], ["Track", "Field"] |
-| **Qualifications** | List of certifications and their details | List[Qualification] | No | List of embedded [Qualification](qualification.md) Value Objects |
-| **Availability** | The official's general availability status | String | Yes | Example: "Available", "Unavailable", "Part-time", "On-call" |
-| **Notes** | Additional administrative notes about the official | Text | No | `"Prefers morning assignments", "Requires transport"` |
+## Example
+
+### International Basketball Referee
+
+```mermaid
+graph TD
+  O[Official: Sarah Chen - International Referee]
+  O --> P[Profile: sarah-chen-uuid-456]
+  O --> T[Type: Referee]
+  O --> L[Level: International]
+  O --> S[Specializations: Basketball, Volleyball]
+  O --> Q[Qualifications: FIBA Level 1, Olympic certified]
+  O --> A[Availability: Available]
+  O --> N[Notes: Prefers championship assignments]
+```
+
+This example demonstrates an international-level basketball referee showing all official attributes: profile reference  
+linking to identity information, referee type classification, international certification level, specializations,  
+embedded qualification credentials, current availability status, and administrative notes. This structure enables  
+tournament organizers to identify qualified officials, verify certifications, and coordinate assignments based on  
+expertise levels and scheduling availability.
 
 ## Relationships
 

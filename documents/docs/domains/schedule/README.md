@@ -39,39 +39,6 @@ flexibility for different tournament formats and requirements.
 - **Event Templates**: Standard event types and descriptions
 - **Score Templates**: Standard scoring formats for different sports
 
-**Key Capabilities:**
-
-- Team participation and competitive arrangement management
-- Multiple match format support from individual to team-based encounters
-- Score tracking, result determination, and competition progression
-- Competition analysis and performance evaluation
-
-### Temporal and Event Models
-
-#### [Timeslot](timeslot.md) - Value Object
-
-Precise temporal intervals with defined boundaries that enable scheduling coordination, conflict detection,  
-and resource optimization across tournament activities.
-
-**Key Capabilities:**
-
-- Timezone-aware scheduling for international tournaments
-- Complex scheduling coordination with conflict detection
-- Resource allocation optimization across temporal constraints
-- Immutable temporal records for audit trails
-
-#### [Event](event.md) - Entity
-
-Significant occurrences during competitive activities with detailed incident tracking, temporal documentation,  
-and comprehensive analysis capabilities for tournament management.
-
-**Key Capabilities:**
-
-- Real-time event tracking and post-competition analysis
-- Disciplinary action tracking and official decision documentation
-- Performance analysis and statistical reporting
-- Audit trails for competitive integrity and dispute resolution
-
 ## Status Lifecycle
 
 ### Schedule Statuses
