@@ -1,94 +1,81 @@
-# **Standing** (Data Model - Entity)
+---
+tags:
+  - standing
+  - entity
+  - tournament-performance
+  - team-positioning
+---
 
-## **Introduction**
+# Standing (Entity)
 
-A **Standing** Entity represents a team's position and performance within a specific scope of a tournament. A team can
-have multiple standings instances as they progress through different stages and disciplines. The scope can be:
+## Overview
 
-- A specific stage (e.g., group stage, quarter-finals)
-- A specific discipline (e.g., tennis, chess)
-- A combination of disciplines (e.g., overall tournament standing)
+A Standing Entity represents a team's position and performance within a specific scope of a tournament. Teams can
+have multiple standing instances as they progress through different stages and disciplines, tracking their current
+position and performance statistics within each context.
 
-## **Attributes**
+As an Entity, it maintains its own identity and lifecycle, managed according to the [Base Entity](../foundation/base_entity.md).
 
-**Note:** This Entity includes the standard attributes (`ID`, `Status` [e.g., Active, Inactive], `CreatedAt`,
-`LastUpdatedAt`) defined in the [Base Entity](../foundation/base_entity.md).
+## Purpose
 
-| Attribute     | Description                                                                              | Type       | Required | Notes / Example                                            |
-| ------------- | ---------------------------------------------------------------------------------------- | ---------- | -------- | ---------------------------------------------------------- |
-| **Scope**     | The type of standing (Stage, Discipline, or Multi-Discipline).                           | String     | Yes      | `"STAGE"`, `"DISCIPLINE"`, `"MULTI_DISCIPLINE"`            |
-| **Scope IDs** | References to the specific scopes (Stage ID, Discipline ID, or multiple Discipline IDs). | List[UUID] | Yes      | For multi-discipline, contains all relevant discipline IDs |
-| **Position**  | The current ranking position in this scope.                                              | Integer    | Yes      | `1`, `2`, `3`                                              |
-| **Team**      | Reference to the [Team](../team/team.md) this standing represents.         | UUID       | Yes      | Links to the team's profile and details.                   |
-| **Points**    | Total points accumulated according to the scoring rules.                                 | Integer    | Yes      | `25`, `18`, `12`                                           |
-| **Wins**      | Number of matches won by the team.                                                       | Integer    | Yes      | `8`, `5`, `3`                                              |
-| **Draws**     | Number of matches drawn by the team.                                                     | Integer    | Yes      | `2`, `1`, `0`                                              |
-| **Losses**    | Number of matches lost by the team.                                                      | Integer    | Yes      | `1`, `3`, `5`                                              |
+This entity enables comprehensive tournament standing management by:
 
-## **Relationships**
+- Tracking team performance and position within specific tournament scopes (stages, disciplines, or combinations)
+- Supporting multiple concurrent standings per team as they progress through different tournament contexts
+- Calculating and maintaining real-time position updates based on match results and performance statistics
+- Providing foundation data for tournament progression decisions, seeding calculations, and qualification determinations
+- Enabling scope-specific validation rules and performance tracking across stage, discipline, and multi-discipline contexts
 
-- A `Standing` is linked to a specific [Team](../team/team.md)
-- Based on Scope, a `Standing` is linked to:
+## Structure
 
-  - A (for stage standings)
-  - A [Discipline](../discipline/discipline.md) (for discipline standings)
-  - Multiple disciplines (for multi-discipline standings)
+This entity includes standard attributes from the [Base Entity](../foundation/base_entity.md)
+and adds the following standing-specific attributes:
 
-- Can be used as a basis for in subsequent stages or tournaments
+| Attribute | Description | Type | Required | Notes / Example |
+|-----------|-------------|------|----------|-----------------|
+| **Scope** | The type of standing context | String | Yes | `"STAGE"`, `"DISCIPLINE"`, `"MULTI_DISCIPLINE"` |
+| **Scope IDs** | References to the specific scopes | List[UUID] | Yes | For multi-discipline, contains all relevant discipline IDs |
+| **Position** | The current ranking position in this scope | Integer | Yes | `1`, `2`, `3` |
+| **Team** | Reference to the Team this standing represents | UUID | Yes | `team-uuid-123` |
+| **Points** | Total points accumulated according to scoring rules | Integer | Yes | `25`, `18`, `12` |
+| **Wins** | Number of matches won by the team | Integer | Yes | `8`, `5`, `3` |
+| **Draws** | Number of matches drawn by the team | Integer | Yes | `2`, `1`, `0` |
+| **Losses** | Number of matches lost by the team | Integer | Yes | `1`, `3`, `5` |
 
-## **Considerations**
+## Example
 
-- **Scope-Specific Rules:**
+### Multi-Sport Tournament Standing
 
-  - Stage standings: Used for stage progression and seeding
-  - Discipline standings: Track performance within a specific discipline
-  - Multi-discipline standings: Aggregate performance across all referenced disciplines
+```mermaid
+graph TD
+  S[Standing: Eagles Team - Multi-Discipline Championship]
+  S --> SC[Scope: MULTI_DISCIPLINE]
+  S --> SI[Scope IDs: tennis-uuid, basketball-uuid, volleyball-uuid]
+  S --> P[Position: 2]
+  S --> T[Team: eagles-team-uuid-456]
+  S --> PT[Points: 142]
+  S --> W[Wins: 15]
+  S --> D[Draws: 3]
+  S --> L[Losses: 2]
+```
 
-- **Multiple Standings:**
+This example demonstrates a multi-discipline standing for the Eagles team participating in tennis, basketball, and
+volleyball competitions. The standing shows their overall position (2nd place) across all three disciplines with
+comprehensive performance statistics including total points (142), wins (15), draws (3), and losses (2). This
+structure enables tournament organizers to track team performance across multiple disciplines while maintaining
+separate discipline-specific standings for detailed analysis and progression decisions.
 
-  - A team can have multiple standings instances
-  - Each instance represents performance in a specific scope
-  - Standings are updated independently based on their scope
-  - Changes in one scope may affect related standings
+## Considerations
 
-- **Validation Rules:**
-
-  - Scope and Scope IDs must be consistent
-  - Team must be eligible for all referenced scopes
-  - For discipline standings, team must be registered in that discipline
-  - For stage standings, team must be participating in that stage
-  - For multi-discipline standings, team must be participating in all referenced disciplines
-
-- **Position Updates:**
-
-  - Recalculated whenever Points, Wins, Draws, or Losses change
-  - Updates occur in real-time as match results are recorded
-  - Different calculation rules may apply based on scope
-
-- **Ranking Usage:**
-
-  - Can be used to update team rankings
-  - Can serve as a basis for seeding
-  - May influence qualification for other tournaments
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 20121:2012 - Event sustainability management systems](https://www.iso.org/standard/54552.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event performance tracking
-
-  standards
+- **Scope Management:** Teams can have multiple standings for different scopes (stage, discipline, multi-discipline)
+- **Real-time Updates:** Position recalculated whenever performance statistics change
+- **Validation Rules:** Scope and Scope IDs must be consistent; teams must be eligible for all referenced contexts
+- **Performance Tracking:** Statistics update independently based on scope-specific match results
 
 ## See Also
 
-- [Standing README](../standing/README.md)
-- [Team README](../team/README.md)
-- [Discipline README](../discipline/README.md)
-- [Tournament README](../tournament/README.md)
-- [Schedule README](../schedule/README.md)
-- [Ranking README](../ranking/README.md)
-- [Business README](../README.md)
+- [Team](../team/team.md) - Team entities tracked in standings
+- [Discipline](../discipline/discipline.md) - Discipline-specific standing contexts
+- [Tournament](../tournament/tournament.md) - Tournament context for standings
+- [Ranking](../ranking/ranking.md) - Long-term ranking systems based on standings
+- [Base Entity](../foundation/base_entity.md) - Common entity structure and lifecycle
