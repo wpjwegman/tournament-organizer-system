@@ -1,60 +1,68 @@
-# **Qualification** (Data Model - Value Object)
-
-## **Introduction**
-
-A **Qualification** Value Object represents a certification or qualification held by an official. It is embedded within
-an entity and does not have its own identity or lifecycle.
-
-It inherits properties from the [Base Entity](../../foundation/base_entity.md).
-
+---
+tags:
+  - qualification
+  - value-object
+  - certification
+  - professional-credentials
 ---
 
-## **Attributes**
+# Qualification (Value Object)
 
-| Attribute        | Description                                                  | Type   | Required | Notes / Example                                                         |
-| ---------------- | ------------------------------------------------------------ | ------ | -------- | ----------------------------------------------------------------------- |
-| **Type**         | The category of qualification.                               | String | Yes      | E.g., `Referee`, `Umpire`, `Judge`, `Scorekeeper`                       |
-| **Level**        | The level or grade of the qualification.                     | String | Yes      | E.g., `National`, `Regional`, `Local`, `International`                  |
-| **Issued Date**  | The date when the qualification was issued.                  | Date   | Yes      | `2020-05-15`                                                            |
-| **Expiry Date**  | The date when the qualification expires.                     | Date   | Yes      | `2025-12-31`                                                            |
-| **Issuing Body** | The organization or authority that issued the qualification. | UUID   | Yes      | Reference to an entity                                                  |
-| **Notes**        | Additional information about the qualification.              | Text   | No       | E.g., `"Specialized in youth competitions"`, `"Advanced certification"` |
+## Overview
 
----
+A Qualification Value Object represents a certification or qualification held by an official. It is embedded within  
+an Official entity and does not have its own identity or lifecycle.
 
-## **Relationships**
+## Purpose
 
-- A `Qualification` Value Object is always embedded within an entity.
-- It does not have its own identity or lifecycle.
+This value object enables comprehensive credential management by:
 
----
+- Documenting professional certifications and competency credentials for tournament officials
+- Supporting qualification validation and assignment eligibility verification
+- Facilitating credential tracking, renewal management, and compliance monitoring
+- Enabling specialized expertise documentation for specific competitive requirements
+- Providing audit trails for professional development and certification maintenance
 
-## **Considerations**
+## Structure
 
-- **Validation:** Ensure expiry dates are in the future when creating new qualifications.
-- **Renewal:** Track qualification status and handle renewal processes.
-- **Compliance:** Ensure qualifications meet tournament or event requirements.
+| Attribute | Description | Type | Required | Notes / Example |
+|-----------|-------------|------|----------|-----------------|
+| **Type** | The category of qualification | String | Yes | E.g., `Referee`, `Umpire`, `Judge`, `Scorekeeper` |
+| **Level** | The level or grade of the qualification | String | Yes | E.g., `National`, `Regional`, `Local`, `International` |
+| **Issued Date** | The date when the qualification was issued | Date | Yes | `2020-05-15` |
+| **Expiry Date** | The date when the qualification expires | Date | Yes | `2025-12-31` |
+| **Issuing Body** | The organization or authority that issued the qualification | UUID | Yes | Reference to an Organization entity |
+| **Notes** | Additional information about the qualification | Text | No | E.g., `"Specialized in youth competitions"`, `"Advanced certification"` |
 
----
+## Considerations
 
-## References
+- **Validation:** Ensure expiry dates are in the future when creating new qualifications
+- **Renewal:** Track qualification status and handle renewal processes
+- **Compliance:** Ensure qualifications meet tournament or event requirements
 
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 17024:2012 - Conformity assessment - General requirements for bodies operating certification of persons](https://www.iso.org/standard/52994.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
+## Example
 
-  by Eric Evans - Value Object patterns
+### FIBA International Referee Certification
 
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event official
+```mermaid
+graph TD
+  Q[Qualification: FIBA International Referee]
+  Q --> T[Type: Referee]
+  Q --> L[Level: International]
+  Q --> ID[Issued Date: 2023-03-15]
+  Q --> ED[Expiry Date: 2027-03-14]
+  Q --> IB[Issuing Body: fiba-org-uuid-789]
+  Q --> N[Notes: Specialized in basketball officiating]
+```
 
-  qualification standards
+This example demonstrates an international referee qualification showing all credential attributes: certification type  
+and competency level, issuance and expiration dates for renewal tracking, issuing organization reference, and  
+specialized notes documenting expertise areas. This structure enables tournament organizers to verify official  
+credentials, validate assignment eligibility, and ensure appropriate certification levels for competitive requirements.
 
 ## See Also
 
-- [Official README](../../schedule/official/README.md)
-- [Official](../../schedule/official/official.md)
-- [Organization README](../../organization/README.md)
-- [Identity README](../../identity/README.md)
-- [Business README](../../README.md)
-
----
+- [Official](./official.md) - Tournament officials holding qualifications
+- [Organization](../../organization/organization.md) - Bodies that issue qualifications
+- [Tournament](../../tournament/tournament.md) - Competitions requiring qualified officials
+- [Base Value Object](../../foundation/base_value_object.md) - Common value object principles

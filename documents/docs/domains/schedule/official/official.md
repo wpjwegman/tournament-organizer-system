@@ -1,86 +1,80 @@
-# **Official** (Data Model - Entity)
+---
+tags:
+  - official
+  - entity
+  - tournament-officials
+  - match-officiating
+---
 
-## **Introduction**
+# Official (Entity)
 
-A **Official** Entity represents an individual acting in an official capacity (e.g., referee, judge, umpire,
-scorekeeper) for tournaments or specific events. It links a to their officiating roles, qualifications, and assignments.
+## Overview
+
+An Official Entity represents an individual acting in an official capacity (e.g., referee, judge, umpire,  
+scorekeeper) for tournaments or specific events. It links a Profile to their officiating roles,  
+qualifications, and assignments.
 
 As an Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../foundation/base_entity.md).
 
-It inherits properties from the [Base Entity](../../foundation/base_entity.md).
+## Purpose
 
----
+This entity enables comprehensive official management by:
 
-## **Attributes**
+- Managing certified personnel responsible for competitive oversight and rule enforcement
+- Coordinating official assignments across tournaments, matches, and competitive events
+- Tracking professional qualifications, certifications, and specialized expertise areas
+- Supporting fair competition through qualified and available official allocation
+- Facilitating assignment scheduling based on certification levels and availability status
 
-**Note:** This Entity includes the standard attributes (`ID`, `Status` [e.g., Active, Inactive, Pending], `CreatedAt`,
-`LastUpdatedAt`) defined in the [Base Entity](../../foundation/base_entity.md).
+## Structure
 
-| Attribute           | Description                                                         | Type                | Required | Notes / Example                                                                                                   |
-| ------------------- | ------------------------------------------------------------------- | ------------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| **Profile**         | Reference to the profile of the individual serving as the official. | UUID                | Yes      | `550e8400-e29b-41d4-a716-446655440000`                                                                            |
-| **Type**            | The category of official role.                                      | String              | Yes      | Example: "Referee", "Judge", "Umpire", "Scorekeeper", "Timekeeper"                                                |
-| **Level**           | The official's certification or experience level.                   | String              | Yes      | Example: "International", "National", "Regional", "Local", "Trainee"                                              |
-| **Specializations** | List of specific areas of expertise or focus.                       | List[String]        | No       | Example: ["Basketball", "Volleyball", "Tennis"], ["Track", "Field"]                                               |
-| **Qualifications**  | List of certifications and their details.                           | List[Qualification] | No       | List of embedded [Qualification](qualification.md) Value Objects |
-| **Availability**    | The official's general availability status.                         | String              | Yes      | Example: "Available", "Unavailable", "Part-time", "On-call"                                                       |
-| **Notes**           | Additional administrative notes about the official.                 | Text                | No       | `"Prefers morning assignments", "Requires transport"`                                                             |
+This entity includes standard attributes from the [Base Entity](../../foundation/base_entity.md)  
+and adds the following official-specific attributes:
 
----
+| Attribute | Description | Type | Required | Notes / Example |
+|-----------|-------------|------|----------|-----------------|
+| **Profile** | Reference to the Profile of the individual serving as the official | UUID | Yes | `550e8400-e29b-41d4-a716-446655440000` |
+| **Type** | The category of official role | String | Yes | Example: "Referee", "Judge", "Umpire", "Scorekeeper", "Timekeeper" |
+| **Level** | The official's certification or experience level | String | Yes | Example: "International", "National", "Regional", "Local", "Trainee" |
+| **Specializations** | List of specific areas of expertise or focus | List[String] | No | Example: ["Basketball", "Volleyball", "Tennis"], ["Track", "Field"] |
+| **Qualifications** | List of certifications and their details | List[Qualification] | No | List of embedded [Qualification](qualification.md) Value Objects |
+| **Availability** | The official's general availability status | String | Yes | Example: "Available", "Unavailable", "Part-time", "On-call" |
+| **Notes** | Additional administrative notes about the official | Text | No | `"Prefers morning assignments", "Requires transport"` |
 
-## **Relationships**
+## Example
 
-- An `Official` is linked to one .
-- An `Official` may be assigned to multiple .
-- An `Official` may be associated with multiple [Tournament](../../tournament/tournament.md).
-- An `Official` may hold multiple [Role](../../identity/role/role.md).
+### International Basketball Referee
 
-### Parent Relationships
+```mermaid
+graph TD
+  O[Official: Sarah Chen - International Referee]
+  O --> P[Profile: sarah-chen-uuid-456]
+  O --> T[Type: Referee]
+  O --> L[Level: International]
+  O --> S[Specializations: Basketball, Volleyball]
+  O --> Q[Qualifications: FIBA Level 1, Olympic certified]
+  O --> A[Availability: Available]
+  O --> N[Notes: Prefers championship assignments]
+```
 
-- - The individual serving as the official
-- [Tournament](../../tournament/tournament.md) - Where the official is assigned
+This example demonstrates an international-level basketball referee showing all official attributes: profile reference  
+linking to identity information, referee type classification, international certification level, specializations,  
+embedded qualification credentials, current availability status, and administrative notes. This structure enables  
+tournament organizers to identify qualified officials, verify certifications, and coordinate assignments based on  
+expertise levels and scheduling availability.
 
-### Child Relationships
+## Considerations
 
-- None
+- **Qualification Management:** Track certification expiry dates, handle qualification renewals, validate qualification requirements
+- **Assignment Management:** Handle match assignments, manage availability, track assignment history
+- **Role Management:** Assign appropriate roles, handle role changes, track role history
+- **Performance Tracking:** Monitor assignment completion, track feedback and ratings, handle performance issues
+- **Security:** Control access to official records, protect sensitive information, audit official activities
 
-### Related Entities
+## See Also
 
-- - Where officials are assigned
-- [Role](../../identity/role/role.md) - Defines official's permissions and responsibilities
-
----
-
-## **Considerations**
-
-- **Qualification Management:**
-
-  - Track certification expiry dates
-  - Handle qualification renewals
-  - Validate qualification requirements
-
-- **Assignment Management:**
-
-  - Handle match assignments
-  - Manage availability
-  - Track assignment history
-
-- **Role Management:**
-
-  - Assign appropriate roles
-  - Handle role changes
-  - Track role history
-
-- **Performance Tracking:**
-
-  - Monitor assignment completion
-  - Track feedback and ratings
-  - Handle performance issues
-
-- **Security:**
-
-  - Control access to official records
-  - Protect sensitive information
-  - Audit official activities
-
----
+- [Qualification](./qualification.md) - Certification credentials for officials
+- [Profile](../../identity/profile.md) - Individual identity information
+- [Fixture](../fixture.md) - Match assignments for officials
+- [Tournament](../../tournament/tournament.md) - Tournament context for official assignments
+- [Base Entity](../../foundation/base_entity.md) - Common entity structure and lifecycle

@@ -1,39 +1,104 @@
-# schedule - official
+# Schedule Domain - Official Management
 
-This directory contains models related to official within the schedule domain.
+This subdirectory contains models for managing tournament officials, their qualifications, and assignment  
+coordination within the schedule domain context. These models enable comprehensive oversight personnel  
+management for competitive tournament environments.
 
-## Files
+## Models Overview
 
-- [Official](official.md) - Represents tournament officials and their assignments
-- [Qualification](qualification.md) - Defines qualification requirements for officials
+### [Official](official.md) - Entity
 
-## Related Models
+Represents tournament officials and competitive oversight personnel with certification management,  
+assignment coordination, and professional qualification tracking. Manages referee, judge, umpire,  
+and other official roles across tournament contexts.
 
-- See parent directory: [Schedule Domain](../README.md)
-- See business models: [Domains Overview](../../README.md)
+**Key Capabilities:**
 
-## TODO
+- Professional certification and qualification management
+- Tournament assignment coordination and availability tracking
+- Performance evaluation and professional development support
+- Specialized expertise management for diverse competitive requirements
 
-- Add comprehensive documentation for each model
-- Establish relationships with other business models
-- Define business rules and constraints
+### [Qualification](qualification.md) - Value Object
 
-## References
+Documents professional certifications and credentials held by tournament officials, supporting  
+competency validation, renewal management, and assignment eligibility verification.
 
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 20121:2012 - Event sustainability management systems](https://www.iso.org/standard/54552.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
+**Key Capabilities:**
 
-  by Eric Evans - Entity patterns
+- Professional certification documentation and validation
+- Renewal tracking and compliance management
+- Specialized endorsement and expertise certification
+- Performance history and professional development tracking
 
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event official management
+## Domain Architecture
 
-  standards
+```mermaid
+graph TD
+  O[Official Entity]
+  Q[Qualification Value Object]
+  F[Fixture Entity]
+  M[Match Entity]
+  I[Identity Entity]
+  ORG[Organization Entity]
+  
+  O -->|embeds| Q
+  O -->|links to| I
+  Q -->|issued by| ORG
+  F -->|assigns| O
+  M -->|overseen by| O
+  
+  O -.->|professional development| O
+  Q -.->|renewal requirements| Q
+```
+
+## Business Context
+
+The Official Management subdomain addresses critical tournament administration needs:
+
+- **Qualified Personnel:** Ensures appropriately certified officials oversee competitive activities
+- **Assignment Coordination:** Matches official qualifications with tournament requirements
+- **Professional Standards:** Maintains certification standards and continuing education requirements
+- **Performance Management:** Tracks official performance and professional development
+
+## Integration Points
+
+### Schedule Domain Integration
+
+- **Fixture Assignment:** Officials assigned to specific tournament fixtures
+- **Match Oversight:** Officials provide competitive oversight and rule enforcement
+- **Event Recording:** Officials document significant competitive incidents and outcomes
+
+### Identity Domain Integration
+
+- **Individual Profiles:** Officials linked to personal identity and contact information
+- **Role Management:** Official responsibilities and permissions within tournament contexts
+
+### Organization Domain Integration
+
+- **Certification Bodies:** Organizations issuing professional qualifications and certifications
+- **Tournament Organizations:** Entities coordinating official assignments and requirements
+
+## Usage Patterns
+
+### Official Assignment Workflow
+
+1. Tournament fixture requires certified official oversight
+2. System identifies officials with appropriate qualifications and availability
+3. Assignment coordination matches official expertise with tournament requirements
+4. Performance tracking records official effectiveness and professional development needs
+
+### Qualification Management Workflow
+
+1. Official achieves professional certification from authorized organization
+2. Qualification documented with renewal requirements and continuing education needs
+3. System tracks renewal deadlines and compliance status
+4. Professional development supports advancement and specialization opportunities
 
 ## See Also
 
-- [Schedule README](../../schedule/README.md)
-- [Fixture](../../schedule/fixture.md)
-- [Identity README](../../identity/README.md)
-- [Role README](../../identity/role/role.md)
-- [Business README](../../README.md)
+- [Schedule Domain README](../README.md) - Parent domain containing official management
+- [Fixture](../fixture.md) - Scheduled competitions requiring official oversight
+- [Match](../match.md) - Competitive encounters overseen by qualified officials
+- [Identity Domain](../../identity/README.md) - Individual identity management for officials
+- [Organization Domain](../../organization/README.md) - Entities issuing professional qualifications
