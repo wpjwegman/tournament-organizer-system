@@ -104,9 +104,9 @@ capabilities with continuous monitoring throughout competitive events.
 ## See Also
 
 - [Emergency Response](./response.md) - Emergency procedures and escalation protocol templates
-- [Safety Assessment](./assessment.md) - Concrete safety evaluations and monitoring instances
+- [Safety Assessment](./safety.md) - Concrete safety evaluations and monitoring instances
 - [Safety Requirements](./requirements.md) - Embedded safety criteria and compliance standards
-- [Incident Response](./response.md) - Embedded incident handling and escalation procedures
+- [Incident Response](./incident.md) - Embedded incident handling and escalation procedures
 - [Venue](../venue/README.md) - Facility management and safety coordination
 - [First Aid](../first_aid/README.md) - Medical response and emergency care integration
 - [Tournament](../tournament/tournament.md) - Tournament context for safety systems

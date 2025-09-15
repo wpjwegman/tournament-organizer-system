@@ -1,3 +1,13 @@
+---
+tags:
+  - incident-response
+  - value-object
+  - embedded-object
+  - escalation-protocols
+  - emergency-procedures
+  - tournament-management
+---
+
 # Incident Response
 
 ## Overview

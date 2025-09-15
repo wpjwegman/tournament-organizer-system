@@ -1,3 +1,13 @@
+---
+tags:
+  - safety-requirements
+  - value-object
+  - embedded-object
+  - compliance-standards
+  - risk-assessment
+  - tournament-management
+---
+
 # Safety Requirements
 
 ## Overview

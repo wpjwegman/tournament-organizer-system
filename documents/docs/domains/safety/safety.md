@@ -118,7 +118,7 @@ detailed equipment monitoring to ensure continued safe operation throughout the 
 - [Safety System](./system.md) - Safety management processes and protocol templates
 - [Emergency Response](./response.md) - Emergency procedures and escalation protocol templates  
 - [Safety Requirements](./requirements.md) - Embedded safety criteria and compliance standards
-- [Incident Response](./response.md) - Embedded incident handling and response procedures
+- [Incident Response](./incident.md) - Embedded incident handling and response procedures
 - [Venue](../venue/README.md) - Facility management and safety coordination
 - [Identity](../identity/README.md) - Safety personnel and emergency contact management
 - [First Aid](../first_aid/README.md) - Medical response and emergency care integration

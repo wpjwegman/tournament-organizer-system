@@ -107,7 +107,7 @@ accounting of all personnel with coordination between internal staff and emergen
 ## See Also
 
 - [Safety System](./system.md) - Safety management processes and protocol templates
-- [Safety Assessment](./assessment.md) - Concrete safety evaluations and emergency preparedness
+- [Safety Assessment](./safety.md) - Concrete safety evaluations and emergency preparedness
 - [Safety Requirements](./requirements.md) - Embedded safety criteria and emergency preparedness standards
 - [Incident Response](./response.md) - Embedded incident handling and response procedures
 - [First Aid](../first_aid/README.md) - Medical response and emergency care coordination
