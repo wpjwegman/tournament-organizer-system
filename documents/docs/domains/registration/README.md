@@ -1,137 +1,240 @@
-# **Registration Domain**
+# Registration Domain
 
-## **Overview**
+## Overview
 
-The Registration domain manages the formal enrollment process for participants in tournaments and events. It provides a
-flexible framework for registering different types of participants (humans, animals, computers) while maintaining clear
-relationships with tournaments, teams, and participant profiles.
+The Registration Domain handles universal access control and enrollment for all tournament participants
+including competitors, officials, staff, committee members, press, coaches, and spectators. This domain
+provides comprehensive participant registration workflows, role-based requirements, and status tracking
+that ensures proper access control and administrative oversight for tournament participation.
 
-This domain uses a polymorphic approach where registrants can be associated with different profile types, allowing for
-diverse participant registration while maintaining data integrity and clear relationships.
+The domain implements sophisticated registration systems supporting different participant roles, time-based
+registration periods, status workflow management, and comprehensive compliance tracking while maintaining
+clear integration with identity management, financial processing, and tournament organization.
 
-## **Domain Structure**
+## Purpose
 
-### **Core Models**
+The primary purpose of the Registration Domain is to provide secure and organized tournament access by:
 
-- **[Registration](../registration/registration.md)**: Formal enrollment of a registrant into a tournament
+- Implementing universal participant registration covering all tournament roles and responsibilities
+- Managing time-based registration periods with automated deadline enforcement and notifications
+- Tracking comprehensive participant status workflows from submission to confirmation
+- Supporting role-based registration requirements with different compliance standards
+- Integrating general registration rules with discipline-specific player criteria
+- Maintaining audit trails and administrative accountability for registration decisions
+- Providing foundation for tournament access control and participant management
 
-  with status lifecycle
+## Domain Models
 
-- \*\*\*\*: Individual or entity formally registered for tournaments with polymorphic profile association
+### Template Entities
 
-### **Related Models**
+Template entities define reusable configurations and processes for registration systems.
 
-- \*\*\*\*: Context-specific instance of a registrant as a player
-- **[Team](../team/team.md)**: Team entities that may contain registered participants
-- **[Tournament](../tournament/tournament.md)**: Tournament entities that contain registrations
+#### [System](./system.md) | Template Entity
 
-## **Template Entity Analysis**
+Defines registration processes, workflows, and requirements for different tournament types. Supports open
+enrollment, invitation-only, qualification-based, and hybrid registration approaches with configurable
+approval processes and capacity management.
 
-### **Current Template Entities**
+#### [Period](./period.md) | Template Entity
 
-- **None**: Both Registration and Registrant are instance entities
+Manages time-based registration windows, deadline structures, and phase management. Supports early/regular/late
+registration periods, rolling deadlines, tournament-specific windows, and automated notification schedules.
 
-### **Potential Template Entities**
+### Entities
 
-- **Registration Form Templates**: Standard registration forms for different tournament types
-- **Eligibility Criteria Templates**: Standard eligibility requirements for different participant categories
-- **Registration Workflow Templates**: Standard registration processes and approval workflows
-- **Participant Category Templates**: Standard participant types and their registration requirements
+Entities represent concrete registration instances and workflow tracking with unique identities.
 
-## **Status Lifecycle**
+#### [Participant Registration](./registration.md) | Entity
 
-### **Registration Statuses**
+Concrete participant registration instances covering all tournament roles with status tracking, compliance
+validation, and workflow management. Links to registration systems and periods while embedding role-specific
+requirements and fee structures.
 
-- **Pending**: Registration has been submitted but not yet confirmed
-- **Confirmed**: Registration has been approved and confirmed
-- **Waitlisted**: Registration is on a waiting list due to capacity limits
-- **Cancelled**: Registration has been cancelled
+### Value Objects
 
-### **Registrant Statuses**
+Value objects provide embedded data structures within entities for complex domain concepts.
 
-- **Active**: Registrant is eligible and active in the system
-- **Withdrawn**: Registrant has withdrawn from participation
-- **Disqualified**: Registrant has been disqualified from participation
-- **Banned**: Registrant has been banned from the system
+#### [Requirements](./requirements.md) | Value Object
 
-### **Lifecycle Transitions**
+Embedded general registration requirements and compliance criteria supporting role-based validation,
+document verification, and deadline management. Provides flexible configuration for different
+participant types and tournament contexts.
 
-- Registration: Pending → Confirmed/Waitlisted → Cancelled
-- Registrant: Active → Withdrawn/Disqualified/Banned
+## Model Hierarchy
 
-## **Relationships & Cross-References**
+```mermaid
+graph TD
+    subgraph "Template Entities"
+        RS[System<br/>Template Entity]
+        RP[Period<br/>Template Entity]
+    end
+    
+    subgraph "Entities"
+        PR[Participant Registration<br/>Entity]
+    end
+    
+    subgraph "Value Objects"
+        RR[Registration Requirements<br/>Value Object]
+    end
+    
+    subgraph "External Domain Integration"
+        CR[Classification Criterium<br/>Template Entity]
+        RF[Registration Fee<br/>Value Object]
+    end
+    
+    RS --> PR
+    RP --> PR
+    RR -.-> RS
+    RR -.-> PR
+    CR -.-> PR
+    RF -.-> PR
+    
+    classDef template fill:#e1f5fe
+    classDef entity fill:#f3e5f5
+    classDef valueObject fill:#e8f5e8
+    classDef external fill:#fff3e0
+    
+    class RS,RP template
+    class PR entity
+    class RR valueObject
+    class CR,RF external
+```
 
-- **Registration ↔ Tournament**: Registration is embedded within tournament
-- **Registration ↔ Registrant**: Formal enrollment relationship
-- **Registrant ↔ Profile**: Polymorphic association (Human, Animal, Computer profiles)
-- **Registrant ↔ Team**: Potential team association through roster
-- **Registrant ↔ Player**: Context-specific player instance
-- **Registrant ↔ Account**: Authentication and access control
-- **Registrant ↔ Contact Information**: Contact details and communication
+## Role-Based Registration Architecture
 
-## **Polymorphic Profile System**
+### Universal Participant Coverage
 
-### **Profile Types**
+The Registration Domain provides enrollment for all tournament participants:
 
-- **Human Profile**: Human participants with personal details, medical history, memberships
-- **Animal Profile**: Animal participants with species, breed, owner information
-- **Computer Profile**: Computer participants with technical specifications and user information
+**Competition Participants:**
 
-### **Profile Association**
+- **Players/Competitors**: Primary competitive participants requiring ranking and eligibility verification
+- **Coaches**: Team coaches and support staff with team affiliation and certification requirements
+- **Team Officials**: Team managers, captains, and support personnel with administrative responsibilities
 
-- Registrant uses Profile Type + Profile ID for polymorphic linking
-- Each profile type has specific attributes and relationships
-- Profiles can be shared across multiple registrations
-- Profile data is separate from registration data
+**Tournament Administration:**
 
-## **Quality Standards**
+- **Committee Members**: Tournament directors, organizers, and governance personnel with full access
+- **Staff**: Administrative staff, coordinators, and operational personnel with working credentials  
+- **Volunteers**: Support volunteers with specific role assignments and training requirements
 
-- All models include comprehensive attribute documentation
-- Cross-references are accurate and up to date
-- Status lifecycles are clearly defined
-- Polymorphic relationships are well-documented
-- Practical examples are provided where relevant
-- Consistent formatting and terminology throughout
+**Event Support:**
 
-## **Implementation Guidelines**
+- **Officials**: Referees, judges, and technical officials with certification and background verification
+- **Press/Media**: Journalists, photographers, and broadcasters with media accreditation requirements
+- **Spectators**: General public attendees with access control and safety compliance
 
-- Use polymorphic associations for flexible participant registration
-- Enforce status transitions and lifecycle rules
-- Maintain data integrity across profile types
-- Ensure proper access control for sensitive profile information
-- Support registration workflows and approval processes
-- Maintain accurate cross-references between all related models
-- Regularly review and update documentation for clarity and completeness
+### Requirements Architecture Separation
 
-## **Related Domains**
+The domain implements a two-layer requirements system:
 
-- \*\*\*\*: Tournament structure and management
-- \*\*\*\*: Team composition and roster management
-- \*\*\*\*: Profile and account management
-- \*\*\*\*: Registration fees and payments
+**General Registration Requirements (This Domain):**
+
+- Age verification and eligibility criteria
+- Document submission and verification standards
+- Payment deadlines and fee structures
+- Insurance and liability requirements
+- Contact information and communication preferences
+
+**Discipline-Specific Player Criteria (Classification Domain):**
+
+- Sport-specific skill level requirements
+- Equipment compliance standards
+- Physical requirements and weight classes
+- Certification and qualification standards
+
+This separation ensures clean domain boundaries while supporting comprehensive participant validation.
+
+## Integration Points
+
+### Cross-Domain Relationships
+
+**Registration ↔ Identity Domain:**
+
+- Participant identity verification and profile management
+- Contact information and emergency contact administration
+- Authentication and access control integration
+
+**Registration ↔ Finance Domain:**
+
+- Role-based fee structures and payment processing
+- Refund management and financial compliance
+- Payment deadline integration with registration periods
+
+**Registration ↔ Tournament Domain:**
+
+- Tournament-specific registration system configuration
+- Capacity management and participant allocation
+- Access control and tournament participation verification
+
+**Registration ↔ Team Domain:**
+
+- Team affiliation for competitive participants
+- Roster management integration for player registration
+- Coach and team official assignment coordination
+
+**Registration ↔ Classification Domain:**
+
+- Discipline-specific player eligibility criteria
+- Skill level and certification requirements
+- Equipment compliance and technical standards
+
+## Status Workflows
+
+### Registration Lifecycle
+
+**Standard Workflow:**
+
+1. **SUBMITTED** → Initial registration submission
+2. **UNDER_REVIEW** → Administrative verification in progress
+3. **APPROVED** → Registration meets requirements
+4. **CONFIRMED** → Final confirmation with payment and compliance
+5. **WITHDRAWN** → Participant-initiated withdrawal
+
+**Alternative Flows:**
+
+- **REJECTED** → Registration does not meet requirements
+- **WAITLIST** → Approved but capacity-limited
+- **EXPIRED** → Registration period expired
+
+### Audit Trail Management
+
+The Base Entity status management provides fundamental tracking capabilities:
+
+- Status transitions with timestamps through Last Updated tracking
+- Multiple concurrent status types for comprehensive lifecycle management
+- System-managed audit foundation for compliance and troubleshooting
+- Integration with domain-specific workflow requirements
+- Cross-domain status consistency and reference integrity
+
+## Quality Standards
+
+- All models include comprehensive attribute documentation with role-based examples
+- Cross-references are accurate and maintain proper domain boundaries
+- Status lifecycles are clearly defined with transition rules and validation
+- Role-based requirements are well-documented and consistently applied
+- Integration points with external domains are properly managed
+- Audit trails provide complete administrative accountability
+
+## Implementation Guidelines
+
+- Use role-based registration requirements for different participant types
+- Enforce status transitions and lifecycle rules with proper validation
+- Maintain data integrity across participant roles and tournament contexts
+- Ensure proper access control based on registration status and role assignment
+- Support automated workflow processing with manual override capabilities
+- Integrate general registration rules with discipline-specific criteria appropriately
+- Maintain comprehensive audit trails for administrative accountability and compliance
+
+## Related Domains
+
+- **[Identity Domain](../identity/README.md)**: Participant identity and profile management
+- **[Finance Domain](../finance/README.md)**: Payment processing and fee management  
+- **[Tournament Domain](../tournament/README.md)**: Tournament structure and organization
+- **[Team Domain](../team/README.md)**: Team composition and roster management
+- **[Classification Domain](../classification/README.md)**: Discipline-specific eligibility criteria
+- **[Process Domain](../process/README.md)**: Workflow and process management integration
 
 ---
 
-**Last Updated**: June 24, 2025 **Version**: 1.0 **Status**: Active **Next Review**: July 24, 2025
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 9001:2015 - Quality management systems — Requirements](https://www.iso.org/standard/62085.html)
-- [ISO 20121:2012 - Event sustainability management systems](https://www.iso.org/standard/54552.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event registration
-
-  standards
-
-## See Also
-
-- [Registration](../registration/registration.md)
-- [Registrant](../registration/registrant.md)
-- [Tournament](../tournament/tournament.md)
-- [Team](../team/team.md)
-- [Identity README](../identity/README.md)
-- [Business README](../README.md)
+**Last Updated**: September 15, 2025 **Version**: 2.0 **Status**: Active **Next Review**: October 15, 2025
