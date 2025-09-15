@@ -1,129 +1,176 @@
-# **Safety Domain**
+# Safety Domain
 
-## **Overview**
+## Overview
 
-The Safety domain manages all aspects of safety, risk management, and incident tracking within the tournament system. It
-provides comprehensive frameworks for establishing safety protocols, tracking incidents, and ensuring compliance with
-safety standards across all tournament activities and venues.
+The Safety domain provides comprehensive tournament safety management through risk assessment, emergency response  
+coordination, and incident tracking. It establishes standardized safety protocols, monitors compliance, and ensures  
+effective emergency preparedness across all tournament activities and venues.
 
-This domain uses a template-based approach where safety protocols and guidelines are copied into specific contexts,
-allowing for customization while maintaining standardized safety structures.
+## Domain Architecture
 
-## **Domain Structure**
+The Safety domain follows a balanced 5-model architecture:
 
-### **Core Models**
+### Template Entities (2)
 
-- **[Safety](../safety/safety.md)**: Comprehensive safety record for activities, venues, or events with
+- **[Safety System](system.md)**: Comprehensive safety management processes and protocols
+- **[Emergency Response](response.md)**: Emergency procedures and crisis management coordination
 
-  risk assessment
+### Entities (1)
 
-- **[Incident](../safety/incident.md)**: Records of safety-related incidents, accidents, or near-misses
+- **[Safety Assessment](safety.md)**: Concrete safety evaluations and monitoring instances
 
-  for tracking and prevention
+### Value Objects (2)
 
-- **[Protocol](protocol/protocol.md)**: Template for creating safety protocols with guidelines and procedures
-- **[Guideline](protocol/guideline.md)**: Template for specific safety instructions, recommendations, or requirements
+- **[Safety Requirements](requirements.md)**: Embedded safety criteria and compliance standards
+- **[Incident Response](incident.md)**: Embedded incident handling procedures and escalation protocols
 
-## **Template Entity Analysis**
+## Model Relationships
 
-### **Current Template Entities**
+### Template Entity Usage
 
-- **Safety Protocol**: Used as a template for standard safety protocols, copied into specific contexts
-- **Safety Guideline**: Template for specific safety instructions, copied into protocols or safety records
-- **Safety**: Can be templated for standard safety configurations for different activities/venues
+```mermaid
+graph TD
+    A[Safety System Template] -->|instantiated as| B[Safety Assessment]
+    C[Emergency Response Template] -->|instantiated as| D[Safety Assessment]
+    B -->|embeds| E[Safety Requirements]
+    B -->|embeds| F[Incident Response]
+    D -->|embeds| E
+    D -->|embeds| F
+```
 
-### **Potential Template Entities**
+### Domain Integration
 
-- **Incident Templates**: Standard incident types and reporting structures
-- **Risk Assessment Templates**: Standard risk assessment frameworks
-- **Emergency Response Templates**: Standard emergency response procedures
+```mermaid
+graph LR
+    A[Safety Assessment] -->|evaluates| B[Venue]
+    A -->|monitors| C[Equipment]
+    A -->|oversees| D[Activity]
+    A -->|tracks| E[Personnel]
+    F[Emergency Response] -->|coordinates with| G[External Services]
+    H[Incident Response] -->|escalates to| I[Management]
+```
 
-## **Status Lifecycle**
+## Core Capabilities
 
-### **Safety Statuses**
+### Safety Management
 
-- **Active**: Safety measures are current and in use
-- **Under Review**: Safety measures are being reviewed and updated
+- **Risk Assessment**: Comprehensive venue, equipment, and activity risk evaluation
+- **Compliance Monitoring**: Tracking safety requirements and regulatory compliance
+- **Protocol Standardization**: Consistent safety procedures across tournament contexts
+- **Continuous Monitoring**: Ongoing safety oversight and improvement
 
-### **Incident Statuses**
+### Emergency Response
 
-- **Reported**: Incident has been reported and documented
-- **Under Investigation**: Incident is being investigated
-- **Resolved**: Incident investigation and follow-up are complete
+- **Medical Emergency Coordination**: First aid response and medical service coordination
+- **Evacuation Management**: Systematic evacuation procedures and crowd control
+- **Crisis Communication**: Emergency notification and stakeholder coordination
+- **External Service Integration**: Professional emergency service coordination
 
-### **Safety Protocol Statuses**
+### Incident Management
 
-- **Active**: Protocol template is available for use
-- **Deprecated**: Protocol template is no longer recommended
+- **Incident Tracking**: Comprehensive incident documentation and analysis
+- **Response Coordination**: Systematic incident response and escalation
+- **Follow-up Management**: Post-incident review and improvement planning
+- **Prevention Analytics**: Incident pattern analysis for proactive prevention
 
-### **Safety Guideline Statuses**
+## Usage Examples
 
-- **Active**: Guideline template is available for use
-- **Deprecated**: Guideline template is no longer recommended
+### Basic Safety Assessment
 
-### **Lifecycle Transitions**
+```yaml
+# Safety Assessment for Indoor Venue
+assessment_type: "venue"
+subject_identifier: "venue-indoor-arena-001"
+safety_system: "comprehensive-venue-safety-system"
+emergency_response: "indoor-venue-emergency-response"
+risk_level: "low"
+compliance_status: "compliant"
+safety_requirements:
+  - requirement_type: "venue"
+    category: "fire"
+    priority_level: "critical"
+incident_response:
+  - incident_type: "medical"
+    severity_level: "major"
+```
 
-- Safety: Active ↔ Under Review
-- Incident: Reported → Under Investigation → Resolved
-- Safety Protocol/Guideline: Active → Deprecated
+### Emergency Response Coordination
 
-## **Relationships & Cross-References**
+```yaml
+# Emergency Response for Medical Incident
+response_type: "medical_emergency"
+severity_level: "major"
+activation_criteria: "Serious injury requiring emergency services"
+response_procedures:
+  immediate_response:
+    - "Assess scene safety and victim condition"
+    - "Call emergency medical services"
+    - "Provide first aid within scope"
+coordination_requirements:
+  - "Establish communication with tournament control"
+  - "Clear emergency access routes"
+  - "Coordinate with venue management"
+```
 
-- **Safety ↔ Activity/Venue**: Safety measures for specific contexts
-- **Safety ↔ Incident**: Incident tracking and analysis
-- **Safety ↔ Emergency Contact**: Emergency contact information
-- **Incident ↔ Safety/Activity/Venue**: Incident context and location
-- **Incident ↔ Staff/Participant**: Affected parties and witnesses
-- **Safety Protocol ↔ Safety Guideline**: Protocols contain guidelines
-- **Safety Protocol ↔ Venue/Activity/Role**: Protocol context and responsibility
+## Integration Guidelines
 
-## **Quality Standards**
+### Cross-Domain Relationships
 
-- All models include comprehensive attribute documentation
-- Cross-references are accurate and up to date
-- Status lifecycles are clearly defined
-- Template entity usage is documented
-- Practical examples are provided where relevant
-- Consistent formatting and terminology throughout
+- **Venue Domain**: Safety assessments for venue compliance and emergency preparedness
+- **Equipment Domain**: Safety evaluations for tournament equipment and infrastructure
+- **Personnel Domain**: Safety training requirements and emergency role assignments
+- **Tournament Domain**: Overall event safety coordination and risk management
 
-## **Implementation Guidelines**
+### Implementation Patterns
 
-- Use template entities for standardization and efficiency
-- Enforce status transitions and lifecycle rules
-- Ensure timely incident reporting and documentation
-- Maintain accurate cross-references between all related models
-- Regularly review and update documentation for clarity and completeness
+1. **Assessment Planning**: Use Safety System templates to plan comprehensive assessments
+2. **Emergency Preparedness**: Use Emergency Response templates for coordinated response planning
+3. **Compliance Monitoring**: Embed Safety Requirements for consistent evaluation criteria
+4. **Incident Management**: Embed Incident Response procedures for systematic handling
 
-## **Related Domains**
+## Quality Standards
 
-- \*\*\*\*: Tournament structure and management
-- \*\*\*\*: Venue and facility management
-- **Activity Domain <!-- TODO: Create activity README -->**: Activity and competition
+### Documentation Requirements
 
-  management
+- All safety assessments must include risk evaluation and compliance status
+- Emergency response procedures must specify clear escalation criteria
+- Incident response protocols must define timeline requirements and responsible roles
+- Safety requirements must reference recognized compliance standards
 
-- \*\*\*\*: Participant and staff management
+### Validation Rules
+
+- Risk levels must align with assessment evidence and compliance status
+- Emergency response procedures must be tested and validated regularly
+- Incident escalation criteria must be realistic and achievable
+- Safety requirements must include measurable validation criteria
+
+## Implementation Notes
+
+### Best Practices
+
+- Regular review and update of safety templates based on regulatory changes
+- Integration with external emergency services and regulatory authorities
+- Comprehensive training for personnel responsible for safety management
+- Documentation of all safety decisions and incident responses for audit purposes
+
+### Performance Considerations
+
+- Safety assessments should be conducted regularly and systematically
+- Emergency response procedures should be practiced and validated
+- Incident response protocols should be optimized for rapid deployment
+- Integration with safety management systems should maintain data integrity
+
+## Related Domains
+
+- **[Venue](../venue/README.md)**: Venue safety assessment and emergency preparedness
+- **[Equipment](../equipment/README.md)**: Equipment safety evaluation and maintenance protocols  
+- **[Personnel](../personnel/README.md)**: Safety training and emergency role assignments
+- **[Tournament](../tournament/README.md)**: Overall event safety coordination and risk management
 
 ---
 
-**Last Updated**: June 24, 2025 **Version**: 1.0 **Status**: Active **Next Review**: July 24, 2025
+**Last Updated**: November 28, 2024  
+**Version**: 2.0  
+**Status**: Active  
+**Next Review**: February 28, 2025
 
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 45001:2018 - Occupational health and safety management systems](https://www.iso.org/standard/63787.html)
-- [ISO 31000:2018 - Risk management — Guidelines](https://www.iso.org/standard/65694.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity and Template patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event safety standards
-
-## See Also
-
-- [Safety](../safety/safety.md)
-- [Incident](../safety/incident.md)
-- [Protocol README](../safety/protocol/README.md)
-- [Venue README](../venue/README.md)
-- [Tournament README](../tournament/README.md)
-- [Business README](../README.md)
