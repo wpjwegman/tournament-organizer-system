@@ -98,10 +98,8 @@ verification suitable for developmental programs.
 ## See Also
 
 - [Registration Period](./period.md) - Time-based registration window configuration
-- [Team Registration](./team.md) - Concrete team registration instances
-- [Registration Status](./status.md) - Status tracking and workflow management
+- [Participant Registration](./registration.md) - Concrete participant registration instances
 - [Registration Requirements](./requirements.md) - Embedded eligibility criteria
-- [Registration Fee](./fee.md) - Embedded payment structure details
 - [Tournament](../tournament/tournament.md) - Tournament entities using registration systems
 - [Team](../team/team.md) - Team entities participating in registration
 - [Finance](../finance/README.md) - Financial processing integration

@@ -133,7 +133,7 @@ flexible payment (none required) with tournament-provided insurance coverage.
 - [Registration System](system.md) - Registration process and workflow templates embedding requirements
 - [Participant Registration](registration.md) - Concrete registration instances using requirements
 - [Registration Period](period.md) - Time-based deadlines referenced in requirements
-- [Registration Fee](fee.md) - Payment structures referenced in payment requirements
+- [Finance Domain](../finance/README.md) - Payment structures referenced in payment requirements
 - [Classification Criterium](../classification/criterium.md) - Discipline-specific player criteria (separate domain)
 - [Identity](../identity/README.md) - Participant identity verification and document management
 - [Finance](../finance/README.md) - Payment processing and fee management integration

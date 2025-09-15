@@ -104,10 +104,8 @@ shorter notification periods suitable for monthly cycles and stricter deadlines 
 ## See Also
 
 - [Registration System](./system.md) - Registration process and workflow templates
-- [Team Registration](./team.md) - Concrete team registration instances
-- [Registration Status](./status.md) - Status tracking and workflow management
+- [Participant Registration](./registration.md) - Concrete participant registration instances
 - [Registration Requirements](./requirements.md) - Embedded eligibility criteria
-- [Registration Fee](./fee.md) - Embedded payment structure details with period-based pricing
 - [Tournament](../tournament/tournament.md) - Tournament entities using registration periods
 - [Schedule](../schedule/README.md) - Event scheduling integration with registration timelines
 - [Finance](../finance/README.md) - Financial processing integration with period-based fees
