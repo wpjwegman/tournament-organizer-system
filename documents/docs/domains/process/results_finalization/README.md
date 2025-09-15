@@ -13,7 +13,7 @@ related:
   - "process/match_execution"
   - "process/communication"
   - "process/incident_management"
-  - "process/official_assignment"
+  - "process/role_assignment"
   - "domain/ranking"
   - "domain/organization"
   - "domain/media"
