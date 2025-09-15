@@ -63,23 +63,6 @@ embedded qualification credentials, current availability status, and administrat
 tournament organizers to identify qualified officials, verify certifications, and coordinate assignments based on  
 expertise levels and scheduling availability.
 
-## Relationships
-
-- An Official is linked to one Profile
-- An Official may be assigned to multiple Fixtures
-- An Official may be associated with multiple Tournaments
-- An Official may hold multiple Roles
-
-### Parent Relationships
-
-- **Profile** - The individual serving as the official
-- **Tournament** - Where the official is assigned
-
-### Related Entities
-
-- **Fixture** - Where officials are assigned
-- **Role** - Defines official's permissions and responsibilities
-
 ## Considerations
 
 - **Qualification Management:** Track certification expiry dates, handle qualification renewals, validate qualification requirements
