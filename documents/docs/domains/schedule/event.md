@@ -32,7 +32,6 @@ and adds the following event-specific attributes:
 
 | Attribute | Description | Type | Required | Notes / Example |
 |-----------|-------------|------|----------|-----------------|
-| **Match** | Reference to the Match where this event occurred | UUID | Yes | `match-uuid-123` |
 | **Type** | The type of event that occurred | String | Yes | `"Penalty"`, `"Warning"`, `"Timeout"`, `"Goal"`, `"Foul"` |
 | **Timestamp** | When the event occurred during the match | DateTime | Yes | `2024-11-02T14:30:15Z` |
 | **Player** | Reference to the Player involved in the event (if applicable) | UUID | Optional | `player-uuid-456` |
@@ -47,7 +46,6 @@ and adds the following event-specific attributes:
 ```mermaid
 graph TD
   E[Event: Technical Foul - Championship Game]
-  E --> M[Match: eagles-vs-hawks-uuid-123]
   E --> T[Type: Technical Foul]
   E --> TS[Timestamp: 2024-11-15T20:32:45Z]
   E --> P[Player: player-johnson-uuid-456]
@@ -56,10 +54,11 @@ graph TD
   E --> S[Severity: Major]
 ```
 
-This example demonstrates a technical foul event during a championship game showing all event attributes: match  
-reference for context, event type classification, precise timestamp for chronological tracking, involved player and  
-team identification, detailed description for review purposes, and severity assessment for disciplinary action.  
-This structure enables tournament officials to maintain comprehensive incident records for competitive integrity  
+This example demonstrates a technical foul event during a championship game showing all event attributes: event  
+type classification, precise timestamp for chronological tracking, involved player and team identification,  
+detailed description for review purposes, and severity assessment for disciplinary action. The match context  
+is provided through the fixture that embeds this event. This structure enables tournament officials to maintain  
+comprehensive incident records for competitive integrity and post-match analysis.  
 and post-match analysis.
 
 ## Considerations
