@@ -69,5 +69,5 @@ level assessment, and completed compliance requirements for GDPR consent and lia
 - **[Registration](../../registration/registration.md)** - Registration entity being validated
 - **[Registrant](../../identity/registrant.md)** - Participant and validator identity management
 - **[Tournament](../../tournament/tournament.md)** - Tournament-specific validation requirements
-- **[Role Assignment](../role_assignment.md)** - Validator role and permission management
+- **[Role Assignment](../role_assignment/README.md)** - Validator role and permission management
 - **[Organization](../../organization/README.md)** - Organizational validation policies and compliance
