@@ -1,6 +1,6 @@
 ---
 title: "Role Assignment Process Steps"
-description: "Detailed step-by-step procedures for comprehensive role-to-registrant assignment workflow across all personnel categories"
+description: "Detailed step-by-step procedures for comprehensive assignment workflow across all personnel categories"
 tags:
   - process
   - role-assignment
