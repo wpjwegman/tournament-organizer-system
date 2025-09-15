@@ -2,53 +2,42 @@
 
 ## Overview
 
-The Schedule domain provides comprehensive tournament scheduling, competitive coordination, and event management  
-capabilities for tournament organizer systems. This domain manages the temporal organization of tournaments,  
-competitive encounters, official assignments, and real-time event tracking across diverse tournament formats  
-and competitive requirements.
+The Schedule domain manages the organization, timing, and execution of all tournament events and competitions. It  
+provides a comprehensive framework for scheduling fixtures, managing matches, tracking scores and events, and  
+coordinating officials across all tournament activities.
 
-## Domain Purpose
+This domain ensures proper resource allocation, timing coordination, and event progression tracking while maintaining  
+flexibility for different tournament formats and requirements.
 
-The Schedule domain enables tournament organizers to:
+## Domain Structure
 
-- **Comprehensive Scheduling:** Coordinate complex tournament schedules with multiple venues, teams, and timeframes
-- **Competitive Management:** Manage matches, fixtures, and competitive encounters with detailed tracking
-- **Official Coordination:** Assign qualified officials to appropriate competitive contexts
-- **Real-time Tracking:** Monitor events, scores, and competitive progression throughout tournaments
-- **Resource Optimization:** Optimize venue, official, and time allocation across tournament activities
+### Core Models
 
-## Models Overview
+- **[Schedule](schedule.md)**: Container for organizing and managing collections of fixtures
+- **[Fixture](fixture.md)**: Specific scheduled competition instances with time, location, and operational details
+- **[Match](match.md)**: Competitive encounters between teams
+- **[Timeslot](timeslot.md)**: Value object for specific time intervals (start/end times)
+- **[Event](event.md)**: Records specific occurrences during matches (penalties, warnings, substitutions)
+- **[Score](score.md)**: Value object for team scores in fixtures with progression tracking
 
-### Core Scheduling Models
+### Supporting Models
 
-#### [Schedule](schedule.md) - Entity
+- **[Official](official/official.md)**: Individuals acting in official capacities (referees, judges, umpires)
+- **[Qualification](official/qualification.md)**: Official certifications and qualifications
 
-Tournament scheduling container that organizes and coordinates all tournament events and activities within  
-specific timeframes. Provides structural foundation for tournament timing and resource allocation.
+## Template Entity Analysis
 
-**Key Capabilities:**
+### Current Template Entities
 
-- Tournament-wide event coordination and timing structure
-- Complex tournament format support from single-elimination to multi-stage championships
-- Resource allocation coordination including venues, officials, and participants
-- Schedule optimization and real-time adjustment capabilities
+- **Schedule**: Can be templated for standard schedule types (main, practice, stage-specific)
+- **Fixture**: Can be templated for standard fixture configurations
+- **Official**: Can be templated for standard official roles and qualifications
 
-#### [Fixture](fixture.md) - Template Entity
+### Potential Template Entities
 
-Specific scheduled competition instances that connect competitive activities with precise timing, venue  
-allocation, and operational resources. Serves as fundamental scheduling unit for tournament execution.
-
-**Key Capabilities:**
-
-- Operational coordination with officials, equipment, and special requirements
-- Real-time status tracking throughout tournament progression
-- Resource optimization and conflict resolution across tournament schedules
-- Detailed tournament logistics and coordination management
-
-#### [Match](match.md) - Template Entity
-
-Competitive encounters between teams or participants with comprehensive match management including team  
-participation, competition rules, and outcome determination.
+- **Timeslot Templates**: Standard time intervals for different sports/activities
+- **Event Templates**: Standard event types and descriptions
+- **Score Templates**: Standard scoring formats for different sports
 
 **Key Capabilities:**
 
@@ -83,159 +72,100 @@ and comprehensive analysis capabilities for tournament management.
 - Performance analysis and statistical reporting
 - Audit trails for competitive integrity and dispute resolution
 
-#### [Score](score.md) - Value Object
+## Status Lifecycle
 
-Quantified performance achievements that capture performance metrics, temporal progression, and contextual  
-details for tournament analysis and record-keeping.
+### Schedule Statuses
 
-**Key Capabilities:**
+- **Draft**: Schedule is being created/configured
+- **Published**: Schedule is available for viewing
+- **Active**: Schedule is currently in use
+- **Completed**: All fixtures in schedule are finished
 
-- Diverse scoring system support from simple numeric to complex structured formats
-- Temporal score progression tracking and match chronology
-- Performance analysis and statistical reporting
-- Immutable performance records for tournament integrity
+### Fixture Statuses
 
-### Official Management
+- **Scheduled**: Fixture is planned but not confirmed
+- **Confirmed**: Fixture is confirmed and ready
+- **In Progress**: Fixture is currently running
+- **Completed**: Fixture has finished
+- **Cancelled**: Fixture was cancelled
+- **Postponed**: Fixture was postponed
 
-#### [Official](official/official.md) - Entity
+### Match Statuses
 
-Tournament officials with certification management, assignment coordination, and professional qualification  
-tracking for ensuring qualified competitive oversight.
+- **Scheduled**: Match is planned
+- **In Progress**: Match is currently running
+- **Completed**: Match has finished
+- **Cancelled**: Match was cancelled
 
-**Key Capabilities:**
+### Event Statuses
 
-- Professional certification and qualification management
-- Tournament assignment coordination and availability tracking
-- Performance evaluation and professional development
-- Specialized expertise management for diverse competitive requirements
+- **Recorded**: Event has been recorded
+- **Reviewed**: Event has been reviewed
+- **Overturned**: Event was overturned/changed
 
-#### [Qualification](official/qualification.md) - Value Object
+### Official Statuses
 
-Professional certifications documenting competency, authority, and expertise for official validation  
-and assignment eligibility.
+- **Active**: Official is available for assignments
+- **Inactive**: Official is not available
+- **Pending**: Official status is being reviewed
 
-**Key Capabilities:**
+### Lifecycle Transitions
 
-- Professional certification documentation and validation
-- Renewal tracking and compliance management
-- Specialized endorsement and expertise certification
-- Performance history and professional development tracking
+- Schedule: Draft → Published → Active → Completed
+- Fixture: Scheduled → Confirmed → In Progress → Completed/Cancelled/Postponed
+- Match: Scheduled → In Progress → Completed/Cancelled
+- Event: Recorded → Reviewed → Overturned
+- Official: Pending → Active ↔ Inactive
 
-## Domain Architecture
+## Relationships & Cross-References
 
-```mermaid
-graph TD
-  S[Schedule Entity]
-  F[Fixture Template Entity]
-  M[Match Template Entity]
-  T[Timeslot Value Object]
-  E[Event Entity]
-  SC[Score Value Object]
-  O[Official Entity]
-  Q[Qualification Value Object]
-  
-  S -->|contains| F
-  F -->|schedules| M
-  F -->|uses| T
-  F -->|assigns| O
-  M -->|generates| E
-  M -->|produces| SC
-  O -->|holds| Q
-  E -->|affects| SC
-  
-  F -.->|venue coordination| F
-  O -.->|assignment optimization| F
-  T -.->|conflict detection| T
-```
+- **Schedule ↔ Fixture**: Groups and organizes fixtures
+- **Fixture ↔ Match**: Links scheduled time/location to competitive encounter
+- **Fixture ↔ Timeslot**: Defines when the fixture occurs
+- **Fixture ↔ Area**: Defines where the fixture occurs
+- **Fixture ↔ Official**: Assigns officials to fixtures
+- **Fixture ↔ Score**: Tracks scores during the fixture
+- **Fixture ↔ Event**: Records events during the fixture
+- **Match ↔ Team**: Links teams participating in the match
+- **Event ↔ Match/Team**: Records events with context and team
+- **Score ↔ Fixture/Team**: Records scores with context and team
+- **Official ↔ Human Profile**: Links official to their profile
 
-## Business Rules and Constraints
+## Quality Standards
 
-### Scheduling Constraints
+- All models include comprehensive attribute documentation
+- Cross-references are accurate and up to date
+- Status lifecycles are clearly defined
+- Template entity usage is documented
+- Practical examples are provided where relevant
+- Consistent formatting and terminology throughout
 
-- Fixtures cannot overlap in the same venue area without explicit multi-use configuration
-- Officials cannot be assigned to concurrent fixtures requiring their exclusive attention
-- Teams cannot participate in overlapping competitive activities
-- Equipment and resource availability must be verified before fixture confirmation
+## Implementation Guidelines
 
-### Status Transitions
+- Validate fixture scheduling against venue and official availability
+- Enforce status transitions and lifecycle rules
+- Use template entities for standardization and efficiency
+- Maintain accurate cross-references between all related models
+- Regularly review and update documentation for clarity and completeness
 
-**Schedule Lifecycle:**
-`DRAFT` → `PUBLISHED` → `ACTIVE` → `COMPLETED`
+## Related Domains
 
-**Fixture Lifecycle:**
-`SCHEDULED` → `READY` → `IN_PROGRESS` → `COMPLETED` | `POSTPONED` | `CANCELLED`
-
-**Match Lifecycle:**
-`SCHEDULED` → `READY` → `IN_PROGRESS` → `COMPLETED` | `FORFEIT` | `NO_CONTEST`
-
-**Official Lifecycle:**
-`PENDING` → `ACTIVE` ↔ `UNAVAILABLE` → `RETIRED`
-
-### Quality Standards
-
-- All temporal boundaries must be chronologically valid and timezone-consistent
-- Official qualifications must be current and appropriate for assigned competition levels
-- Score records must be verified by authorized personnel before final recording
-- Event documentation requires sufficient detail for audit and dispute resolution
-
-## Integration Points
-
-### External Domain Dependencies
-
-- **Tournament Domain:** Tournament structure and competitive framework
-- **Team Domain:** Team participation and competitive eligibility
-- **Venue Domain:** Physical location availability and resource constraints
-- **Identity Domain:** Individual identity management for officials and participants
-- **Organization Domain:** Certification bodies and tournament organizing entities
-
-### Data Flow Patterns
-
-- **Schedule Creation:** Tournament requirements → Schedule planning → Fixture allocation → Resource coordination
-- **Match Execution:** Fixture activation → Match progression → Event recording → Score tracking → Result finalization
-- **Official Assignment:** Qualification verification → Availability checking → Assignment matching → Performance tracking
-
-## Usage Examples
-
-### Tournament Championship Schedule
-
-```text
-National Championship 2024
-├── Qualifying Round Schedule (Oct 28-29)
-│   ├── 32 qualifying fixtures across 8 courts
-│   ├── 8 regional officials assigned
-│   └── Standard scoring with advancement criteria
-├── Main Tournament Schedule (Nov 15-17)
-│   ├── 48 championship fixtures across 3 days
-│   ├── 12 international officials assigned
-│   └── Complex scoring with video review
-└── Finals Schedule (Nov 17)
-    ├── Championship final with ceremonial arrangements
-    ├── Elite official assignments
-    └── Comprehensive event tracking
-```
-
-### Multi-Sport Tournament Coordination
-
-```text
-Regional Multi-Sport Tournament
-├── Basketball Schedule
-│   ├── Team-based matches with period scoring
-│   ├── Referee and scorekeeper assignments
-│   └── Real-time event tracking
-├── Tennis Schedule
-│   ├── Individual and doubles matches
-│   ├── Umpire and line judge assignments
-│   └── Set-based structured scoring
-└── Volleyball Schedule
-    ├── Team competitions with rally scoring
-    ├── Officials with specialized certifications
-    └── Video review capabilities
-```
+- **Tournament**: Tournament structure and management
+- **Team**: Team structure and management
+- **Venue**: Venue and area management
+- **Registration**: Registrant and participant management
 
 ## See Also
 
-- [Tournament Domain](../tournament/README.md) - Tournament structure and competitive framework
-- [Team Domain](../team/README.md) - Team management and competitive participation
-- [Venue Domain](../venue/README.md) - Physical location and resource management
-- [Identity Domain](../identity/README.md) - Individual identity and profile management
-- [Organization Domain](../organization/README.md) - Organizational structure and certification bodies
+- [Schedule](schedule.md)
+- [Fixture](fixture.md)
+- [Match](match.md)
+- [Timeslot](timeslot.md)
+- [Event](event.md)
+- [Score](score.md)
+- [Official README](official/README.md)
+- [Tournament README](../tournament/README.md)
+- [Team README](../team/README.md)
+- [Venue README](../venue/README.md)
+- [Registration README](../registration/README.md)
+- [Business README](../README.md)
