@@ -1,132 +1,92 @@
-# **Team Domain**
+---
+tags:
+- team
+- domain
+- competition
+- roster
+- tournament
+- player
+---
 
-## **Overview**
+# Team Domain
+
+## Overview
 
 The Team domain defines the structure, management, and lifecycle of teams as the fundamental units of competition in the
 Tournament Organizer system. It covers all aspects of team composition, roster management, player roles, and team
-participation in tournaments and matches.
+participation in tournaments and matches. This domain supports both individual and group competition formats, ensuring
+flexibility and consistency across all sports and activities.
 
-This domain supports both individual and group competition formats, ensuring flexibility and consistency across all
-sports and activities.
+## Purpose
 
-## **Domain Structure**
+The Team domain enables tournament organizers to:
 
-### **Core Models**
+- Manage competitive units of any size (individual or group)
+- Track team composition, player assignments, and roster changes
+- Handle organizational affiliations and sponsorship relationships
+- Support tournament seeding and placement management
+- Maintain staff assignments and role management
+- Ensure consistent competition rules across different sports
 
-- \*\*\*\*: Central entity representing a competition unit (single or multiple participants)
-- **[Roster](../team/roster.md)**: Official list of players (starters, substitutes, reserves) for a team
+## Structure
+
+### Core Models
+
+- **[Team](team.md)**: Central entity representing a competition unit (single or multiple participants)
+- **[Roster](roster.md)**: Official list of players (starters, substitutes, reserves) for a team
 - **[Player](roster/player/player.md)**: Instance of a registrant as a player in a specific context
 - **[Seed](seed.md)**: Team seeding for tournament placement
 
-### **Supporting Templates**
+### Supporting Templates
 
-- \*\*\*\*: Template for team structure rules (active players, substitutes, gender composition)
 - **[Position](roster/player/position.md)**: Template for field positions (e.g., Goalkeeper, Point Guard)
 
-## **Template Entity Analysis**
+### Status Lifecycles
 
-### **Current Template Entities**
+**Team Statuses:**
 
-- **Team Format**: Defines standard team structure rules, copied or referenced for tournaments/matches
-- **Position**: Standardizes field roles, referenced by players and rosters
+- Draft → Active → Locked/Suspended → Archived
 
-### **Potential Template Entities**
+**Roster Statuses:**
 
-- **Team Templates**: Standard team archetypes (e.g., "Default 5v5 Soccer Team")
-- **Staff Role Templates**: Standard roles for coaches, managers, etc.
-- **Roster Configuration Templates**: Standard roster setups for different sports
+- Active → Locked → Archived
 
-## **Status Lifecycle**
+**Player Statuses:**
 
-### **Team Statuses**
+- Active ↔ Benched/Injured/Suspended
 
-- **Draft**: Team is being created/configured
-- **Active**: Team is eligible and participating
-- **Locked**: Team roster is locked for competition
-- **Suspended**: Team is temporarily ineligible
-- **Archived**: Team is preserved for historical reference
+## Example
 
-### **Roster Statuses**
+```mermaid
+graph TD
+    TD[Team Domain] --> T[Team: Thunder Strikers<br/>Status: Active<br/>Players: 5]
+    TD --> R[Roster: Active Roster<br/>Type: Competitive<br/>Players: 5]
+    TD --> P[Player: John Smith<br/>Position: Captain<br/>Status: Active]
+    TD --> S[Seed: Tournament Seed #3<br/>Based on: Rankings]
+    
+    T --> R
+    R --> P
+    T --> S
+    
+    T --> ORG[Organization: Elite Sports Club<br/>Relationship: Sponsor]
+    P --> POS[Position: Point Guard<br/>Type: Template]
+    T --> D[Discipline: Basketball<br/>Category: Indoor Sports]
+```
 
-- **Active**: Roster is current and modifiable
-- **Locked**: Roster is fixed for a match or stage
-- **Archived**: Roster is preserved for history
-
-### **Player Statuses**
-
-- **Active**: Player is available for selection
-- **Benched**: Player is not starting but available
-- **Injured**: Player is unavailable due to injury
-- **Suspended**: Player is temporarily ineligible
-
-### **Lifecycle Transitions**
-
-- Team: Draft → Active → Locked/Suspended → Archived
-- Roster: Active → Locked → Archived
-- Player: Active ↔ Benched/Injured/Suspended
-
-## **Relationships & Cross-References**
-
-- **Team ↔ Organization**: Teams may be affiliated with or sponsored by organizations
-- **Team ↔ Player**: Teams manage a roster of players
-- **Team ↔ Activity Discipline**: Teams participate in specific disciplines
-- **Team ↔ Match**: Teams compete in matches
-- **Roster ↔ Player**: Rosters manage player roles and status
-- **Roster ↔ Team Format**: Rosters are validated against team format rules
-- **Player ↔ Registrant**: Players are instances of registrants in a competition context
-- **Player ↔ Position**: Players are assigned field positions
-- **Seed ↔ Team**: Seeds determine team placement in tournaments
-
-## **Quality Standards**
-
-- All models include comprehensive attribute documentation
-- Cross-references are accurate and up to date
-- Status lifecycles are clearly defined
-- Template entity usage is documented
-- Practical examples are provided where relevant
-- Consistent formatting and terminology throughout
-
-## **Implementation Guidelines**
-
-- Validate team and roster composition against discipline and tournament rules
-- Enforce status transitions and lifecycle rules
-- Use template entities for standardization and efficiency
-- Maintain accurate cross-references between all related models
-- Regularly review and update documentation for clarity and completeness
-
-## **Related Domains**
-
-- \*\*\*\*: Tournament structure and management
-- \*\*\*\*: Match and event scheduling
-- \*\*\*\*: Financial management
-- \*\*\*\*: Registrant and participant management
-
----
-
-**Last Updated**: June 24, 2025 **Version**: 1.0 **Status**: Active **Next Review**: July 24, 2025
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 20121:2012 - Event sustainability management systems](https://www.iso.org/standard/54552.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity and Template patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event team management
-
-  standards
+This example illustrates the Team domain's core structure with the Thunder Strikers basketball team. The team entity
+maintains an active competitive roster with assigned players, organizational sponsorship, and tournament seeding.
+Players have specific positions and statuses, while the roster manages overall team composition. This structure
+enables tournament organizers to track team eligibility, manage competition participation, handle roster changes,
+and maintain accurate records throughout the tournament lifecycle.
 
 ## See Also
 
-- [Team](../team/team.md)
-- [Roster](../team/roster.md)
-- [Seed](../team/seed.md)
-- [Roster README](../team/roster/README.md)
-- [Tournament README](../tournament/README.md)
-- [Schedule README](../schedule/README.md)
-- [Discipline README](../discipline/README.md)
-- [Registration README](../registration/README.md)
-- [Organization README](../organization/README.md)
-- [Standing README](../standing/README.md)
-- [Business README](../README.md)
+- [Team](team.md) - Core team entity documentation
+- [Roster](roster.md) - Team roster management
+- [Player](roster/player/player.md) - Player entity details
+- [Seed](seed.md) - Tournament seeding values
+- [Position](roster/player/position.md) - Player position templates
+- [Tournament](../tournament/README.md) - Tournament structure and management
+- [Schedule](../schedule/README.md) - Match and event scheduling
+- [Registration](../registration/README.md) - Registrant and participant management
+- [Organization](../organization/README.md) - Team affiliations and sponsorships
