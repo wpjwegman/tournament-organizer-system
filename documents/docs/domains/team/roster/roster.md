@@ -12,8 +12,8 @@ tags:
 ## Overview
 
 A Roster Template Entity defines a reusable blueprint for roster structures and configurations that can be used to
-create specific roster instances. It provides a standardized framework for roster types, player roles, and team
-composition patterns that can be applied across different contexts and tournaments.
+create specific roster instances. It provides a standardized framework for organizing player lists (such as main
+players, substitutes, and reserves) that can be applied across different contexts and tournaments.
 
 ## Purpose
 
@@ -32,9 +32,9 @@ This Template Entity includes the standard attributes defined in the [Base Entit
 
 | Attribute       | Description                                                                 | Type          | Required | Notes / Example                                |
 | --------------- | --------------------------------------------------------------------------- | ------------- | -------- | ---------------------------------------------- |
-| **Players**     | List of main players in the roster                                        | List[Player]  | Yes      | Starting lineup and active players             |
-| **Substitutes** | List of substitute players available for rotation                          | List[Player]  | Yes      | Bench players ready to enter the game         |
-| **Reserves**    | List of reserve players for additional squad depth                        | List[Player]  | Optional | Extra players for emergency situations         |
+| **Players**     | List of main players in the roster                                        | List[UUID]    | Yes      | Starting lineup and active players             |
+| **Substitutes** | List of substitute players available for rotation                          | List[UUID]    | Yes      | Bench players ready to enter the game         |
+| **Reserves**    | List of reserve players for additional squad depth                        | List[UUID]    | Optional | Extra players for emergency situations         |
 
 ## Example
 
