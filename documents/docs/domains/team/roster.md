@@ -1,24 +1,23 @@
+---
+tags:
+- roster
+- team
+- redirect
+---
+
 # Team Roster
 
-<!-- TODO: Add team roster documentation -->
+This page serves as a redirect to the main roster documentation in the roster subdirectory.
 
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 20121:2012 - Event sustainability management systems](https://www.iso.org/standard/54552.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event roster management
-
-  standards
+For detailed roster template documentation, see [Roster Template Entity](roster/roster.md).
 
 ## See Also
 
-- [Team README](../team/README.md)
-- [Team](../team/team.md)
-- [Roster README](../team/roster/README.md)
+- [Roster Template Entity](roster/roster.md) - Main roster template documentation
+- [Player](roster/player/player.md) - Player entity documentation
+- [Position](roster/player/position.md) - Player position templates
+- [Team](team.md) - Core team entity
+- [Team Domain README](README.md) - Team domain overview
 - [Identity README](../identity/README.md)
 - [Registration README](../registration/README.md)
 - [Business README](../README.md)

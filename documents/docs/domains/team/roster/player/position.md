@@ -5,10 +5,11 @@
 A **Position** Entity Template defines a reusable blueprint for a specific role or location occupied by a participant
 within the context of a team-based activity (e.g., Goalkeeper, Point Guard, Setter).
 
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../../../foundation/base_entity.md). It serves as a standard
+As a Template Entity, it possesses a unique identity and lifecycle, managed according to the
+[Base Entity](../../../foundation/base_entity.md). It serves as a standard
 definition that can be referenced when configuring team formats, assigning roles, or describing player capabilities. The
 specific sport or activity context is determined by how this template is used (e.g., referenced within a `Team Format`
-linked to an ).
+linked to an [Activity Discipline](../../../../discipline/discipline.md)).
 
 Using Field Position templates helps to:
 

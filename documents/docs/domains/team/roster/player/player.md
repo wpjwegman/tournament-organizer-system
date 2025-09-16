@@ -2,7 +2,8 @@
 
 ## **Introduction**
 
-A **Player** Entity represents a specific instance of a participating in a defined context, such as competing in an .
+A **Player** Entity represents a specific instance of a [Registrant](../../../../registration/registrant.md)
+participating in a defined context, such as competing in a [Tournament](../../../../tournament/tournament.md).
 
 It captures context-specific attributes (e.g., jersey number, role, position) and links back to the core `Registrant`
 entity, which contains the fundamental identity and profile information.
@@ -31,15 +32,15 @@ It inherits properties from the [Base Entity](../../../foundation/base_entity.md
 
 ## **Relationships**
 
-- A `Player` Entity is linked to one entity.
+- A `Player` Entity is linked to one [Registrant](../../../../registration/registrant.md) entity.
 - A `Player` Entity may be assigned to one [Position](position.md) within a team context.
-- A `Player` Entity may participate in multiple entities.
-- A `Player` Entity belongs to one entity.
+- A `Player` Entity may participate in multiple [Match](../../../../schedule/match.md) entities.
+- A `Player` Entity belongs to one [Team](../../team.md) entity.
 
 ### Parent Relationships
 
-- - The core identity and profile information
-- - The team this player belongs to
+- [Registrant](../../../../registration/registrant.md) - The core identity and profile information
+- [Team](../../team.md) - The team this player belongs to
 
 ### Child Relationships
 
@@ -48,8 +49,8 @@ It inherits properties from the [Base Entity](../../../foundation/base_entity.md
 ### Related Entities
 
 - [Position](position.md) - The player's assigned position
-- - Matches the player participates in
-- - The context of participation
+- [Match](../../../../schedule/match.md) - Matches the player participates in
+- [Tournament](../../../../tournament/tournament.md) - The context of participation
 
 ---
 

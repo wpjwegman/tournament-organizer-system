@@ -1,67 +1,57 @@
-# **Seed** (Data Model - Entity)
-
-## **Introduction**
-
-A **Seed** Entity represents a ranked position assigned to a participant (individual or team) within a specific \***\*.
-This assignment is typically based on performance, rankings, or other criteria defined by a \*\***, aiming to create
-balanced and fair tournament structures like brackets or groups.
-
-As an Entity, it has its own identity and lifecycle, inheriting from the .
-
-It inherits properties from the [Base Entity](../foundation/base_entity.md).
-
+---
+tags:
+- seed
+- value-object
+- tournament
+- ranking
+- seeding
 ---
 
-## **Attributes**
+# Seed (Value Object)
 
-**Note:** This Entity includes the standard attributes (`ID`, `Status` [e.g., Active, Inactive], `CreatedAt`,
-`LastUpdatedAt`) defined in the [Base Entity](../foundation/base_entity.md).
+## Overview
+
+A Seed Value Object represents a ranked position assigned to a team within a specific tournament context.
+This assignment is typically based on performance, rankings, or other criteria defined by tournament organizers,
+aiming to create balanced and fair tournament structures like brackets or groups.
+
+## Purpose
+
+The Seed Value Object enables tournament organizers to:
+
+- Assign ranked positions to teams for tournament placement
+- Create balanced competition brackets and groups
+- Maintain fairness through systematic seeding processes
+- Track seeding criteria and rationale
+- Support various seeding methodologies
+- Enable proper tournament draw procedures
+
+## Structure
 
 | Attribute       | Description                                                                    | Type    | Required | Notes / Example                                    |
 | --------------- | ------------------------------------------------------------------------------ | ------- | -------- | -------------------------------------------------- |
-| **Ranking**     | The numerical rank associated with this seed (e.g., 1st, 2nd, 3rd).            | Integer | Yes      | `1`, `8`                                           |
-| **Name**        | Optional display name for the seed, often combining discipline/group and rank. | String  | Optional | `"Group A Seed 1"`, `"Main Bracket Seed #4"`       |
-| **Description** | Optional text providing additional context about the seed assignment.          | String  | Optional | `"Top seed based on international ranking points"` |
+| **Ranking**     | The numerical rank associated with this seed (e.g., 1st, 2nd, 3rd)            | Integer | Yes      | `1`, `8`                                           |
+| **Name**        | Optional display name for the seed, often combining discipline/group and rank | String  | Optional | `"Group A Seed 1"`, `"Main Bracket Seed #4"`       |
+| **Description** | Optional text providing additional context about the seed assignment          | String  | Optional | `"Top seed based on international ranking points"` |
 
----
+## Example
 
-## **Relationships**
+```mermaid
+graph TD
+    S[Seed: Tournament Seed #3<br/>Ranking: 3] --> T[Team: Thunder Strikers<br/>Standing: 3rd]
+    S --> C[Criteria: Previous Season Results<br/>Weight: 70%]
+    S --> P[Placement: Upper Bracket<br/>Round: 1]
+```
 
-- Seeds are used to populate structures like \***\* or \*\*** within a tournament.
-
----
-
-## **Considerations**
-
-- **Uniqueness:** The `Ranking` number should be unique within its context (e.g., within a group or bracket).
-- **Lifecycle:** Seeds should be managed throughout the tournament lifecycle, with status updates reflecting their
-
-  current state.
-
-- **Validation:** The `Ranking` should be a positive integer and should not exceed the total number of participants in
-
-  the context.
-
----
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 20121:2012 - Event sustainability management systems](https://www.iso.org/standard/54552.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event seeding standards
+This example shows Tournament Seed #3 assigned to the Thunder Strikers basketball team. The seed ranking of 3
+is based on their previous semi-final performance and current 3rd place league standing. The seeding criteria
+uses 70% weighting from previous season results, placing them in the upper bracket with a favorable tournament
+path. This systematic approach ensures fair competition distribution while providing transparency in seeding
+decisions for teams, organizers, and spectators.
 
 ## See Also
 
-- [Team README](../team/README.md)
-- [Team](../team/team.md)
-- [Tournament README](../tournament/README.md)
-- [Discipline README](../discipline/README.md)
-- [Ranking README](../ranking/README.md)
-- [Standing README](../standing/README.md)
-- [Business README](../README.md)
-
----
+- [Team](team.md) - Teams that receive seed assignments
+- [Tournament](../tournament/tournament.md) - Tournament structure using seeds
+- [Standing](../standing/standing.md) - Performance data used for seeding
+- [Ranking](../ranking/ranking.md) - Ranking systems that inform seeding
