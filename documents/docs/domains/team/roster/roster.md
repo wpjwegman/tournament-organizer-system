@@ -30,34 +30,40 @@ The Roster Template Entity enables tournament organizers to:
 
 This Template Entity includes the standard attributes defined in the [Base Entity](../../foundation/base_entity.md).
 
-| Attribute       | Description                                                                 | Type   | Required | Notes / Example                                |
-| --------------- | --------------------------------------------------------------------------- | ------ | -------- | ---------------------------------------------- |
-| **Name**        | The name of the roster template                                            | String | Yes      | `"Standard Roster"`, `"Tournament Roster"`     |
-| **Type**        | The type of roster template                                                | String | Yes      | `"Competitive"`, `"Recreational"`, `"Tournament"` |
-| **Description** | Description of the roster template and its characteristics                 | Text   | Optional | `"Standard competitive roster structure"`      |
-| **Max Starters** | Maximum number of starters for this roster template                       | Integer| Yes      | `5`, `11`, `15`                                |
-| **Max Substitutes** | Maximum number of substitutes for this roster template                   | Integer| Yes      | `3`, `5`, `7`                                  |
-| **Max Reserves** | Maximum number of reserves for this roster template                       | Integer| Optional | `2`, `3`, `5`                                  |
-| **Player Roles** | Standard player roles for this roster template                            | List[String] | Yes | `["Starter", "Substitute", "Reserve"]`         |
-| **Requirements** | Standard requirements for this roster template                            | List[String] | Optional | `["Minimum 8 players", "Maximum 15 players"]`  |
+| Attribute       | Description                                                                 | Type          | Required | Notes / Example                                |
+| --------------- | --------------------------------------------------------------------------- | ------------- | -------- | ---------------------------------------------- |
+| **Players**     | List of main players in the roster                                        | List[Player]  | Yes      | Starting lineup and active players             |
+| **Substitutes** | List of substitute players available for rotation                          | List[Player]  | Yes      | Bench players ready to enter the game         |
+| **Reserves**    | List of reserve players for additional squad depth                        | List[Player]  | Optional | Extra players for emergency situations         |
 
 ## Example
 
 ```mermaid
 graph TD
-    RT[Roster Template: Basketball Competitive<br/>Type: Competitive] --> MS[Max Starters: 5<br/>Role: Active Players]
-    RT --> MSub[Max Substitutes: 7<br/>Role: Bench Players]
-    RT --> MR[Max Reserves: 3<br/>Role: Additional Squad]
-    RT --> PR[Player Roles<br/>Starter, Substitute, Reserve<br/>Captain, Vice Captain]
-    RT --> REQ[Requirements<br/>Minimum 8 players<br/>Maximum 15 players]
+    R[Roster: Basketball Team<br/>Instance of Roster Template] --> P[Players<br/>List[Player]]
+    R --> S[Substitutes<br/>List[Player]]
+    R --> Res[Reserves<br/>List[Player]]
+    
+    P --> P1[Player 1: Point Guard]
+    P --> P2[Player 2: Shooting Guard]
+    P --> P3[Player 3: Small Forward]
+    P --> P4[Player 4: Power Forward]
+    P --> P5[Player 5: Center]
+    
+    S --> S1[Sub 1: Guard]
+    S --> S2[Sub 2: Forward]
+    S --> S3[Sub 3: Center]
+    
+    Res --> R1[Reserve 1: Utility]
+    Res --> R2[Reserve 2: Specialty]
 ```
 
-This example shows a Basketball Competitive roster template that defines the structure for basketball teams. The
-template specifies 5 starting players, 7 substitutes, and 3 reserves for a maximum squad of 15 players. Player
-roles include standard categories (Starter, Substitute, Reserve) plus leadership roles (Captain, Vice Captain).
-Requirements ensure minimum viable team size and maximum roster limits. Tournament organizers use this template
-to validate team registrations, ensuring all basketball teams meet consistent composition standards while providing
-flexibility for different tournament formats and competition levels.
+This example shows a Basketball roster with three distinct player categories. The Players list contains the
+starting five (Point Guard, Shooting Guard, Small Forward, Power Forward, Center). The Substitutes list
+includes bench players ready for rotation during the game. The Reserves list contains additional squad
+members for emergency situations or special circumstances. Each list contains Player entities that can be
+referenced and managed independently, providing clear organization of team composition and player availability
+for different game situations and tournament requirements.
 
 ## See Also
 
