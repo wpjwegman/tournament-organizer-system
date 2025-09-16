@@ -1,177 +1,89 @@
-# **Tournament** (Data Model - Template Entity)
-
-## **Introduction**
-
-A **Tournament** Template Entity defines a reusable blueprint for tournament structures and configurations that can be
-used to create specific tournament instances. It provides a standardized framework for tournament formats, rules, and
-organizational patterns that can be applied across different contexts and organizations.
-
-As a Template Entity, it possesses a unique identity and lifecycle, managed according to the [Base Entity](../foundation/base_entity.md), with additional template-specific attributes for versioning and reuse.
-
+---
+tags:
+- tournament
+- entity
+- competition-events
+- tournament-management
 ---
 
-## **Template Entity Analysis**
+# Tournament (Entity)
 
-### **Current Template Entities Used**
+## Overview
 
-The Tournament entity utilizes several template entities that are copied into the tournament instance:
+A Tournament Entity represents a competitive event or series of competitions that brings together participants
+(teams or individuals) to compete according to established rules and formats. It serves as the central organizing
+entity that coordinates all aspects of tournament operations, from planning and registration through execution
+and completion.
 
-- \*\*\*\* - Venue templates are copied to allow tournament-specific modifications
-- \*\*\*\* - Activity templates define the types of competitions
-- \*\*\*\* - Discipline templates define specific competition formats
-- \*\*\*\* - Organization templates for organizing bodies
-- \*\*\*\* - Behavioral expectation templates
-- \*\*\*\* - Safety protocol templates
-- \*\*\*\* - Medical support templates
+## Purpose
 
-### **Potential Template Entity Candidates**
+The Tournament Entity enables comprehensive tournament management by:
 
-The following components could be considered for template entity status:
+- Organizing competitive events with structured formats, rules, and participant coordination
+- Supporting diverse tournament formats from single elimination to round robin and league-style competitions
+- Managing the complete tournament lifecycle from planning through completion and archival
+- Coordinating with venues, schedules, and organizational resources for successful tournament execution
+- Ensuring proper tournament oversight, governance, and compliance with established standards
+- Facilitating participant registration, communication, and engagement throughout the tournament process
 
-1. **Tournament Format Templates** - Standard tournament structures (Single Elimination, Double Elimination, Round
+## Structure
 
-   Robin)
+This Entity includes the standard attributes defined in the [Base Entity](../foundation/base_entity.md).
 
-2. **Tournament Category Templates** - Standard tournament categories (Regional, National, International, Championship)
-3. **Tournament Rule Set Templates** - Standard rule configurations for different types of tournaments
-4. **Tournament Schedule Templates** - Standard scheduling patterns (Weekend, Multi-day, Single-day)
-5. **Tournament Fee Structure Templates** - Standard fee configurations for different tournament types
+| Attribute | Description | Type | Required | Notes / Example |
+|-----------|-------------|------|----------|-----------------|
+| **Name** | The name of the tournament | String | Yes | `"Spring Basketball Championship"`, `"Summer Soccer League"` |
+| **Type** | The type of tournament | String | Optional | `"Championship"`, `"League"`, `"Exhibition"`, `"Qualifier"` |
+| **Description** | Description of the tournament | Text | Optional | `"Annual basketball championship for local teams"` |
+| **Format** | The format structure of the tournament | String | Optional | `"Single Elimination"`, `"Round Robin"`, `"League"` |
+| **Capacity** | Maximum number of participants for this tournament | Integer | Optional | `16`, `32`, `64` |
+| **Registration Start** | When registration opens for the tournament | DateTime | Yes | `2024-11-01T00:00:00Z` |
+| **Registration End** | When registration closes for the tournament | DateTime | Yes | `2024-11-15T23:59:59Z` |
+| **Start Date** | When the tournament begins | Date | Yes | `2024-12-01` |
+| **End Date** | When the tournament ends | Date | Yes | `2024-12-03` |
+| **Status** | Current tournament status | String | Yes | `"Draft"`, `"Registration Open"`, `"In Progress"`, `"Completed"` |
+| **Organization** | Reference to the organizing entity | UUID | Yes | `organization-uuid-123` |
+| **Venue** | Reference to the primary tournament venue | UUID | Yes | `venue-uuid-456` |
+| **Participants** | List of teams or individuals participating | List[UUID] | Optional | `[team-uuid-789, team-uuid-012]` |
+| **Rules** | List of tournament-specific rules | List[UUID] | Optional | `[rule-uuid-345, rule-uuid-678]` |
 
-### **Template Entity Benefits**
+## Example
 
-- **Consistency**: Standardized tournament configurations across similar events
-- **Efficiency**: Faster tournament setup using proven templates
-- **Quality**: Reduced errors through standardized structures
-- **Flexibility**: Templates can be modified for tournament-specific needs
-- **Maintenance**: Centralized updates to standard configurations
+### Spring Basketball Championship
 
----
+```mermaid
+graph TD
+    T[Tournament: Spring Basketball Championship<br/>Type: Championship, Format: Single Elimination]
+    T --> RS[Registration: Nov 1-15, 2024]
+    T --> D[Duration: Dec 1-3, 2024]
+    T --> O[Organization: Local Basketball League]
+    T --> V[Venue: Main Sports Complex]
+    T --> C[Capacity: 16 Teams]
+    T --> S[Status: Registration Open]
+    
+    T --> P[Participants]
+    P --> P1[Team: Eagles - UUID-789]
+    P --> P2[Team: Hawks - UUID-012]
+    P --> P3[Team: Lions - UUID-345]
+    
+    T --> R[Rules]
+    R --> R1[Game Duration: 4x12min quarters]
+    R --> R2[Overtime: 5min periods]
+    R --> R3[Roster Limit: 15 players max]
+```
 
-## **Attributes**
-
-**Note:** This Template Entity includes the standard attributes (`ID`, `Status`, `CreatedAt`, `LastUpdatedAt`) defined in the [Base Entity](../foundation/base_entity.md).
-
-| Attribute                 | Description                                            | Type     | Required | Notes / Example                                                     |
-| ------------------------- | ------------------------------------------------------ | -------- | -------- | ------------------------------------------------------------------- |
-| **Name**                  | The name of the tournament template.                   | String   | Yes      | `"Spring Basketball Championship"`, `"Summer Soccer League"`        |
-| **Type**                  | The type of tournament template.                       | String   | Optional | `"Championship"`, `"League"`, `"Exhibition"`, `"Qualifier"`         |
-| **Description**           | Description of the tournament template.                | String   | Optional | `"Annual basketball championship for local teams"`                  |
-| **Format**                | The format of the tournament template.                 | String   | Optional | `"Single Elimination"`, `"Round Robin"`, `"League"`                 |
-| **Capacity**              | Standard capacity for this tournament template.        | Integer  | Optional | `16`, `32`, `64`                                                    |
-| **Duration**              | Standard duration for this tournament template.        | String   | Optional | `"Weekend"`, `"Multi-day"`, `"Single-day"`                          |
-| **Registration Period**   | Standard registration period for this template.       | Integer  | Optional | `30` (days)                                                         |
-| **Fee Structure**         | Standard fee structure for this template.              | List     | Optional | `["Early Bird: $50", "Regular: $75", "Late: $100"]`                 |
-| **Rule Set**              | Standard rule set for this tournament template.        | List[UUID] | Optional | References to rule templates                                        |
-| **Requirements**          | Standard requirements for this tournament template.    | List[String] | Optional | `["Age 18+", "Team registration", "Equipment provided"]`           |
-
----
-
-## **Status Lifecycle**
-
-The Tournament entity follows the status-based data lifecycle with the following states:
-
-### **Active States**
-
-- **Draft**: Tournament is being planned and configured
-- **Registration Open**: Tournament is accepting registrations
-- **Registration Closed**: Registration period has ended
-- **In Progress**: Tournament is currently running
-- **Completed**: Tournament has finished
-
-### **Inactive States**
-
-- **Cancelled**: Tournament was cancelled before completion
-- **Suspended**: Tournament is temporarily suspended
-- **Archived**: Tournament is archived for historical reference
-
-### **Status Transitions**
-
-- **Draft → Registration Open**: Tournament is ready for registrations
-- **Registration Open → Registration Closed**: Registration period ends
-- **Registration Closed → In Progress**: Tournament begins
-- **In Progress → Completed**: Tournament finishes successfully
-- **Any Active → Cancelled**: Tournament is cancelled
-- **Any Active → Suspended**: Tournament is temporarily suspended
-- **Completed → Archived**: Tournament is archived after completion
-
----
-
-## **Relationships**
-
-- A `Tournament` Template Entity may be referenced by tournament instance entities.
-- A `Tournament` Template Entity may be associated with venue template entities.
-- A `Tournament` Template Entity may be associated with activity template entities.
-- A `Tournament` Template Entity may be associated with organization template entities.
-- A `Tournament` Template Entity may be associated with rule template entities.
-
-### Parent Relationships
-
-- Organization templates - The organization hosting this tournament template
-
-### Child Relationships
-
-- Tournament instances - Specific tournaments created from this template
-- Rule templates - Rules that apply to this tournament template
-
-### Related Entities
-
-- Venue templates - Where the tournament template takes place
-- Activity templates - The sport/activity type for this template
-- Rule templates - Rules that apply to this tournament template
-
----
-
-## **Considerations**
-
-- **Template Nature:** This template defines a standard tournament type. Instance-specific variations or customizations
-
-  belong on the copied instance within its specific context (e.g., a specific organization's implementation).
-
-- **Copy Mechanism:** The process of copying this template definition into a target context (like a specific organization)
-
-  needs to be handled by application logic.
-
-- **Template Management:**
-
-  - Templates should be curated and maintained by tournament administrators
-  - New templates can be added based on tournament standards and organizational requirements
-  - Templates should be reviewed periodically for effectiveness and fairness
-
-- **Planning:** Tournament templates should be planned with sufficient lead time.
-- **Capacity:** Tournament template capacity should be appropriate for available resources.
-- **Scheduling:** Tournament template scheduling should accommodate all participants.
-- **Rules:** Tournament template rules should be clear and fair.
-- **Communication:** Tournament template information should be communicated effectively to participants.
-- **Customization Balance:**
-
-  - Templates provide structure while allowing personalization
-  - Customizations should not break the fundamental tournament structure
-  - System should support both template-based and fully custom tournaments
-
----
-
-## References
-
-- [ISO 8000-2:2017 - Data quality - Part 2: Vocabulary](https://www.iso.org/standard/36326.html)
-- [ISO 20121:2012 - Event sustainability management systems](https://www.iso.org/standard/54552.html)
-- [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-  by Eric Evans - Entity and Template patterns
-
-- [Event Management Body of Knowledge (EMBOK)](https://www.embok.org/index.php/embok-model) - Event tournament management
-
-  standards
+This example shows a Spring Basketball Championship tournament with single elimination format accommodating 16 teams.
+The tournament spans three days in December with a two-week registration period in November. It demonstrates the
+complete tournament structure including organization reference, venue allocation, participant tracking, and specific
+basketball rules. The tournament status shows it's currently accepting registrations, and the participant list
+tracks registered teams by UUID reference for proper entity relationships.
 
 ## See Also
 
-- [Tournament README](../tournament/README.md)
-- [Participant](../tournament/participant.md)
-- [Rule](../tournament/rule.md)
-- [Team README](../team/README.md)
-- [Schedule README](../schedule/README.md)
-- [Venue README](../venue/README.md)
-- [Organization README](../organization/README.md)
-- [Discipline README](../discipline/README.md)
-- [Safety README](../safety/README.md)
-- [Finance README](../finance/README.md)
-- [Business README](../README.md)
+- [Participant](./participant.md) - Teams and individuals participating in tournaments
+- [Rule](./rule.md) - Tournament-specific rules and regulations
+- [Schedule](../schedule/schedule.md) - Tournament timing and event coordination
+- [Team](../team/team.md) - Team structure and tournament participation
+- [Organization](../organization/organization.md) - Tournament organizing entities
+- [Venue](../venue/venue.md) - Tournament facilities and locations
+- [Base Entity](../foundation/base_entity.md) - Standard entity attributes and lifecycle
