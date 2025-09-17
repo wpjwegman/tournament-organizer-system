@@ -167,7 +167,7 @@ Tournament Roles Overview (this document)
 ### External Stakeholders
 *Important community members who influence and benefit from tournament activities*
 
-#### [�‍👩‍👧‍👦 Parent Patricia - Parent/Guardian](external-stakeholders/parent-patricia-parent-guardian.md)
+#### [� Parent Patricia - Parent/Guardian](external-stakeholders/parent-patricia-parent-guardian.md)
 **Who**: Patricia represents family members supporting participant involvement and comprehensive tournament logistics  
 **Tournament Experience Focus**: Family coordination excellence with child development support and authentic youth development through competitive activities  
 **Key Expectations**: 
