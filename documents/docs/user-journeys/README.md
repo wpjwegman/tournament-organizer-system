@@ -1,177 +1,237 @@
 ---
-tags: [User Journey, Stakeholder Analysis, User Experience, Domain Validation]
+tags: [User Journey, Stakeholder Analysis, User Experience, Enterprise Documentation]
 ---
 
-# Tournament Stakeholder User Journeys
+# Tournament Organizer: User Journey Documentation
 
 ## Overview
 
-This directory contains comprehensive user journey maps for all tournament stakeholders. These journeys
-validate our domain model completeness and ensure intuitive user experiences across Windows, web, and
-mobile applications.
+This documentation provides comprehensive user journey stories for all stakeholder roles within the Tournament Organizer ecosystem. Each journey is written from the user's perspective, describing what they can expect from the system and how it supports their optimal tournament experience.
 
-## Purpose
+**Purpose**: Guide stakeholders through their complete tournament experience while validating system requirements and identifying enhancement opportunities.
 
-- **Domain Validation**: Ensure our 21-domain architecture meets real-world stakeholder needs
-- **User Experience Design**: Create intuitive workflows for all tournament participants
-- **Requirements Validation**: Verify that our data models support complete user journeys
-- **Gap Identification**: Discover missing capabilities or enhancement opportunities
+**Audience**: Product teams, stakeholders, developers, and tournament participants seeking to understand the full Tournament Organizer experience.
 
-## Journey Categories
+## Meet Our Tournament Community
+
+To make these journey stories more relatable and engaging, we follow specific individuals through their tournament experiences. Each character represents their role's typical challenges, expectations, and goals:
 
 ### Core Participants
-
-Direct competition involvement - the heart of any tournament.
-
-- [Player/Athlete](core-participants/player-athlete.md) - Individual competitors participating in tournament events
-- [Team Captain](core-participants/team-captain.md) - Designated team leaders and primary points of contact
-- [Coach/Trainer](core-participants/coach-trainer.md) - Professional guides responsible for participant preparation
-- [Team Manager](core-participants/team-manager.md) - Administrative leaders handling logistics and compliance
+- **Alex** - Multi-discipline competitor (basketball, chess, art competitions)
+- **Jordan** - Team captain balancing leadership with personal performance
+- **Coach Pete** - Veteran coach focused on athlete development and strategic excellence
+- **Sarah** - Experienced team manager handling all operational logistics
 
 ### Tournament Operations
+- **Mike** - Tournament director with 15+ years organizing major events
+- **David** - Venue manager ensuring optimal facility utilization
+- **Referee Bill** - Certified official maintaining competitive integrity
+- **Tech Tom** - IT specialist keeping all systems running smoothly
 
-Tournament organization and management - ensuring smooth operations.
-
-- [Tournament Director](tournament-operations/tournament-director.md) - Primary organizers overseeing entire tournaments
-- [Tournament Staff](tournament-operations/tournament-staff.md) - Paid employees handling day-to-day operations
-- [Volunteer](tournament-operations/volunteer.md) - Community members donating time to support tournaments
-- [Venue Coordinator](tournament-operations/venue-coordinator.md) - Facility representatives managing venue logistics
-
-### Competition Officials
-
-Competition oversight and fairness - maintaining integrity and rules.
-
-- [Official/Referee](competition-officials/official-referee.md) - Certified individuals enforcing competition rules
-- [Judge/Scorer](competition-officials/judge-scorer.md) - Specialists evaluating performance and assigning scores
-- [Timekeeper](competition-officials/timekeeper.md) - Personnel managing game timing and timing equipment
-
-### Support Services
-
-Safety, security, and logistics - essential support infrastructure.
-
-- [Medical/First Aid Personnel](support-services/medical-first-aid.md) - Licensed professionals providing
-  emergency medical care
-- [Security Officer](support-services/security-officer.md) - Professional security maintaining safety and access control
-- [Equipment Manager](support-services/equipment-manager.md) - Personnel maintaining and distributing tournament equipment
-- [Technology Administrator](support-services/technology-admin.md) - Specialists managing tournament technology systems
+### Support & Services
+- **Lisa** - Sports journalist covering tournaments for regional media
+- **Carol** - Community volunteer coordinator managing 50+ volunteers
+- **Dr. Martinez** - Emergency physician providing medical coverage
 
 ### External Stakeholders
+- **Robert** - Corporate sponsor representative tracking ROI and engagement
+- **Jennifer** - Parent supporting her teenage athlete's tournament participation
+- **Mark** - Local fan and former competitor who loves attending tournaments
 
-Audience and commercial interests - extending tournament impact.
+These characters will guide you through realistic scenarios, showing exactly what each stakeholder can expect from the Tournament Organizer system and how it supports their optimal tournament experience.
 
-- [Spectator/Fan](external-stakeholders/spectator-fan.md) - Individuals attending to watch and support participants
-- [Parent/Guardian](external-stakeholders/parent-guardian.md) - Family members of minor participants providing support
-- [Sponsor Representative](external-stakeholders/sponsor-representative.md) - Commercial partners providing tournament support
-- [Media Personnel](external-stakeholders/media-personnel.md) - Professionals documenting and reporting tournament events
-- [Announcer/MC](external-stakeholders/announcer-mc.md) - Individuals providing live commentary and audience engagement
+## Documentation Structure
 
-### Shared Experiences
+### Hierarchical Organization
 
-Cross-role common journeys with role-specific variations.
+```
+Tournament Roles Overview (this document)
+├── Core Participants/
+│   ├── Player/Athlete Journey Story
+│   ├── Team Captain Journey Story  
+│   ├── Coach/Trainer Journey Story
+│   └── Team Manager Journey Story
+├── Tournament Operations/
+│   ├── Tournament Director Journey Story
+│   ├── Venue Manager Journey Story
+│   ├── Official/Referee Journey Story
+│   └── Technical Support Journey Story
+├── Support & Services/
+│   ├── Media Representative Journey Story
+│   ├── Volunteer Coordinator Journey Story
+│   └── Medical Support Journey Story
+├── External Stakeholders/
+│   ├── Sponsor Representative Journey Story
+│   ├── Parent/Guardian Journey Story
+│   └── Spectator Journey Story
+├── Shared Experiences/
+│   ├── Registration Process
+│   ├── Account Creation
+│   └── Communication System
+└── Technical Processes/
+    ├── Team Formation Process
+    ├── Check-in System
+    ├── Notification Framework
+    ├── Scheduling Engine
+    └── Results Management
+```
 
-- [Account Creation & Authentication](shared-experiences/account-creation.md) - Universal user onboarding process
-- [Tournament Discovery](shared-experiences/tournament-discovery.md) - Finding and exploring available tournaments
-- [Registration Process](shared-experiences/registration-process.md) - Formal tournament participation enrollment
-- [Payment Processing](shared-experiences/payment-processing.md) - Financial transaction workflows
-- [Communication & Notifications](shared-experiences/communication.md) - Information flow and messaging systems
+## Tournament Stakeholder Roles
 
-## Journey Structure
+### Core Participants
+*The heart of tournament competition - those who directly participate in competitive activities*
 
-Each user journey follows a consistent format:
+#### [🏆 Alex - Player/Athlete](core-participants/alex-player-athlete.md)
+**Who**: Alex represents individual competitors across sports, games, arts, and specialty competitions  
+**Tournament Experience Focus**: Multi-discipline participation with seamless registration, automated notifications, and comprehensive performance tracking  
+**Key Expectations**: 
+- Effortless discovery and registration across diverse competition types
+- Intelligent team formation with automated member coordination
+- Real-time scheduling with progressive notifications and status management
+- App-based check-in and venue navigation
+- Comprehensive performance analytics and development recommendations
 
-### Role Profile
+#### [🎯 Jordan - Team Captain](core-participants/jordan-team-captain.md)
+**Who**: Jordan represents player-leaders managing dual responsibilities of competing and team leadership  
+**Tournament Experience Focus**: Leadership coordination while maintaining individual performance excellence  
+**Key Expectations**:
+- Streamlined team management tools with role assignment capabilities
+- Communication platforms for player-coach-management coordination
+- Real-time team performance tracking and morale management tools
+- Strategic decision support during competitive pressure situations
+- Leadership development analytics and captain-specific guidance systems
+- Leadership decision support during high-pressure competition moments
+- Conflict resolution and team chemistry optimization features
 
-- **Who**: Clear role definition and context
-- **Primary Goals**: What they want to achieve
-- **Tournament Context**: How/why they engage with tournaments
+#### [📋 Coach Pete - Coach/Trainer](core-participants/coach-pete-coach-trainer.md)
+**Who**: Coach Pete represents strategic architects guiding athlete development and competitive performance  
+**Tournament Experience Focus**: Comprehensive preparation, tactical execution, and performance optimization  
+**Key Expectations**:
+- Advanced performance analytics and opponent intelligence platforms
+- Training program integration with tournament scheduling
+- Real-time tactical decision support during competition
+- Athlete development tracking across multiple tournaments
+- Collaborative tools for coordination with team management and support staff
 
-### Journey Phases
+#### [🗂️ Sarah - Team Manager](core-participants/sarah-team-manager.md)
+**Who**: Sarah represents operational coordinators handling logistics, administration, and stakeholder communication  
+**Tournament Experience Focus**: Seamless operational management enabling team focus on performance  
+**Key Expectations**:
+- Automated registration and compliance management systems
+- Integrated travel, accommodation, and logistics coordination
+- Financial management and budget tracking tools
+- Stakeholder communication automation and relationship management
+- Crisis management and emergency response coordination platforms
 
-1. **Pre-Tournament Planning**: Preparation and setup activities
-2. **Registration/Preparation**: Formal enrollment and readiness activities
-3. **Tournament Execution**: Active participation during the event
-4. **Post-Tournament Follow-up**: Completion activities and follow-through
+### Tournament Operations
+*Professional staff responsible for tournament execution and management*
 
-### Analysis Components
+#### [🎪 Mike - Tournament Director](tournament-operations/tournament-director.md)
+**Who**: Mike represents executive leaders responsible for overall tournament success and strategic coordination  
+**Tournament Experience Focus**: Comprehensive oversight with real-time control and decision-making capabilities  
+**Key Expectations**: *[Coming Soon]*
 
-- **Cross-Role Interactions**: Dependencies and collaboration points
-- **Domain Touchpoints**: Which domain models are involved
-- **Pain Points**: Current challenges and friction areas
-- **Enhancement Opportunities**: Potential improvements and optimizations
+#### [🏢 David - Venue Manager](tournament-operations/venue-manager.md)
+**Who**: David represents facility coordinators managing physical spaces, resources, and venue operations  
+**Tournament Experience Focus**: Efficient facility utilization with optimal participant experience  
+**Key Expectations**: *[Coming Soon]*
 
-## Domain Model Integration
+#### [⚖️ Referee Bill - Official/Referee](tournament-operations/official-referee.md)
+**Who**: Referee Bill represents competition officials ensuring fair play, rule enforcement, and competitive integrity  
+**Tournament Experience Focus**: Professional officiating tools with comprehensive rule and decision support  
+**Key Expectations**: *[Coming Soon]*
 
-Each journey maps to our domain architecture:
+#### [🔧 Tech Tom - Technical Support](tournament-operations/technical-support.md)
+**Who**: Tech Tom represents technology specialists maintaining systems, equipment, and digital infrastructure  
+**Tournament Experience Focus**: Reliable technology operations with proactive issue resolution  
+**Key Expectations**: *[Coming Soon]*
 
-**Primary Domain Coverage:**
+### Support & Services
+*Specialized roles providing essential tournament support and enhancement services*
 
-- **Tournament**: Central coordination and management
-- **Team**: Participant organization and management
-- **Schedule**: Time and event coordination
-- **Venue**: Facility and location management
-- **Registration**: Formal participation enrollment
-- **Identity**: User authentication and verification
-- **Classification**: Participant categorization and grouping
+#### [📺 Lisa - Media Representative](support-services/media-representative.md)
+**Who**: Lisa represents journalists, broadcasters, and content creators covering tournament activities  
+**Tournament Experience Focus**: Comprehensive access to information, interviews, and content creation tools  
+**Key Expectations**: *[Coming Soon]*
 
-**Supporting Domain Integration:**
+#### [🤝 Carol - Volunteer Coordinator](support-services/volunteer-coordinator.md)
+**Who**: Carol represents community organizers managing volunteer recruitment, training, and coordination  
+**Tournament Experience Focus**: Efficient volunteer management with clear role assignment and communication  
+**Key Expectations**: *[Coming Soon]*
 
-- **Finance**: Payment processing and financial management
-- **Communication**: Information flow and notifications
-- **Safety**: Security protocols and emergency procedures
-- **Process**: Workflow management and operational procedures
+#### [🏥 Dr. Martinez - Medical Support](support-services/medical-support.md)
+**Who**: Dr. Martinez represents healthcare professionals providing safety, emergency response, and medical care  
+**Tournament Experience Focus**: Integrated safety protocols with rapid response and comprehensive care coordination  
+**Key Expectations**: *[Coming Soon]*
+
+### External Stakeholders
+*Important community members who influence and benefit from tournament activities*
+
+#### [�‍👩‍👧‍👦 Parent Patricia - Parent/Guardian](external-stakeholders/parent-patricia-parent-guardian.md)
+**Who**: Patricia represents family members supporting participant involvement and comprehensive tournament logistics  
+**Tournament Experience Focus**: Family coordination excellence with child development support and authentic youth development through competitive activities  
+**Key Expectations**: 
+- Comprehensive family schedule coordination with multiple child management
+- Child development tracking and growth measurement through competitive activities
+- Parent community building and family support network development
+- Authentic tournament logistics management balancing competitive and family priorities
+
+#### [� Sponsor Steve - Sponsor Representative](external-stakeholders/sponsor-steve-sponsor-representative.md)
+**Who**: Steve represents corporate partners and funding organizations creating meaningful community partnerships  
+**Tournament Experience Focus**: Community investment excellence with impact measurement and authentic relationship building  
+**Key Expectations**: 
+- Comprehensive partnership coordination and community impact measurement
+- Corporate objective achievement balanced with genuine community benefit
+- Stakeholder relationship management across multiple community organizations
+- Authentic sponsorship value creation serving both business and community development goals
+
+#### [🏘️ Community Member Chris - Local Engagement](external-stakeholders/community-member-chris-local-engagement.md)
+**Who**: Chris represents local residents and civic organizations contributing to community engagement and neighborhood development  
+**Tournament Experience Focus**: Local involvement excellence with civic participation and authentic community connection  
+**Key Expectations**: 
+- Comprehensive volunteer coordination and meaningful community contribution opportunities
+- Neighborhood relationship building and local economic development support
+- Civic participation enhancement through tournament support and community hospitality
+- Authentic local engagement serving both tournament success and community development objectives
+
+## Shared Experiences & Technical Processes
+
+### Cross-Role Experiences
+- **[Registration Process](shared-experiences/registration-process.md)**: Universal registration flow with role-specific customizations
+- **[Account Creation](shared-experiences/account-creation.md)**: Onboarding experience for new Tournament Organizer users
+- **[Communication System](shared-experiences/communication-system.md)**: Unified messaging and notification framework
+
+### Technical Implementation Details
+- **[Team Formation Process](technical-processes/team-formation.md)**: Automated team creation and member management
+- **[Check-in System](technical-processes/check-in-system.md)**: Digital arrival confirmation and status management
+- **[Notification Framework](technical-processes/notification-framework.md)**: Progressive alert and communication system
+- **[Scheduling Engine](technical-processes/scheduling-engine.md)**: Intelligent timeline management and optimization
+- **[Results Management](technical-processes/results-management.md)**: Performance tracking and advancement calculation
 
 ## Usage Guidelines
 
-### For Product Managers
+### For Stakeholders
+1. **Start with your role's journey story** to understand your complete tournament experience
+2. **Review technical processes** relevant to your activities for implementation details
+3. **Explore related roles** to understand interdependencies and collaboration opportunities
+4. **Provide feedback** on accuracy and completeness of your experience representation
 
-- Review journeys to understand stakeholder needs
-- Identify feature priorities based on journey pain points
-- Validate product requirements against real user workflows
+### For Product Teams
+1. **Use journey stories** for feature prioritization and user experience design
+2. **Reference technical processes** for detailed implementation requirements
+3. **Validate assumptions** with actual stakeholders using these journey narratives
+4. **Track enhancements** identified through journey analysis and stakeholder feedback
 
 ### For Developers
-
-- Use journeys to understand feature context and user goals
-- Validate that domain models support complete user workflows
-- Identify integration points between domains
-
-### For UX/UI Designers
-
-- Design interfaces that support natural user workflows
-- Ensure consistent experiences across different user types
-- Optimize for role-specific needs while maintaining usability
-
-### For Business Stakeholders
-
-- Understand how different roles interact with the tournament system
-- Identify business opportunities and process improvements
-- Validate that the system meets real operational needs
-
-## Validation Process
-
-1. **Stakeholder Review**: Each journey validated by representative users
-2. **Domain Mapping**: Ensure complete domain model coverage
-3. **Gap Analysis**: Identify missing capabilities or enhancement needs
-4. **User Experience Testing**: Validate intuitive workflow design
-5. **Integration Verification**: Confirm smooth cross-role interactions
-
-## Contributing
-
-When creating or updating user journeys:
-
-1. **Focus on Realism**: Base journeys on actual stakeholder behavior
-2. **Detail Specificity**: Include concrete examples and scenarios
-3. **Domain Alignment**: Clearly map to relevant domain models
-4. **Cross-Reference**: Note interactions with other roles and journeys
-5. **Validation**: Seek feedback from actual stakeholders when possible
-
-## Related Documentation
-
-- [Domain Models](../domains/README.md) - Technical domain model documentation
-- [System Architecture](../../../README.md) - Overall system design and integration
-- [Development Guidelines](../../../CONTRIBUTING.md) - Project contribution standards
+1. **Understand user context** through journey stories before implementing features
+2. **Follow technical specifications** in process documents for consistent implementation
+3. **Consider cross-role impacts** when designing features affecting multiple stakeholder types
+4. **Maintain user perspective** when making technical decisions and trade-offs
 
 ---
 
+**Documentation Maintainer**: Product Team  
 **Last Updated**: September 17, 2025  
-**Status**: Active Development  
-**Next Review**: October 17, 2025
+**Status**: Foundation Complete - Core Participants Detailed  
+**Next Milestone**: Tournament Operations Journey Stories  
+**Review Schedule**: Bi-weekly stakeholder validation sessions
