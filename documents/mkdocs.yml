@@ -116,7 +116,6 @@ nav:
   - Home: index.md
   # No development section: all internal lessons and workflow documents are excluded from publishable documentation
   - Domains:
-    - Overview: domains/README.md
     - Classification:
       - Overview: domains/classification/README.md
       - Category: domains/classification/category.md
@@ -334,4 +333,91 @@ nav:
       - Area Model: domains/venue/area.md
       - Map Model: domains/venue/map.md
       - Venue Model: domains/venue/venue.md
-      - Zone Model: domains/venue/zone.md
+    - Zone Model: domains/venue/zone.md
+  - Journeys:
+    - Overview: user-journeys/README.md
+    - Core Participants:
+      - Alex (Player/Athlete): user-journeys/core-participants/alex-player-athlete.md
+      - Coach Pete (Coach/Trainer): user-journeys/core-participants/coach-pete-coach-trainer.md
+      - Jordan (Team Captain): user-journeys/core-participants/jordan-team-captain.md
+      - Sarah (Team Manager): user-journeys/core-participants/sarah-team-manager.md
+    - Spectator/Fan: user-journeys/spectator-fan.md
+    - Additional Stakeholders:
+      - Announcer/MC: user-journeys/additional-stakeholders/announcer-mc.md
+      - Equipment Manager: user-journeys/additional-stakeholders/equipment-manager.md
+      - Judge/Scorer: user-journeys/additional-stakeholders/judge-scorer.md
+      - Security Officer: user-journeys/additional-stakeholders/security-officer.md
+      - Timekeeper: user-journeys/additional-stakeholders/timekeeper.md
+    - External Stakeholders:
+      - Overview: user-journeys/external-stakeholders/README.md
+      - Community Member Chris (Local Engagement): user-journeys/external-stakeholders/community-member-chris-local-engagement.md
+      - Parent Patricia (Parent/Guardian): user-journeys/external-stakeholders/parent-patricia-parent-guardian.md
+      - Sponsor Steve (Sponsor Representative): user-journeys/external-stakeholders/sponsor-steve-sponsor-representative.md
+    - Shared Experiences:
+      - Overview: user-journeys/shared-experiences/README.md
+      - Account Creation & Authentication: user-journeys/shared-experiences/account-creation-authentication.md
+      - Communication & Notifications: user-journeys/shared-experiences/communication-notifications.md
+      - Payment Processing: user-journeys/shared-experiences/payment-processing.md
+      - Registration Process: user-journeys/shared-experiences/registration-process.md
+      - Tournament Discovery: user-journeys/shared-experiences/tournament-discovery.md
+    - Support Services:
+      - Carol (Volunteer Coordinator): user-journeys/support-services/carol-volunteer-coordinator.md
+      - Dr. Martinez (Medical Support): user-journeys/support-services/dr-martinez-medical-support.md
+      - Lisa (Media Representative): user-journeys/support-services/lisa-media-representative.md
+    - Technical Processes:
+      - Overview: user-journeys/technical-processes/README.md
+      - Check-in System: user-journeys/technical-processes/check-in-system.md
+      - Communication Integration: user-journeys/technical-processes/communication-integration.md
+      - Community Engagement: user-journeys/technical-processes/community-engagement.md
+      - Compliance Management: user-journeys/technical-processes/compliance-management.md
+      - Crisis Adaptation: user-journeys/technical-processes/crisis-adaptation.md
+      - Crisis Response: user-journeys/technical-processes/crisis-response.md
+      - Decision Documentation: user-journeys/technical-processes/decision-documentation.md
+      - Distribution Management: user-journeys/technical-processes/distribution-management.md
+      - Emergency Response: user-journeys/technical-processes/emergency-response.md
+      - Environmental Monitoring: user-journeys/technical-processes/environmental-monitoring.md
+      - Facility Coordination: user-journeys/technical-processes/facility-coordination.md
+      - Family Coordination: user-journeys/technical-processes/family-coordination.md
+      - Financial Management: user-journeys/technical-processes/financial-management.md
+      - Health Documentation: user-journeys/technical-processes/health-documentation.md
+      - Identity Management: user-journeys/technical-processes/identity-management.md
+      - Impact Measurement: user-journeys/technical-processes/impact-measurement.md
+      - Integration Platform: user-journeys/technical-processes/integration-platform.md
+      - Media Coordination: user-journeys/technical-processes/media-coordination.md
+      - Medical Coordination: user-journeys/technical-processes/medical-coordination.md
+      - Notification Framework: user-journeys/technical-processes/notification-framework.md
+      - Officiating Coordination: user-journeys/technical-processes/officiating-coordination.md
+      - Operations Dashboard: user-journeys/technical-processes/operations-dashboard.md
+      - Partnership Coordination: user-journeys/technical-processes/partnership-coordination.md
+      - Payment Processing: user-journeys/technical-processes/payment-processing.md
+      - Performance Monitoring: user-journeys/technical-processes/performance-monitoring.md
+      - Prevention & Wellness: user-journeys/technical-processes/prevention-wellness.md
+      - Professional Development: user-journeys/technical-processes/professional-development.md
+      - Professional Standards: user-journeys/technical-processes/professional-standards.md
+      - RBAC System: user-journeys/technical-processes/rbac-system.md
+      - Recognition & Appreciation: user-journeys/technical-processes/recognition-appreciation.md
+      - Registration System: user-journeys/technical-processes/registration-system.md
+      - Resource Allocation: user-journeys/technical-processes/resource-allocation.md
+      - Results Management: user-journeys/technical-processes/results-management.md
+      - ROI Documentation: user-journeys/technical-processes/roi-documentation.md
+      - Rule Support: user-journeys/technical-processes/rule-support.md
+      - Safety Management: user-journeys/technical-processes/safety-management.md
+      - Schedule Management: user-journeys/technical-processes/schedule-management.md
+      - Scheduling Engine: user-journeys/technical-processes/scheduling-engine.md
+      - Security Framework: user-journeys/technical-processes/security-framework.md
+      - Stakeholder Management: user-journeys/technical-processes/stakeholder-management.md
+      - Story Development: user-journeys/technical-processes/story-development.md
+      - System Integration: user-journeys/technical-processes/system-integration.md
+      - Team Formation: user-journeys/technical-processes/team-formation.md
+      - Tournament Architecture: user-journeys/technical-processes/tournament-architecture.md
+      - Training & Development: user-journeys/technical-processes/training-development.md
+      - User Experience: user-journeys/technical-processes/user-experience.md
+      - Verification Workflows: user-journeys/technical-processes/verification-workflows.md
+      - Volunteer Management: user-journeys/technical-processes/volunteer-management.md
+    - Tournament Operations:
+      - David (Venue Manager): user-journeys/tournament-operations/david-venue-manager.md
+      - Mike (Tournament Director): user-journeys/tournament-operations/mike-tournament-director.md
+      - Referee Bill (Official Referee): user-journeys/tournament-operations/referee-bill-official-referee.md
+      - Tech Tom (Technical Support): user-journeys/tournament-operations/tech-tom-technical-support.md
+    - Journeys:
+      - Overview: domains/user-journeys/README.md
